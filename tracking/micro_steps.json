@@ -1,0 +1,21 @@
+{
+  "task": "example_task",
+  "steps": [
+    {
+      "name": "define schema",
+      "done": false
+    },
+    {
+      "name": "build logic",
+      "done": false
+    },
+    {
+      "name": "test",
+      "done": false
+    },
+    {
+      "name": "push",
+      "done": false
+    }
+  ]
+}

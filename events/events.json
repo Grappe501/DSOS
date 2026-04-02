@@ -1,0 +1,38 @@
+{
+  "schedule.created": {
+    "payload": [
+      "schedule_id",
+      "user_id",
+      "start_time"
+    ]
+  },
+  "task.created": {
+    "payload": [
+      "task_id",
+      "assigned_to"
+    ]
+  },
+  "reminder.triggered": {
+    "payload": [
+      "task_id",
+      "time"
+    ]
+  },
+  "message.sent": {
+    "payload": [
+      "recipient",
+      "channel"
+    ]
+  },
+  "workflow.started": {
+    "payload": [
+      "workflow_id"
+    ]
+  },
+  "integration.failed": {
+    "payload": [
+      "system",
+      "error"
+    ]
+  }
+}

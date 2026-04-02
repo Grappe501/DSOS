@@ -1,0 +1,7 @@
+{
+  "modules": {
+    "scheduling": "active",
+    "hr": "stub",
+    "pharmacy": "planned"
+  }
+}

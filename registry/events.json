@@ -1,0 +1,8 @@
+{
+  "events": [
+    "schedule.created",
+    "task.assigned",
+    "reminder.sent",
+    "workflow.failed"
+  ]
+}

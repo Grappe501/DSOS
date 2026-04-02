@@ -1,0 +1,61 @@
+{
+  "structure": {
+    ".": [
+      "README.md"
+    ],
+    ".\\docs": [],
+    ".\\docs\\core": [
+      "overview.md"
+    ],
+    ".\\docs\\data": [
+      "schema.md"
+    ],
+    ".\\docs\\modules": [
+      "module_template.md"
+    ],
+    ".\\docs\\process": [
+      "build_process.md"
+    ],
+    ".\\docs\\spine": [
+      "ai_orchestration.md",
+      "audit_logging.md",
+      "auth_service.md",
+      "event_bus.md",
+      "forms_engine.md",
+      "integration_gateway.md",
+      "messaging_engine.md",
+      "reminder_engine.md",
+      "reporting_engine.md",
+      "services.md",
+      "task_engine.md",
+      "workflow_engine.md"
+    ],
+    ".\\registry": [
+      "events.json",
+      "modules.json"
+    ],
+    ".\\scripts": [
+      "build_map.py",
+      "update_progress.py"
+    ],
+    ".\\tracking": [
+      "current_state.json",
+      "micro_steps.json",
+      "progress.json"
+    ]
+  },
+  "progress": {
+    "phase_1": {
+      "tasks": [],
+      "progress": 0
+    },
+    "phase_2": {
+      "tasks": [],
+      "progress": 0
+    },
+    "phase_3": {
+      "tasks": [],
+      "progress": 0
+    }
+  }
+}
