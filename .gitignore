@@ -1,0 +1,8 @@
+__pycache__/
+*.pyc
+*.db
+runtime_v5.db
+node_modules/
+dist/
+.env
+.venv/
