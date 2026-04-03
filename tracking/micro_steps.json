@@ -1,20 +1,40 @@
 {
-  "task": "example_task",
+  "task": "phase_3_runtime_stabilization_and_slice_completion",
   "steps": [
     {
-      "name": "define schema",
+      "name": "stabilize backend imports, schemas, routes, and auth contracts",
+      "done": true
+    },
+    {
+      "name": "stabilize frontend auth/api contract and vite proxy",
+      "done": true
+    },
+    {
+      "name": "restore successful login and dashboard access",
+      "done": true
+    },
+    {
+      "name": "wire workflows/messages/events navigation to live stub slices",
+      "done": true
+    },
+    {
+      "name": "harden department-aware filtering and scoping rules",
       "done": false
     },
     {
-      "name": "build logic",
+      "name": "finish actor_user_id propagation on all write-generated audit rows",
       "done": false
     },
     {
-      "name": "test",
+      "name": "finish owner/admin audit review and operational visibility UI",
       "done": false
     },
     {
-      "name": "push",
+      "name": "run smoke tests across login, schedules, workflows, messages, and events",
+      "done": false
+    },
+    {
+      "name": "commit, tag, and push current stabilized milestone",
       "done": false
     }
   ]

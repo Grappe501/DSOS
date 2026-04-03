@@ -14,18 +14,22 @@ from app.services.auth_service import ensure_seed_data
 from app.utils.logger import log
 
 
+APP_TITLE = "AllCare Pharmacy Runtime"
+APP_VERSION = "0.6.1"
+
+
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     log("Starting AllCare Pharmacy runtime")
+    db = None
+
     try:
         Base.metadata.create_all(bind=engine)
         log("Database schema initialized")
 
         db = SessionLocal()
-        try:
-            ensure_seed_data(db)
-        finally:
-            db.close()
+        ensure_seed_data(db)
+        log("Seed data ensured")
 
         wire_events()
         log("Event wiring initialized")
@@ -35,13 +39,19 @@ async def lifespan(app: FastAPI):
 
         yield
 
+    except Exception as exc:
+        log(f"Application startup failed: {exc}")
+        raise
+
     finally:
+        if db is not None:
+            db.close()
         log("Shutting down AllCare Pharmacy runtime")
 
 
 app = FastAPI(
-    title="AllCare Pharmacy Runtime",
-    version="0.6.1",
+    title=APP_TITLE,
+    version=APP_VERSION,
     lifespan=lifespan,
 )
 
@@ -56,8 +66,10 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+# Keep both routers for backward compatibility with the current app shape.
 app.include_router(router)
-app.include_router(api_router)
+if api_router is not router:
+    app.include_router(api_router)
 app.include_router(auth_router)
 
 
@@ -66,5 +78,5 @@ def health():
     return {
         "status": "ok",
         "service": "allcare-pharmacy-runtime",
-        "version": "0.6.1",
+        "version": APP_VERSION,
     }

@@ -1,299 +1,189 @@
 from __future__ import annotations
 
+import json
 from typing import Any
 
-from fastapi import APIRouter, Depends, HTTPException, Query, status
-from fastapi.responses import HTMLResponse
+from fastapi import APIRouter, Depends, Query
 from sqlalchemy.orm import Session
 
 from app.api.deps import get_current_user, get_db, require_roles
-from app.api.schemas import (
-    CancelResponse,
-    ConflictResolutionRequest,
-    QueueMessageRequest,
-    ScheduleCreateRequest,
-    ScheduleResponse,
-    ScheduleUpdateRequest,
-    TaskCreateRequest,
-    TaskCreateResponse,
-)
-from app.models.models import (
-    AuditLog,
-    EventLog,
-    MessageQueue,
-    Reminder,
-    Schedule,
-    WorkflowState,
-)
-from app.services.messaging_service import queue_message
-from app.services.schedule_service import (
-    cancel_schedule,
-    create_recurring_schedule,
-    create_schedule,
-    resolve_conflict,
-    update_schedule,
-)
-from app.services.task_service import create_task
-from app.utils.logger import log
-
-router = APIRouter()
-api_router = APIRouter(prefix="/api", tags=["api"])
+from app.api.schemas import HealthResponse
+from app.models.models import AuditLog, Schedule
 
 
-def _server_error(detail: str) -> HTTPException:
-    return HTTPException(
-        status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-        detail=detail,
-    )
+api_router = APIRouter(prefix="/api")
+router = api_router
 
 
-def _serialize_event(row: EventLog) -> dict[str, Any]:
-    return {
-        "id": row.id,
-        "event_type": row.event_type,
-        "payload": row.payload,
-        "created_at": row.created_at.isoformat(),
-    }
+def _serialize_dt(value):
+    return value.isoformat() if value is not None else None
 
 
-def _serialize_audit(row: AuditLog) -> dict[str, Any]:
+def _coerce_meta(value: Any) -> Any:
+    if value is None:
+        return None
+
+    if isinstance(value, (dict, list)):
+        return value
+
+    if isinstance(value, str):
+        try:
+            return json.loads(value)
+        except Exception:
+            return value
+
+    return value
+
+
+def _serialize_audit_row(row: AuditLog) -> dict[str, Any]:
     return {
         "id": row.id,
         "action": row.action,
         "entity_type": row.entity_type,
-        "entity_id": row.entity_id,
-        "metadata": row.meta_json,
-        "created_at": row.created_at.isoformat(),
+        "entity_id": getattr(row, "entity_id", None),
+        "actor_user_id": getattr(row, "actor_user_id", None),
+        "created_at": _serialize_dt(getattr(row, "created_at", None)),
+        "meta_json": _coerce_meta(getattr(row, "meta_json", None)),
     }
 
 
-def _serialize_schedule(row: Schedule) -> dict[str, Any]:
+@api_router.get("/health", response_model=HealthResponse)
+def healthcheck() -> HealthResponse:
+    return HealthResponse(status="ok")
+
+
+@api_router.get("/me")
+def me(current=Depends(get_current_user)) -> dict[str, Any]:
+    user, role_name = current
     return {
-        "id": row.id,
-        "title": row.title,
-        "assigned_to": row.assigned_to,
-        "start_time": row.start_time.isoformat(),
-        "end_time": row.end_time.isoformat(),
-        "status": row.status,
-        "recurrence_rule": row.recurrence_rule,
-        "parent_schedule_id": row.parent_schedule_id,
-        "synced_to_office365": row.synced_to_office365,
-        "office365_event_id": row.office365_event_id,
-        "created_at": row.created_at.isoformat(),
-        "updated_at": row.updated_at.isoformat(),
-        "department": row.department,
-        "created_by_user_id": row.created_by_user_id,
+        "id": user.id,
+        "email": user.email,
+        "full_name": getattr(user, "full_name", None),
+        "role": role_name,
+        "department": getattr(user, "department", None),
+        "department_id": getattr(user, "department_id", None),
+        "is_active": getattr(user, "is_active", True),
     }
 
 
-def _serialize_reminder(row: Reminder) -> dict[str, Any]:
-    return {
-        "id": row.id,
-        "task_id": row.task_id,
-        "schedule_id": row.schedule_id,
-        "trigger_time": row.trigger_time.isoformat(),
-        "status": row.status,
-        "message": row.message,
-        "created_at": row.created_at.isoformat(),
-    }
+@api_router.get("/schedules")
+def list_schedules(
+    department: str | None = Query(default=None),
+    db: Session = Depends(get_db),
+    current=Depends(get_current_user),
+) -> list[dict[str, Any]]:
+    user, role_name = current
+    query = db.query(Schedule)
 
+    user_department = getattr(user, "department", None)
 
-def _serialize_workflow(row: WorkflowState) -> dict[str, Any]:
-    return {
-        "id": row.id,
-        "workflow_name": row.workflow_name,
-        "entity_type": row.entity_type,
-        "entity_id": row.entity_id,
-        "state": row.state,
-        "status": row.status,
-        "metadata": row.meta_json,
-        "created_at": row.created_at.isoformat(),
-        "updated_at": row.updated_at.isoformat(),
-    }
+    if role_name not in {"owner", "admin"} and user_department:
+        query = query.filter(Schedule.department == user_department)
 
+    if department and (role_name in {"owner", "admin"} or department == user_department):
+        query = query.filter(Schedule.department == department)
 
-def _serialize_message(row: MessageQueue) -> dict[str, Any]:
-    return {
-        "id": row.id,
-        "channel": row.channel,
-        "recipient": row.recipient,
-        "content": row.content,
-        "status": row.status,
-        "retry_count": row.retry_count,
-        "max_retries": row.max_retries,
-        "last_error": row.last_error,
-        "created_at": row.created_at.isoformat(),
-        "updated_at": row.updated_at.isoformat(),
-    }
+    rows = query.order_by(Schedule.start_time.desc()).all()
 
-
-@router.get("/", response_class=HTMLResponse)
-def home() -> str:
-    return """
-    <html>
-      <head><title>AllCare Pharmacy Runtime</title></head>
-      <body style="font-family: Arial, sans-serif; max-width: 1000px; margin: 40px auto; line-height: 1.5;">
-        <h1>AllCare Pharmacy Runtime</h1>
-        <p>Backend is running.</p>
-        <ul>
-          <li><a href="/docs">Swagger UI</a></li>
-          <li><a href="/health">Health</a></li>
-          <li><a href="/api/health">API Health</a></li>
-          <li><a href="/api/auth/me">API Me</a></li>
-          <li><a href="/api/schedules">API Schedules</a></li>
-          <li><a href="/api/events">API Events</a></li>
-          <li><a href="/api/audit">API Audit</a></li>
-          <li><a href="/api/workflows">API Workflows</a></li>
-          <li><a href="/api/messages">API Messages</a></li>
-          <li><a href="/api/reminders">API Reminders</a></li>
-        </ul>
-      </body>
-    </html>
-    """
-
-
-@api_router.get("/health")
-def api_health() -> dict[str, str]:
-    return {"status": "ok", "service": "allcare-pharmacy-runtime"}
-
-
-@api_router.post("/tasks/create", response_model=TaskCreateResponse)
-def create_task_json(
-    data: TaskCreateRequest,
-    current=Depends(require_roles("owner", "admin", "scheduler")),
-) -> dict[str, str]:
-    try:
-        task = create_task(data.model_dump())
-        return {"task_id": task.id, "status": task.status}
-    except Exception as exc:
-        log(f"Task creation failed: {exc}")
-        raise _server_error("Task creation failed")
-
-
-@api_router.post("/schedules/create", response_model=ScheduleResponse)
-def create_schedule_json(
-    data: ScheduleCreateRequest,
-    current=Depends(require_roles("owner", "admin", "scheduler")),
-) -> dict[str, Any]:
-    try:
-        payload = data.model_dump()
-        user, _role_name = current
-        payload["created_by_user_id"] = user.id
-        payload["department"] = user.department
-
-        recurrence_rule = payload.get("recurrence_rule")
-        if recurrence_rule:
-            created = create_recurring_schedule(payload)
-            if not created:
-                raise _server_error("Recurring schedule creation returned no results")
-            first, first_conflict = created[0]
-            return {
-                "schedule_id": first.id,
-                "status": first.status,
-                "conflict_detected": first_conflict,
-            }
-
-        schedule, conflict_detected = create_schedule(payload)
-        return {
-            "schedule_id": schedule.id,
-            "status": schedule.status,
-            "conflict_detected": conflict_detected,
+    return [
+        {
+            "id": row.id,
+            "title": row.title,
+            "start_time": _serialize_dt(getattr(row, "start_time", None)),
+            "end_time": _serialize_dt(getattr(row, "end_time", None)),
+            "department": getattr(row, "department", None),
+            "notes": getattr(row, "notes", None),
+            "status": getattr(row, "status", None),
+            "assigned_user_id": getattr(row, "assigned_user_id", None),
+            "created_by_user_id": getattr(row, "created_by_user_id", None),
+            "cancelled_by_user_id": getattr(row, "cancelled_by_user_id", None),
+            "created_at": _serialize_dt(getattr(row, "created_at", None)),
+            "updated_at": _serialize_dt(getattr(row, "updated_at", None)),
         }
-    except HTTPException:
-        raise
-    except Exception as exc:
-        log(f"Schedule creation failed: {exc}")
-        raise _server_error("Schedule creation failed")
+        for row in rows
+    ]
 
 
-@api_router.put("/schedules/{schedule_id}", response_model=ScheduleResponse)
-def update_schedule_json(
-    schedule_id: str,
-    data: ScheduleUpdateRequest,
-    current=Depends(require_roles("owner", "admin", "scheduler")),
-) -> dict[str, Any]:
-    try:
-        schedule, conflict_detected = update_schedule(
-            schedule_id,
-            data.model_dump(exclude_none=True),
-        )
-        if not schedule:
-            raise HTTPException(
-                status_code=status.HTTP_404_NOT_FOUND,
-                detail="Schedule not found",
-            )
-        return {
-            "schedule_id": schedule.id,
-            "status": schedule.status,
-            "conflict_detected": conflict_detected,
-        }
-    except HTTPException:
-        raise
-    except Exception as exc:
-        log(f"Schedule update failed: {exc}")
-        raise _server_error("Schedule update failed")
+@api_router.get("/audit")
+def list_audit(
+    action: str | None = Query(default=None),
+    entity_type: str | None = Query(default=None),
+    actor_user_id: str | None = Query(default=None),
+    db: Session = Depends(get_db),
+    current=Depends(require_roles("owner", "admin")),
+) -> list[dict[str, Any]]:
+    query = db.query(AuditLog)
+
+    if action:
+        query = query.filter(AuditLog.action == action)
+    if entity_type:
+        query = query.filter(AuditLog.entity_type == entity_type)
+    if actor_user_id:
+        query = query.filter(AuditLog.actor_user_id == actor_user_id)
+
+    rows = query.order_by(AuditLog.created_at.desc()).limit(200).all()
+    return [_serialize_audit_row(row) for row in rows]
 
 
-@api_router.post("/schedules/{schedule_id}/cancel", response_model=CancelResponse)
-def cancel_schedule_json(
-    schedule_id: str,
-    current=Depends(require_roles("owner", "admin", "scheduler")),
-) -> dict[str, str]:
-    try:
-        schedule = cancel_schedule(schedule_id)
-        if not schedule:
-            raise HTTPException(
-                status_code=status.HTTP_404_NOT_FOUND,
-                detail="Schedule not found",
-            )
-        return {"schedule_id": schedule.id, "status": schedule.status}
-    except HTTPException:
-        raise
-    except Exception as exc:
-        log(f"Schedule cancel failed: {exc}")
-        raise _server_error("Schedule cancel failed")
-
-
-@api_router.post("/schedules/{schedule_id}/resolve-conflict")
-def resolve_conflict_json(
-    schedule_id: str,
-    data: ConflictResolutionRequest,
+@api_router.get("/operational/summary")
+def operational_summary(
+    db: Session = Depends(get_db),
     current=Depends(require_roles("owner", "admin")),
 ) -> dict[str, Any]:
-    try:
-        schedule, ok = resolve_conflict(schedule_id, data.strategy)
-        if not schedule:
-            raise HTTPException(
-                status_code=status.HTTP_404_NOT_FOUND,
-                detail="Schedule not found",
-            )
-        return {
-            "schedule_id": schedule.id,
-            "status": schedule.status,
-            "resolution_applied": ok,
-        }
-    except HTTPException:
-        raise
-    except Exception as exc:
-        log(f"Conflict resolution failed: {exc}")
-        raise _server_error("Conflict resolution failed")
+    total_schedules = db.query(Schedule).count()
+    total_audit_rows = db.query(AuditLog).count()
+
+    workflows = db.query(AuditLog).filter(AuditLog.action == "state_transition").count()
+    messages = db.query(AuditLog).filter(AuditLog.entity_type == "message").count()
+    events = db.query(AuditLog).filter(AuditLog.entity_type == "event").count()
+
+    recent_rows = (
+        db.query(AuditLog)
+        .order_by(AuditLog.created_at.desc())
+        .limit(10)
+        .all()
+    )
+
+    return {
+        "totals": {
+            "schedules": total_schedules,
+            "workflows": workflows,
+            "messages": messages,
+            "events": events,
+            "audit_rows": total_audit_rows,
+        },
+        "recent_activity": [_serialize_audit_row(row) for row in recent_rows],
+    }
 
 
-@api_router.post("/messages/queue")
-def queue_message_json(
-    data: QueueMessageRequest,
-    current=Depends(require_roles("owner", "admin")),
-) -> dict[str, str]:
-    try:
-        item = queue_message(
-            recipient=data.recipient,
-            content=data.content,
-            channel=data.channel,
-        )
-        return {"message_id": item.id, "status": item.status}
-    except Exception as exc:
-        log(f"Message queue failed: {exc}")
-        raise _server_error("Message queue failed")
+@api_router.get("/workflows")
+def list_workflows(
+    db: Session = Depends(get_db),
+    current=Depends(get_current_user),
+) -> list[dict[str, Any]]:
+    rows = (
+        db.query(AuditLog)
+        .filter(AuditLog.action == "state_transition")
+        .order_by(AuditLog.created_at.desc())
+        .limit(200)
+        .all()
+    )
+    return [_serialize_audit_row(row) for row in rows]
+
+
+@api_router.get("/messages")
+def list_messages(
+    db: Session = Depends(get_db),
+    current=Depends(get_current_user),
+) -> list[dict[str, Any]]:
+    rows = (
+        db.query(AuditLog)
+        .filter(AuditLog.entity_type == "message")
+        .order_by(AuditLog.created_at.desc())
+        .limit(200)
+        .all()
+    )
+    return [_serialize_audit_row(row) for row in rows]
 
 
 @api_router.get("/events")
@@ -301,107 +191,11 @@ def list_events(
     db: Session = Depends(get_db),
     current=Depends(get_current_user),
 ) -> list[dict[str, Any]]:
-    try:
-        rows = db.query(EventLog).order_by(EventLog.created_at.desc()).all()
-        return [_serialize_event(row) for row in rows]
-    except Exception as exc:
-        log(f"Event query failed: {exc}")
-        raise _server_error("Event query failed")
-
-
-@api_router.get("/audit")
-def list_audit(
-    db: Session = Depends(get_db),
-    current=Depends(require_roles("owner", "admin")),
-) -> list[dict[str, Any]]:
-    try:
-        rows = db.query(AuditLog).order_by(AuditLog.created_at.desc()).all()
-        return [_serialize_audit(row) for row in rows]
-    except Exception as exc:
-        log(f"Audit query failed: {exc}")
-        raise _server_error("Audit query failed")
-
-
-@api_router.get("/schedules")
-def list_schedules(
-    status: str | None = Query(default=None),
-    assigned_to: str | None = Query(default=None),
-    db: Session = Depends(get_db),
-    current=Depends(get_current_user),
-) -> list[dict[str, Any]]:
-    try:
-        query = db.query(Schedule)
-        user, role_name = current
-
-        if role_name == "viewer" and user.department:
-            query = query.filter(
-                (Schedule.department == user.department) | (Schedule.department.is_(None))
-            )
-
-        if status:
-            query = query.filter(Schedule.status == status)
-        if assigned_to:
-            query = query.filter(Schedule.assigned_to == assigned_to)
-
-        rows = query.order_by(Schedule.created_at.desc()).all()
-        return [_serialize_schedule(row) for row in rows]
-    except Exception as exc:
-        log(f"Schedule query failed: {exc}")
-        raise _server_error("Schedule query failed")
-
-
-@api_router.get("/reminders")
-def list_reminders(
-    status: str | None = Query(default=None),
-    db: Session = Depends(get_db),
-    current=Depends(get_current_user),
-) -> list[dict[str, Any]]:
-    try:
-        query = db.query(Reminder)
-        if status:
-            query = query.filter(Reminder.status == status)
-        rows = query.order_by(Reminder.created_at.desc()).all()
-        return [_serialize_reminder(row) for row in rows]
-    except Exception as exc:
-        log(f"Reminder query failed: {exc}")
-        raise _server_error("Reminder query failed")
-
-
-@api_router.get("/workflows")
-def list_workflows(
-    status: str | None = Query(default=None),
-    workflow_name: str | None = Query(default=None),
-    db: Session = Depends(get_db),
-    current=Depends(get_current_user),
-) -> list[dict[str, Any]]:
-    try:
-        query = db.query(WorkflowState)
-        if status:
-            query = query.filter(WorkflowState.status == status)
-        if workflow_name:
-            query = query.filter(WorkflowState.workflow_name == workflow_name)
-        rows = query.order_by(WorkflowState.updated_at.desc()).all()
-        return [_serialize_workflow(row) for row in rows]
-    except Exception as exc:
-        log(f"Workflow query failed: {exc}")
-        raise _server_error("Workflow query failed")
-
-
-@api_router.get("/messages")
-def list_messages(
-    status: str | None = Query(default=None),
-    channel: str | None = Query(default=None),
-    db: Session = Depends(get_db),
-    current=Depends(require_roles("owner", "admin")),
-) -> list[dict[str, Any]]:
-    try:
-        query = db.query(MessageQueue)
-        if status:
-            query = query.filter(MessageQueue.status == status)
-        if channel:
-            query = query.filter(MessageQueue.channel == channel)
-        rows = query.order_by(MessageQueue.created_at.desc()).all()
-        return [_serialize_message(row) for row in rows]
-    except Exception as exc:
-        log(f"Message query failed: {exc}")
-        raise _server_error("Message query failed")
+    rows = (
+        db.query(AuditLog)
+        .filter(AuditLog.entity_type == "event")
+        .order_by(AuditLog.created_at.desc())
+        .limit(200)
+        .all()
+    )
+    return [_serialize_audit_row(row) for row in rows]

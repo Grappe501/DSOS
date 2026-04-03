@@ -1,14 +1,47 @@
 {
-  "phase_1": {
-    "tasks": [],
-    "progress": 0
+  "phase_1_runtime_foundation": {
+    "progress": 100,
+    "status": "complete",
+    "tasks": [
+      "runtime foundation",
+      "api routes",
+      "schedule slice",
+      "frontend shell"
+    ]
   },
-  "phase_2": {
-    "tasks": [],
-    "progress": 0
+  "phase_2_auth_rbac_branding": {
+    "progress": 100,
+    "status": "complete",
+    "tasks": [
+      "jwt auth",
+      "seed login",
+      "protected routes",
+      "rbac enforcement v1",
+      "allcare branding v1"
+    ]
   },
-  "phase_3": {
-    "tasks": [],
-    "progress": 0
+  "phase_3_department_audit": {
+    "progress": 65,
+    "status": "in_progress",
+    "tasks": [
+      "runtime/login stabilization",
+      "auth route and schema contract repair",
+      "workflow/messages/events stub slice activation",
+      "actor-aware audit tracking",
+      "department scoping",
+      "owner admin operational visibility"
+    ]
+  },
+  "phase_4_department_ops_workflow": {
+    "progress": 0,
+    "status": "planned",
+    "tasks": [
+      "formal department registry",
+      "membership model",
+      "approval workflow",
+      "audit v2 enrichment",
+      "approvals and departments UI",
+      "alembic migrations"
+    ]
   }
 }

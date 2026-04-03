@@ -1,0 +1,81 @@
+{
+  "registry_version": "1.0",
+  "description": "Central template registry for DSOS scaffold automation.",
+  "templates": {
+    "backend_department_service": {
+      "template_path": "backend/services/department_service.py.tpl",
+      "output_path": "{backend_root}/services/department_service.py",
+      "responsibility": "Department registry, membership resolution, scope checks, approval authority"
+    },
+    "backend_audit_service": {
+      "template_path": "backend/services/audit_service.py.tpl",
+      "output_path": "{backend_root}/services/audit_service.py",
+      "responsibility": "Audit writes, request ids, before/after payload handling"
+    },
+    "backend_schedule_service": {
+      "template_path": "backend/services/schedule_service.py.tpl",
+      "output_path": "{backend_root}/services/schedule_service.py",
+      "responsibility": "Draft, submit, approve, reject, cancel schedule workflow"
+    },
+    "backend_workflow_service": {
+      "template_path": "backend/services/workflow_service.py.tpl",
+      "output_path": "{backend_root}/services/workflow_service.py",
+      "responsibility": "Workflow transition recording and history lookup"
+    },
+    "backend_api_schemas": {
+      "template_path": "backend/api/schemas.py.tpl",
+      "output_path": "{backend_root}/api/schemas.py",
+      "responsibility": "Pydantic schemas for departments, approvals, audit, and ops"
+    },
+    "backend_api_deps": {
+      "template_path": "backend/api/deps.py.tpl",
+      "output_path": "{backend_root}/api/deps.py",
+      "responsibility": "Current user scope resolution helpers"
+    },
+    "backend_api_routes": {
+      "template_path": "backend/api/routes.py.tpl",
+      "output_path": "{backend_root}/api/routes.py",
+      "responsibility": "Department, schedule workflow, audit, and operational endpoints"
+    },
+    "backend_alembic_ini": {
+      "template_path": "backend/migrations/alembic.ini.tpl",
+      "output_path": "alembic.ini",
+      "responsibility": "Alembic configuration"
+    },
+    "backend_alembic_env": {
+      "template_path": "backend/migrations/env.py.tpl",
+      "output_path": "alembic/env.py",
+      "responsibility": "Alembic env loader"
+    },
+    "backend_alembic_migration_v070": {
+      "template_path": "backend/migrations/0001_v070_department_workflow.py.tpl",
+      "output_path": "alembic/versions/0001_v070_department_workflow.py",
+      "responsibility": "Department, membership, schedule workflow, and audit migration"
+    },
+    "frontend_audit_page": {
+      "template_path": "frontend/pages/AuditPage.jsx.tpl",
+      "output_path": "{frontend_root}/pages/AuditPage.jsx",
+      "responsibility": "Owner/admin audit review UI"
+    },
+    "frontend_approvals_page": {
+      "template_path": "frontend/pages/ApprovalsPage.jsx.tpl",
+      "output_path": "{frontend_root}/pages/ApprovalsPage.jsx",
+      "responsibility": "Pending approval queue"
+    },
+    "frontend_departments_page": {
+      "template_path": "frontend/pages/DepartmentsPage.jsx.tpl",
+      "output_path": "{frontend_root}/pages/DepartmentsPage.jsx",
+      "responsibility": "Department registry and membership admin UI"
+    },
+    "frontend_api_client": {
+      "template_path": "frontend/lib/api.js.tpl",
+      "output_path": "{frontend_root}/lib/api.js",
+      "responsibility": "API client methods for phase v0.7.0"
+    },
+    "frontend_auth_context": {
+      "template_path": "frontend/context/AuthContext.jsx.tpl",
+      "output_path": "{frontend_root}/context/AuthContext.jsx",
+      "responsibility": "Scope-aware auth context"
+    }
+  }
+}

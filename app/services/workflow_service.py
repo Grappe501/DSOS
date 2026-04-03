@@ -1,119 +1,162 @@
-import datetime
-import json
+from __future__ import annotations
 
-from app.db.session import SessionLocal
-from app.events.event_bus import event_bus
+from datetime import datetime
+from typing import Any
+
+from sqlalchemy.orm import Session
+
 from app.models.models import WorkflowState
-from app.services.audit_service import write_audit
-from app.utils.logger import log
+from app.services.audit_service import log_transition
 
 
-def _upsert_workflow(
-    workflow_name: str,
-    entity_type: str,
-    entity_id: str,
-    state: str,
-    metadata: dict | None = None,
-) -> None:
-    db = SessionLocal()
+def _serialize_meta(meta: dict[str, Any] | None) -> str | None:
+    if meta is None:
+        return None
     try:
-        row = (
-            db.query(WorkflowState)
-            .filter(
-                WorkflowState.workflow_name == workflow_name,
-                WorkflowState.entity_type == entity_type,
-                WorkflowState.entity_id == entity_id,
-                WorkflowState.status == "active",
-            )
-            .first()
-        )
-
-        payload = json.dumps(metadata or {}, default=str)
-
-        if row:
-            row.state = state
-            row.meta_json = payload
-            row.updated_at = datetime.datetime.utcnow()
-        else:
-            row = WorkflowState(
-                workflow_name=workflow_name,
-                entity_type=entity_type,
-                entity_id=entity_id,
-                state=state,
-                status="active",
-                meta_json=payload,
-                updated_at=datetime.datetime.utcnow(),
-            )
-            db.add(row)
-
-        db.commit()
-
-    except Exception as e:
-        db.rollback()
-        log(f"Workflow upsert failed: {e}")
-        raise
-
-    finally:
-        db.close()
-
-
-def start_schedule_workflow(payload: dict) -> None:
-    log(f"Starting workflow for schedule {payload['schedule_id']}")
-
-    _upsert_workflow(
-        "schedule_followup",
-        "schedule",
-        payload["schedule_id"],
-        "created",
-        payload,
-    )
-
-    write_audit(
-        "workflow.started",
-        "schedule",
-        payload["schedule_id"],
-        {"workflow": "schedule_followup"},
-    )
-
-    event_bus.emit(
-        "workflow.started",
-        {
-            "workflow": "schedule_followup",
-            "schedule_id": payload["schedule_id"],
-            "assigned_to": payload["assigned_to"],
-            "conflict_detected": payload["conflict_detected"],
-        },
-    )
-
-
-def route_conflict_resolution(payload: dict) -> None:
-    if payload.get("conflict_detected"):
-        _upsert_workflow(
-            "schedule_followup",
-            "schedule",
-            payload["schedule_id"],
-            "conflict_detected",
-            payload,
-        )
-
-        event_bus.emit(
-            "schedule.conflict.detected",
-            {
-                "schedule_id": payload["schedule_id"],
-                "assigned_to": payload["assigned_to"],
-            },
-        )
+        import json
+        return json.dumps(meta, default=str)
+    except Exception:
+        return str(meta)
 
 
 def mark_workflow_state(
-    schedule_id: str,
+    db: Session,
+    *,
+    workflow_name: str,
+    entity_type: str,
+    entity_id: int,
     state: str,
-    metadata: dict | None = None,
-) -> None:
-    _upsert_workflow(
-        "schedule_followup",
-        "schedule",
-        schedule_id,
-        state,
-        metadata or {},
+    status: str = "active",
+    actor_user_id: int | None = None,
+    department: str | None = None,
+    meta_json: dict[str, Any] | None = None,
+) -> WorkflowState:
+    """
+    Backward-compatible workflow writer.
+    """
+    row = WorkflowState(
+        workflow_name=workflow_name,
+        entity_type=entity_type,
+        entity_id=entity_id,
+        state=state,
+        status=status,
+        meta_json=_serialize_meta(meta_json),
+        created_at=datetime.utcnow(),
+        updated_at=datetime.utcnow(),
+    )
+    db.add(row)
+    db.commit()
+    db.refresh(row)
+
+    log_transition(
+        db,
+        entity_type=entity_type,
+        entity_id=entity_id,
+        from_state=None,
+        to_state=state,
+        actor_user_id=actor_user_id,
+        department=department,
+        meta_json={
+            "workflow_name": workflow_name,
+            "status": status,
+            **(meta_json or {}),
+        },
+    )
+
+    return row
+
+
+def start_schedule_workflow(
+    db: Session,
+    *,
+    schedule_id: int,
+    actor_user_id: int | None = None,
+    department: str | None = None,
+    initial_state: str = "created",
+    meta_json: dict[str, Any] | None = None,
+) -> WorkflowState:
+    """
+    Legacy-compatible entry point used by wiring/schedule flow.
+    """
+    return mark_workflow_state(
+        db,
+        workflow_name="schedule_workflow",
+        entity_type="schedule",
+        entity_id=schedule_id,
+        state=initial_state,
+        status="active",
+        actor_user_id=actor_user_id,
+        department=department,
+        meta_json=meta_json,
+    )
+
+
+def route_conflict_resolution(
+    db: Session,
+    *,
+    schedule_id: int,
+    actor_user_id: int | None = None,
+    department: str | None = None,
+    reason: str | None = None,
+    meta_json: dict[str, Any] | None = None,
+) -> WorkflowState:
+    """
+    Legacy-compatible helper for conflict workflow routing.
+    """
+    payload = dict(meta_json or {})
+    if reason is not None:
+        payload["reason"] = reason
+
+    return mark_workflow_state(
+        db,
+        workflow_name="schedule_workflow",
+        entity_type="schedule",
+        entity_id=schedule_id,
+        state="conflict_resolution",
+        status="active",
+        actor_user_id=actor_user_id,
+        department=department,
+        meta_json=payload,
+    )
+
+
+def transition_schedule_state(
+    db: Session,
+    *,
+    schedule_id: int,
+    to_state: str,
+    actor_user_id: int | None = None,
+    department: str | None = None,
+    meta_json: dict[str, Any] | None = None,
+) -> WorkflowState:
+    """
+    Phase 3+ normalized helper.
+    """
+    return mark_workflow_state(
+        db,
+        workflow_name="schedule_approval",
+        entity_type="schedule",
+        entity_id=schedule_id,
+        state=to_state,
+        status="active",
+        actor_user_id=actor_user_id,
+        department=department,
+        meta_json=meta_json,
+    )
+
+
+def get_entity_workflow_history(
+    db: Session,
+    *,
+    entity_type: str,
+    entity_id: int,
+) -> list[WorkflowState]:
+    return (
+        db.query(WorkflowState)
+        .filter(
+            WorkflowState.entity_type == entity_type,
+            WorkflowState.entity_id == entity_id,
+        )
+        .order_by(WorkflowState.created_at.asc())
+        .all()
     )

@@ -1,0 +1,69 @@
+{
+  "phase": {
+    "id": "v0.7.0",
+    "name": "Department Operations + Approval Workflow",
+    "status": "planned",
+    "depends_on": [
+      "v0.6.1-auth-rbac-branding",
+      "phase_3_department_audit"
+    ],
+    "objective": "Add formal department membership, schedule approval workflow, audit v2, and operational visibility without breaking current auth, RBAC, branding, or working schedule flow.",
+    "entry_criteria": [
+      "FastAPI backend running locally",
+      "React/Vite frontend running locally",
+      "JWT auth working",
+      "RBAC v1 working",
+      "Schedule create/list/cancel baseline working"
+    ],
+    "exit_criteria": [
+      "Departments registry exists",
+      "User department memberships exist",
+      "Schedule submit/approve/reject/cancel flow works",
+      "Department scoping enforced on reads and writes",
+      "Audit rows capture actor_user_id, request_id, before_json, after_json",
+      "Owner/admin operational summary endpoints work",
+      "Frontend exposes Dashboard, Audit, Approvals, Departments flows",
+      "Migrations are introduced and used"
+    ]
+  },
+  "architecture": {
+    "supported_roots": [
+      {
+        "backend_root": "backend/app",
+        "frontend_root": "frontend/src",
+        "priority": 1
+      },
+      {
+        "backend_root": "app",
+        "frontend_root": "src",
+        "priority": 2
+      }
+    ],
+    "stack": {
+      "backend": "FastAPI + SQLAlchemy",
+      "frontend": "React + Vite",
+      "auth": "JWT",
+      "authorization": "RBAC v1 + department scope + workflow constraints",
+      "database_migrations": "Alembic"
+    }
+  },
+  "automation": {
+    "template_registry": "tools/template_registry.json",
+    "manifest_rules": "tracking/manifest_rules_v0.7.0.json",
+    "primary_slices": [
+      "department_operations",
+      "audit_v2",
+      "approval_workflow",
+      "frontend_ops_views",
+      "migration_bootstrap"
+    ]
+  },
+  "tracking_outputs": [
+    "tracking/file_map_v0.7.0.json",
+    "tracking/phase_manifest_v0.7.0.json",
+    "tracking/scaffold_targets_v0.7.0.json",
+    "tracking/manifest_rules_v0.7.0.json",
+    "tools/template_registry.json",
+    "tools/scaffold_next_phase.py"
+  ]
+}

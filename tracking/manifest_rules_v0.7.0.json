@@ -1,0 +1,106 @@
+{
+  "phase_id": "v0.7.0",
+  "feature_slices": [
+    {
+      "id": "department_operations",
+      "name": "Department Operations",
+      "entity_name": "department",
+      "entity_plural": "departments",
+      "page_title": "Departments",
+      "service_name": "department_service",
+      "route_prefix": "/api/departments",
+      "template_ids": [
+        "backend_department_service",
+        "backend_api_schemas",
+        "backend_api_deps",
+        "backend_api_routes",
+        "frontend_departments_page",
+        "frontend_api_client",
+        "frontend_auth_context"
+      ],
+      "variables": {
+        "slice_title": "Department Operations",
+        "slice_summary": "Formal department registry, membership resolution, and scoped access helpers"
+      }
+    },
+    {
+      "id": "audit_v2",
+      "name": "Audit V2",
+      "entity_name": "audit",
+      "entity_plural": "audit_logs",
+      "page_title": "Audit",
+      "service_name": "audit_service",
+      "route_prefix": "/api/audit",
+      "template_ids": [
+        "backend_audit_service",
+        "backend_api_schemas",
+        "backend_api_routes",
+        "frontend_audit_page",
+        "frontend_api_client"
+      ],
+      "variables": {
+        "slice_title": "Audit V2",
+        "slice_summary": "Actor-aware writes, request IDs, before/after snapshots, and admin review tooling"
+      }
+    },
+    {
+      "id": "approval_workflow",
+      "name": "Approval Workflow",
+      "entity_name": "schedule",
+      "entity_plural": "schedules",
+      "page_title": "Approvals",
+      "service_name": "schedule_service",
+      "route_prefix": "/api/schedules",
+      "template_ids": [
+        "backend_schedule_service",
+        "backend_workflow_service",
+        "backend_api_schemas",
+        "backend_api_routes",
+        "frontend_approvals_page",
+        "frontend_api_client"
+      ],
+      "variables": {
+        "slice_title": "Approval Workflow",
+        "slice_summary": "Draft, submit, approve, reject, and cancel lifecycle for schedules"
+      }
+    },
+    {
+      "id": "frontend_ops_views",
+      "name": "Frontend Ops Views",
+      "entity_name": "ops",
+      "entity_plural": "ops_views",
+      "page_title": "Operations",
+      "service_name": "ops_ui",
+      "route_prefix": "/api/operational",
+      "template_ids": [
+        "frontend_audit_page",
+        "frontend_approvals_page",
+        "frontend_departments_page",
+        "frontend_api_client",
+        "frontend_auth_context"
+      ],
+      "variables": {
+        "slice_title": "Frontend Ops Views",
+        "slice_summary": "Owner/admin operational visibility and scope-aware navigation"
+      }
+    },
+    {
+      "id": "migration_bootstrap",
+      "name": "Migration Bootstrap",
+      "entity_name": "migration",
+      "entity_plural": "migrations",
+      "page_title": "Migrations",
+      "service_name": "alembic",
+      "route_prefix": "",
+      "template_ids": [
+        "backend_alembic_ini",
+        "backend_alembic_env",
+        "backend_alembic_migration_v070"
+      ],
+      "variables": {
+        "slice_title": "Migration Bootstrap",
+        "slice_summary": "Alembic foundation for v0.7.0 schema evolution"
+      }
+    }
+  ]
+}

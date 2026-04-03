@@ -1,0 +1,15 @@
+DSOS / AllCare Pharmacy is currently in a working authenticated state.
+
+Working now:
+- backend starts
+- frontend starts
+- login works
+- schedule create/list/cancel works
+- RBAC v1 works
+- branding v1 works
+
+Next required phase:
+Department scoping + actor-aware audit tracking v1
+
+Use NEXT_THREAD_PROMPT.md to start the next thread.
+Read docs/status/CURRENT_STATE.md first.

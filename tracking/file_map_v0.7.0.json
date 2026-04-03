@@ -1,0 +1,99 @@
+{
+  "phase_id": "v0.7.0",
+  "backend": {
+    "create": [
+      {
+        "path": "app/services/department_service.py",
+        "responsibility": "Department registry, memberships, scope checks, approval authority"
+      },
+      {
+        "path": "alembic.ini",
+        "responsibility": "Alembic configuration"
+      },
+      {
+        "path": "alembic/env.py",
+        "responsibility": "Alembic environment setup"
+      },
+      {
+        "path": "alembic/versions/0001_v070_department_workflow.py",
+        "responsibility": "Department, membership, schedule workflow, and audit migration"
+      }
+    ],
+    "update": [
+      {
+        "path": "app/models/models.py",
+        "responsibility": "Department, membership, schedule workflow fields, audit fields"
+      },
+      {
+        "path": "app/api/schemas.py",
+        "responsibility": "Request/response schemas for departments, approvals, operational views"
+      },
+      {
+        "path": "app/api/deps.py",
+        "responsibility": "Current-user scope resolution and permission helpers"
+      },
+      {
+        "path": "app/api/routes.py",
+        "responsibility": "Department, schedule workflow, audit, and operational endpoints"
+      },
+      {
+        "path": "app/main.py",
+        "responsibility": "Router registration and bootstrapping"
+      },
+      {
+        "path": "app/db/session.py",
+        "responsibility": "Migration-friendly initialization"
+      },
+      {
+        "path": "app/services/auth_service.py",
+        "responsibility": "Scope-aware auth helpers"
+      },
+      {
+        "path": "app/services/audit_service.py",
+        "responsibility": "Normalized audit logging and request_id support"
+      },
+      {
+        "path": "app/services/schedule_service.py",
+        "responsibility": "Draft/submit/approve/reject/cancel transitions"
+      },
+      {
+        "path": "app/services/workflow_service.py",
+        "responsibility": "Workflow state recording and lookup"
+      },
+      {
+        "path": "app/services/task_service.py",
+        "responsibility": "Ensure write audit normalization"
+      },
+      {
+        "path": "app/services/messaging_service.py",
+        "responsibility": "Ensure write audit normalization"
+      }
+    ]
+  },
+  "frontend": {
+    "create": [
+      {
+        "path": "src/pages/AuditPage.jsx",
+        "responsibility": "Audit review UI for owner/admin"
+      },
+      {
+        "path": "src/pages/ApprovalsPage.jsx",
+        "responsibility": "Pending approvals and action UI"
+      },
+      {
+        "path": "src/pages/DepartmentsPage.jsx",
+        "responsibility": "Department and membership admin UI"
+      }
+    ],
+    "update": [
+      {
+        "path": "src/lib/api.js",
+        "responsibility": "API methods for departments, workflow, audit, ops"
+      },
+      {
+        "path": "src/context/AuthContext.jsx",
+        "responsibility": "Expose scope/membership-aware user context"
+      }
+    ]
+  }
+}

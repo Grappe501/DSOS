@@ -1,28 +1,13 @@
-# Pharmacy OS Auth + RBAC v1
+# Pharmacy OS Master Build
 
-This package contains production-grade replacement and new files to add Auth + RBAC v1
-to the current DSOS backend and frontend.
+## Purpose
+This repo contains the full system blueprint and build scaffold.
 
-## Backend files included
-- app/models/models.py
-- app/api/schemas.py
-- app/services/auth_service.py
-- app/api/auth_routes.py
-- app/api/deps.py
-- app/main.py
-- requirements.txt
+## How to Use
+1. Follow docs/core
+2. Build spine services
+3. Use module templates
+4. Track progress with scripts
 
-## Frontend files included
-- src/lib/api.js
-- src/context/AuthContext.jsx
-- src/components/ProtectedRoute.jsx
-- src/pages/LoginPage.jsx
-- src/App.jsx
-- src/main.jsx
-
-## Install backend dependency
-pip install pyjwt email-validator
-
-## Default seeded login
-owner@local.test
-ChangeMe123!
+## Goal
+Self-assembling modular OS with full version control.

@@ -1,0 +1,81 @@
+{
+  "phase_id": "v0.7.0",
+  "generated_at": "2026-04-02T18:30:00Z",
+  "targets": [
+    {
+      "name": "tracking_artifacts",
+      "description": "Ensure machine-readable planning and rule artifacts exist",
+      "actions": [
+        {
+          "type": "mkdir",
+          "path": "tracking"
+        },
+        {
+          "type": "write_json",
+          "path": "tracking/phase_manifest_v0.7.0.json",
+          "source": "internal.phase_manifest"
+        },
+        {
+          "type": "write_json",
+          "path": "tracking/file_map_v0.7.0.json",
+          "source": "internal.file_map"
+        },
+        {
+          "type": "write_json",
+          "path": "tracking/scaffold_targets_v0.7.0.json",
+          "source": "internal.scaffold_targets"
+        },
+        {
+          "type": "write_json",
+          "path": "tracking/manifest_rules_v0.7.0.json",
+          "source": "internal.manifest_rules"
+        }
+      ]
+    },
+    {
+      "name": "template_registry",
+      "description": "Ensure central template registry exists",
+      "actions": [
+        {
+          "type": "mkdir",
+          "path": "tools"
+        },
+        {
+          "type": "write_json",
+          "path": "tools/template_registry.json",
+          "source": "internal.template_registry"
+        },
+        {
+          "type": "mkdir",
+          "path": "tools/templates"
+        }
+      ]
+    },
+    {
+      "name": "phase_core",
+      "description": "Scaffold the core v0.7.0 slices automatically from registry + manifest rules",
+      "actions": [
+        {
+          "type": "scaffold_feature_slice",
+          "slice_id": "department_operations"
+        },
+        {
+          "type": "scaffold_feature_slice",
+          "slice_id": "audit_v2"
+        },
+        {
+          "type": "scaffold_feature_slice",
+          "slice_id": "approval_workflow"
+        },
+        {
+          "type": "scaffold_feature_slice",
+          "slice_id": "frontend_ops_views"
+        },
+        {
+          "type": "scaffold_feature_slice",
+          "slice_id": "migration_bootstrap"
+        }
+      ]
+    }
+  ]
+}

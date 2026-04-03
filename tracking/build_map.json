@@ -1,61 +1,53 @@
 {
   "structure": {
     ".": [
-      "README.md"
+      "README.md",
+      "NEXT_THREAD_PROMPT.md"
     ],
-    ".\\docs": [],
-    ".\\docs\\core": [
-      "overview.md"
+    "docs/status": [
+      "CURRENT_STATE.md"
     ],
-    ".\\docs\\data": [
-      "schema.md"
+    "docs/plan": [
+      "NEXT_PHASE_PLAN.md"
     ],
-    ".\\docs\\modules": [
-      "module_template.md"
+    "docs/architecture": [
+      "WORKING_ARCHITECTURE.md"
     ],
-    ".\\docs\\process": [
-      "build_process.md"
+    "docs/git": [
+      "GIT_SETUP_AND_RELEASE.md"
     ],
-    ".\\docs\\spine": [
-      "ai_orchestration.md",
-      "audit_logging.md",
-      "auth_service.md",
-      "event_bus.md",
-      "forms_engine.md",
-      "integration_gateway.md",
-      "messaging_engine.md",
-      "reminder_engine.md",
-      "reporting_engine.md",
-      "services.md",
-      "task_engine.md",
-      "workflow_engine.md"
+    "docs/testing": [
+      "SMOKE_TEST_CHECKLIST.md"
     ],
-    ".\\registry": [
-      "events.json",
-      "modules.json"
-    ],
-    ".\\scripts": [
-      "build_map.py",
-      "update_progress.py"
-    ],
-    ".\\tracking": [
+    "tracking": [
       "current_state.json",
       "micro_steps.json",
-      "progress.json"
+      "progress.json",
+      "build_map.json",
+      "phase_manifest_v0.7.0.json",
+      "file_map_v0.7.0.json",
+      "manifest_rules_v0.7.0.json",
+      "scaffold_targets_v0.7.0.json"
     ]
   },
-  "progress": {
-    "phase_1": {
-      "tasks": [],
-      "progress": 0
-    },
-    "phase_2": {
-      "tasks": [],
-      "progress": 0
-    },
-    "phase_3": {
-      "tasks": [],
-      "progress": 0
-    }
+  "progress_summary": {
+    "completed": [
+      "runtime foundation",
+      "api/ui split",
+      "auth",
+      "rbac v1",
+      "branding v1",
+      "working schedule flow",
+      "login/runtime stabilization",
+      "vite proxy and auth route alignment",
+      "workflow/messages/events stub slices wired"
+    ],
+    "next": [
+      "department scoping hardening",
+      "actor-aware audit tracking completion",
+      "owner/admin operational visibility completion",
+      "approvals/departments/audit production slices",
+      "git commit/tag/push"
+    ]
   }
 }
