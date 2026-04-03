@@ -1,0 +1,49 @@
+{
+  "version": "v1.0",
+  "system": "malone",
+  "phases": [
+    {
+      "name": "foundation",
+      "tasks": [
+        "create_malone_service",
+        "create_intent_service",
+        "setup_prompt_registry",
+        "configure_openai_env"
+      ]
+    },
+    {
+      "name": "core_capabilities",
+      "tasks": [
+        "answer_mode",
+        "analyst_mode",
+        "proposal_system",
+        "audit_integration"
+      ]
+    },
+    {
+      "name": "agent_system",
+      "tasks": [
+        "agent_service",
+        "report_agent",
+        "agent_run_tracking"
+      ]
+    },
+    {
+      "name": "frontend",
+      "tasks": [
+        "malone_page",
+        "chat_panel",
+        "proposal_panel",
+        "agent_panel"
+      ]
+    },
+    {
+      "name": "governance",
+      "tasks": [
+        "proposal_approval",
+        "role_enforcement",
+        "department_scope"
+      ]
+    }
+  ]
+}

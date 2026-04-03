@@ -1,0 +1,24 @@
+{
+  "backend": [
+    "app/services/malone_service.py",
+    "app/services/agent_service.py",
+    "app/services/intent_service.py",
+    "app/services/proposal_service.py",
+    "app/services/prompt_registry_service.py",
+    "app/api/malone_routes.py"
+  ],
+  "frontend": [
+    "src/pages/MalonePage.jsx",
+    "src/components/malone/ChatPanel.jsx",
+    "src/components/malone/ProposalPanel.jsx",
+    "src/components/malone/AgentRunPanel.jsx",
+    "src/components/malone/VoiceInputButton.jsx",
+    "src/lib/maloneApi.js"
+  ],
+  "models": [
+    "AgentRun",
+    "Proposal",
+    "PromptTemplate",
+    "BlockRegistryItem"
+  ]
+}
