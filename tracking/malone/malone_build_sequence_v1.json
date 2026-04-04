@@ -5,12 +5,14 @@
     "stage_2_clarification_loop",
     "stage_3_internal_retrieval",
     "stage_4_web_retrieval",
-    "stage_5_approval_foundation",
-    "stage_6_governed_write_execution",
-    "stage_7_tool_orchestration",
-    "stage_8_multi_agent_system",
-    "stage_9_voice_runtime",
-    "stage_10_local_model_path"
+    "stage_4b_deterministic_brain_v2_foundation",
+    "stage_5_workflow_engine_foundation",
+    "stage_6_approval_foundation",
+    "stage_7_governed_write_execution",
+    "stage_8_tool_orchestration",
+    "stage_9_multi_agent_system",
+    "stage_10_voice_runtime",
+    "stage_11_local_model_path"
   ],
-  "rule": "do not advance to the next stage until the current stage passes runtime verification and tracking is updated"
+  "rule": "do not advance to the next stage until the current stage passes runtime verification, mapper/bootstrap are rerun, and tracking is updated"
 }

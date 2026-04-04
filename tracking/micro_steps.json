@@ -1,40 +1,44 @@
 {
-  "task": "phase_5_malone_render_and_grounding",
+  "task": "phase_7_malone_governed_execution",
   "steps": [
     {
-      "name": "add backend OpenAI service wrapper with server-side environment configuration",
+      "name": "rerun project_map_audit and bootstrap verification in the new thread before any code changes",
       "done": false
     },
     {
-      "name": "define deterministic truth packet schema for bounded Malone response types",
+      "name": "confirm deterministic registry files and Malone capability endpoint are present in the live tree",
       "done": false
     },
     {
-      "name": "build render service that converts truth packets into structured conversational output",
+      "name": "select one bounded next slice with workflow engine foundation as default priority",
       "done": false
     },
     {
-      "name": "add deterministic verification pass to reject unsupported rendered claims",
+      "name": "define canonical workflow state contract that reuses deterministic action envelopes",
       "done": false
     },
     {
-      "name": "expand audit lifecycle to include render requested rendered verified and fallback events",
+      "name": "add approval hook model to deterministic registry metadata without widening write authority",
       "done": false
     },
     {
-      "name": "update Malone API contract to return deterministic result plus conversational answer metadata",
+      "name": "wire workflow state persistence through existing WorkflowState model",
       "done": false
     },
     {
-      "name": "update Malone UI to show verified conversational response and fallback state",
+      "name": "expand audit events to include workflow requested validated advanced and blocked states",
       "done": false
     },
     {
-      "name": "run smoke tests across login schedules Malone chat and proposal history",
+      "name": "add bounded workflow API slice and minimal UI visibility only if deterministic foundation is stable",
       "done": false
     },
     {
-      "name": "update handoff tracking after successful runtime verification",
+      "name": "rerun smoke tests across login schedules Malone chat web retrieval and proposal history",
+      "done": false
+    },
+    {
+      "name": "update tracking again immediately after the bounded slice lands",
       "done": false
     }
   ]

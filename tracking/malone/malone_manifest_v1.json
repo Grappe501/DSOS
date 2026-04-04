@@ -1,12 +1,13 @@
 {
-  "version": "v1.1",
+  "version": "v1.2",
   "system": "malone",
   "doctrine": {
     "ai_proposes_only": true,
     "deterministic_validation_required": true,
     "server_side_llm_only": true,
     "render_verification_required": true,
-    "approval_required_for_writes": true
+    "approval_required_for_writes": true,
+    "web_responses_must_be_source_aware": true
   },
   "current_baseline": {
     "implemented": [
@@ -17,166 +18,91 @@
       "safe_schedule_analysis_execution",
       "proposal_persistence",
       "proposal_lifecycle_audit",
-      "proposal_history_ui"
+      "openai_render_layer",
+      "truth_packet_generation",
+      "render_verification",
+      "deterministic_fallback_delivery",
+      "governed_web_retrieval",
+      "source_aware_delivery",
+      "deterministic_action_registry_foundation",
+      "deterministic_validator_foundation",
+      "deterministic_executor_foundation",
+      "malone_capabilities_endpoint"
     ],
-    "next_slice": "stage_1_conversational_rendering"
+    "next_slice": "stage_5_workflow_engine_foundation"
   },
   "stages": [
     {
       "id": "stage_1_conversational_rendering",
-      "status": "next",
-      "implement_now": true,
-      "objective": "convert deterministic results into conversational responses without fact drift",
-      "deliverables": [
-        "openai_service",
-        "truth_packet_schema",
-        "render_service",
-        "render_verifier",
-        "render_audit_events",
-        "ui_conversational_answer_panel",
-        "fallback_plain_response"
-      ],
-      "safety_gates": [
-        "OPENAI_API_KEY remains backend-only",
-        "structured outputs only for governed render responses",
-        "every rendered answer verified against truth packet",
-        "fallback deterministic response on verification failure",
-        "no regression to auth schedules or proposal persistence"
-      ]
+      "status": "complete",
+      "implement_now": false,
+      "objective": "convert deterministic results into conversational responses without fact drift"
     },
     {
       "id": "stage_2_clarification_loop",
-      "status": "planned",
+      "status": "partial",
       "implement_now": false,
-      "objective": "ask targeted questions when request ambiguity blocks safe execution",
-      "deliverables": [
-        "ambiguity_detector",
-        "clarification_schema",
-        "pending_clarification_state",
-        "clarification_audit_events"
-      ],
-      "depends_on": [
-        "stage_1_conversational_rendering"
-      ]
+      "objective": "ask targeted questions when request ambiguity blocks safe execution"
     },
     {
       "id": "stage_3_internal_retrieval",
       "status": "planned",
       "implement_now": false,
-      "objective": "ground Malone in internal DSOS knowledge before broad web power",
-      "deliverables": [
-        "internal_retrieval_service",
-        "evidence_packet_model",
-        "source_aware_responses",
-        "retrieval_audit"
-      ],
-      "depends_on": [
-        "stage_2_clarification_loop"
-      ]
+      "objective": "ground Malone in internal DSOS knowledge before broad web power"
     },
     {
       "id": "stage_4_web_retrieval",
-      "status": "planned",
+      "status": "implemented",
       "implement_now": false,
-      "objective": "allow current-information answers with evidence control",
-      "deliverables": [
-        "web_retrieval_service",
-        "domain_policy_rules",
-        "web_evidence_packet",
-        "citation_required_modes"
-      ],
-      "depends_on": [
-        "stage_3_internal_retrieval"
-      ]
+      "objective": "allow current-information answers with evidence control"
     },
     {
-      "id": "stage_5_approval_foundation",
-      "status": "planned",
+      "id": "stage_4b_deterministic_brain_v2_foundation",
+      "status": "implemented",
       "implement_now": false,
-      "objective": "govern transition from proposals to write-capable execution",
-      "deliverables": [
-        "approval_request_model",
-        "approval_queue",
-        "approve_reject_routes",
-        "approval_ui"
-      ],
-      "depends_on": [
-        "stage_4_web_retrieval"
-      ]
+      "objective": "formalize action registry validation execution and audit envelopes before workflows and approvals"
     },
     {
-      "id": "stage_6_governed_write_execution",
-      "status": "planned",
-      "implement_now": false,
-      "objective": "execute bounded approved state changes through deterministic registries",
-      "deliverables": [
-        "action_registry",
-        "preflight_validation",
-        "post_execution_audit",
-        "department_scope_enforcement"
-      ],
-      "depends_on": [
-        "stage_5_approval_foundation"
-      ]
+      "id": "stage_5_workflow_engine_foundation",
+      "status": "next",
+      "implement_now": true,
+      "objective": "introduce workflow state progression on top of deterministic action envelopes and existing WorkflowState model"
     },
     {
-      "id": "stage_7_tool_orchestration",
+      "id": "stage_6_approval_foundation",
       "status": "planned",
       "implement_now": false,
-      "objective": "coordinate governed use of internal and external tools",
-      "deliverables": [
-        "tool_registry",
-        "tool_capability_manifest",
-        "tool_policy_layer",
-        "tool_run_logging"
-      ],
-      "depends_on": [
-        "stage_6_governed_write_execution"
-      ]
+      "objective": "govern transition from proposals to write-capable execution"
     },
     {
-      "id": "stage_8_multi_agent_system",
+      "id": "stage_7_governed_write_execution",
       "status": "planned",
       "implement_now": false,
-      "objective": "supervise specialist agents without losing deterministic control",
-      "deliverables": [
-        "agent_registry",
-        "agent_contracts",
-        "agent_run_persistence",
-        "supervisor_review"
-      ],
-      "depends_on": [
-        "stage_7_tool_orchestration"
-      ]
+      "objective": "execute bounded approved state changes through deterministic registries"
     },
     {
-      "id": "stage_9_voice_runtime",
+      "id": "stage_8_tool_orchestration",
       "status": "planned",
       "implement_now": false,
-      "objective": "support safe voice-first operation",
-      "deliverables": [
-        "speech_input_pipeline",
-        "spoken_response_mode",
-        "high_risk_confirmation_flow"
-      ],
-      "depends_on": [
-        "stage_8_multi_agent_system"
-      ]
+      "objective": "coordinate governed use of internal and external tools"
     },
     {
-      "id": "stage_10_local_model_path",
+      "id": "stage_9_multi_agent_system",
       "status": "planned",
       "implement_now": false,
-      "objective": "prepare for future GPU-hosted and hybrid model deployment",
-      "deliverables": [
-        "model_abstraction_layer",
-        "benchmark_harness",
-        "local_adapter_interface",
-        "proposal_based_self_improvement"
-      ],
-      "depends_on": [
-        "stage_9_voice_runtime"
-      ]
+      "objective": "bounded subordinate agents and watchers"
+    },
+    {
+      "id": "stage_10_voice_runtime",
+      "status": "planned",
+      "implement_now": false,
+      "objective": "voice-first governed operational runtime"
+    },
+    {
+      "id": "stage_11_local_model_path",
+      "status": "planned",
+      "implement_now": false,
+      "objective": "local-model abstraction for GPU transition"
     }
   ]
 }

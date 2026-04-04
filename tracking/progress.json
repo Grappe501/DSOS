@@ -21,8 +21,8 @@
     ]
   },
   "phase_3_department_audit": {
-    "progress": 90,
-    "status": "nearly_complete",
+    "progress": 100,
+    "status": "complete",
     "tasks": [
       "runtime/login stabilization",
       "auth route and schema contract repair",
@@ -33,8 +33,8 @@
     ]
   },
   "phase_4_malone_foundation": {
-    "progress": 64,
-    "status": "in_progress",
+    "progress": 100,
+    "status": "complete",
     "tasks": [
       "Malone v1 master build plan and manifests",
       "Malone scaffolder concept lock",
@@ -50,8 +50,8 @@
     ]
   },
   "phase_5_malone_render_and_grounding": {
-    "progress": 0,
-    "status": "planned",
+    "progress": 100,
+    "status": "complete",
     "tasks": [
       "OpenAI backend integration",
       "truth packet builder",
@@ -63,21 +63,30 @@
     ]
   },
   "phase_6_malone_clarification_and_retrieval": {
-    "progress": 0,
-    "status": "planned",
+    "progress": 90,
+    "status": "nearly_complete",
     "tasks": [
       "clarification refinement loop",
       "pending clarification conversation state",
       "internal DSOS retrieval layer",
       "evidence packet model",
-      "source-aware UI responses"
+      "source-aware UI responses",
+      "web retrieval with governed response",
+      "verified source enforcement",
+      "UI source display with dropdown architecture"
     ]
   },
   "phase_7_malone_governed_execution": {
-    "progress": 0,
-    "status": "planned",
+    "progress": 45,
+    "status": "in_progress",
     "tasks": [
-      "web retrieval with evidence controls",
+      "deterministic brain v2 foundation",
+      "deterministic action registry",
+      "deterministic validator",
+      "deterministic executor",
+      "Malone capability discovery endpoint",
+      "proposal persistence of deterministic execution envelope",
+      "deterministic audit entity tracking",
       "approval workflow foundation",
       "governed write execution",
       "tool orchestration registry",

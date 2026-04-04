@@ -3,114 +3,42 @@
   "tracking_ok": true,
   "tools_ok": true,
   "runtime_ok": true,
+  "note": "This report is a handoff baseline only. The next thread must rerun project_map_audit.py and self_verify_bootstrap.py before coding.",
   "tracking_presence": {
     "tracking/current_state.json": true,
     "tracking/progress.json": true,
     "tracking/NEXT_THREAD_PROMPT.md": true,
     "tracking/HANDOFF_MIGRATION_MESSAGE.md": true,
     "tracking/handoff_state_snapshot.json": true,
+    "tracking/NEW_THREAD_BOOT_SEQUENCE.md": true,
     "tracking/malone/MALONE_V1_MASTER_PLAN.md": true,
-    "tracking/malone/malone_manifest_v1.json": true
+    "tracking/malone/malone_manifest_v1.json": true,
+    "tracking/malone/malone_build_sequence_v1.json": true
   },
   "tool_presence": {
-    "tools/project_map_audit.py": true
+    "tools/project_map_audit.py": true,
+    "tools/self_verify_bootstrap.py": true
   },
   "runtime_presence": {
     "app/main.py": true,
     "app/api/routes.py": true,
     "app/api/auth_routes.py": true,
     "app/api/malone_routes.py": true,
+    "app/services/malone_service.py": true,
+    "app/services/deterministic_registry.py": true,
+    "app/services/deterministic_validator.py": true,
+    "app/services/deterministic_executor.py": true,
+    "app/services/deterministic_actions_schedule.py": true,
     "src/App.jsx": true,
-    "src/lib/api.js": true,
     "src/lib/maloneApi.js": true,
     "src/pages/SchedulesPage.jsx": true,
     "src/pages/MalonePage.jsx": true
   },
-  "current_state": {
-    "current_phase": "phase_4_malone_foundation",
-    "active_module": "malone_v1_wired_with_validation_execution_bridge",
-    "current_task": "prepare handoff, sync tracking, and verify next production step from audit output",
-    "progress": 82,
-    "last_working_version": "v0.6.3-malone-v1-foundation-wired",
-    "seed_login": {
-      "email": "owner@test.com",
-      "password": "ChangeMe123!"
-    },
-    "working_now": [
-      "FastAPI backend boots cleanly locally",
-      "React/Vite frontend boots cleanly locally",
-      "JWT login works through /api/auth/login",
-      "dashboard renders after login",
-      "schedules feed works",
-      "Malone page is present in navigation",
-      "Malone proposal and validation flow works",
-      "Malone can safely execute schedule read answers through deterministic validation"
-    ],
-    "blocking_issues": [
-      "tracking docs are behind the actual Malone-enabled codebase",
-      "new thread needs a deterministic audit baseline before further changes",
-      "schedule create flow should be re-verified against latest schema/route contract in the incoming thread"
-    ]
-  },
-  "progress": {
-    "phase_1_runtime_foundation": {
-      "progress": 100,
-      "status": "complete",
-      "tasks": [
-        "runtime foundation",
-        "api routes",
-        "schedule slice",
-        "frontend shell"
-      ]
-    },
-    "phase_2_auth_rbac_branding": {
-      "progress": 100,
-      "status": "complete",
-      "tasks": [
-        "jwt auth",
-        "seed login",
-        "protected routes",
-        "rbac enforcement v1",
-        "allcare branding v1"
-      ]
-    },
-    "phase_3_department_audit": {
-      "progress": 90,
-      "status": "nearly_complete",
-      "tasks": [
-        "runtime/login stabilization",
-        "auth route and schema contract repair",
-        "workflow/messages/events slice activation",
-        "actor-aware audit tracking",
-        "department scoping baseline",
-        "owner admin operational visibility baseline"
-      ]
-    },
-    "phase_4_malone_foundation": {
-      "progress": 40,
-      "status": "in_progress",
-      "tasks": [
-        "Malone v1 master build plan and manifests",
-        "Malone scaffolder",
-        "Malone backend services scaffold",
-        "Malone frontend page scaffold",
-        "Malone route wiring",
-        "Malone proposal + validation",
-        "Malone safe schedule-read execution"
-      ]
-    },
-    "phase_5_department_ops_workflow": {
-      "progress": 0,
-      "status": "planned",
-      "tasks": [
-        "formal department registry",
-        "membership model",
-        "approval workflow",
-        "audit v2 enrichment",
-        "approvals and departments UI completion",
-        "alembic migrations",
-        "machine API integration planning"
-      ]
-    }
-  }
+  "expected_next_thread_actions": [
+    "run project_map_audit.py",
+    "run self_verify_bootstrap.py",
+    "compare output to tracking",
+    "choose one bounded next slice only",
+    "update tracking again after coding"
+  ]
 }

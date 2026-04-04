@@ -1,136 +1,94 @@
-# DSOS NEXT THREAD PROMPT — MALONE GOVERNED INTELLIGENCE + WEB RETRIEVAL LOCK
+# DSOS NEXT THREAD PROMPT — DETERMINISTIC BRAIN V2 FOUNDATION LOCK
 
 You are continuing a live DSOS / AllCare Pharmacy build.
 
-Before coding, load and honor these facts:
+This is a continuation build, not a greenfield build.
 
-- This is a continuation build, not a greenfield build.
-- Auth, schedules, audit logging, and Malone bounded proposal flow already work.
-- Malone proposal persistence + Malone audit lifecycle expansion have been implemented.
-- Malone conversational rendering, deterministic truth packets, render verification, fallback delivery, and governed web retrieval have now been implemented.
-- The current priority is to preserve stability, complete the retrieval/governance layer, and move next into workflow + approval foundations without strategic drift.
-- Deterministic doctrine is non-negotiable.
+Before proposing or writing code, you must first reconstruct the live system state from tracking and tools.
 
-## Read first
-1. `/tracking/NEXT_PHASE_MASTER_BUILD_PLAN_v0.8.0.md`
-2. `/tracking/malone/MALONE_V1_MASTER_PLAN.md`
+## Mandatory read order
+1. `/tracking/NEXT_THREAD_PROMPT.md`
+2. `/tracking/NEW_THREAD_BOOT_SEQUENCE.md`
 3. `/tracking/current_state.json`
 4. `/tracking/progress.json`
 5. `/tracking/handoff_state_snapshot.json`
-6. `/tracking/malone/malone_manifest_v1.json`
-7. `/tracking/micro_steps.json`
+6. `/tracking/THREAD_MEMORY_COMPRESSION.md`
+7. `/tracking/HANDOFF_MIGRATION_MESSAGE.md`
+8. `/tracking/NEXT_PHASE_MASTER_BUILD_PLAN_v0.8.0.md`
+9. `/tracking/micro_steps.json`
+10. `/tracking/malone/MALONE_V1_MASTER_PLAN.md`
+11. `/tracking/malone/malone_manifest_v1.json`
+12. `/tracking/malone/malone_build_sequence_v1.json`
 
-## Core law
-AI proposes.  
-Deterministic core validates.  
-Only validated actions execute.  
-All meaningful steps are audited.  
-All user-facing natural language is verified against deterministic truth packets before delivery.  
-All external web-grounded responses must be source-aware and fail closed to deterministic fallback if verification fails.
+## Mandatory tool boot
+Run both before any coding:
+- `python tools/project_map_audit.py`
+- `python tools/self_verify_bootstrap.py`
 
-## Current Malone status
+If either fails, stop and report the failure before changing code.
 
-### Working now
-- intent classification
-- proposal envelope generation
-- deterministic validation
-- bounded safe schedule read/analysis execution
-- durable proposal persistence
-- Malone lifecycle audit logging
-- Malone UI proposal history
-- OpenAI conversational rendering layer
-- deterministic truth packet generation
-- deterministic rendered-response verification
-- deterministic fallback delivery path
-- clarification-preferred response handling
-- governed web retrieval through OpenAI web search
-- source-aware UI responses
-- dropdown-based technical detail display
-- Malone page input/output-first UX
+## Core doctrine
+- AI proposes.
+- Deterministic core validates.
+- Only validated actions execute.
+- All meaningful steps are audited.
+- All delivered natural language is verified against deterministic truth or verified evidence bundles.
+- Web-grounded responses must be source-aware and fail closed to deterministic fallback if verification fails.
 
-### Implemented but still stabilizing / expanding
-- clarification refinement loop behavior
-- retrieval rules and ambiguity gating
-- verified source enforcement
-- clean separation between delivered answer and technical proof
-- audit completeness for web-enabled response flows
+## Current live system understanding
+Working now:
+- auth, RBAC, dashboard, schedules
+- Malone proposal flow
+- proposal persistence and audit lifecycle
+- OpenAI render layer behind backend-only configuration
+- truth packet generation
+- render verification and deterministic fallback
+- governed web retrieval and source-aware delivery
+- Malone UI output-first presentation with hidden technical proof
+- deterministic action registry foundation
+- deterministic validator and deterministic executor foundations
+- Malone capability discovery endpoint
 
-### Not yet implemented
+Not yet implemented:
+- workflow engine foundation
 - pending clarification conversation state
 - internal DSOS retrieval layer
 - approval workflow foundation
 - governed write execution
-- tool orchestration registry
-- department-aware action enforcement
-- workflow engine foundation
-- multi-agent orchestration
-- watcher agents
+- tool orchestration registry beyond current deterministic registry
+- multi-agent runtime
 - voice runtime
 - local-model abstraction for GPU transition
 
 ## Immediate build rule
-Do not jump into broad feature coding first.  
-The next implementation phase must follow the roadmap in the v0.8.0 plan.  
-Build in ordered slices.  
-Prefer governance and verification before power expansion.  
-Do not bypass existing deterministic execution paths.  
-Do not widen Malone authority before approvals and workflow controls exist.
+Do not jump into broad feature coding first.
+Use the mapper and bootstrap tools to confirm live state.
+Then choose one bounded next slice only.
 
-## UI rule
-Malone page should default to:
-- input
-- delivered answer
-- sources when present
-
-Technical proof should stay hidden unless expanded:
-- truth packet
-- verification
-- rendered payload
-- persisted proposal details
-- recent proposals
-
-## Web retrieval rule
-Web access is read-only.  
-Web search is permitted only through the governed Malone pipeline.  
-Web-grounded answers must:
-- capture sources
-- pass verification
-- cite verified sources in the response payload
-- fall back safely if source verification fails
-
-Malone must not:
-- claim unverified external facts
-- perform external writes
-- imply that web results are deterministic system truth
-- bypass source verification
-
-## Build priority now
-The next build work should focus on one bounded slice only, selected from the following in order of preference:
-
+Default next slice priority:
 1. workflow engine foundation
 2. approval workflow foundation
 3. pending clarification conversation state
 4. internal DSOS retrieval layer
 5. department-aware governed execution
 
-## Required output format for next coding thread
-1. Readiness audit
-2. Selected roadmap slice
-3. Risk check
-4. Full production-grade file replacements only
-5. Updated tracking files
+## Output format required from the next thread
+1. readiness audit
+2. mapper/bootstrap findings
+3. selected next slice
+4. risk check
+5. full production-grade file replacements only
+6. updated tracking files
 
-## Continuity rule
-Preserve all currently working behavior:
-- auth
-- RBAC
-- schedules
-- audit logging
-- Malone proposal persistence
+## Non-regression guard
+Do not regress:
+- `/api/auth/login`
+- schedule list/create/cancel flow
+- `/api/malone/chat`
+- proposal persistence
 - render verification
-- fallback delivery
+- deterministic fallback
 - web retrieval controls
-- UI output-first behavior
+- Malone output-first UI
 
-If uncertain:
-choose deterministic safety over AI power.
+If uncertain, choose deterministic safety over AI power.

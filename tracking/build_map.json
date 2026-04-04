@@ -1,53 +1,82 @@
 {
   "structure": {
-    ".": [
-      "README.md",
-      "NEXT_THREAD_PROMPT.md"
+    "app/services": [
+      "intent_service.py",
+      "schedule_service.py",
+      "malone_service.py",
+      "openai_service.py",
+      "truth_packet_service.py",
+      "render_verifier.py",
+      "proposal_service.py",
+      "audit_service.py",
+      "deterministic_registry.py",
+      "deterministic_validator.py",
+      "deterministic_executor.py",
+      "deterministic_actions_schedule.py"
     ],
-    "docs/status": [
-      "CURRENT_STATE.md"
+    "app/api": [
+      "routes.py",
+      "auth_routes.py",
+      "malone_routes.py"
     ],
-    "docs/plan": [
-      "NEXT_PHASE_PLAN.md"
+    "app/models": [
+      "models.py"
     ],
-    "docs/architecture": [
-      "WORKING_ARCHITECTURE.md"
+    "src/pages": [
+      "MalonePage.jsx",
+      "SchedulesPage.jsx"
     ],
-    "docs/git": [
-      "GIT_SETUP_AND_RELEASE.md"
-    ],
-    "docs/testing": [
-      "SMOKE_TEST_CHECKLIST.md"
+    "src/components/malone": [
+      "ChatPanel.jsx",
+      "ProposalPanel.jsx",
+      "AgentRunPanel.jsx",
+      "VoiceInputButton.jsx"
     ],
     "tracking": [
       "current_state.json",
-      "micro_steps.json",
       "progress.json",
-      "build_map.json",
-      "phase_manifest_v0.7.0.json",
-      "file_map_v0.7.0.json",
-      "manifest_rules_v0.7.0.json",
-      "scaffold_targets_v0.7.0.json"
+      "handoff_state_snapshot.json",
+      "NEXT_THREAD_PROMPT.md",
+      "NEW_THREAD_BOOT_SEQUENCE.md",
+      "HANDOFF_MIGRATION_MESSAGE.md",
+      "THREAD_MEMORY_COMPRESSION.md",
+      "micro_steps.json",
+      "bootstrap_verification_report.json",
+      "build_map.json"
+    ],
+    "tracking/malone": [
+      "MALONE_V1_MASTER_PLAN.md",
+      "malone_manifest_v1.json",
+      "malone_build_sequence_v1.json"
+    ],
+    "tools": [
+      "project_map_audit.py",
+      "self_verify_bootstrap.py"
     ]
   },
   "progress_summary": {
     "completed": [
       "runtime foundation",
-      "api/ui split",
       "auth",
       "rbac v1",
       "branding v1",
       "working schedule flow",
-      "login/runtime stabilization",
-      "vite proxy and auth route alignment",
-      "workflow/messages/events stub slices wired"
+      "Malone proposal and validation",
+      "safe schedule execution",
+      "proposal persistence",
+      "OpenAI rendering",
+      "render verification",
+      "deterministic fallback",
+      "governed web retrieval",
+      "output-first Malone UI",
+      "deterministic brain v2 foundation"
     ],
     "next": [
-      "department scoping hardening",
-      "actor-aware audit tracking completion",
-      "owner/admin operational visibility completion",
-      "approvals/departments/audit production slices",
-      "git commit/tag/push"
+      "workflow engine foundation",
+      "approval workflow foundation",
+      "pending clarification conversation state",
+      "internal DSOS retrieval layer",
+      "department-aware governed execution"
     ]
   }
 }

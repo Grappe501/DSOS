@@ -1,40 +1,42 @@
 {
-  "system": "DSOS — AllCare Pharmacy OS",
-  "version": "0.8.0-malone-web",
-  "stage": "Stage 2 — Web Retrieval Enabled",
-  "status": "stable",
-
-  "core_capabilities": {
-    "auth": "working",
-    "rbac": "working",
-    "schedules": "working",
-    "audit_logging": "working"
+  "current_phase": "phase_7_malone_governed_execution",
+  "active_module": "deterministic_brain_v2_foundation_with_registry_execution_and_web_governance",
+  "current_task": "freeze tracking, handoff doctrine, and boot protocol so the next thread can rerun mapper and bootstrap audits before taking the next bounded slice",
+  "progress": 93,
+  "last_working_version": "v0.9.0-deterministic-brain-v2-foundation",
+  "seed_login": {
+    "email": "owner@test.com",
+    "password": "ChangeMe123!"
   },
-
-  "malone": {
-    "intent_classification": "working",
-    "proposal_system": "working",
-    "validation_layer": "working",
-    "deterministic_execution": "working",
-    "truth_packet": "hardened_v1",
-    "openai_rendering": "hardened_v1",
-    "render_verification": "hardened_v1",
-    "fallback_system": "working",
-    "web_search": "enabled",
-    "source_verification": "enabled"
-  },
-
-  "ui": {
-    "malone_page": "clean_output_first",
-    "technical_details": "dropdown",
-    "sources_display": "enabled",
-    "chat_input": "textarea_enter_send"
-  },
-
-  "safety": {
-    "deterministic_first": true,
-    "ai_cannot_execute": true,
-    "verification_required": true,
-    "fallback_guaranteed": true
-  }
+  "working_now": [
+    "FastAPI backend boots cleanly locally",
+    "React/Vite frontend boots cleanly locally",
+    "JWT login works through /api/auth/login",
+    "dashboard renders after login",
+    "schedules feed works",
+    "schedule create and cancel routes are present and governed by role checks",
+    "Malone page is present in navigation",
+    "Malone proposal and validation flow works",
+    "Malone proposals are durably persisted",
+    "Malone lifecycle audit logging works",
+    "Malone can safely execute schedule read and schedule analysis through deterministic validation",
+    "OpenAI conversational rendering layer is wired behind backend-only configuration",
+    "render verification and deterministic fallback delivery are wired",
+    "governed web retrieval is wired behind retrieval rules and verified source handling",
+    "technical proof is hidden behind dropdowns on the Malone page",
+    "deterministic action registry foundation is now present",
+    "deterministic validator and deterministic executor foundations are now present",
+    "Malone capability discovery endpoint is present at /api/malone/capabilities",
+    "proposal records can persist deterministic execution envelopes alongside rendered output and verification"
+  ],
+  "blocking_issues": [
+    "tracking docs before this update were behind the live deterministic and web-enabled codebase",
+    "new thread must rerun tools/project_map_audit.py and tools/self_verify_bootstrap.py before further coding",
+    "workflow engine foundation is not yet implemented",
+    "approval hooks exist conceptually through deterministic metadata, but full approval workflow is not yet implemented",
+    "internal DSOS retrieval layer is not yet implemented",
+    "pending clarification conversation state is not yet implemented",
+    "formal DB migrations are still not established for long-term schema evolution"
+  ],
+  "next_recommended_slice": "workflow_engine_foundation_on_top_of_deterministic_brain_v2"
 }
