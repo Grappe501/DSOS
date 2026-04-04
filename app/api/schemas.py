@@ -7,7 +7,7 @@ from uuid import UUID
 from pydantic import BaseModel, ConfigDict, EmailStr, Field
 
 
-model_config = ConfigDict(from_attributes=True, populate_by_name=True)
+ORM_CONFIG = ConfigDict(from_attributes=True, populate_by_name=True)
 
 
 # ----------------------------
@@ -20,7 +20,7 @@ class LoginRequest(BaseModel):
 
 
 class UserResponse(BaseModel):
-    model_config = model_config
+    model_config = ORM_CONFIG
 
     id: UUID | int | str
     email: EmailStr
@@ -36,7 +36,7 @@ class MeResponse(UserResponse):
 
 
 class LoginResponse(BaseModel):
-    model_config = model_config
+    model_config = ORM_CONFIG
 
     access_token: str
     token_type: str = "bearer"
@@ -55,10 +55,12 @@ class MessageResponse(BaseModel):
     message: str
 
 
+class ErrorResponse(BaseModel):
+    detail: str | list[dict[str, Any]] | dict[str, Any]
+
+
 # ----------------------------
 # Schedule schemas
-# Flexible enough for current runtime
-# while supporting UUID-based models.
 # ----------------------------
 
 class ScheduleBase(BaseModel):
@@ -67,31 +69,39 @@ class ScheduleBase(BaseModel):
     end_time: datetime
     department: str | None = None
     notes: str | None = None
+    recurrence_rule: str | None = None
 
     model_config = ConfigDict(str_strip_whitespace=True)
 
 
 class ScheduleCreate(ScheduleBase):
+    # Current runtime persists assigned_to as a required non-null string.
+    assigned_to: str = Field(..., min_length=1, max_length=255)
+
+    # Backward compatibility for older callers / future migration.
     assigned_user_id: UUID | int | str | None = None
 
 
 class ScheduleUpdate(BaseModel):
     title: str | None = Field(default=None, min_length=1, max_length=255)
+    assigned_to: str | None = Field(default=None, min_length=1, max_length=255)
+    assigned_user_id: UUID | int | str | None = None
     start_time: datetime | None = None
     end_time: datetime | None = None
     department: str | None = None
     notes: str | None = None
+    recurrence_rule: str | None = None
     status: str | None = None
-    assigned_user_id: UUID | int | str | None = None
 
     model_config = ConfigDict(str_strip_whitespace=True)
 
 
 class ScheduleResponse(BaseModel):
-    model_config = model_config
+    model_config = ORM_CONFIG
 
     id: UUID | int | str
     title: str
+    assigned_to: str
     start_time: datetime
     end_time: datetime
     department: str | None = None
@@ -102,6 +112,12 @@ class ScheduleResponse(BaseModel):
     cancelled_by_user_id: UUID | int | str | None = None
     created_at: datetime | None = None
     updated_at: datetime | None = None
+    submitted_at: datetime | None = None
+    approved_at: datetime | None = None
+    rejected_at: datetime | None = None
+    cancelled_at: datetime | None = None
+    rejection_reason: str | None = None
+    recurrence_rule: str | None = None
 
 
 # ----------------------------
@@ -109,7 +125,7 @@ class ScheduleResponse(BaseModel):
 # ----------------------------
 
 class AuditLogResponse(BaseModel):
-    model_config = model_config
+    model_config = ORM_CONFIG
 
     id: UUID | int | str
     action: str
@@ -125,7 +141,7 @@ class AuditLogResponse(BaseModel):
 # ----------------------------
 
 class DepartmentResponse(BaseModel):
-    model_config = model_config
+    model_config = ORM_CONFIG
 
     id: UUID | int | str
     code: str
@@ -137,15 +153,6 @@ class DepartmentResponse(BaseModel):
 class OperationalSummaryResponse(BaseModel):
     totals: dict[str, Any] = Field(default_factory=dict)
     recent_activity: list[dict[str, Any]] = Field(default_factory=list)
-
-
-# ----------------------------
-# Optional utility schemas for
-# future phase expansion
-# ----------------------------
-
-class ErrorResponse(BaseModel):
-    detail: str | list[dict[str, Any]] | dict[str, Any]
 
 
 class PaginatedResponse(BaseModel):

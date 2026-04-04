@@ -1,0 +1,16 @@
+{
+  "system": "malone",
+  "build_order": [
+    "stage_1_conversational_rendering",
+    "stage_2_clarification_loop",
+    "stage_3_internal_retrieval",
+    "stage_4_web_retrieval",
+    "stage_5_approval_foundation",
+    "stage_6_governed_write_execution",
+    "stage_7_tool_orchestration",
+    "stage_8_multi_agent_system",
+    "stage_9_voice_runtime",
+    "stage_10_local_model_path"
+  ],
+  "rule": "do not advance to the next stage until the current stage passes runtime verification and tracking is updated"
+}

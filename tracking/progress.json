@@ -21,27 +21,78 @@
     ]
   },
   "phase_3_department_audit": {
-    "progress": 65,
-    "status": "in_progress",
+    "progress": 90,
+    "status": "nearly_complete",
     "tasks": [
       "runtime/login stabilization",
       "auth route and schema contract repair",
-      "workflow/messages/events stub slice activation",
-      "actor-aware audit tracking",
-      "department scoping",
-      "owner admin operational visibility"
+      "workflow/messages/events slice activation",
+      "actor-aware audit tracking baseline",
+      "department scoping baseline",
+      "owner admin operational visibility baseline"
     ]
   },
-  "phase_4_department_ops_workflow": {
+  "phase_4_malone_foundation": {
+    "progress": 64,
+    "status": "in_progress",
+    "tasks": [
+      "Malone v1 master build plan and manifests",
+      "Malone scaffolder concept lock",
+      "Malone backend services scaffold",
+      "Malone frontend page scaffold",
+      "Malone route wiring",
+      "Malone proposal + validation",
+      "Malone safe schedule-read execution",
+      "Malone proposal persistence",
+      "Malone audit lifecycle expansion",
+      "Malone world-class roadmap tracking integration",
+      "Stage 1 conversational rendering plan locked"
+    ]
+  },
+  "phase_5_malone_render_and_grounding": {
     "progress": 0,
     "status": "planned",
     "tasks": [
-      "formal department registry",
-      "membership model",
-      "approval workflow",
-      "audit v2 enrichment",
-      "approvals and departments UI",
-      "alembic migrations"
+      "OpenAI backend integration",
+      "truth packet builder",
+      "structured conversational rendering",
+      "deterministic render verification",
+      "render audit events",
+      "Malone UI conversational answer panel",
+      "fallback deterministic response path"
+    ]
+  },
+  "phase_6_malone_clarification_and_retrieval": {
+    "progress": 0,
+    "status": "planned",
+    "tasks": [
+      "clarification refinement loop",
+      "pending clarification conversation state",
+      "internal DSOS retrieval layer",
+      "evidence packet model",
+      "source-aware UI responses"
+    ]
+  },
+  "phase_7_malone_governed_execution": {
+    "progress": 0,
+    "status": "planned",
+    "tasks": [
+      "web retrieval with evidence controls",
+      "approval workflow foundation",
+      "governed write execution",
+      "tool orchestration registry",
+      "department-aware action enforcement"
+    ]
+  },
+  "phase_8_malone_super_agent": {
+    "progress": 0,
+    "status": "planned",
+    "tasks": [
+      "multi-agent orchestration",
+      "voice runtime",
+      "watcher agents",
+      "self-improvement proposal loop",
+      "local-model abstraction for GPU transition"
     ]
   }
 }

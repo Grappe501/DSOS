@@ -173,6 +173,34 @@ class AuditLog(Base):
     )
 
 
+class MaloneProposal(Base, TimestampMixin):
+    __tablename__ = "malone_proposals"
+
+    id: Mapped[str] = mapped_column(String, primary_key=True, default=gen_id)
+    proposal_type: Mapped[str] = mapped_column(String, nullable=False, index=True)
+    requested_action: Mapped[str] = mapped_column(String, nullable=False, index=True)
+    target: Mapped[str | None] = mapped_column(String, nullable=True, index=True)
+    source_message: Mapped[str] = mapped_column(Text, nullable=False, default="")
+    actor_user_id: Mapped[str | None] = mapped_column(
+        String, ForeignKey("users.id"), nullable=True, index=True
+    )
+    actor_email: Mapped[str | None] = mapped_column(String, nullable=True, index=True)
+    actor_role: Mapped[str | None] = mapped_column(String, nullable=True, index=True)
+    actor_department: Mapped[str | None] = mapped_column(String, nullable=True, index=True)
+    validation_status: Mapped[str] = mapped_column(
+        String, nullable=False, default="pending", index=True
+    )
+    approval_status: Mapped[str] = mapped_column(
+        String, nullable=False, default="pending", index=True
+    )
+    execution_status: Mapped[str] = mapped_column(
+        String, nullable=False, default="proposal_only", index=True
+    )
+    candidate_output_json: Mapped[str] = mapped_column(Text, nullable=False, default="{}")
+    validation_json: Mapped[str | None] = mapped_column(Text, nullable=True)
+    result_json: Mapped[str | None] = mapped_column(Text, nullable=True)
+
+
 class MessageQueue(Base, TimestampMixin):
     __tablename__ = "message_queue"
 

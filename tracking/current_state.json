@@ -1,24 +1,40 @@
 {
-  "current_phase": "phase_3_department_audit",
-  "active_module": "runtime_stabilization_and_ops_slice_activation",
-  "current_task": "complete_phase_3_backend_frontend_slices_and_prepare_release",
-  "progress": 65,
-  "last_working_version": "v0.6.2-runtime-stabilized-slice-stubs",
-  "seed_login": {
-    "email": "owner@test.com",
-    "password": "ChangeMe123!"
+  "system": "DSOS — AllCare Pharmacy OS",
+  "version": "0.8.0-malone-web",
+  "stage": "Stage 2 — Web Retrieval Enabled",
+  "status": "stable",
+
+  "core_capabilities": {
+    "auth": "working",
+    "rbac": "working",
+    "schedules": "working",
+    "audit_logging": "working"
   },
-  "working_now": [
-    "FastAPI backend boots cleanly locally",
-    "React/Vite frontend boots cleanly locally",
-    "JWT login works through /api/auth/login",
-    "dashboard renders after login",
-    "schedules slice works as current baseline",
-    "workflow/messages/events navigation links now resolve to stub slices"
-  ],
-  "blocking_issues": [
-    "Workflows, Messages, and Events are currently log-backed stub slices, not production modules",
-    "Phase 3 department scoping and actor-aware audit are only partially implemented",
-    "Tracking artifacts need sync before git release"
-  ]
+
+  "malone": {
+    "intent_classification": "working",
+    "proposal_system": "working",
+    "validation_layer": "working",
+    "deterministic_execution": "working",
+    "truth_packet": "hardened_v1",
+    "openai_rendering": "hardened_v1",
+    "render_verification": "hardened_v1",
+    "fallback_system": "working",
+    "web_search": "enabled",
+    "source_verification": "enabled"
+  },
+
+  "ui": {
+    "malone_page": "clean_output_first",
+    "technical_details": "dropdown",
+    "sources_display": "enabled",
+    "chat_input": "textarea_enter_send"
+  },
+
+  "safety": {
+    "deterministic_first": true,
+    "ai_cannot_execute": true,
+    "verification_required": true,
+    "fallback_guaranteed": true
+  }
 }

@@ -9,6 +9,9 @@ from sqlalchemy.orm import Session
 from app.models.models import AuditLog
 
 
+MALONE_ENTITY_TYPE = "malone_proposal"
+
+
 def _safe_json(value: Any) -> str | None:
     if value is None:
         return None
@@ -25,13 +28,10 @@ def write_audit(
     *,
     action: str,
     entity_type: str,
-    entity_id: int | None = None,
-    actor_user_id: int | None = None,
-    meta_json: dict[str, Any] | str | None = None,
+    entity_id: str | None = None,
+    actor_user_id: str | None = None,
+    meta_json: dict[str, Any] | None = None,
 ) -> AuditLog:
-    """
-    Backward-compatible audit writer used by existing services.
-    """
     row = AuditLog(
         action=action,
         entity_type=entity_type,
@@ -51,36 +51,36 @@ def log_write_action(
     *,
     action: str,
     entity_type: str,
-    entity_id: int | None = None,
-    actor_user_id: int | None = None,
-    department: str | None = None,
+    entity_id: str | None,
+    actor: dict | None,
     before_json: Any = None,
     after_json: Any = None,
-    request_id: str | None = None,
     meta_json: dict[str, Any] | None = None,
 ) -> AuditLog:
-    """
-    Phase 3+ normalized audit helper.
-    Keeps compatibility by storing extended fields inside meta_json
-    unless the model has dedicated columns for them.
-    """
-    payload: dict[str, Any] = dict(meta_json or {})
-    if department is not None:
-        payload["department"] = department
-    if request_id is not None:
-        payload["request_id"] = request_id
+    payload = dict(meta_json or {})
+
+    if actor:
+        payload.update(
+            {
+                "actor_email": actor.get("email"),
+                "actor_role": actor.get("role"),
+                "department": actor.get("department"),
+            }
+        )
+
     if before_json is not None:
-        payload["before_json"] = before_json
+        payload["before"] = before_json
+
     if after_json is not None:
-        payload["after_json"] = after_json
+        payload["after"] = after_json
 
     return write_audit(
         db,
         action=action,
         entity_type=entity_type,
         entity_id=entity_id,
-        actor_user_id=actor_user_id,
-        meta_json=payload or None,
+        actor_user_id=actor.get("id") if actor else None,
+        meta_json=payload,
     )
 
 
@@ -88,24 +88,39 @@ def log_transition(
     db: Session,
     *,
     entity_type: str,
-    entity_id: int | None,
+    entity_id: str,
     from_state: str | None,
     to_state: str,
-    actor_user_id: int | None = None,
-    department: str | None = None,
+    actor: dict | None,
     meta_json: dict[str, Any] | None = None,
 ) -> AuditLog:
-    payload: dict[str, Any] = dict(meta_json or {})
+    payload = dict(meta_json or {})
     payload["from_state"] = from_state
     payload["to_state"] = to_state
-    if department is not None:
-        payload["department"] = department
 
-    return write_audit(
+    return log_write_action(
         db,
         action="state_transition",
         entity_type=entity_type,
         entity_id=entity_id,
-        actor_user_id=actor_user_id,
+        actor=actor,
         meta_json=payload,
+    )
+
+
+def log_malone_action(
+    db: Session,
+    *,
+    action: str,
+    proposal_id: str,
+    actor: dict[str, Any] | None,
+    meta_json: dict[str, Any] | None = None,
+) -> AuditLog:
+    return log_write_action(
+        db,
+        action=action,
+        entity_type=MALONE_ENTITY_TYPE,
+        entity_id=proposal_id,
+        actor=actor,
+        meta_json=meta_json,
     )

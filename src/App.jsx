@@ -1,40 +1,68 @@
-import { NavLink, Route, Routes } from 'react-router-dom'
-import DashboardPage from './pages/DashboardPage'
-import SchedulesPage from './pages/SchedulesPage'
-import CalendarPage from './pages/CalendarPage'
-import WorkflowsPage from './pages/WorkflowsPage'
-import MessagesPage from './pages/MessagesPage'
-import EventsPage from './pages/EventsPage'
-import LoginPage from './pages/LoginPage'
-import ProtectedRoute from './components/ProtectedRoute'
-import { useAuth } from './context/AuthContext'
+import { NavLink, Navigate, Route, Routes } from "react-router-dom";
+import { useAuth } from "./context/AuthContext";
 
-function AppShell() {
-  const { user, logout } = useAuth()
+import LoginPage from "./pages/LoginPage";
+import DashboardPage from "./pages/DashboardPage";
+import SchedulesPage from "./pages/SchedulesPage";
+import CalendarPage from "./pages/CalendarPage";
+import WorkflowsPage from "./pages/WorkflowsPage";
+import MessagesPage from "./pages/MessagesPage";
+import EventsPage from "./pages/EventsPage";
+import AuditPage from "./pages/AuditPage";
+import ApprovalsPage from "./pages/ApprovalsPage";
+import DepartmentsPage from "./pages/DepartmentsPage";
+import MalonePage from "./pages/MalonePage";
+
+function ProtectedAppShell() {
+  const { user, logout } = useAuth();
+
+  const navItems = [
+    { to: "/", label: "Dashboard" },
+    { to: "/schedules", label: "Schedules" },
+    { to: "/calendar", label: "Calendar" },
+    { to: "/workflows", label: "Workflows" },
+    { to: "/messages", label: "Messages" },
+    { to: "/events", label: "Events" },
+    { to: "/malone", label: "Malone" },
+  ];
+
+  if (user?.role === "owner" || user?.role === "admin") {
+    navItems.push(
+      { to: "/audit", label: "Audit" },
+      { to: "/approvals", label: "Approvals" },
+      { to: "/departments", label: "Departments" },
+    );
+  }
 
   return (
     <div className="app-shell">
       <aside className="sidebar">
-        <div className="brand brand-allcare">
+        <div className="brand">
           <div className="brand-logo-pill">Rx</div>
           <div>
             <div className="brand-title">AllCare Pharmacy</div>
-            <div className="brand-subtitle">{user?.role || 'user'}</div>
+            <div className="brand-subtitle">{user?.role ?? "user"}</div>
           </div>
         </div>
 
         <nav className="nav">
-          <NavLink to="/" end>Dashboard</NavLink>
-          <NavLink to="/schedules">Schedules</NavLink>
-          <NavLink to="/calendar">Calendar</NavLink>
-          <NavLink to="/workflows">Workflows</NavLink>
-          <NavLink to="/messages">Messages</NavLink>
-          <NavLink to="/events">Events</NavLink>
+          {navItems.map((item) => (
+            <NavLink
+              key={item.to}
+              to={item.to}
+              end={item.to === "/"}
+              className={({ isActive }) => (isActive ? "active" : "")}
+            >
+              {item.label}
+            </NavLink>
+          ))}
         </nav>
 
         <div className="account-panel">
-          <div>{user?.email}</div>
-          <button onClick={logout} className="signout-button">Sign out</button>
+          <div>{user?.email ?? ""}</div>
+          <button className="signout-button" type="button" onClick={logout}>
+            Sign out
+          </button>
         </div>
       </aside>
 
@@ -46,24 +74,33 @@ function AppShell() {
           <Route path="/workflows" element={<WorkflowsPage />} />
           <Route path="/messages" element={<MessagesPage />} />
           <Route path="/events" element={<EventsPage />} />
+          <Route path="/malone" element={<MalonePage />} />
+
+          {(user?.role === "owner" || user?.role === "admin") && (
+            <>
+              <Route path="/audit" element={<AuditPage />} />
+              <Route path="/approvals" element={<ApprovalsPage />} />
+              <Route path="/departments" element={<DepartmentsPage />} />
+            </>
+          )}
+
+          <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </main>
     </div>
-  )
+  );
 }
 
 export default function App() {
-  return (
-    <Routes>
-      <Route path="/login" element={<LoginPage />} />
-      <Route
-        path="/*"
-        element={
-          <ProtectedRoute>
-            <AppShell />
-          </ProtectedRoute>
-        }
-      />
-    </Routes>
-  )
+  const { user, loading } = useAuth();
+
+  if (loading) {
+    return <div className="login-screen">Loading...</div>;
+  }
+
+  if (!user) {
+    return <LoginPage />;
+  }
+
+  return <ProtectedAppShell />;
 }

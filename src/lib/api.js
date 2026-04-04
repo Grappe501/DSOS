@@ -15,18 +15,14 @@ function clearToken() {
   localStorage.removeItem("access_token");
 }
 
-function buildHeaders(customHeaders = {}, includeJson = true) {
-  const headers = {
-    ...(includeJson ? { "Content-Type": "application/json" } : {}),
-    ...customHeaders,
-  };
-
+function buildHeaders(extra = {}, includeJson = true) {
   const token = getToken();
-  if (token) {
-    headers.Authorization = `Bearer ${token}`;
-  }
 
-  return headers;
+  return {
+    ...(includeJson ? { "Content-Type": "application/json" } : {}),
+    ...(token ? { Authorization: `Bearer ${token}` } : {}),
+    ...extra,
+  };
 }
 
 async function parseResponse(res) {
@@ -48,12 +44,10 @@ function buildErrorMessage(payload, fallback = "Request failed") {
   return JSON.stringify(payload);
 }
 
-async function request(url, options = {}) {
-  const headers = buildHeaders(options.headers, options.includeJson !== false);
-
-  const res = await fetch(url, {
+async function request(path, options = {}) {
+  const res = await fetch(path, {
     ...options,
-    headers,
+    headers: buildHeaders(options.headers, options.includeJson !== false),
   });
 
   const payload = await parseResponse(res);
@@ -103,6 +97,25 @@ function toQueryString(params = {}) {
   return qs ? `?${qs}` : "";
 }
 
+function normalizeSchedulePayload(payload = {}) {
+  return {
+    title: String(payload.title ?? "").trim(),
+    assigned_to: String(
+      payload.assigned_to ??
+        payload.assignedTo ??
+        payload.assigned_user_id ??
+        payload.assignedUserId ??
+        ""
+    ).trim(),
+    start_time: payload.start_time ?? payload.startTime ?? null,
+    end_time: payload.end_time ?? payload.endTime ?? null,
+    department: payload.department ?? null,
+    recurrence_rule:
+      payload.recurrence_rule ?? payload.recurrenceRule ?? null,
+    notes: payload.notes ?? null,
+  };
+}
+
 export const api = {
   async login(emailOrPayload, password) {
     const payload = normalizeLoginArgs(emailOrPayload, password);
@@ -125,21 +138,19 @@ export const api = {
   },
 
   async me() {
-    return request(`${AUTH_BASE}/me`, {
-      method: "GET",
-    });
+    return request(`${AUTH_BASE}/me`);
   },
 
   async getSchedules(params = {}) {
-    return request(`${API_BASE}/schedules${toQueryString(params)}`, {
-      method: "GET",
-    });
+    return request(`${API_BASE}/schedules${toQueryString(params)}`);
   },
 
   async createSchedule(payload) {
-    return request(`${API_BASE}/schedules/create`, {
+    const normalized = normalizeSchedulePayload(payload);
+
+    return request(`${API_BASE}/schedules`, {
       method: "POST",
-      body: JSON.stringify(payload),
+      body: JSON.stringify(normalized),
     });
   },
 
@@ -150,34 +161,31 @@ export const api = {
   },
 
   async getAudit(params = {}) {
-    return request(`${API_BASE}/audit${toQueryString(params)}`, {
-      method: "GET",
-    });
+    return request(`${API_BASE}/audit${toQueryString(params)}`);
   },
 
   async getOperationalSummary() {
-    return request(`${API_BASE}/operational/summary`, {
-      method: "GET",
-    });
+    return request(`${API_BASE}/operational/summary`);
   },
 
   async getWorkflows(params = {}) {
-    return request(`${API_BASE}/workflows${toQueryString(params)}`, {
-      method: "GET",
-    });
+    return request(`${API_BASE}/workflows${toQueryString(params)}`);
   },
 
   async getMessages(params = {}) {
-    return request(`${API_BASE}/messages${toQueryString(params)}`, {
-      method: "GET",
-    });
+    return request(`${API_BASE}/messages${toQueryString(params)}`);
   },
 
   async getEvents(params = {}) {
-    return request(`${API_BASE}/events${toQueryString(params)}`, {
-      method: "GET",
-    });
+    return request(`${API_BASE}/events${toQueryString(params)}`);
   },
 };
 
-export { API_BASE, AUTH_BASE, getToken, setToken, clearToken };
+export {
+  API_BASE,
+  AUTH_BASE,
+  getToken,
+  setToken,
+  clearToken,
+  normalizeSchedulePayload,
+};

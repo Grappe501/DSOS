@@ -1,40 +1,40 @@
 {
-  "task": "phase_3_runtime_stabilization_and_slice_completion",
+  "task": "phase_5_malone_render_and_grounding",
   "steps": [
     {
-      "name": "stabilize backend imports, schemas, routes, and auth contracts",
-      "done": true
-    },
-    {
-      "name": "stabilize frontend auth/api contract and vite proxy",
-      "done": true
-    },
-    {
-      "name": "restore successful login and dashboard access",
-      "done": true
-    },
-    {
-      "name": "wire workflows/messages/events navigation to live stub slices",
-      "done": true
-    },
-    {
-      "name": "harden department-aware filtering and scoping rules",
+      "name": "add backend OpenAI service wrapper with server-side environment configuration",
       "done": false
     },
     {
-      "name": "finish actor_user_id propagation on all write-generated audit rows",
+      "name": "define deterministic truth packet schema for bounded Malone response types",
       "done": false
     },
     {
-      "name": "finish owner/admin audit review and operational visibility UI",
+      "name": "build render service that converts truth packets into structured conversational output",
       "done": false
     },
     {
-      "name": "run smoke tests across login, schedules, workflows, messages, and events",
+      "name": "add deterministic verification pass to reject unsupported rendered claims",
       "done": false
     },
     {
-      "name": "commit, tag, and push current stabilized milestone",
+      "name": "expand audit lifecycle to include render requested rendered verified and fallback events",
+      "done": false
+    },
+    {
+      "name": "update Malone API contract to return deterministic result plus conversational answer metadata",
+      "done": false
+    },
+    {
+      "name": "update Malone UI to show verified conversational response and fallback state",
+      "done": false
+    },
+    {
+      "name": "run smoke tests across login schedules Malone chat and proposal history",
+      "done": false
+    },
+    {
+      "name": "update handoff tracking after successful runtime verification",
       "done": false
     }
   ]

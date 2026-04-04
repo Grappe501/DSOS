@@ -1,0 +1,40 @@
+{
+  "templates": {
+    "backend.malone_service": {
+      "template": "tools/templates/malone/backend_malone_service.py.tpl"
+    },
+    "backend.agent_service": {
+      "template": "tools/templates/malone/backend_agent_service.py.tpl"
+    },
+    "backend.intent_service": {
+      "template": "tools/templates/malone/backend_intent_service.py.tpl"
+    },
+    "backend.proposal_service": {
+      "template": "tools/templates/malone/backend_proposal_service.py.tpl"
+    },
+    "backend.prompt_registry_service": {
+      "template": "tools/templates/malone/backend_prompt_registry_service.py.tpl"
+    },
+    "backend.malone_routes": {
+      "template": "tools/templates/malone/backend_malone_routes.py.tpl"
+    },
+    "frontend.malone_page": {
+      "template": "tools/templates/malone/frontend_malone_page.jsx.tpl"
+    },
+    "frontend.chat_panel": {
+      "template": "tools/templates/malone/frontend_chat_panel.jsx.tpl"
+    },
+    "frontend.proposal_panel": {
+      "template": "tools/templates/malone/frontend_proposal_panel.jsx.tpl"
+    },
+    "frontend.agent_run_panel": {
+      "template": "tools/templates/malone/frontend_agent_run_panel.jsx.tpl"
+    },
+    "frontend.voice_input_button": {
+      "template": "tools/templates/malone/frontend_voice_input_button.jsx.tpl"
+    },
+    "frontend.malone_api": {
+      "template": "tools/templates/malone/frontend_malone_api.js.tpl"
+    }
+  }
+}

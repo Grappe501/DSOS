@@ -1,13 +1,22 @@
-# Pharmacy OS Master Build
+# Thread Continuity Additions
 
-## Purpose
-This repo contains the full system blueprint and build scaffold.
+This bundle adds two continuity controls:
 
-## How to Use
-1. Follow docs/core
-2. Build spine services
-3. Use module templates
-4. Track progress with scripts
+1. `tracking/THREAD_MEMORY_COMPRESSION.md`
+   - compact architecture + current-state continuity layer
+   - meant for fast reloading by future AI threads
 
-## Goal
-Self-assembling modular OS with full version control.
+2. `tools/self_verify_bootstrap.py`
+   - verifies required tracking, tooling, and runtime files exist
+   - writes `tracking/bootstrap_verification_report.json`
+
+## Usage
+
+Run from project root:
+
+```powershell
+python tools\self_verify_bootstrap.py
+```
+
+If the script exits cleanly, the thread takeover baseline is intact.
+If it exits with code 1, required continuity files are missing and should be restored before further coding.

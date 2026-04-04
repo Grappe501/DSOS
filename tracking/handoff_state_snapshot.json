@@ -1,0 +1,101 @@
+{
+  "phase_1_runtime_foundation": {
+    "progress": 100,
+    "status": "complete",
+    "tasks": [
+      "runtime foundation",
+      "api routes",
+      "schedule slice",
+      "frontend shell"
+    ]
+  },
+  "phase_2_auth_rbac_branding": {
+    "progress": 100,
+    "status": "complete",
+    "tasks": [
+      "jwt auth",
+      "seed login",
+      "protected routes",
+      "rbac enforcement v1",
+      "allcare branding v1"
+    ]
+  },
+  "phase_3_department_audit": {
+    "progress": 100,
+    "status": "complete",
+    "tasks": [
+      "runtime/login stabilization",
+      "auth route and schema contract repair",
+      "workflow/messages/events slice activation",
+      "actor-aware audit tracking baseline",
+      "department scoping baseline",
+      "owner admin operational visibility baseline"
+    ]
+  },
+  "phase_4_malone_foundation": {
+    "progress": 100,
+    "status": "complete",
+    "tasks": [
+      "Malone v1 master build plan and manifests",
+      "Malone scaffolder concept lock",
+      "Malone backend services scaffold",
+      "Malone frontend page scaffold",
+      "Malone route wiring",
+      "Malone proposal + validation",
+      "Malone safe schedule-read execution",
+      "Malone proposal persistence",
+      "Malone audit lifecycle expansion",
+      "Malone world-class roadmap tracking integration",
+      "Stage 1 conversational rendering plan locked"
+    ]
+  },
+  "phase_5_malone_render_and_grounding": {
+    "progress": 100,
+    "status": "complete",
+    "tasks": [
+      "OpenAI backend integration",
+      "truth packet builder",
+      "structured conversational rendering",
+      "deterministic render verification",
+      "render audit events",
+      "Malone UI conversational answer panel",
+      "fallback deterministic response path"
+    ]
+  },
+  "phase_6_malone_clarification_and_retrieval": {
+    "progress": 85,
+    "status": "in_progress",
+    "tasks": [
+      "clarification refinement loop",
+      "pending clarification conversation state",
+      "internal DSOS retrieval layer",
+      "evidence packet model",
+      "source-aware UI responses",
+      "web retrieval with governed response",
+      "verified source enforcement",
+      "UI source display with dropdown architecture"
+    ]
+  },
+  "phase_7_malone_governed_execution": {
+    "progress": 10,
+    "status": "initiated",
+    "tasks": [
+      "web retrieval with evidence controls",
+      "approval workflow foundation",
+      "governed write execution",
+      "tool orchestration registry",
+      "department-aware action enforcement"
+    ]
+  },
+  "phase_8_malone_super_agent": {
+    "progress": 0,
+    "status": "planned",
+    "tasks": [
+      "multi-agent orchestration",
+      "voice runtime",
+      "watcher agents",
+      "self-improvement proposal loop",
+      "local-model abstraction for GPU transition"
+    ]
+  }
+}

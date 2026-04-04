@@ -4,7 +4,7 @@ import datetime as dt
 
 from app.db.session import SessionLocal
 from app.models.models import MessageQueue
-from app.services.audit_service import write_audit
+from app.services.audit_service import log_write_action
 from app.utils.logger import log
 
 
@@ -29,12 +29,19 @@ def queue_message(
         db.commit()
         db.refresh(item)
 
-        write_audit(
-            "message.queued",
-            "message_queue",
-            item.id,
-            {"recipient": recipient, "channel": channel},
+        log_write_action(
+            db,
+            action="message.queued",
+            entity_type="message",
+            entity_id=item.id,
+            actor=None,
+            meta_json={
+                "recipient": recipient,
+                "channel": channel,
+                "status": item.status,
+            },
         )
+
         return item
 
     except Exception:
@@ -86,19 +93,38 @@ def process_message_queue() -> int:
 
         for item in pending:
             try:
+                before = {
+                    "status": item.status,
+                    "retry_count": item.retry_count,
+                    "last_error": item.last_error,
+                }
+
                 # Stub transport success path.
                 # Replace this block later with SendGrid/Twilio/channel adapters.
                 item.status = "sent"
                 item.last_error = None
                 item.updated_at = dt.datetime.utcnow()
                 db.commit()
+                db.refresh(item)
 
-                write_audit(
-                    "message.sent",
-                    "message_queue",
-                    item.id,
-                    {"recipient": item.recipient, "channel": item.channel},
+                log_write_action(
+                    db,
+                    action="message.sent",
+                    entity_type="message",
+                    entity_id=item.id,
+                    actor=None,
+                    before_json=before,
+                    after_json={
+                        "status": item.status,
+                        "retry_count": item.retry_count,
+                        "last_error": item.last_error,
+                    },
+                    meta_json={
+                        "recipient": item.recipient,
+                        "channel": item.channel,
+                    },
                 )
+
                 processed += 1
 
             except Exception as exc:
@@ -110,6 +136,7 @@ def process_message_queue() -> int:
                 item.updated_at = dt.datetime.utcnow()
                 db.add(item)
                 db.commit()
+                db.refresh(item)
 
                 log(f"Message send failed for {item.id}: {exc}")
 

@@ -6,6 +6,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from app.api.auth_routes import auth_router
+from app.api.malone_routes import router as malone_router
 from app.api.routes import api_router, router
 from app.core.scheduler import start_scheduler
 from app.core.wiring import wire_events
@@ -15,7 +16,7 @@ from app.utils.logger import log
 
 
 APP_TITLE = "AllCare Pharmacy Runtime"
-APP_VERSION = "0.6.1"
+APP_VERSION = "0.6.2"
 
 
 @asynccontextmanager
@@ -66,11 +67,13 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Keep both routers for backward compatibility with the current app shape.
+# Keep both router names for backward compatibility.
 app.include_router(router)
 if api_router is not router:
     app.include_router(api_router)
+
 app.include_router(auth_router)
+app.include_router(malone_router)
 
 
 @app.get("/health")
