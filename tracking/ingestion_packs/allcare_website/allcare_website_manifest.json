@@ -1,0 +1,399 @@
+{
+  "entries": [
+    {
+      "proposed_stable_key": "allcare_web_https_www_allcarepharmacy_com_59af9f2a2909",
+      "source_title": "AllCare Pharmacy",
+      "source_url": "https://www.allcarepharmacy.com/",
+      "website_source_type": "company_profile",
+      "malone_source_type": "general_reference",
+      "parser_profile": "general_reference",
+      "crawl_category": "company_profile",
+      "business_domain": "Pharmacy_operations",
+      "content_kind": "page",
+      "summary_text": "AllCare Pharmacy AllCare Longterm Care Assisted Living Correctional Specialty Notice of Privacy Practices Welcome to Longterm Care Pharmacy Copyright: stylephotographs / 123RF Stock Photo With over 40 years of experience, AllCare Pharmacy, Arkansas owned and operated, understands the unique needs of medication management in long term care situations. AllCare Longterm Care Pharmacy 's biggest asset is its over 150 dedicated associates. AllCare aims to exceed customer expectations by providing solutions without ever compromising the resident. Pharmacist on duty 24/7 providing instant availability to nursing staff and physicians Multiple daily deliveries and emergency needs met by company delivery services Multiple locations across Arkansas providing prompt, local response for all your pharmacy needs Five Star accuracy program checks prescription five times prior to delivery Automated notification on non-covered medication reducing your direct cost Instant transmission of orders through ExactMed iMAR Long term care facilities also have 24/7/365 access to invoices, online drug pricing, usage reports, drug reordering, and consultant reports through our Facility Management System (FMS). ",
+      "suggested_tags": {
+        "domain": "AllCare",
+        "topic": "general",
+        "document_type": "web_page",
+        "role": "mixed",
+        "action_type": "reference",
+        "review_state": "pending_human_review"
+      },
+      "authority_hint": "internal",
+      "trust_tier_suggestion": "internal",
+      "review_recommendation": "recommended_before_activation",
+      "ingestion_priority": "P1",
+      "promotion_priority_suggestion": "P1",
+      "active_candidate": "yes",
+      "classification_reasons": [
+        "url_likely_homepage"
+      ],
+      "notes": "Website-derived manifest; ingest downloaded or mirrored content via run_business_ingest after review."
+    },
+    {
+      "proposed_stable_key": "allcare_web_https_www_allcarepharmacy_com_index_html_9711cccbc940",
+      "source_title": "AllCare Pharmacy",
+      "source_url": "https://www.allcarepharmacy.com/index.html",
+      "website_source_type": "company_profile",
+      "malone_source_type": "general_reference",
+      "parser_profile": "general_reference",
+      "crawl_category": "company_profile",
+      "business_domain": "Pharmacy_operations",
+      "content_kind": "page",
+      "summary_text": "AllCare Pharmacy AllCare Longterm Care Assisted Living Correctional Specialty Notice of Privacy Practices Welcome to Longterm Care Pharmacy Copyright: stylephotographs / 123RF Stock Photo With over 40 years of experience, AllCare Pharmacy, Arkansas owned and operated, understands the unique needs of medication management in long term care situations. AllCare Longterm Care Pharmacy 's biggest asset is its over 150 dedicated associates. AllCare aims to exceed customer expectations by providing solutions without ever compromising the resident. Pharmacist on duty 24/7 providing instant availability to nursing staff and physicians Multiple daily deliveries and emergency needs met by company delivery services Multiple locations across Arkansas providing prompt, local response for all your pharmacy needs Five Star accuracy program checks prescription five times prior to delivery Automated notification on non-covered medication reducing your direct cost Instant transmission of orders through ExactMed iMAR Long term care facilities also have 24/7/365 access to invoices, online drug pricing, usage reports, drug reordering, and consultant reports through our Facility Management System (FMS). ",
+      "suggested_tags": {
+        "domain": "AllCare",
+        "topic": "index.html",
+        "document_type": "web_page",
+        "role": "mixed",
+        "action_type": "reference",
+        "review_state": "pending_human_review"
+      },
+      "authority_hint": "internal",
+      "trust_tier_suggestion": "internal",
+      "review_recommendation": "recommended_before_activation",
+      "ingestion_priority": "P1",
+      "promotion_priority_suggestion": "P1",
+      "active_candidate": "yes",
+      "classification_reasons": [
+        "keyword_match_company_service"
+      ],
+      "notes": "Website-derived manifest; ingest downloaded or mirrored content via run_business_ingest after review."
+    },
+    {
+      "proposed_stable_key": "allcare_web_https_www_allcarepharmacy_com_longterm_html_1d7de6b0a0c5",
+      "source_title": "AllCare Pharmacy",
+      "source_url": "https://www.allcarepharmacy.com/longterm.html",
+      "website_source_type": "company_profile",
+      "malone_source_type": "general_reference",
+      "parser_profile": "general_reference",
+      "crawl_category": "company_profile",
+      "business_domain": "Pharmacy_operations",
+      "content_kind": "page",
+      "summary_text": "AllCare Pharmacy AllCare Longterm Care Assisted Living Correctional Specialty Notice of Privacy Practices Welcome to Longterm Care Pharmacy Copyright: stylephotographs / 123RF Stock Photo With over 40 years of experience, AllCare Pharmacy, Arkansas owned and operated, understands the unique needs of medication management in long term care situations. AllCare Longterm Care Pharmacy 's biggest asset is its over 150 dedicated associates. AllCare aims to exceed customer expectations by providing solutions without ever compromising the resident. Pharmacist on duty 24/7 providing instant availability to nursing staff and physicians Multiple daily deliveries and emergency needs met by company delivery services Multiple locations across Arkansas providing prompt, local response for all your pharmacy needs Five Star accuracy program checks prescription five times prior to delivery Automated notification on non-covered medication reducing your direct cost Instant transmission of orders through ExactMed iMAR Long term care facilities also have 24/7/365 access to invoices, online drug pricing, usage reports, drug reordering, and consultant reports through our Facility Management System (FMS). ",
+      "suggested_tags": {
+        "domain": "AllCare",
+        "topic": "longterm.html",
+        "document_type": "web_page",
+        "role": "mixed",
+        "action_type": "reference",
+        "review_state": "pending_human_review"
+      },
+      "authority_hint": "internal",
+      "trust_tier_suggestion": "internal",
+      "review_recommendation": "recommended_before_activation",
+      "ingestion_priority": "P1",
+      "promotion_priority_suggestion": "P1",
+      "active_candidate": "yes",
+      "classification_reasons": [
+        "keyword_match_company_service"
+      ],
+      "notes": "Website-derived manifest; ingest downloaded or mirrored content via run_business_ingest after review."
+    },
+    {
+      "proposed_stable_key": "allcare_web_https_www_allcarepharmacy_com_assistedliving_htm_7b63fb88e184",
+      "source_title": "AllCare Pharmacy",
+      "source_url": "https://www.allcarepharmacy.com/assistedliving.html",
+      "website_source_type": "company_profile",
+      "malone_source_type": "general_reference",
+      "parser_profile": "general_reference",
+      "crawl_category": "company_profile",
+      "business_domain": "Pharmacy_operations",
+      "content_kind": "page",
+      "summary_text": "AllCare Pharmacy AllCare Longterm Care Assisted Living Correctional Specialty Notice of Privacy Practices Welcome to Longterm Care Pharmacy Copyright: stylephotographs / 123RF Stock Photo With over 40 years of experience, AllCare Pharmacy, Arkansas owned and operated, understands the unique needs of medication management in long term care situations. AllCare Longterm Care Pharmacy 's biggest asset is its over 150 dedicated associates. AllCare aims to exceed customer expectations by providing solutions without ever compromising the resident. Pharmacist on duty 24/7 providing instant availability to nursing staff and physicians Multiple daily deliveries and emergency needs met by company delivery services Multiple locations across Arkansas providing prompt, local response for all your pharmacy needs Five Star accuracy program checks prescription five times prior to delivery Automated notification on non-covered medication reducing your direct cost Instant transmission of orders through ExactMed iMAR Long term care facilities also have 24/7/365 access to invoices, online drug pricing, usage reports, drug reordering, and consultant reports through our Facility Management System (FMS). ",
+      "suggested_tags": {
+        "domain": "AllCare",
+        "topic": "assistedliving.html",
+        "document_type": "web_page",
+        "role": "mixed",
+        "action_type": "reference",
+        "review_state": "pending_human_review"
+      },
+      "authority_hint": "internal",
+      "trust_tier_suggestion": "internal",
+      "review_recommendation": "recommended_before_activation",
+      "ingestion_priority": "P1",
+      "promotion_priority_suggestion": "P1",
+      "active_candidate": "yes",
+      "classification_reasons": [
+        "keyword_match_company_service"
+      ],
+      "notes": "Website-derived manifest; ingest downloaded or mirrored content via run_business_ingest after review."
+    },
+    {
+      "proposed_stable_key": "allcare_web_https_www_allcarepharmacy_com_correctional_html_f3ee283b6aae",
+      "source_title": "AllCare Pharmacy",
+      "source_url": "https://www.allcarepharmacy.com/correctional.html",
+      "website_source_type": "company_profile",
+      "malone_source_type": "general_reference",
+      "parser_profile": "general_reference",
+      "crawl_category": "company_profile",
+      "business_domain": "Pharmacy_operations",
+      "content_kind": "page",
+      "summary_text": "AllCare Pharmacy AllCare Longterm Care Assisted Living Correctional Specialty Notice of Privacy Practices Welcome to Longterm Care Pharmacy Copyright: stylephotographs / 123RF Stock Photo With over 40 years of experience, AllCare Pharmacy, Arkansas owned and operated, understands the unique needs of medication management in long term care situations. AllCare Longterm Care Pharmacy 's biggest asset is its over 150 dedicated associates. AllCare aims to exceed customer expectations by providing solutions without ever compromising the resident. Pharmacist on duty 24/7 providing instant availability to nursing staff and physicians Multiple daily deliveries and emergency needs met by company delivery services Multiple locations across Arkansas providing prompt, local response for all your pharmacy needs Five Star accuracy program checks prescription five times prior to delivery Automated notification on non-covered medication reducing your direct cost Instant transmission of orders through ExactMed iMAR Long term care facilities also have 24/7/365 access to invoices, online drug pricing, usage reports, drug reordering, and consultant reports through our Facility Management System (FMS). ",
+      "suggested_tags": {
+        "domain": "AllCare",
+        "topic": "correctional.html",
+        "document_type": "web_page",
+        "role": "mixed",
+        "action_type": "reference",
+        "review_state": "pending_human_review"
+      },
+      "authority_hint": "internal",
+      "trust_tier_suggestion": "internal",
+      "review_recommendation": "recommended_before_activation",
+      "ingestion_priority": "P1",
+      "promotion_priority_suggestion": "P1",
+      "active_candidate": "yes",
+      "classification_reasons": [
+        "keyword_match_company_service"
+      ],
+      "notes": "Website-derived manifest; ingest downloaded or mirrored content via run_business_ingest after review."
+    },
+    {
+      "proposed_stable_key": "allcare_web_https_www_allcarepharmacy_com_specialty_html_9dcdb9e0e5d2",
+      "source_title": "AllCare Pharmacy",
+      "source_url": "https://www.allcarepharmacy.com/specialty.html",
+      "website_source_type": "company_profile",
+      "malone_source_type": "general_reference",
+      "parser_profile": "general_reference",
+      "crawl_category": "company_profile",
+      "business_domain": "Pharmacy_operations",
+      "content_kind": "page",
+      "summary_text": "AllCare Pharmacy AllCare Longterm Care Assisted Living Correctional Specialty Notice of Privacy Practices Welcome to Longterm Care Pharmacy Copyright: stylephotographs / 123RF Stock Photo With over 40 years of experience, AllCare Pharmacy, Arkansas owned and operated, understands the unique needs of medication management in long term care situations. AllCare Longterm Care Pharmacy 's biggest asset is its over 150 dedicated associates. AllCare aims to exceed customer expectations by providing solutions without ever compromising the resident. Pharmacist on duty 24/7 providing instant availability to nursing staff and physicians Multiple daily deliveries and emergency needs met by company delivery services Multiple locations across Arkansas providing prompt, local response for all your pharmacy needs Five Star accuracy program checks prescription five times prior to delivery Automated notification on non-covered medication reducing your direct cost Instant transmission of orders through ExactMed iMAR Long term care facilities also have 24/7/365 access to invoices, online drug pricing, usage reports, drug reordering, and consultant reports through our Facility Management System (FMS). ",
+      "suggested_tags": {
+        "domain": "AllCare",
+        "topic": "specialty.html",
+        "document_type": "web_page",
+        "role": "mixed",
+        "action_type": "reference",
+        "review_state": "pending_human_review"
+      },
+      "authority_hint": "internal",
+      "trust_tier_suggestion": "internal",
+      "review_recommendation": "recommended_before_activation",
+      "ingestion_priority": "P1",
+      "promotion_priority_suggestion": "P1",
+      "active_candidate": "yes",
+      "classification_reasons": [
+        "keyword_match_company_service"
+      ],
+      "notes": "Website-derived manifest; ingest downloaded or mirrored content via run_business_ingest after review."
+    },
+    {
+      "proposed_stable_key": "allcare_web_https_www_allcarepharmacy_com_specialty_forms_pa_f4bbe2e33127",
+      "source_title": "PATIENT ONLINE ENROLLMENT FORM 2016.pdf",
+      "source_url": "https://www.allcarepharmacy.com/specialty-forms/PATIENT ONLINE ENROLLMENT FORM 2016.pdf",
+      "website_source_type": "form_template",
+      "malone_source_type": "form_template",
+      "parser_profile": "general_reference",
+      "crawl_category": "form_template",
+      "business_domain": "Pharmacy_operations",
+      "content_kind": "download",
+      "summary_text": "",
+      "suggested_tags": {
+        "domain": "AllCare",
+        "topic": "specialty-forms",
+        "document_type": "form",
+        "role": "mixed",
+        "action_type": "reference",
+        "review_state": "pending_human_review"
+      },
+      "authority_hint": "internal",
+      "trust_tier_suggestion": "internal",
+      "review_recommendation": "recommended_before_activation",
+      "ingestion_priority": "P2",
+      "promotion_priority_suggestion": "P2",
+      "active_candidate": "yes",
+      "classification_reasons": [
+        "file_extension_pdf_form_hint",
+        "keyword_match_specialty_enrollment"
+      ],
+      "notes": "Website-derived manifest; ingest downloaded or mirrored content via run_business_ingest after review."
+    },
+    {
+      "proposed_stable_key": "allcare_web_https_www_allcarepharmacy_com_specialty_forms_pa_a423b07f9abc",
+      "source_title": "PATIENT%20ONLINE%20ENROLLMENT%20FORM%202016.pdf",
+      "source_url": "https://www.allcarepharmacy.com/specialty-forms/PATIENT%20ONLINE%20ENROLLMENT%20FORM%202016.pdf",
+      "website_source_type": "form_template",
+      "malone_source_type": "form_template",
+      "parser_profile": "general_reference",
+      "crawl_category": "form_template",
+      "business_domain": "Pharmacy_operations",
+      "content_kind": "download",
+      "summary_text": "",
+      "suggested_tags": {
+        "domain": "AllCare",
+        "topic": "specialty-forms",
+        "document_type": "form",
+        "role": "mixed",
+        "action_type": "reference",
+        "review_state": "pending_human_review"
+      },
+      "authority_hint": "internal",
+      "trust_tier_suggestion": "internal",
+      "review_recommendation": "recommended_before_activation",
+      "ingestion_priority": "P2",
+      "promotion_priority_suggestion": "P2",
+      "active_candidate": "yes",
+      "classification_reasons": [
+        "file_extension_pdf_form_hint",
+        "keyword_match_specialty_enrollment"
+      ],
+      "notes": "Website-derived manifest; ingest downloaded or mirrored content via run_business_ingest after review."
+    },
+    {
+      "proposed_stable_key": "allcare_web_https_www_allcarepharmacy_com_specialty_forms_pa_964d4af12e85",
+      "source_title": "Patient-Enrollment-Form-AllCare-Specialty-Pharmacy.pdf",
+      "source_url": "https://www.allcarepharmacy.com/specialty-forms/Patient-Enrollment-Form-AllCare-Specialty-Pharmacy.pdf",
+      "website_source_type": "form_template",
+      "malone_source_type": "form_template",
+      "parser_profile": "general_reference",
+      "crawl_category": "form_template",
+      "business_domain": "Pharmacy_operations",
+      "content_kind": "download",
+      "summary_text": "",
+      "suggested_tags": {
+        "domain": "AllCare",
+        "topic": "specialty-forms",
+        "document_type": "form",
+        "role": "mixed",
+        "action_type": "reference",
+        "review_state": "pending_human_review"
+      },
+      "authority_hint": "internal",
+      "trust_tier_suggestion": "internal",
+      "review_recommendation": "recommended_before_activation",
+      "ingestion_priority": "P2",
+      "promotion_priority_suggestion": "P2",
+      "active_candidate": "yes",
+      "classification_reasons": [
+        "file_extension_pdf_form_hint",
+        "keyword_match_specialty_enrollment"
+      ],
+      "notes": "Website-derived manifest; ingest downloaded or mirrored content via run_business_ingest after review."
+    },
+    {
+      "proposed_stable_key": "allcare_web_https_www_allcarepharmacy_com_specialty_forms_pr_7c9a3c2ca539",
+      "source_title": "Privacy Notice-2016.pdf",
+      "source_url": "https://www.allcarepharmacy.com/specialty-forms/Privacy Notice-2016.pdf",
+      "website_source_type": "compliance_notice",
+      "malone_source_type": "policy_manual",
+      "parser_profile": "policy_manual",
+      "crawl_category": "compliance_notice",
+      "business_domain": "Pharmacy_operations",
+      "content_kind": "download",
+      "summary_text": "",
+      "suggested_tags": {
+        "domain": "AllCare",
+        "topic": "specialty-forms",
+        "document_type": "web_page",
+        "role": "mixed",
+        "action_type": "reference",
+        "review_state": "pending_human_review"
+      },
+      "authority_hint": "regulatory",
+      "trust_tier_suggestion": "regulatory",
+      "review_recommendation": "recommended_before_activation",
+      "ingestion_priority": "P1",
+      "promotion_priority_suggestion": "P1",
+      "active_candidate": "yes",
+      "classification_reasons": [
+        "file_extension_pdf_privacy",
+        "url_privacy_anchor"
+      ],
+      "notes": "Website-derived manifest; ingest downloaded or mirrored content via run_business_ingest after review."
+    },
+    {
+      "proposed_stable_key": "allcare_web_https_www_allcarepharmacy_com_privacypractices_h_8d282949a236",
+      "source_title": "AllCare Pharmacy",
+      "source_url": "https://www.allcarepharmacy.com/privacypractices.html",
+      "website_source_type": "compliance_notice",
+      "malone_source_type": "policy_manual",
+      "parser_profile": "policy_manual",
+      "crawl_category": "compliance_notice",
+      "business_domain": "Pharmacy_operations",
+      "content_kind": "page",
+      "summary_text": "AllCare Pharmacy AllCare BACK Contact Us - AllCare Corporate Office 518 Clay St. Arkadelphia , AR 71923 (877) 420-9400 (870) 403-9410 &#104;elp&#100;&#101;&#115;k&#64;allcar&#101;pharmacy&#46;c&#111;m Copyright &copy;2019 W.P Malone, Inc. All Rights Reserved.",
+      "suggested_tags": {
+        "domain": "AllCare",
+        "topic": "privacypractices.html",
+        "document_type": "web_page",
+        "role": "mixed",
+        "action_type": "reference",
+        "review_state": "pending_human_review"
+      },
+      "authority_hint": "regulatory",
+      "trust_tier_suggestion": "regulatory",
+      "review_recommendation": "recommended_before_activation",
+      "ingestion_priority": "P1",
+      "promotion_priority_suggestion": "P1",
+      "active_candidate": "yes",
+      "classification_reasons": [
+        "url_privacy_anchor"
+      ],
+      "notes": "Website-derived manifest; ingest downloaded or mirrored content via run_business_ingest after review."
+    },
+    {
+      "proposed_stable_key": "allcare_web_https_www_allcarepharmacy_com_specialty_forms_pr_40208edaf817",
+      "source_title": "Privacy%20Notice-2016.pdf",
+      "source_url": "https://www.allcarepharmacy.com/specialty-forms/Privacy%20Notice-2016.pdf",
+      "website_source_type": "compliance_notice",
+      "malone_source_type": "policy_manual",
+      "parser_profile": "policy_manual",
+      "crawl_category": "compliance_notice",
+      "business_domain": "Pharmacy_operations",
+      "content_kind": "download",
+      "summary_text": "",
+      "suggested_tags": {
+        "domain": "AllCare",
+        "topic": "specialty-forms",
+        "document_type": "web_page",
+        "role": "mixed",
+        "action_type": "reference",
+        "review_state": "pending_human_review"
+      },
+      "authority_hint": "regulatory",
+      "trust_tier_suggestion": "regulatory",
+      "review_recommendation": "recommended_before_activation",
+      "ingestion_priority": "P1",
+      "promotion_priority_suggestion": "P1",
+      "active_candidate": "yes",
+      "classification_reasons": [
+        "file_extension_pdf_privacy",
+        "url_privacy_anchor"
+      ],
+      "notes": "Website-derived manifest; ingest downloaded or mirrored content via run_business_ingest after review."
+    },
+    {
+      "proposed_stable_key": "allcare_web_https_www_allcarepharmacy_com_specialty_forms_7aaf82a798bc",
+      "source_title": "Index of /specialty-forms/",
+      "source_url": "https://www.allcarepharmacy.com/specialty-forms/",
+      "website_source_type": "vendor_or_product_reference",
+      "malone_source_type": "general_reference",
+      "parser_profile": "general_reference",
+      "crawl_category": "vendor_or_product_reference",
+      "business_domain": "Pharmacy_operations",
+      "content_kind": "page",
+      "summary_text": "Index of /specialty-forms/ Index of /specialty-forms/ ../ PATIENT ONLINE ENROLLMENT FORM 2016.pdf 05-Apr-2019 16:24 98548 Patient-Enrollment-Form-AllCare-Specialty-Pharm..&gt; 05-Apr-2019 16:24 282267 Privacy Notice-2016.pdf 05-Apr-2019 16:24 39041",
+      "suggested_tags": {
+        "domain": "AllCare",
+        "topic": "specialty-forms",
+        "document_type": "web_page",
+        "role": "mixed",
+        "action_type": "reference",
+        "review_state": "pending_human_review"
+      },
+      "authority_hint": "internal",
+      "trust_tier_suggestion": "internal",
+      "review_recommendation": "optional_review",
+      "ingestion_priority": "P3",
+      "promotion_priority_suggestion": "P3",
+      "active_candidate": "no",
+      "classification_reasons": [
+        "keyword_match_specialty_enrollment"
+      ],
+      "notes": "Website-derived manifest; ingest downloaded or mirrored content via run_business_ingest after review."
+    }
+  ]
+}

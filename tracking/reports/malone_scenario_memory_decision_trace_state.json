@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "status": "implemented",
+  "completed_at": "2026-04-16",
+  "tables": ["malone_scenario_memories", "malone_decision_traces"],
+  "alembic_revision": "0007_scenario_memory_decision_trace",
+  "env_flags": [
+    "MALONE_SCENARIO_MEMORY_ENABLED",
+    "MALONE_SCENARIO_MEMORY_PRIORS_ENABLED",
+    "MALONE_SCENARIO_MEMORY_APPEND"
+  ],
+  "source_types_supported": [
+    "legal_handbook",
+    "policy_manual",
+    "sop_workflow"
+  ],
+  "integration_points": [
+    "app/services/malone_service.py",
+    "app/models/scenario_memory.py",
+    "app/services/scenario_memory/*",
+    "app/services/legal_assistant/guardrails.py",
+    "app/main.py"
+  ],
+  "verification": {
+    "pytest": "62 passed",
+    "compileall": "app tools tracking/scripts",
+    "npm_run_build": "ok"
+  }
+}

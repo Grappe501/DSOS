@@ -378,7 +378,10 @@ def enrich_truth_packet_with_decision_workflow(
 ) -> dict[str, Any]:
     """Attach structured decision/workflow reasoning (additive audit metadata)."""
     from app.services.decision_reasoning.fallback import should_emit_structured_sections
-    from app.services.legal_assistant.guardrails import decision_workflow_supplementary_forbidden_claims
+    from app.services.legal_assistant.guardrails import (
+        decision_workflow_supplementary_forbidden_claims,
+        workflow_extraction_weak_signal_forbidden_claims,
+    )
 
     meta = packet.get("packet_meta") or {}
     block = decision_block or {}
@@ -393,6 +396,9 @@ def enrich_truth_packet_with_decision_workflow(
     if should_emit_structured_sections(block):
         forb = list(packet.get("forbidden_claims") or [])
         forb.extend(decision_workflow_supplementary_forbidden_claims())
+        wfa = block.get("workflow_extraction_assessment") or {}
+        if wfa.get("use_minimal_workflow_guidance"):
+            forb.extend(workflow_extraction_weak_signal_forbidden_claims())
         packet["forbidden_claims"] = forb[:80]
     return packet
 

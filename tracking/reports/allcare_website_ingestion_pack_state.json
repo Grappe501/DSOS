@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "origin": "https://www.allcarepharmacy.com",
+  "overall_status": "PASS",
+  "validation": {
+    "overall_status": "PASS",
+    "failures": [],
+    "warnings": [],
+    "rules_version": 1
+  },
+  "inventory_count": 13,
+  "entries_by_website_source_type": {
+    "company_profile": 6,
+    "form_template": 3,
+    "compliance_notice": 3,
+    "vendor_or_product_reference": 1
+  },
+  "crawl_errors_sample": [],
+  "manifests_root": "tracking/ingestion_packs/allcare_website",
+  "verification": {
+    "pytest": "run: python -m pytest tests -q",
+    "compileall": "run: python -m compileall app tools -q",
+    "runner": "python tools/build_allcare_website_ingestion_pack.py"
+  }
+}

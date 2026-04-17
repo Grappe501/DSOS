@@ -30,6 +30,11 @@ from app.services.render_verifier import (
 from app.services.legal_assistant.answer_formatter import format_legal_lookup_answer, format_policy_lookup_answer
 from app.services.decision_reasoning import build_decision_workflow_block
 from app.services.operating_copilot import build_operating_copilot_block, malone_operating_copilot_enabled
+from app.services.scenario_memory.evidence_linking import source_version_snapshot
+from app.services.scenario_memory.fallback import malone_scenario_memory_priors_enabled
+from app.services.scenario_memory.precedence import PRECEDENCE_NOTE
+from app.services.scenario_memory.retrieval import attach_prior_scenario_context, find_prior_scenario_analogs
+from app.services.scenario_memory.scenario_store import persist_scenario_memory_and_trace
 from app.services.legal_evidence_service import (
     build_legal_evidence_bundle,
     build_policy_evidence_bundle,
@@ -496,6 +501,24 @@ def handle_malone_request(
     )
     truth_packet = enrich_truth_packet_with_operating_copilot(truth_packet, copilot_block)
 
+    if malone_scenario_memory_priors_enabled():
+        _vers = source_version_snapshot(
+            legal_bundle=legal_bundle,
+            policy_bundle=policy_bundle,
+            sop_bundle=sop_bundle,
+        )
+        _priors = find_prior_scenario_analogs(
+            db,
+            message=message,
+            intent=intent,
+            current_version_snapshot=_vers,
+        )
+        truth_packet = attach_prior_scenario_context(
+            truth_packet,
+            priors=_priors,
+            precedence_note=PRECEDENCE_NOTE,
+        )
+
     if malone_legal_evidence_enabled() and intent.get("target") == "legal_handbook" and legal_bundle is not None:
         persist_legal_answer_trace(
             db,
@@ -594,6 +617,30 @@ def handle_malone_request(
         rendered_output_payload=rendered_output,
         verification_payload=verification,
     )
+
+    trace_ids = persist_scenario_memory_and_trace(
+        db,
+        proposal_id=str(proposal_record.id),
+        actor_user_id=actor_payload.get("id"),
+        message=message,
+        intent=intent,
+        truth_packet=truth_packet,
+        decision_workflow=truth_packet.get("decision_workflow"),
+        legal_bundle=legal_bundle,
+        policy_bundle=policy_bundle,
+        sop_bundle=sop_bundle,
+        operating_copilot=truth_packet.get("operating_copilot"),
+        verification=verification,
+        delivery_status=delivery_status,
+        delivery_mode=verification.get("delivery_mode") if isinstance(verification, dict) else None,
+    )
+    if trace_ids:
+        pm = truth_packet.setdefault("packet_meta", {})
+        pm["scenario_memory_id"] = trace_ids["scenario_memory_id"]
+        pm["decision_trace_id"] = trace_ids["decision_trace_id"]
+        truth_packet["scenario_memory_id"] = trace_ids["scenario_memory_id"]
+        truth_packet["decision_trace_id"] = trace_ids["decision_trace_id"]
+        db.commit()
 
     return {
         "mode": intent["mode"],

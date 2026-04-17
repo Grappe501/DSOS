@@ -18,6 +18,13 @@ def build_next_step_lines(decision_workflow: dict[str, Any] | None) -> list[str]
         line = f"{order}. {summ[:800]}"
         if role:
             line += f" (role hint: {role})"
+        ex = s.get("workflow_extraction") or {}
+        stops = ex.get("stop_conditions") or []
+        cks = ex.get("checkpoints") or []
+        if stops:
+            line += f" [stop signal: {(stops[0].get('stop_condition_text') or '')[:220]}]"
+        elif cks:
+            line += f" [checkpoint: {(cks[0].get('checkpoint_text') or '')[:220]}]"
         out.append(line)
     return out
 

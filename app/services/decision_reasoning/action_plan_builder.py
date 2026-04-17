@@ -10,6 +10,7 @@ from app.services.decision_reasoning.role_mapper import collect_roles
 from app.services.decision_reasoning.serialization import parse_json_field, source_anchor_for_unit
 from app.services.decision_reasoning.workflow_assembler import assemble_ordered_steps
 from app.services.decision_reasoning.condition_evaluator import group_conditions
+from app.services.workflow_assembly.action_plan import augment_decision_plan_with_assembly, enrich_action_steps_with_extraction
 
 
 def build_action_plan(
@@ -21,6 +22,7 @@ def build_action_plan(
     exceptions = group_exceptions(units)
     escalations = group_escalations(units)
     steps, partial, partial_reason = assemble_ordered_steps(units)
+    steps = enrich_action_steps_with_extraction(steps, units)
 
     source_evidence_map: dict[str, Any] = {}
     for u, lane, ev in merged:
@@ -32,7 +34,7 @@ def build_action_plan(
         if ck:
             source_evidence_map[uid]["citation_keys"] = ck
 
-    return {
+    plan = {
         "roles": roles,
         "conditions": conditions,
         "exceptions": exceptions,
@@ -42,3 +44,4 @@ def build_action_plan(
         "partial_workflow_reason": partial_reason,
         "source_evidence_map": source_evidence_map,
     }
+    return augment_decision_plan_with_assembly(plan)

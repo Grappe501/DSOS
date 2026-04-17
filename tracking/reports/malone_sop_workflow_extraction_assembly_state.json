@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "status": "implemented",
+  "completed_at": "2026-04-16",
+  "packages": [
+    "app/services/workflow_extraction/",
+    "app/services/workflow_assembly/"
+  ],
+  "integration_points": [
+    "app/services/decision_reasoning/action_plan_builder.py",
+    "app/services/operating_copilot/action_guidance.py",
+    "app/services/legal_evidence_service.py",
+    "app/services/legal_assistant/guardrails.py"
+  ],
+  "verification": {
+    "pytest": "79 passed",
+    "compileall": "app tools",
+    "npm_run_build": "ok"
+  }
+}

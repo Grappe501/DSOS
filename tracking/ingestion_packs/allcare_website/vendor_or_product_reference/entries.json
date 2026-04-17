@@ -1,0 +1,34 @@
+{
+  "entries": [
+    {
+      "proposed_stable_key": "allcare_web_https_www_allcarepharmacy_com_specialty_forms_7aaf82a798bc",
+      "source_title": "Index of /specialty-forms/",
+      "source_url": "https://www.allcarepharmacy.com/specialty-forms/",
+      "website_source_type": "vendor_or_product_reference",
+      "malone_source_type": "general_reference",
+      "parser_profile": "general_reference",
+      "crawl_category": "vendor_or_product_reference",
+      "business_domain": "Pharmacy_operations",
+      "content_kind": "page",
+      "summary_text": "Index of /specialty-forms/ Index of /specialty-forms/ ../ PATIENT ONLINE ENROLLMENT FORM 2016.pdf 05-Apr-2019 16:24 98548 Patient-Enrollment-Form-AllCare-Specialty-Pharm..&gt; 05-Apr-2019 16:24 282267 Privacy Notice-2016.pdf 05-Apr-2019 16:24 39041",
+      "suggested_tags": {
+        "domain": "AllCare",
+        "topic": "specialty-forms",
+        "document_type": "web_page",
+        "role": "mixed",
+        "action_type": "reference",
+        "review_state": "pending_human_review"
+      },
+      "authority_hint": "internal",
+      "trust_tier_suggestion": "internal",
+      "review_recommendation": "optional_review",
+      "ingestion_priority": "P3",
+      "promotion_priority_suggestion": "P3",
+      "active_candidate": "no",
+      "classification_reasons": [
+        "keyword_match_specialty_enrollment"
+      ],
+      "notes": "Website-derived manifest; ingest downloaded or mirrored content via run_business_ingest after review."
+    }
+  ]
+}

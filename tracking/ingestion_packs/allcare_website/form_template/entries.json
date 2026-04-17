@@ -1,0 +1,97 @@
+{
+  "entries": [
+    {
+      "proposed_stable_key": "allcare_web_https_www_allcarepharmacy_com_specialty_forms_pa_f4bbe2e33127",
+      "source_title": "PATIENT ONLINE ENROLLMENT FORM 2016.pdf",
+      "source_url": "https://www.allcarepharmacy.com/specialty-forms/PATIENT ONLINE ENROLLMENT FORM 2016.pdf",
+      "website_source_type": "form_template",
+      "malone_source_type": "form_template",
+      "parser_profile": "general_reference",
+      "crawl_category": "form_template",
+      "business_domain": "Pharmacy_operations",
+      "content_kind": "download",
+      "summary_text": "",
+      "suggested_tags": {
+        "domain": "AllCare",
+        "topic": "specialty-forms",
+        "document_type": "form",
+        "role": "mixed",
+        "action_type": "reference",
+        "review_state": "pending_human_review"
+      },
+      "authority_hint": "internal",
+      "trust_tier_suggestion": "internal",
+      "review_recommendation": "recommended_before_activation",
+      "ingestion_priority": "P2",
+      "promotion_priority_suggestion": "P2",
+      "active_candidate": "yes",
+      "classification_reasons": [
+        "file_extension_pdf_form_hint",
+        "keyword_match_specialty_enrollment"
+      ],
+      "notes": "Website-derived manifest; ingest downloaded or mirrored content via run_business_ingest after review."
+    },
+    {
+      "proposed_stable_key": "allcare_web_https_www_allcarepharmacy_com_specialty_forms_pa_a423b07f9abc",
+      "source_title": "PATIENT%20ONLINE%20ENROLLMENT%20FORM%202016.pdf",
+      "source_url": "https://www.allcarepharmacy.com/specialty-forms/PATIENT%20ONLINE%20ENROLLMENT%20FORM%202016.pdf",
+      "website_source_type": "form_template",
+      "malone_source_type": "form_template",
+      "parser_profile": "general_reference",
+      "crawl_category": "form_template",
+      "business_domain": "Pharmacy_operations",
+      "content_kind": "download",
+      "summary_text": "",
+      "suggested_tags": {
+        "domain": "AllCare",
+        "topic": "specialty-forms",
+        "document_type": "form",
+        "role": "mixed",
+        "action_type": "reference",
+        "review_state": "pending_human_review"
+      },
+      "authority_hint": "internal",
+      "trust_tier_suggestion": "internal",
+      "review_recommendation": "recommended_before_activation",
+      "ingestion_priority": "P2",
+      "promotion_priority_suggestion": "P2",
+      "active_candidate": "yes",
+      "classification_reasons": [
+        "file_extension_pdf_form_hint",
+        "keyword_match_specialty_enrollment"
+      ],
+      "notes": "Website-derived manifest; ingest downloaded or mirrored content via run_business_ingest after review."
+    },
+    {
+      "proposed_stable_key": "allcare_web_https_www_allcarepharmacy_com_specialty_forms_pa_964d4af12e85",
+      "source_title": "Patient-Enrollment-Form-AllCare-Specialty-Pharmacy.pdf",
+      "source_url": "https://www.allcarepharmacy.com/specialty-forms/Patient-Enrollment-Form-AllCare-Specialty-Pharmacy.pdf",
+      "website_source_type": "form_template",
+      "malone_source_type": "form_template",
+      "parser_profile": "general_reference",
+      "crawl_category": "form_template",
+      "business_domain": "Pharmacy_operations",
+      "content_kind": "download",
+      "summary_text": "",
+      "suggested_tags": {
+        "domain": "AllCare",
+        "topic": "specialty-forms",
+        "document_type": "form",
+        "role": "mixed",
+        "action_type": "reference",
+        "review_state": "pending_human_review"
+      },
+      "authority_hint": "internal",
+      "trust_tier_suggestion": "internal",
+      "review_recommendation": "recommended_before_activation",
+      "ingestion_priority": "P2",
+      "promotion_priority_suggestion": "P2",
+      "active_candidate": "yes",
+      "classification_reasons": [
+        "file_extension_pdf_form_hint",
+        "keyword_match_specialty_enrollment"
+      ],
+      "notes": "Website-derived manifest; ingest downloaded or mirrored content via run_business_ingest after review."
+    }
+  ]
+}

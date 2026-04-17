@@ -1,0 +1,96 @@
+{
+  "entries": [
+    {
+      "proposed_stable_key": "allcare_web_https_www_allcarepharmacy_com_specialty_forms_pr_7c9a3c2ca539",
+      "source_title": "Privacy Notice-2016.pdf",
+      "source_url": "https://www.allcarepharmacy.com/specialty-forms/Privacy Notice-2016.pdf",
+      "website_source_type": "compliance_notice",
+      "malone_source_type": "policy_manual",
+      "parser_profile": "policy_manual",
+      "crawl_category": "compliance_notice",
+      "business_domain": "Pharmacy_operations",
+      "content_kind": "download",
+      "summary_text": "",
+      "suggested_tags": {
+        "domain": "AllCare",
+        "topic": "specialty-forms",
+        "document_type": "web_page",
+        "role": "mixed",
+        "action_type": "reference",
+        "review_state": "pending_human_review"
+      },
+      "authority_hint": "regulatory",
+      "trust_tier_suggestion": "regulatory",
+      "review_recommendation": "recommended_before_activation",
+      "ingestion_priority": "P1",
+      "promotion_priority_suggestion": "P1",
+      "active_candidate": "yes",
+      "classification_reasons": [
+        "file_extension_pdf_privacy",
+        "url_privacy_anchor"
+      ],
+      "notes": "Website-derived manifest; ingest downloaded or mirrored content via run_business_ingest after review."
+    },
+    {
+      "proposed_stable_key": "allcare_web_https_www_allcarepharmacy_com_privacypractices_h_8d282949a236",
+      "source_title": "AllCare Pharmacy",
+      "source_url": "https://www.allcarepharmacy.com/privacypractices.html",
+      "website_source_type": "compliance_notice",
+      "malone_source_type": "policy_manual",
+      "parser_profile": "policy_manual",
+      "crawl_category": "compliance_notice",
+      "business_domain": "Pharmacy_operations",
+      "content_kind": "page",
+      "summary_text": "AllCare Pharmacy AllCare BACK Contact Us - AllCare Corporate Office 518 Clay St. Arkadelphia , AR 71923 (877) 420-9400 (870) 403-9410 &#104;elp&#100;&#101;&#115;k&#64;allcar&#101;pharmacy&#46;c&#111;m Copyright &copy;2019 W.P Malone, Inc. All Rights Reserved.",
+      "suggested_tags": {
+        "domain": "AllCare",
+        "topic": "privacypractices.html",
+        "document_type": "web_page",
+        "role": "mixed",
+        "action_type": "reference",
+        "review_state": "pending_human_review"
+      },
+      "authority_hint": "regulatory",
+      "trust_tier_suggestion": "regulatory",
+      "review_recommendation": "recommended_before_activation",
+      "ingestion_priority": "P1",
+      "promotion_priority_suggestion": "P1",
+      "active_candidate": "yes",
+      "classification_reasons": [
+        "url_privacy_anchor"
+      ],
+      "notes": "Website-derived manifest; ingest downloaded or mirrored content via run_business_ingest after review."
+    },
+    {
+      "proposed_stable_key": "allcare_web_https_www_allcarepharmacy_com_specialty_forms_pr_40208edaf817",
+      "source_title": "Privacy%20Notice-2016.pdf",
+      "source_url": "https://www.allcarepharmacy.com/specialty-forms/Privacy%20Notice-2016.pdf",
+      "website_source_type": "compliance_notice",
+      "malone_source_type": "policy_manual",
+      "parser_profile": "policy_manual",
+      "crawl_category": "compliance_notice",
+      "business_domain": "Pharmacy_operations",
+      "content_kind": "download",
+      "summary_text": "",
+      "suggested_tags": {
+        "domain": "AllCare",
+        "topic": "specialty-forms",
+        "document_type": "web_page",
+        "role": "mixed",
+        "action_type": "reference",
+        "review_state": "pending_human_review"
+      },
+      "authority_hint": "regulatory",
+      "trust_tier_suggestion": "regulatory",
+      "review_recommendation": "recommended_before_activation",
+      "ingestion_priority": "P1",
+      "promotion_priority_suggestion": "P1",
+      "active_candidate": "yes",
+      "classification_reasons": [
+        "file_extension_pdf_privacy",
+        "url_privacy_anchor"
+      ],
+      "notes": "Website-derived manifest; ingest downloaded or mirrored content via run_business_ingest after review."
+    }
+  ]
+}

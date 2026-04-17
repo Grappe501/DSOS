@@ -49,3 +49,19 @@ def operating_copilot_supplementary_forbidden_claims() -> list[str]:
         "Do not treat copilot next steps or role lines as exhaustive runbooks without verifying citations.",
         "Do not present recommended actions as legal conclusions or binding policy when uncertainty is high.",
     ]
+
+
+def workflow_extraction_weak_signal_forbidden_claims() -> list[str]:
+    """When text-derived workflow extraction is sparse vs partial_workflow."""
+    return [
+        "Do not treat regex-derived checkpoints or stops as complete operational coverage when extraction confidence is low.",
+        "Do not infer missing steps from workflow_extraction fields alone without normalized unit or excerpt support.",
+    ]
+
+
+def scenario_memory_prior_forbidden_claims() -> list[str]:
+    """When prior scenario analogs are attached for review (secondary to current evidence)."""
+    return [
+        "Do not treat prior scenario memory as proof of what applies now; current excerpts and citations govern.",
+        "Do not let historical pattern selection override citation-first legal lookup for this request.",
+    ]
