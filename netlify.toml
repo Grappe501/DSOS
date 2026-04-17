@@ -1,0 +1,15 @@
+# Static frontend (Vite). Point VITE_API_BASE at your deployed FastAPI origin at build time.
+# Set MALONE_CORS_ORIGINS on the API host to include your Netlify site URL, e.g. https://your-app.netlify.app
+
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+# SPA fallback for client-side routing
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

@@ -18,6 +18,8 @@ OUTCOME_REJECTED = "rejected"
 OUTCOME_NEEDS_REVISION = "needs_revision"
 OUTCOME_INFORMATIONAL = "informational"
 OUTCOME_RISK_FLAG = "risk_flag"
+OUTCOME_READY_FOR_PROMOTION = "ready_for_promotion"
+OUTCOME_HOLD_FOR_REVIEW = "hold_for_review"
 
 OUTCOMES = frozenset(
     {
@@ -26,6 +28,8 @@ OUTCOMES = frozenset(
         OUTCOME_NEEDS_REVISION,
         OUTCOME_INFORMATIONAL,
         OUTCOME_RISK_FLAG,
+        OUTCOME_READY_FOR_PROMOTION,
+        OUTCOME_HOLD_FOR_REVIEW,
     }
 )
 
@@ -56,6 +60,10 @@ def map_outcome_to_normalized_review_state(
         return REVIEW_REVIEWED
     if o == OUTCOME_RISK_FLAG:
         return REVIEW_UNDER_REVIEW
+    if o == OUTCOME_READY_FOR_PROMOTION:
+        return REVIEW_REVIEWED
+    if o == OUTCOME_HOLD_FOR_REVIEW:
+        return REVIEW_UNDER_REVIEW
     return None
 
 
@@ -70,6 +78,10 @@ def map_outcome_to_scenario_audit_status(outcome: str, *, prior: str | None) -> 
     if o == OUTCOME_INFORMATIONAL:
         return SCENARIO_REVIEW_REVIEWED
     if o == OUTCOME_RISK_FLAG:
+        return SCENARIO_REVIEW_UNDER_REVIEW
+    if o == OUTCOME_READY_FOR_PROMOTION:
+        return SCENARIO_REVIEW_REVIEWED
+    if o == OUTCOME_HOLD_FOR_REVIEW:
         return SCENARIO_REVIEW_UNDER_REVIEW
     return prior
 

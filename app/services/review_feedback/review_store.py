@@ -21,10 +21,13 @@ from app.services.review_feedback.artifact_registry import (
     ARTIFACT_WEBSITE_PACK_ENTRY,
     assert_known_artifact,
 )
+from app.services.review_feedback.company_knowledge_states import lifecycle_from_review_outcome
 from app.services.review_feedback.review_status import (
     OUTCOME_APPROVED,
+    OUTCOME_HOLD_FOR_REVIEW,
     OUTCOME_INFORMATIONAL,
     OUTCOME_NEEDS_REVISION,
+    OUTCOME_READY_FOR_PROMOTION,
     OUTCOME_REJECTED,
     OUTCOME_RISK_FLAG,
     OUTCOMES,
@@ -183,7 +186,8 @@ def _sync_domain_object(
         if v is None:
             raise ValueError("ingestion_source_version not found")
         patch["review_state"] = head_state_value
-        patch["promotion_ready"] = outcome == OUTCOME_APPROVED
+        patch["promotion_ready"] = outcome in (OUTCOME_APPROVED, OUTCOME_READY_FOR_PROMOTION)
+        patch["company_knowledge_lifecycle"] = lifecycle_from_review_outcome(outcome)
         v.meta_json = merge_human_review_meta(v.meta_json, patch)
         return
 
@@ -230,6 +234,8 @@ def submit_review_feedback(
             OUTCOME_REJECTED: "rejected",
             OUTCOME_NEEDS_REVISION: "needs_revision",
             OUTCOME_RISK_FLAG: "under_review",
+            OUTCOME_READY_FOR_PROMOTION: "validated",
+            OUTCOME_HOLD_FOR_REVIEW: "under_review",
         }.get(o, "reviewed")
     elif artifact_type == ARTIFACT_INGESTION_SOURCE_VERSION:
         v = db.query(IngestionSourceVersion).filter(IngestionSourceVersion.id == artifact_id).one_or_none()
@@ -241,6 +247,14 @@ def submit_review_feedback(
             head_state_value = "rejected"
         elif o == OUTCOME_NEEDS_REVISION:
             head_state_value = "needs_revision"
+        elif o == OUTCOME_READY_FOR_PROMOTION:
+            head_state_value = "validated"
+        elif o == OUTCOME_HOLD_FOR_REVIEW:
+            head_state_value = "under_review"
+        elif o == OUTCOME_INFORMATIONAL:
+            head_state_value = "reviewed"
+        elif o == OUTCOME_RISK_FLAG:
+            head_state_value = "under_review"
         else:
             head_state_value = v.status or "draft"
     elif artifact_type == ARTIFACT_WEBSITE_PACK_ENTRY:
@@ -250,6 +264,8 @@ def submit_review_feedback(
             OUTCOME_NEEDS_REVISION: "needs_revision",
             OUTCOME_INFORMATIONAL: "reviewed",
             OUTCOME_RISK_FLAG: "under_review",
+            OUTCOME_READY_FOR_PROMOTION: "ready_for_promotion",
+            OUTCOME_HOLD_FOR_REVIEW: "under_review",
         }.get(o, state_before)
 
     event = MaloneReviewFeedbackEvent(

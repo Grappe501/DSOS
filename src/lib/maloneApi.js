@@ -1,3 +1,5 @@
+import { apiUrl } from "./apiOrigin.js";
+
 async function parseResponse(res) {
   const contentType = res.headers.get("content-type") || "";
   if (contentType.includes("application/json")) return res.json();
@@ -14,7 +16,7 @@ function buildHeaders() {
 
 async function request(path, options = {}) {
   const { signal, headers: optHeaders, ...rest } = options;
-  const res = await fetch(path, {
+  const res = await fetch(apiUrl(path), {
     ...rest,
     ...(signal ? { signal } : {}),
     headers: {
@@ -75,6 +77,61 @@ export const maloneApi = {
     });
   },
 
+  /** Owner/admin: company-knowledge candidates (ingestion sources + review heads). */
+  async reviewCompanyKnowledgeCandidates(limit = 80) {
+    return request(`/api/malone/review/company-knowledge/candidates?limit=${encodeURIComponent(limit)}`);
+  },
+
+  /** Owner/admin: website pack lines that have review heads (manifest-backed). */
+  async reviewWebsitePackHeads(limit = 60) {
+    return request(`/api/malone/review/company-knowledge/website-pack-heads?limit=${encodeURIComponent(limit)}`);
+  },
+
+  /** Owner/admin: promote an approved ingestion source version to active/trusted retrieval. */
+  async reviewPromoteCompanyIngestionVersion(body) {
+    return request("/api/malone/review/company-knowledge/promote-version", {
+      method: "POST",
+      body: JSON.stringify(body),
+    });
+  },
+
+  /** Owner/admin: archive a version and record governance (optional superseded). */
+  async reviewArchiveCompanyIngestionVersion(body) {
+    return request("/api/malone/review/company-knowledge/archive-version", {
+      method: "POST",
+      body: JSON.stringify(body),
+    });
+  },
+
+  /** Department intake + operations map (same auth as chat). */
+  async operationsMapStartIntake(body) {
+    return request("/api/malone/operations-map/intake/sessions", {
+      method: "POST",
+      body: JSON.stringify(body),
+    });
+  },
+
+  async operationsMapGetIntakeSession(sessionId) {
+    return request(`/api/malone/operations-map/intake/sessions/${encodeURIComponent(sessionId)}`);
+  },
+
+  async operationsMapPostAnswer(sessionId, body) {
+    return request(`/api/malone/operations-map/intake/sessions/${encodeURIComponent(sessionId)}/answers`, {
+      method: "POST",
+      body: JSON.stringify(body),
+    });
+  },
+
+  async operationsMapMaterialize(sessionId) {
+    return request(`/api/malone/operations-map/intake/sessions/${encodeURIComponent(sessionId)}/materialize`, {
+      method: "POST",
+    });
+  },
+
+  async operationsMapGetDepartmentMap(departmentId) {
+    return request(`/api/malone/operations-map/departments/${encodeURIComponent(departmentId)}/map`);
+  },
+
   async voiceStatus() {
     return request("/api/malone/voice/status");
   },
@@ -84,7 +141,7 @@ export const maloneApi = {
    */
   async tts(text, options = {}) {
     const { signal } = options;
-    const res = await fetch("/api/malone/tts", {
+    const res = await fetch(apiUrl("/api/malone/tts"), {
       method: "POST",
       headers: buildHeaders(),
       body: JSON.stringify({ text }),

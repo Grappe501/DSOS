@@ -1,0 +1,36 @@
+{
+  "pass": "company_knowledge_review_promotion",
+  "version": "1",
+  "outcomes_added": ["ready_for_promotion", "hold_for_review"],
+  "services": {
+    "company_knowledge_states": "app/services/review_feedback/company_knowledge_states.py",
+    "company_knowledge_promotion": "app/services/review_feedback/company_knowledge_promotion.py",
+    "review_store": "app/services/review_feedback/review_store.py",
+    "review_status": "app/services/review_feedback/review_status.py",
+    "promotion_signals": "app/services/review_feedback/promotion_signals.py",
+    "governance_hints": "app/services/review_feedback/governance_hints.py",
+    "ingestion_promotion": "app/services/ingestion_control/promotion.py"
+  },
+  "api_prefix": "/api/malone/review/company-knowledge",
+  "endpoints": [
+    "GET /candidates",
+    "GET /website-pack-heads",
+    "POST /promote-version",
+    "POST /archive-version"
+  ],
+  "artifact_types": [
+    "ingestion_source_version",
+    "normalized_unit",
+    "website_pack_entry",
+    "scenario_memory",
+    "decision_trace",
+    "operating_copilot_snapshot"
+  ],
+  "tests": ["tests/test_company_knowledge_review_promotion.py"],
+  "test_case_count": 11,
+  "constraints": {
+    "single_malone_path": true,
+    "no_source_text_override": true,
+    "prior_approval_default_for_activate": true
+  }
+}

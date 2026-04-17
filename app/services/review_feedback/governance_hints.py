@@ -7,7 +7,8 @@ from typing import Any
 from sqlalchemy.orm import Session
 
 from app.services.review_feedback.review_queries import get_head, summarize_normalized_unit_stub
-from app.services.review_feedback.artifact_registry import ARTIFACT_NORMALIZED_UNIT
+from app.services.review_feedback.artifact_registry import ARTIFACT_INGESTION_SOURCE_VERSION, ARTIFACT_NORMALIZED_UNIT
+from app.services.review_feedback.promotion_signals import ingestion_source_version_promotion_signal
 
 
 def _collect_unit_ids_from_packet(truth_packet: dict[str, Any]) -> list[str]:
@@ -27,6 +28,16 @@ def _collect_unit_ids_from_packet(truth_packet: dict[str, Any]) -> list[str]:
     return list(dict.fromkeys(ids))[:40]
 
 
+def _collect_ingestion_version_ids_from_packet(truth_packet: dict[str, Any]) -> list[str]:
+    ids: list[str] = []
+    for lane in ("policy_evidence", "sop_evidence"):
+        b = truth_packet.get(lane) if isinstance(truth_packet.get(lane), dict) else {}
+        vid = b.get("ingestion_source_version_id")
+        if vid:
+            ids.append(str(vid))
+    return list(dict.fromkeys(ids))[:24]
+
+
 def build_governance_hints_for_turn(db: Session, truth_packet: dict[str, Any]) -> dict[str, Any]:
     """Summarize review heads for normalized units referenced in the truth packet."""
     unit_ids = _collect_unit_ids_from_packet(truth_packet)
@@ -41,8 +52,19 @@ def build_governance_hints_for_turn(db: Session, truth_packet: dict[str, Any]) -
                 "review_head": head,
             }
         )
+    iv_ids = _collect_ingestion_version_ids_from_packet(truth_packet)
+    iv_out: list[dict[str, Any]] = []
+    for vid in iv_ids:
+        iv_out.append(
+            {
+                "ingestion_source_version_id": vid,
+                "review_head": get_head(db, artifact_type=ARTIFACT_INGESTION_SOURCE_VERSION, artifact_id=vid),
+                "promotion_signal": ingestion_source_version_promotion_signal(db, version_id=vid),
+            }
+        )
     return {
         "read_only": True,
         "precedence_note": "Governance hints do not override source-grounded citations.",
         "normalized_units": units_out,
+        "ingestion_source_versions": iv_out,
     }

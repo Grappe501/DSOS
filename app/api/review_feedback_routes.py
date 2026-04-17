@@ -7,6 +7,12 @@ from pydantic import BaseModel, Field
 from sqlalchemy.orm import Session
 
 from app.api.deps import get_current_user, get_db, require_roles
+from app.services.review_feedback.company_knowledge_promotion import (
+    archive_company_ingestion_version,
+    list_company_knowledge_source_versions,
+    list_website_pack_review_heads,
+    promote_ingestion_version_to_active_trusted,
+)
 from app.services.review_feedback.promotion_signals import ingestion_source_version_promotion_signal
 from app.services.review_feedback.review_queries import (
     artifact_types_catalog,
@@ -141,3 +147,77 @@ def review_promotion_hint(
     _admin=Depends(require_roles("owner", "admin")),
 ):
     return ingestion_source_version_promotion_signal(db, version_id=version_id)
+
+
+class CompanyKnowledgePromoteBody(BaseModel):
+    ingestion_source_version_id: str = Field(..., min_length=1, max_length=200)
+    notes: str | None = Field(default=None, max_length=16000)
+    require_prior_approval: bool = True
+
+
+class CompanyKnowledgeArchiveBody(BaseModel):
+    ingestion_source_version_id: str = Field(..., min_length=1, max_length=200)
+    notes: str | None = Field(default=None, max_length=16000)
+    mark_superseded: bool = False
+
+
+@router.get("/company-knowledge/candidates")
+def company_knowledge_candidates(
+    limit: int = Query(default=80, ge=1, le=200),
+    db: Session = Depends(get_db),
+    _admin=Depends(require_roles("owner", "admin")),
+):
+    return {"candidates": list_company_knowledge_source_versions(db, limit=limit)}
+
+
+@router.get("/company-knowledge/website-pack-heads")
+def company_knowledge_website_pack_heads(
+    limit: int = Query(default=60, ge=1, le=200),
+    db: Session = Depends(get_db),
+    _admin=Depends(require_roles("owner", "admin")),
+):
+    return {"website_pack_heads": list_website_pack_review_heads(db, limit=limit)}
+
+
+@router.post("/company-knowledge/promote-version")
+def company_knowledge_promote_version(
+    payload: CompanyKnowledgePromoteBody,
+    db: Session = Depends(get_db),
+    current=Depends(require_roles("owner", "admin")),
+):
+    actor, _role = current
+    try:
+        out = promote_ingestion_version_to_active_trusted(
+            db,
+            ingestion_source_version_id=payload.ingestion_source_version_id.strip(),
+            reviewer_user_id=str(actor.id),
+            notes=payload.notes,
+            require_prior_approval=payload.require_prior_approval,
+        )
+        db.commit()
+        return out
+    except ValueError as exc:
+        db.rollback()
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
+
+
+@router.post("/company-knowledge/archive-version")
+def company_knowledge_archive_version(
+    payload: CompanyKnowledgeArchiveBody,
+    db: Session = Depends(get_db),
+    current=Depends(require_roles("owner", "admin")),
+):
+    actor, _role = current
+    try:
+        out = archive_company_ingestion_version(
+            db,
+            ingestion_source_version_id=payload.ingestion_source_version_id.strip(),
+            reviewer_user_id=str(actor.id),
+            notes=payload.notes,
+            mark_superseded=payload.mark_superseded,
+        )
+        db.commit()
+        return out
+    except Exception as exc:
+        db.rollback()
+        raise HTTPException(status_code=400, detail=str(exc)) from exc

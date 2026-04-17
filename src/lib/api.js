@@ -1,5 +1,10 @@
-const API_BASE = "/api";
-const AUTH_BASE = "/api/auth";
+import { apiUrl } from "./apiOrigin.js";
+
+/** @deprecated use apiUrl("/api/...") — kept for any legacy imports */
+export const API_BASE = "/api";
+export const AUTH_BASE = "/api/auth";
+
+export { apiUrl, API_ORIGIN } from "./apiOrigin.js";
 
 function getToken() {
   return localStorage.getItem("access_token");
@@ -120,7 +125,7 @@ export const api = {
   async login(emailOrPayload, password) {
     const payload = normalizeLoginArgs(emailOrPayload, password);
 
-    const data = await request(`${AUTH_BASE}/login`, {
+    const data = await request(apiUrl("/api/auth/login"), {
       method: "POST",
       body: JSON.stringify(payload),
     });
@@ -138,54 +143,47 @@ export const api = {
   },
 
   async me() {
-    return request(`${AUTH_BASE}/me`);
+    return request(apiUrl("/api/auth/me"));
   },
 
   async getSchedules(params = {}) {
-    return request(`${API_BASE}/schedules${toQueryString(params)}`);
+    return request(`${apiUrl("/api/schedules")}${toQueryString(params)}`);
   },
 
   async createSchedule(payload) {
     const normalized = normalizeSchedulePayload(payload);
 
-    return request(`${API_BASE}/schedules`, {
+    return request(apiUrl("/api/schedules"), {
       method: "POST",
       body: JSON.stringify(normalized),
     });
   },
 
   async cancelSchedule(id) {
-    return request(`${API_BASE}/schedules/${id}/cancel`, {
+    return request(apiUrl(`/api/schedules/${id}/cancel`), {
       method: "POST",
     });
   },
 
   async getAudit(params = {}) {
-    return request(`${API_BASE}/audit${toQueryString(params)}`);
+    return request(`${apiUrl("/api/audit")}${toQueryString(params)}`);
   },
 
   async getOperationalSummary() {
-    return request(`${API_BASE}/operational/summary`);
+    return request(apiUrl("/api/operational/summary"));
   },
 
   async getWorkflows(params = {}) {
-    return request(`${API_BASE}/workflows${toQueryString(params)}`);
+    return request(`${apiUrl("/api/workflows")}${toQueryString(params)}`);
   },
 
   async getMessages(params = {}) {
-    return request(`${API_BASE}/messages${toQueryString(params)}`);
+    return request(`${apiUrl("/api/messages")}${toQueryString(params)}`);
   },
 
   async getEvents(params = {}) {
-    return request(`${API_BASE}/events${toQueryString(params)}`);
+    return request(`${apiUrl("/api/events")}${toQueryString(params)}`);
   },
 };
 
-export {
-  API_BASE,
-  AUTH_BASE,
-  getToken,
-  setToken,
-  clearToken,
-  normalizeSchedulePayload,
-};
+export { getToken, setToken, clearToken, normalizeSchedulePayload };

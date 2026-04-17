@@ -1,0 +1,28 @@
+{
+  "pass": "department_intake_operations_mapping",
+  "version": "1",
+  "alembic_revision": "0009_department_intake_operations_map",
+  "models_file": "app/models/operations_map.py",
+  "services": {
+    "department_intake": "app/services/department_intake/",
+    "operations_map": "app/services/operations_map/"
+  },
+  "api_prefix": "/api/malone/operations-map",
+  "endpoints": [
+    "POST /intake/sessions",
+    "GET /intake/sessions/{id}",
+    "POST /intake/sessions/{id}/answers",
+    "POST /intake/sessions/{id}/materialize",
+    "POST /intake/sessions/{id}/close",
+    "GET /departments",
+    "GET /departments/{id}/map",
+    "GET /inspect/schema"
+  ],
+  "ui": ["src/components/malone/DepartmentIntakePanel.jsx"],
+  "tests": ["tests/test_department_intake_operations_map.py"],
+  "test_count": 8,
+  "scenario_link": {
+    "proposal_type": "department_intake",
+    "scenario_type": "department_intake"
+  }
+}

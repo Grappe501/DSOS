@@ -2,6 +2,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import ChatPanel from "../components/malone/ChatPanel";
 import MaloneInspectionPanel from "../components/malone/MaloneInspectionPanel";
 import MaloneReviewPanel from "../components/malone/MaloneReviewPanel";
+import DepartmentIntakePanel from "../components/malone/DepartmentIntakePanel";
 import ProposalPanel from "../components/malone/ProposalPanel";
 import VoiceInputButton from "../components/malone/VoiceInputButton";
 import { useMaloneChatRequest } from "../hooks/useMaloneChatRequest";
@@ -107,6 +108,7 @@ export default function MalonePage() {
         />
         <MaloneInspectionPanel response={response} />
         <MaloneReviewPanel response={response} />
+        <DepartmentIntakePanel />
       </div>
     </section>
   );
