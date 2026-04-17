@@ -33,6 +33,10 @@ async function request(path, options = {}) {
 }
 
 export const maloneApi = {
+  async me() {
+    return request("/api/me");
+  },
+
   /**
    * Same Malone chat spine as typing; optional AbortSignal cancels the HTTP request (Voice Phase 2+).
    */
@@ -47,6 +51,28 @@ export const maloneApi = {
 
   async getRecentProposals(limit = 12) {
     return request(`/api/malone/proposals?limit=${encodeURIComponent(limit)}`);
+  },
+
+  async getTelemetrySchema() {
+    return request("/api/malone/inspect/telemetry-schema");
+  },
+
+  async getInspectTraces(limit = 20) {
+    return request(`/api/malone/inspect/traces?limit=${encodeURIComponent(limit)}`);
+  },
+
+  async getInspectTrace(scenarioMemoryId) {
+    return request(`/api/malone/inspect/traces/${encodeURIComponent(scenarioMemoryId)}`);
+  },
+
+  /**
+   * Owner/admin: submit human review feedback (governance; does not edit source evidence).
+   */
+  async reviewSubmitFeedback(body) {
+    return request("/api/malone/review/feedback", {
+      method: "POST",
+      body: JSON.stringify(body),
+    });
   },
 
   async voiceStatus() {

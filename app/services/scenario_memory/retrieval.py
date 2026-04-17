@@ -59,6 +59,8 @@ def find_prior_scenario_analogs(
                 current_source_versions=current_version_snapshot,
                 prior_source_versions=loads_safe(row.source_version_snapshot_json, {}),
             )
+            if not conflict and (row.review_audit_status or "").strip().lower() == "approved":
+                sim *= 1.08
             scored.append((sim, (row, pri_st, conflict)))
 
     scored.sort(key=lambda x: -x[0])
@@ -76,6 +78,7 @@ def find_prior_scenario_analogs(
                 "answer_pattern_then": ap.get("pattern_id") or ap.get("rendered_pattern"),
                 "created_at": str(row.created_at),
                 "source_version_drift_warning": conflict,
+                "review_audit_status_then": row.review_audit_status,
                 "review_only": True,
             }
         )

@@ -1,0 +1,28 @@
+{
+  "pass": "readonly_copilot_json_telemetry",
+  "schema_version": 1,
+  "telemetry_schema_version": 1,
+  "implemented_at": "2026-04-16",
+  "response_keys": {
+    "malone_chat": ["malone_telemetry", "truth_packet", "verification", "delivery", "proposal_record"]
+  },
+  "read_only_http": {
+    "GET /api/malone/inspect/telemetry-schema": "Static field map for malone_telemetry",
+    "GET /api/malone/inspect/traces": "Recent scenario_memory rows (scoped by actor unless owner/admin)",
+    "GET /api/malone/inspect/traces/{scenario_memory_id}": "Full read-only bundle: scenario_memory + decision_trace JSON snapshots"
+  },
+  "frontend": {
+    "MaloneInspectionPanel": "Optional dashed-border panel; localStorage malone_inspect_open; read-only JSON textareas"
+  },
+  "python_modules": [
+    "app/services/telemetry/__init__.py",
+    "app/services/telemetry/malone_turn_telemetry.py",
+    "app/services/telemetry/serialization.py",
+    "app/services/scenario_memory/trace_read.py"
+  ],
+  "safety_invariants": [
+    "Telemetry is computed after the turn; it does not influence routing or answers.",
+    "Prior scenario memory remains secondary; PRECEDENCE_NOTE is echoed in malone_telemetry only.",
+    "Inspect endpoints are GET-only; no mutation verbs added for copilot or traces."
+  ]
+}

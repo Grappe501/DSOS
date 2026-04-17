@@ -1,0 +1,222 @@
+{
+  "intake_root": "H:\\DSOS\\tracking\\data\\internal_company_knowledge",
+  "dry_run": true,
+  "file_count": 10,
+  "manifest_entry_count": 10,
+  "batch_validation_status": "PASS",
+  "failures": [],
+  "warnings": [],
+  "entries": [
+    {
+      "proposed_stable_key": "internal_company__billing_reference__payer_rules__abfe8a22",
+      "file_path": "H:/DSOS/tracking/data/internal_company_knowledge/billing_reference/payer_rules.md",
+      "relative_path": "billing_reference/payer_rules.md",
+      "source_title": "payer rules",
+      "source_type": "contract_rules",
+      "parser_profile": "contract_rules",
+      "business_domain": "revenue_cycle",
+      "tags": {
+        "internal_category": "billing_reference",
+        "classification_reason": "folder_map:billing_reference"
+      },
+      "authority_hint": "contractual",
+      "review_recommendation": "ready_for_ingest_then_review",
+      "ingestion_priority": "medium",
+      "active_candidate": true,
+      "normalization_profile_hint": null,
+      "notes": "content_hint=filename_or_body_suggests_policy_language",
+      "ingest_status": "dry_run",
+      "batch_validation": "PASS"
+    },
+    {
+      "proposed_stable_key": "internal_company__company_profile__mission__7c483f19",
+      "file_path": "H:/DSOS/tracking/data/internal_company_knowledge/company_profile/mission.md",
+      "relative_path": "company_profile/mission.md",
+      "source_title": "mission",
+      "source_type": "general_reference",
+      "parser_profile": "general_reference",
+      "business_domain": "company",
+      "tags": {
+        "internal_category": "company_profile",
+        "classification_reason": "folder_map:company_profile"
+      },
+      "authority_hint": "internal",
+      "review_recommendation": "ready_for_ingest_then_review",
+      "ingestion_priority": "medium",
+      "active_candidate": true,
+      "normalization_profile_hint": null,
+      "notes": "content_hint=folder_mapping_only",
+      "ingest_status": "dry_run",
+      "batch_validation": "PASS"
+    },
+    {
+      "proposed_stable_key": "internal_company__compliance_notice__controlled_substances_notice__c7263f4b",
+      "file_path": "H:/DSOS/tracking/data/internal_company_knowledge/compliance_notice/controlled_substances_notice.md",
+      "relative_path": "compliance_notice/controlled_substances_notice.md",
+      "source_title": "controlled substances notice",
+      "source_type": "policy_manual",
+      "parser_profile": "policy_manual",
+      "business_domain": "compliance",
+      "tags": {
+        "internal_category": "compliance_notice",
+        "classification_reason": "folder_map:compliance_notice"
+      },
+      "authority_hint": "regulatory",
+      "review_recommendation": "ready_for_review",
+      "ingestion_priority": "medium",
+      "active_candidate": true,
+      "normalization_profile_hint": "policy_manual_v1",
+      "notes": "content_hint=filename_or_body_suggests_policy_language",
+      "ingest_status": "dry_run",
+      "batch_validation": "PASS"
+    },
+    {
+      "proposed_stable_key": "internal_company__form_template__sample_form_instructions__dab691ee",
+      "file_path": "H:/DSOS/tracking/data/internal_company_knowledge/form_template/sample_form_instructions.md",
+      "relative_path": "form_template/sample_form_instructions.md",
+      "source_title": "sample form instructions",
+      "source_type": "form_template",
+      "parser_profile": "general_reference",
+      "business_domain": "forms",
+      "tags": {
+        "internal_category": "form_template",
+        "classification_reason": "folder_map:form_template"
+      },
+      "authority_hint": "internal",
+      "review_recommendation": "ready_for_ingest_then_review",
+      "ingestion_priority": "medium",
+      "active_candidate": true,
+      "normalization_profile_hint": null,
+      "notes": "content_hint=folder_mapping_only",
+      "ingest_status": "dry_run",
+      "batch_validation": "PASS"
+    },
+    {
+      "proposed_stable_key": "internal_company__meeting_memory__q1_planning__34135f15",
+      "file_path": "H:/DSOS/tracking/data/internal_company_knowledge/meeting_memory/q1_planning.md",
+      "relative_path": "meeting_memory/q1_planning.md",
+      "source_title": "q1 planning",
+      "source_type": "meeting_memory",
+      "parser_profile": "meeting_memory",
+      "business_domain": "governance",
+      "tags": {
+        "internal_category": "meeting_memory",
+        "classification_reason": "folder_map:meeting_memory"
+      },
+      "authority_hint": "internal",
+      "review_recommendation": "ready_for_ingest_then_review",
+      "ingestion_priority": "medium",
+      "active_candidate": true,
+      "normalization_profile_hint": null,
+      "notes": "content_hint=folder_mapping_only",
+      "ingest_status": "dry_run",
+      "batch_validation": "PASS"
+    },
+    {
+      "proposed_stable_key": "internal_company__policy_manual__sample_hr_policy__b967a978",
+      "file_path": "H:/DSOS/tracking/data/internal_company_knowledge/policy_manual/sample_hr_policy.md",
+      "relative_path": "policy_manual/sample_hr_policy.md",
+      "source_title": "sample hr policy",
+      "source_type": "policy_manual",
+      "parser_profile": "policy_manual",
+      "business_domain": "internal_policy",
+      "tags": {
+        "internal_category": "policy_manual",
+        "classification_reason": "folder_map:policy_manual"
+      },
+      "authority_hint": "internal",
+      "review_recommendation": "ready_for_review",
+      "ingestion_priority": "high",
+      "active_candidate": true,
+      "normalization_profile_hint": "policy_manual_v1",
+      "notes": "content_hint=filename_or_body_suggests_policy_language",
+      "ingest_status": "dry_run",
+      "batch_validation": "PASS"
+    },
+    {
+      "proposed_stable_key": "internal_company__reference_sheet__sig_codes__c9df69f8",
+      "file_path": "H:/DSOS/tracking/data/internal_company_knowledge/reference_sheet/sig_codes.md",
+      "relative_path": "reference_sheet/sig_codes.md",
+      "source_title": "sig codes",
+      "source_type": "general_reference",
+      "parser_profile": "general_reference",
+      "business_domain": "quick_ref",
+      "tags": {
+        "internal_category": "reference_sheet",
+        "classification_reason": "folder_map:reference_sheet"
+      },
+      "authority_hint": "internal",
+      "review_recommendation": "ready_for_ingest_then_review",
+      "ingestion_priority": "medium",
+      "active_candidate": true,
+      "normalization_profile_hint": null,
+      "notes": "content_hint=folder_mapping_only",
+      "ingest_status": "dry_run",
+      "batch_validation": "PASS"
+    },
+    {
+      "proposed_stable_key": "internal_company__sop_workflow__sample_dispensing_sop__f30cdfb0",
+      "file_path": "H:/DSOS/tracking/data/internal_company_knowledge/sop_workflow/sample_dispensing_sop.md",
+      "relative_path": "sop_workflow/sample_dispensing_sop.md",
+      "source_title": "sample dispensing sop",
+      "source_type": "sop_workflow",
+      "parser_profile": "sop_workflow",
+      "business_domain": "internal_ops",
+      "tags": {
+        "internal_category": "sop_workflow",
+        "classification_reason": "folder_map:sop_workflow"
+      },
+      "authority_hint": "internal",
+      "review_recommendation": "ready_for_review",
+      "ingestion_priority": "high",
+      "active_candidate": true,
+      "normalization_profile_hint": "policy_manual_v1",
+      "notes": "content_hint=filename_or_body_suggests_sop_language;filename_or_body_suggests_policy_language",
+      "ingest_status": "dry_run",
+      "batch_validation": "PASS"
+    },
+    {
+      "proposed_stable_key": "internal_company__training_module__sample_onboarding__4e11e33a",
+      "file_path": "H:/DSOS/tracking/data/internal_company_knowledge/training_module/sample_onboarding.md",
+      "relative_path": "training_module/sample_onboarding.md",
+      "source_title": "sample onboarding",
+      "source_type": "training_module",
+      "parser_profile": "training_module",
+      "business_domain": "training",
+      "tags": {
+        "internal_category": "training_module",
+        "classification_reason": "folder_map:training_module"
+      },
+      "authority_hint": "internal",
+      "review_recommendation": "ready_for_ingest_then_review",
+      "ingestion_priority": "medium",
+      "active_candidate": true,
+      "normalization_profile_hint": null,
+      "notes": "content_hint=folder_mapping_only",
+      "ingest_status": "dry_run",
+      "batch_validation": "PASS"
+    },
+    {
+      "proposed_stable_key": "internal_company__vendor_or_product_reference__vendor_xyz__13063f0e",
+      "file_path": "H:/DSOS/tracking/data/internal_company_knowledge/vendor_or_product_reference/vendor_xyz.md",
+      "relative_path": "vendor_or_product_reference/vendor_xyz.md",
+      "source_title": "vendor xyz",
+      "source_type": "general_reference",
+      "parser_profile": "general_reference",
+      "business_domain": "operations",
+      "tags": {
+        "internal_category": "vendor_or_product_reference",
+        "classification_reason": "folder_map:vendor_or_product_reference"
+      },
+      "authority_hint": "advisory",
+      "review_recommendation": "ready_for_ingest_then_review",
+      "ingestion_priority": "medium",
+      "active_candidate": true,
+      "normalization_profile_hint": null,
+      "notes": "content_hint=folder_mapping_only",
+      "ingest_status": "dry_run",
+      "batch_validation": "PASS"
+    }
+  ],
+  "runs_summary": []
+}

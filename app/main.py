@@ -7,12 +7,14 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from app.api.auth_routes import auth_router
 from app.api.malone_routes import router as malone_router
+from app.api.review_feedback_routes import router as review_feedback_router
 from app.api.routes import api_router, router
 from app.core.scheduler import start_scheduler
 from app.core.wiring import wire_events
 from app.db.session import Base, SessionLocal, engine
 from app.models import legal_handbook as _legal_handbook_models  # noqa: F401 — register legal ORM tables
 from app.models import ingestion_control as _ingestion_control_models  # noqa: F401 — business ingest control plane
+from app.models import review_feedback as _review_feedback_models  # noqa: F401 — human review loop
 from app.models import scenario_memory as _scenario_memory_models  # noqa: F401 — scenario memory / decision trace
 from app.services.auth_service import ensure_seed_data
 from app.services.workflow_service import ensure_workflow_seed_data
@@ -80,6 +82,7 @@ if api_router is not router:
 
 app.include_router(auth_router)
 app.include_router(malone_router)
+app.include_router(review_feedback_router)
 
 
 @app.get("/health")

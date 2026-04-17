@@ -54,6 +54,8 @@ from app.services.legal_evidence_service import (
     malone_sop_lookup_enabled,
     persist_legal_answer_trace,
 )
+from app.services.review_feedback.governance_hints import build_governance_hints_for_turn
+from app.services.telemetry import build_turn_telemetry
 from app.services.truth_packet_service import build_truth_packet
 from app.services.workflow_service import (
     DEFAULT_WORKFLOW_NAME,
@@ -642,6 +644,15 @@ def handle_malone_request(
         truth_packet["decision_trace_id"] = trace_ids["decision_trace_id"]
         db.commit()
 
+    malone_telemetry = build_turn_telemetry(
+        truth_packet=truth_packet,
+        verification=verification if isinstance(verification, dict) else {},
+        intent=intent,
+        proposal_id=str(proposal_record.id),
+        cross_source_legal_policy_triggered=bool(cross),
+    )
+    malone_governance = build_governance_hints_for_turn(db, truth_packet)
+
     return {
         "mode": intent["mode"],
         "intent": intent,
@@ -656,5 +667,7 @@ def handle_malone_request(
         "truth_packet": truth_packet,
         "rendered_output": rendered_output,
         "verification": verification,
+        "malone_telemetry": malone_telemetry,
+        "malone_governance": malone_governance,
         "capabilities": list_actions(),
     }

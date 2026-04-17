@@ -1,0 +1,25 @@
+{
+  "pass": "review_loop_human_feedback",
+  "schema_version": 1,
+  "alembic_revision": "0008_malone_review_loop_human_feedback",
+  "tables": [
+    "malone_review_feedback_events",
+    "malone_review_artifact_heads"
+  ],
+  "artifact_types": [
+    "normalized_unit",
+    "scenario_memory",
+    "decision_trace",
+    "operating_copilot_snapshot",
+    "website_pack_entry",
+    "ingestion_source_version"
+  ],
+  "api_prefix": "/api/malone/review",
+  "write_roles": ["owner", "admin"],
+  "malone_response_keys": ["malone_governance"],
+  "integrations": {
+    "normalized_ranking": "review_rank includes approved/reviewed/under_review/needs_revision",
+    "scenario_prior_analogs": "small similarity boost when review_audit_status=approved and no version conflict",
+    "ingestion_promotion_hint": "GET /promotion/ingestion-source-version/{id}"
+  }
+}

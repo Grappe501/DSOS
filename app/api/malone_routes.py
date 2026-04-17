@@ -16,8 +16,15 @@ from app.services.elevenlabs_service import (
     synthesize_speech_mp3,
     voice_status_payload,
 )
+from app.models.scenario_memory import MaloneScenarioMemory
 from app.services.malone_service import handle_malone_request
 from app.services.proposal_service import list_recent_proposals, serialize_proposal_record
+from app.services.scenario_memory.trace_read import (
+    can_read_scenario,
+    list_recent_scenarios,
+    serialize_readonly_trace_bundle,
+)
+from app.services.telemetry.malone_turn_telemetry import TELEMETRY_SCHEMA_V1
 
 router = APIRouter(prefix="/api/malone", tags=["malone"])
 
@@ -119,6 +126,49 @@ def malone_capabilities(
     return {
         "actions": list_actions(),
     }
+
+
+@router.get("/inspect/telemetry-schema")
+def malone_inspect_telemetry_schema(current=Depends(get_current_user)):
+    """Read-only schema description for `malone_telemetry` (observational)."""
+    _actor, _role = current
+    return {"read_only": True, **TELEMETRY_SCHEMA_V1}
+
+
+@router.get("/inspect/traces")
+def malone_inspect_traces(
+    limit: int = Query(default=20, ge=1, le=100),
+    db: Session = Depends(get_db),
+    current=Depends(get_current_user),
+):
+    actor, role_name = current
+    actor_user_id = getattr(actor, "id", None)
+    return list_recent_scenarios(
+        db,
+        actor_user_id=actor_user_id,
+        role_name=role_name,
+        limit=limit,
+    )
+
+
+@router.get("/inspect/traces/{scenario_memory_id}")
+def malone_inspect_trace_detail(
+    scenario_memory_id: str,
+    db: Session = Depends(get_db),
+    current=Depends(get_current_user),
+):
+    actor, role_name = current
+    actor_user_id = getattr(actor, "id", None)
+    row = (
+        db.query(MaloneScenarioMemory)
+        .filter(MaloneScenarioMemory.id == scenario_memory_id)
+        .one_or_none()
+    )
+    if row is None:
+        raise HTTPException(status_code=404, detail="scenario_memory not found")
+    if not can_read_scenario(role_name=role_name, actor_user_id=actor_user_id, row=row):
+        raise HTTPException(status_code=403, detail="not authorized to read this trace")
+    return serialize_readonly_trace_bundle(db, row)
 
 
 @router.get("/agents")

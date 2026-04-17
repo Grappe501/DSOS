@@ -1,5 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import ChatPanel from "../components/malone/ChatPanel";
+import MaloneInspectionPanel from "../components/malone/MaloneInspectionPanel";
+import MaloneReviewPanel from "../components/malone/MaloneReviewPanel";
 import ProposalPanel from "../components/malone/ProposalPanel";
 import VoiceInputButton from "../components/malone/VoiceInputButton";
 import { useMaloneChatRequest } from "../hooks/useMaloneChatRequest";
@@ -103,6 +105,8 @@ export default function MalonePage() {
           onTtsPhaseChange={setTtsPhase}
           onPlaybackReady={handlePlaybackReady}
         />
+        <MaloneInspectionPanel response={response} />
+        <MaloneReviewPanel response={response} />
       </div>
     </section>
   );

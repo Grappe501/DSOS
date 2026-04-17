@@ -2,17 +2,28 @@
 
 from __future__ import annotations
 
-from app.services.knowledge_normalization.review_state import REVIEW_APPROVED, REVIEW_DRAFT, REVIEW_REJECTED, REVIEW_REVIEWED, REVIEW_SUPERSEDED, REVIEW_SYSTEM_GENERATED
+from app.services.knowledge_normalization.review_state import (
+    REVIEW_APPROVED,
+    REVIEW_DRAFT,
+    REVIEW_NEEDS_REVISION,
+    REVIEW_REJECTED,
+    REVIEW_REVIEWED,
+    REVIEW_SUPERSEDED,
+    REVIEW_SYSTEM_GENERATED,
+    REVIEW_UNDER_REVIEW,
+)
 
 
 def review_rank(review_state: str | None) -> int:
     """Higher = more trustworthy for augmentation."""
     r = (review_state or "").strip().lower()
     return {
-        REVIEW_APPROVED: 5,
-        REVIEW_REVIEWED: 4,
-        REVIEW_SYSTEM_GENERATED: 3,
-        REVIEW_DRAFT: 1,
+        REVIEW_APPROVED: 6,
+        REVIEW_REVIEWED: 5,
+        REVIEW_SYSTEM_GENERATED: 4,
+        REVIEW_UNDER_REVIEW: 3,
+        REVIEW_DRAFT: 2,
+        REVIEW_NEEDS_REVISION: 2,
         REVIEW_REJECTED: 0,
         REVIEW_SUPERSEDED: 0,
     }.get(r, 2)
@@ -37,4 +48,4 @@ def unit_needs_caveat(unit: object) -> bool:
     """Extra caution line for LLM or user (not blocking deterministic append)."""
     c = getattr(unit, "confidence_level", None) or ""
     rs = getattr(unit, "review_state", None) or ""
-    return c == "unknown" or rs == REVIEW_DRAFT
+    return c == "unknown" or rs in (REVIEW_DRAFT, REVIEW_NEEDS_REVISION)

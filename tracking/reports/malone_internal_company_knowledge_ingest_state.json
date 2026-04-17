@@ -1,0 +1,20 @@
+{
+  "pass": "internal_company_knowledge_ingest",
+  "version": 1,
+  "default_intake_root": "tracking/data/internal_company_knowledge",
+  "aggregate_manifest": "tracking/ingestion_packs/internal_company_knowledge/internal_company_knowledge_manifest.json",
+  "last_run_report": "tracking/reports/internal_company_ingest_last_run.json",
+  "cli": "tools/run_internal_company_ingest.py",
+  "python_modules": [
+    "app/services/internal_company_ingest/__init__.py",
+    "app/services/internal_company_ingest/classification.py",
+    "app/services/internal_company_ingest/intake_discovery.py",
+    "app/services/internal_company_ingest/manifest_builder.py",
+    "app/services/internal_company_ingest/orchestration.py",
+    "app/services/internal_company_ingest/serialization.py"
+  ],
+  "control_plane_entrypoint": "app.services.ingestion_control.ingest_runner.run_business_ingest",
+  "normalization_hook": "policy_manual_v1 via run_normalization for policy_manual and sop_workflow when ingest completes",
+  "sample_file_count": 10,
+  "excluded_from_scan": ["README.md", ".*"]
+}
