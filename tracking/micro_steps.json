@@ -1,45 +1,91 @@
 {
   "task": "phase_7_malone_governed_execution",
+  "execution_mode": "bounded_production_slices",
+  "current_focus": "system_cleanup_protocol_and_workflow_package_split_completion",
+  "rules": [
+    "no snippets only full file replacements",
+    "keep workflow files under 750 lines wherever possible",
+    "do not reintroduce monolithic workflow logic into app/services/workflow_service.py",
+    "all new workflow logic belongs in app/services/workflows package modules",
+    "rerun audit, bootstrap, and scaffold size verification before major new slice changes",
+    "update tracking immediately after each bounded slice lands",
+    "treat app and src as active roots unless runtime proof says otherwise"
+  ],
   "steps": [
     {
       "name": "rerun project_map_audit and bootstrap verification in the new thread before any code changes",
-      "done": false
+      "status": "done",
+      "priority": "critical"
+    },
+    {
+      "name": "run scaffold size audit and classify active, passive, and generated roots",
+      "status": "done",
+      "priority": "critical"
+    },
+    {
+      "name": "stabilize update_progress script so tracking tools run without crashing",
+      "status": "done",
+      "priority": "high"
     },
     {
       "name": "confirm deterministic registry files and Malone capability endpoint are present in the live tree",
-      "done": false
+      "status": "done",
+      "priority": "high"
     },
     {
-      "name": "select one bounded next slice with workflow engine foundation as default priority",
-      "done": false
+      "name": "verify workflow package health for required handlers",
+      "status": "done",
+      "priority": "critical"
     },
     {
-      "name": "define canonical workflow state contract that reuses deterministic action envelopes",
-      "done": false
+      "name": "treat backend/app, frontend/src, and dsos_replacements as passive until reconciled",
+      "status": "done",
+      "priority": "high"
     },
     {
-      "name": "add approval hook model to deterministic registry metadata without widening write authority",
-      "done": false
+      "name": "complete workflow package split across definitions, engine, handlers, and engine_parts",
+      "status": "next",
+      "priority": "critical"
     },
     {
-      "name": "wire workflow state persistence through existing WorkflowState model",
-      "done": false
+      "name": "finish approval workflow lifecycle so blocked_pending_approval resumes cleanly through workflow engine",
+      "status": "pending",
+      "priority": "critical"
     },
     {
-      "name": "expand audit events to include workflow requested validated advanced and blocked states",
-      "done": false
+      "name": "finish pending clarification conversation state so Malone can hold and resume governed incomplete requests",
+      "status": "pending",
+      "priority": "critical"
     },
     {
-      "name": "add bounded workflow API slice and minimal UI visibility only if deterministic foundation is stable",
-      "done": false
+      "name": "build internal DSOS retrieval layer for system-aware memory and retrieval",
+      "status": "pending",
+      "priority": "critical"
     },
     {
-      "name": "rerun smoke tests across login schedules Malone chat web retrieval and proposal history",
-      "done": false
+      "name": "design governed write execution on top of deterministic and workflow controls",
+      "status": "pending",
+      "priority": "critical"
+    },
+    {
+      "name": "standardize migration usage beyond create_all bootstrap",
+      "status": "pending",
+      "priority": "high"
+    },
+    {
+      "name": "reconcile or archive passive roots only after active-root feature work is stable",
+      "status": "pending",
+      "priority": "medium"
+    },
+    {
+      "name": "rerun smoke tests across login schedules Malone chat workflow visibility and proposal history",
+      "status": "pending",
+      "priority": "high"
     },
     {
       "name": "update tracking again immediately after the bounded slice lands",
-      "done": false
+      "status": "pending",
+      "priority": "critical"
     }
   ]
 }

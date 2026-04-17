@@ -1,0 +1,44 @@
+{
+  "schema_version": "malone_legal_handbook_foundation_v1",
+  "generated_at": "2026-04-16",
+  "repository_lane": ["app/", "schemas/", "alembic/", "tracking/"],
+  "excluded_roots": ["backend/", "frontend/", "dsos_replacements/"],
+  "alembic_chain": [
+    "0001_v070_department_workflow",
+    "0002_regulation_knowledge_foundation",
+    "0003_legal_handbook_knowledge_foundation"
+  ],
+  "migration_note": "Filename 0002_legal_handbook_knowledge_foundation.py was not used because revision 0002 is regulation_knowledge_foundation; legal handbook DDL is 0003.",
+  "sql_artifacts": {
+    "proposal_ddl": "schemas/legal_handbook_knowledge_v0.sql",
+    "related_regulation_ddl": "schemas/regulation_knowledge_v0.sql"
+  },
+  "scaffold_roots": [
+    "app/services/legal_ingestion/",
+    "app/services/legal_knowledge/",
+    "app/services/legal_retrieval/",
+    "app/services/legal_compliance/",
+    "app/services/legal_assistant/"
+  ],
+  "malone_integration_points": {
+    "truth_packet_extension": "planned: internal legal evidence list + citation keys",
+    "trace_tables": ["legal_answer_traces"],
+    "proposal_fk": "malone_proposals.id"
+  },
+  "handbook_design_target": {
+    "jurisdiction": "US-AR",
+    "issuer": "Arkansas State Board of Pharmacy",
+    "compiled_edition_example": "November 2025",
+    "toc_family_codes": ["A", "B", "C", "D", "E", "F", "G", "H"],
+    "citation_examples": ["17-92-101", "5-64-101"],
+    "embedded_date_examples": ["Pharmacy Practice Act May 2023", "Uniform Controlled Substances Act August 2025"]
+  },
+  "completion_status": {
+    "written_reports": true,
+    "sql_proposal": true,
+    "alembic_migration": true,
+    "runtime_orm_models": false,
+    "ingestion_execution": false,
+    "malone_route_wiring": false
+  }
+}

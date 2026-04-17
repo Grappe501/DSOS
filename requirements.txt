@@ -2,3 +2,7 @@ fastapi
 uvicorn
 sqlalchemy
 pydantic
+PyJWT
+passlib[bcrypt]
+email-validator
+pypdf>=4.0

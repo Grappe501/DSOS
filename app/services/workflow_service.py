@@ -1,162 +1,227 @@
 from __future__ import annotations
 
-from datetime import datetime
+"""
+Workflow service facade.
+
+Purpose:
+- preserve the long-lived import path: `app.services.workflow_service`
+- provide a stable compatibility layer while workflow internals live in
+  `app.services.workflows.*`
+- keep workflow implementation split across focused modules
+
+CRITICAL RULES:
+- DO NOT add execution logic here
+- DO NOT add handlers here
+- DO NOT add workflow state logic here
+- ONLY re-export stable public API
+
+This file is a SYSTEM FACADE — not an implementation layer.
+"""
+
 from typing import Any
 
-from sqlalchemy.orm import Session
 
-from app.models.models import WorkflowState
-from app.services.audit_service import log_transition
+# -----------------------------------------------------------------------------
+# Safe imports (fail loudly but clearly)
+# -----------------------------------------------------------------------------
+
+try:
+    # -------------------------------------------------------------------------
+    # Constants
+    # -------------------------------------------------------------------------
+    from app.services.workflows.constants import (
+        DEFAULT_WORKFLOW_NAME,
+        DEFAULT_WORKFLOW_VERSION,
+        STEP_STATUS_BLOCKED,
+        STEP_STATUS_COMPLETED,
+        STEP_STATUS_FAILED,
+        STEP_STATUS_PENDING,
+        WORKFLOW_ENTITY_TYPE,
+        WORKFLOW_STATUS_BLOCKED,
+        WORKFLOW_STATUS_BLOCKED_PENDING_APPROVAL,
+        WORKFLOW_STATUS_BLOCKED_PENDING_CLARIFICATION,
+        WORKFLOW_STATUS_COMPLETED,
+        WORKFLOW_STATUS_FAILED,
+        WORKFLOW_STATUS_IN_PROGRESS,
+        WORKFLOW_STATUS_PENDING,
+        get_required_builtin_handler_keys,
+    )
+
+    # -------------------------------------------------------------------------
+    # Registry
+    # -------------------------------------------------------------------------
+    from app.services.workflows.registry import (
+        WorkflowHandler,
+        get_workflow_handler,
+        list_workflow_handlers,
+        register_workflow_handler,
+        verify_required_workflow_handlers,
+    )
+
+    # -------------------------------------------------------------------------
+    # Serialization
+    # -------------------------------------------------------------------------
+    from app.services.workflows.serializers import (
+        serialize_workflow_definition,
+        serialize_workflow_instance,
+        serialize_workflow_step_definition,
+        serialize_workflow_step_execution,
+    )
+
+    # -------------------------------------------------------------------------
+    # Legacy state helpers
+    # -------------------------------------------------------------------------
+    from app.services.workflows.state_helpers import (
+        get_entity_workflow_history,
+        mark_workflow_state,
+        route_conflict_resolution,
+        start_schedule_workflow,
+        transition_schedule_state,
+    )
+
+    # -------------------------------------------------------------------------
+    # Definitions
+    # -------------------------------------------------------------------------
+    from app.services.workflows.definitions import (
+        ensure_workflow_seed_data,
+        list_workflow_definitions,
+    )
+
+    # -------------------------------------------------------------------------
+    # Engine
+    # -------------------------------------------------------------------------
+    from app.services.workflows.engine import (
+        get_workflow_instance,
+        list_workflow_instances,
+        resume_workflow_instance,
+        run_workflow_instance,
+        start_workflow_instance,
+    )
+
+except Exception as e:
+    raise RuntimeError(
+        "Workflow system failed to initialize. "
+        "Ensure app/services/workflows package is fully installed and valid."
+    ) from e
 
 
-def _serialize_meta(meta: dict[str, Any] | None) -> str | None:
-    if meta is None:
-        return None
+# -----------------------------------------------------------------------------
+# Bootstrap
+# -----------------------------------------------------------------------------
+
+def bootstrap_workflow_handlers() -> None:
+    """
+    Import built-in workflow handlers so registry decorators execute.
+
+    Safe to call multiple times.
+    """
     try:
-        import json
-        return json.dumps(meta, default=str)
-    except Exception:
-        return str(meta)
+        from app.services.workflows import handlers_malone as _handlers_malone  # noqa: F401
+    except Exception as e:
+        raise RuntimeError("Failed to bootstrap workflow handlers") from e
 
 
-def mark_workflow_state(
-    db: Session,
-    *,
-    workflow_name: str,
-    entity_type: str,
-    entity_id: int,
-    state: str,
-    status: str = "active",
-    actor_user_id: int | None = None,
-    department: str | None = None,
-    meta_json: dict[str, Any] | None = None,
-) -> WorkflowState:
+# -----------------------------------------------------------------------------
+# Diagnostics
+# -----------------------------------------------------------------------------
+
+def get_workflow_public_api() -> dict[str, Any]:
     """
-    Backward-compatible workflow writer.
+    Introspection helper for system diagnostics.
     """
-    row = WorkflowState(
-        workflow_name=workflow_name,
-        entity_type=entity_type,
-        entity_id=entity_id,
-        state=state,
-        status=status,
-        meta_json=_serialize_meta(meta_json),
-        created_at=datetime.utcnow(),
-        updated_at=datetime.utcnow(),
-    )
-    db.add(row)
-    db.commit()
-    db.refresh(row)
-
-    log_transition(
-        db,
-        entity_type=entity_type,
-        entity_id=entity_id,
-        from_state=None,
-        to_state=state,
-        actor_user_id=actor_user_id,
-        department=department,
-        meta_json={
-            "workflow_name": workflow_name,
-            "status": status,
-            **(meta_json or {}),
-        },
-    )
-
-    return row
+    return {
+        "workflow_name": DEFAULT_WORKFLOW_NAME,
+        "workflow_version": DEFAULT_WORKFLOW_VERSION,
+        "entity_type": WORKFLOW_ENTITY_TYPE,
+        "handler_count": len(list_workflow_handlers()),
+        "handlers": list_workflow_handlers(),
+    }
 
 
-def start_schedule_workflow(
-    db: Session,
-    *,
-    schedule_id: int,
-    actor_user_id: int | None = None,
-    department: str | None = None,
-    initial_state: str = "created",
-    meta_json: dict[str, Any] | None = None,
-) -> WorkflowState:
+def verify_workflow_package_health() -> dict[str, Any]:
     """
-    Legacy-compatible entry point used by wiring/schedule flow.
+    Full workflow system verification.
+
+    Validates:
+    - handler registry
+    - required handlers present
+    - facade wiring is correct
     """
-    return mark_workflow_state(
-        db,
-        workflow_name="schedule_workflow",
-        entity_type="schedule",
-        entity_id=schedule_id,
-        state=initial_state,
-        status="active",
-        actor_user_id=actor_user_id,
-        department=department,
-        meta_json=meta_json,
-    )
+    bootstrap_workflow_handlers()
+
+    registry_check = verify_required_workflow_handlers()
+    required_handlers = get_required_builtin_handler_keys()
+
+    return {
+        "ok": registry_check["ok"],
+        "required_handlers": required_handlers,
+        "missing_required_handlers": registry_check["missing_required_handlers"],
+        "registered_handler_count": registry_check["registered_handler_count"],
+        "registered_handlers": list_workflow_handlers(),
+    }
 
 
-def route_conflict_resolution(
-    db: Session,
-    *,
-    schedule_id: int,
-    actor_user_id: int | None = None,
-    department: str | None = None,
-    reason: str | None = None,
-    meta_json: dict[str, Any] | None = None,
-) -> WorkflowState:
-    """
-    Legacy-compatible helper for conflict workflow routing.
-    """
-    payload = dict(meta_json or {})
-    if reason is not None:
-        payload["reason"] = reason
+# -----------------------------------------------------------------------------
+# Boot
+# -----------------------------------------------------------------------------
 
-    return mark_workflow_state(
-        db,
-        workflow_name="schedule_workflow",
-        entity_type="schedule",
-        entity_id=schedule_id,
-        state="conflict_resolution",
-        status="active",
-        actor_user_id=actor_user_id,
-        department=department,
-        meta_json=payload,
-    )
+# Ensure handlers are registered immediately
+bootstrap_workflow_handlers()
 
 
-def transition_schedule_state(
-    db: Session,
-    *,
-    schedule_id: int,
-    to_state: str,
-    actor_user_id: int | None = None,
-    department: str | None = None,
-    meta_json: dict[str, Any] | None = None,
-) -> WorkflowState:
-    """
-    Phase 3+ normalized helper.
-    """
-    return mark_workflow_state(
-        db,
-        workflow_name="schedule_approval",
-        entity_type="schedule",
-        entity_id=schedule_id,
-        state=to_state,
-        status="active",
-        actor_user_id=actor_user_id,
-        department=department,
-        meta_json=meta_json,
-    )
+# -----------------------------------------------------------------------------
+# Public API Contract
+# -----------------------------------------------------------------------------
 
+__all__ = [
+    # constants
+    "DEFAULT_WORKFLOW_NAME",
+    "DEFAULT_WORKFLOW_VERSION",
+    "WORKFLOW_ENTITY_TYPE",
+    "WORKFLOW_STATUS_PENDING",
+    "WORKFLOW_STATUS_IN_PROGRESS",
+    "WORKFLOW_STATUS_COMPLETED",
+    "WORKFLOW_STATUS_FAILED",
+    "WORKFLOW_STATUS_BLOCKED",
+    "WORKFLOW_STATUS_BLOCKED_PENDING_APPROVAL",
+    "WORKFLOW_STATUS_BLOCKED_PENDING_CLARIFICATION",
+    "STEP_STATUS_PENDING",
+    "STEP_STATUS_COMPLETED",
+    "STEP_STATUS_BLOCKED",
+    "STEP_STATUS_FAILED",
 
-def get_entity_workflow_history(
-    db: Session,
-    *,
-    entity_type: str,
-    entity_id: int,
-) -> list[WorkflowState]:
-    return (
-        db.query(WorkflowState)
-        .filter(
-            WorkflowState.entity_type == entity_type,
-            WorkflowState.entity_id == entity_id,
-        )
-        .order_by(WorkflowState.created_at.asc())
-        .all()
-    )
+    # registry
+    "WorkflowHandler",
+    "register_workflow_handler",
+    "list_workflow_handlers",
+    "get_workflow_handler",
+
+    # serializers
+    "serialize_workflow_step_definition",
+    "serialize_workflow_step_execution",
+    "serialize_workflow_definition",
+    "serialize_workflow_instance",
+
+    # legacy helpers
+    "mark_workflow_state",
+    "start_schedule_workflow",
+    "route_conflict_resolution",
+    "transition_schedule_state",
+    "get_entity_workflow_history",
+
+    # definitions
+    "ensure_workflow_seed_data",
+    "list_workflow_definitions",
+
+    # engine
+    "list_workflow_instances",
+    "get_workflow_instance",
+    "start_workflow_instance",
+    "resume_workflow_instance",
+    "run_workflow_instance",
+
+    # diagnostics
+    "bootstrap_workflow_handlers",
+    "get_workflow_public_api",
+    "verify_workflow_package_health",
+]

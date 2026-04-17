@@ -5,7 +5,10 @@ from typing import Any
 
 from sqlalchemy.orm import Session
 
+from app.models.models import MaloneProposal
 from app.services.audit_service import log_malone_action
+from app.services.deterministic_actions_schedule import register_schedule_actions
+from app.services.deterministic_registry import list_actions
 from app.services.intent_service import classify_intent
 from app.services.openai_service import (
     OpenAIServiceError,
@@ -24,13 +27,27 @@ from app.services.render_verifier import (
     build_deterministic_fallback,
     verify_rendered_response,
 )
-from app.services.schedule_service import list_schedules
 from app.services.truth_packet_service import build_truth_packet
+from app.services.workflow_service import (
+    DEFAULT_WORKFLOW_NAME,
+    get_workflow_instance,
+    serialize_workflow_instance,
+    start_workflow_instance,
+)
+
+# -----------------------------------------------------------------------------
+# Bootstrap deterministic registry
+# -----------------------------------------------------------------------------
+def _bootstrap_registry() -> None:
+    register_schedule_actions()
 
 
-MAX_SCHEDULE_ROWS = 100
+_bootstrap_registry()
 
 
+# -----------------------------------------------------------------------------
+# Helpers
+# -----------------------------------------------------------------------------
 def _actor_payload(actor: Any, role_name: str) -> dict[str, Any]:
     return {
         "id": getattr(actor, "id", None),
@@ -40,74 +57,20 @@ def _actor_payload(actor: Any, role_name: str) -> dict[str, Any]:
     }
 
 
-def _serialize_schedule(row: Any) -> dict[str, Any]:
-    return {
-        "id": getattr(row, "id", None),
-        "title": getattr(row, "title", None),
-        "assigned_to": getattr(row, "assigned_to", None),
-        "department": getattr(row, "department", None),
-        "status": getattr(row, "status", None),
-        "start_time": getattr(row, "start_time", None).isoformat()
-        if getattr(row, "start_time", None)
-        else None,
-        "end_time": getattr(row, "end_time", None).isoformat()
-        if getattr(row, "end_time", None)
-        else None,
-    }
+def _resolve_action_key(intent: dict[str, Any]) -> str | None:
+    action_key_hint = intent.get("action_key_hint")
+    if isinstance(action_key_hint, str) and action_key_hint.strip():
+        return action_key_hint.strip()
 
+    target = intent.get("target")
+    action = intent.get("action")
 
-def _execute_schedule_read(
-    *,
-    db: Session,
-    actor: Any,
-    role_name: str,
-) -> dict[str, Any]:
-    rows = list_schedules(
-        db,
-        actor=actor,
-        role_name=role_name,
-        department=None,
-    )[:MAX_SCHEDULE_ROWS]
+    if target == "schedules" and action == "respond":
+        return "schedule.read"
+    if target == "schedules" and action == "analyze":
+        return "schedule.analyze"
 
-    serialized = [_serialize_schedule(row) for row in rows]
-
-    return {
-        "type": "schedule_list",
-        "count": len(serialized),
-        "items": serialized,
-    }
-
-
-def _execute_schedule_analysis(
-    *,
-    db: Session,
-    actor: Any,
-    role_name: str,
-) -> dict[str, Any]:
-    rows = list_schedules(
-        db,
-        actor=actor,
-        role_name=role_name,
-        department=None,
-    )[:MAX_SCHEDULE_ROWS]
-
-    counts = {
-        "scheduled": 0,
-        "draft": 0,
-        "submitted": 0,
-        "cancelled": 0,
-    }
-
-    for row in rows:
-        status = getattr(row, "status", None)
-        if status in counts:
-            counts[status] += 1
-
-    return {
-        "type": "schedule_analysis",
-        "total": len(rows),
-        "by_status": counts,
-    }
+    return None
 
 
 def _build_render_fallback(
@@ -136,6 +99,7 @@ def _deliver_rendered_response(
     truth_packet: dict[str, Any],
 ) -> tuple[dict[str, Any], dict[str, Any], str]:
     fallback_answer = build_deterministic_fallback(truth_packet=truth_packet)
+
     allow_web_search = bool(truth_packet.get("retrieval_rules", {}).get("allow_web_search"))
     web_search_enabled = bool(allow_web_search and is_web_search_enabled())
 
@@ -144,6 +108,7 @@ def _deliver_rendered_response(
             fallback_answer=fallback_answer,
             reason="openai_not_configured",
         )
+
         log_malone_action(
             db,
             action="malone.render.skipped",
@@ -152,18 +117,6 @@ def _deliver_rendered_response(
             meta_json={"reason": "openai_not_configured"},
         )
         return rendered_output, verification, delivery_status
-
-    if allow_web_search:
-        log_malone_action(
-            db,
-            action="malone.web_search.requested",
-            proposal_id=proposal_record.id,
-            actor=actor_payload,
-            meta_json={
-                "enabled": web_search_enabled,
-                "reason": truth_packet.get("retrieval_rules", {}).get("web_search_reason"),
-            },
-        )
 
     start = time.time()
 
@@ -183,79 +136,36 @@ def _deliver_rendered_response(
             meta_json={
                 "provider": render_result.provider,
                 "model": render_result.model,
-                "status": render_result.status,
                 "duration_ms": duration_ms,
                 "web_search_used": render_result.web_search_used,
-                "web_source_count": len(render_result.web_sources),
             },
         )
 
-        if allow_web_search:
-            log_malone_action(
-                db,
-                action="malone.web_search.completed" if render_result.web_search_used else "malone.web_search.rejected",
-                proposal_id=proposal_record.id,
-                actor=actor_payload,
-                meta_json={
-                    "web_search_used": render_result.web_search_used,
-                    "web_source_count": len(render_result.web_sources),
-                    "source_urls": [source.get("url") for source in render_result.web_sources],
-                },
-            )
-
     except OpenAIServiceError as exc:
-        rendered_output, verification, delivery_status = _build_render_fallback(
+        return _build_render_fallback(
             fallback_answer=fallback_answer,
             reason=str(exc),
         )
-
-        log_malone_action(
-            db,
-            action="malone.render.rejected",
-            proposal_id=proposal_record.id,
-            actor=actor_payload,
-            meta_json={"reason": str(exc)},
-        )
-
-        if allow_web_search:
-            log_malone_action(
-                db,
-                action="malone.web_search.rejected",
-                proposal_id=proposal_record.id,
-                actor=actor_payload,
-                meta_json={"reason": str(exc)},
-            )
-
-        return rendered_output, verification, delivery_status
 
     verification = verify_rendered_response(
         truth_packet=truth_packet,
         render_payload=rendered_payload,
     )
 
-    log_malone_action(
-        db,
-        action="malone.render.verified" if verification["verified"] else "malone.render.rejected",
-        proposal_id=proposal_record.id,
-        actor=actor_payload,
-        meta_json={
-            "delivery_mode": verification["delivery_mode"],
-            "reasons": verification["reasons"],
-            "grounding_refs": verification["grounding_refs"],
-            "source_refs": verification.get("source_refs", []),
-        },
+    delivery_status = (
+        "llm_verified_web"
+        if verification["delivery_mode"] == "llm_verified_web"
+        else "llm_verified"
+        if verification["verified"]
+        else "deterministic_only"
     )
-
-    if verification["delivery_mode"] == "llm_verified_web":
-        delivery_status = "llm_verified_web"
-    elif verification["verified"]:
-        delivery_status = "llm_verified"
-    else:
-        delivery_status = "deterministic_only"
 
     return rendered_payload, verification, delivery_status
 
 
+# -----------------------------------------------------------------------------
+# MAIN ENTRY
+# -----------------------------------------------------------------------------
 def handle_malone_request(
     *,
     db: Session,
@@ -265,13 +175,18 @@ def handle_malone_request(
 ) -> dict[str, Any]:
     intent = classify_intent(message)
     actor_payload = _actor_payload(actor, role_name)
+    action_key = _resolve_action_key(intent)
 
+    # ---------------------------------------------------------
+    # Proposal
+    # ---------------------------------------------------------
     proposal = build_proposal_envelope(
         proposal_type=intent["mode"],
         requested_action=intent["action"],
         candidate_output={
             "message": message,
             "intent": intent,
+            "action_key": action_key,
         },
         actor=actor_payload,
     )
@@ -283,94 +198,127 @@ def handle_malone_request(
         target=intent.get("target"),
     )
 
-    log_malone_action(
-        db,
-        action="malone.proposal.created",
-        proposal_id=proposal_record.id,
-        actor=actor_payload,
-        meta_json=intent,
-    )
-
+    # ---------------------------------------------------------
+    # Validate
+    # ---------------------------------------------------------
     validation = validate_proposal_envelope(proposal=proposal)
-    proposal["validation_status"] = "approved" if validation["is_valid"] else "rejected"
 
     proposal_record = update_proposal_record(
         db=db,
         proposal_record=proposal_record,
-        validation_status=proposal["validation_status"],
-        approval_status="not_required" if validation["is_valid"] else "pending",
+        validation_status="approved" if validation["is_valid"] else "rejected",
         execution_status="blocked" if not validation["is_valid"] else "proposal_only",
         validation_payload=validation,
     )
 
-    log_malone_action(
-        db,
-        action="malone.proposal.validated",
-        proposal_id=proposal_record.id,
-        actor=actor_payload,
-        meta_json={
-            "is_valid": validation["is_valid"],
-            "reasons": validation["reasons"],
-        },
-    )
-
-    result: dict[str, Any] | None = None
+    # ---------------------------------------------------------
+    # Workflow Execution
+    # ---------------------------------------------------------
+    workflow_instance = None
     status = "rejected" if not validation["is_valid"] else "proposal_only"
+    result = None
+    deterministic_execution = None
+    action_validation = None
 
     if validation["is_valid"]:
-        target = intent.get("target")
+        workflow_instance = start_workflow_instance(
+            db,
+            workflow_name=DEFAULT_WORKFLOW_NAME,
+            entity_type="malone_proposal",
+            entity_id=proposal_record.id,
+            context={
+                "proposal_id": proposal_record.id,
+                "message": message,
+                "intent": intent,
+                "actor": actor_payload,
+                "role_name": role_name,
+                "action_key": action_key,
+                "proposal_validation": validation,
+            },
+            auto_run=True,
+        )
 
-        if target == "schedules" and intent["action"] == "respond":
-            result = _execute_schedule_read(
-                db=db,
-                actor=actor,
-                role_name=role_name,
+        workflow_instance = get_workflow_instance(db, workflow_instance.id)
+        workflow_context = serialize_workflow_instance(workflow_instance).get("context", {})
+
+        action_validation = workflow_context.get("action_validation")
+        deterministic_execution = workflow_context.get("deterministic_execution")
+        result = workflow_context.get("result")
+
+        # 🔥 CRITICAL STATE HANDLING
+        if workflow_instance.status == "blocked_pending_approval":
+            status = "pending_approval"
+
+            log_malone_action(
+                db,
+                action="malone.execution.pending_approval",
+                proposal_id=proposal_record.id,
+                actor=actor_payload,
+                meta_json={
+                    "workflow_instance_id": workflow_instance.id,
+                },
             )
+
+        elif workflow_instance.status == "blocked":
+            status = "blocked"
+
+        elif workflow_instance.status == "completed":
             status = "executed"
 
-        elif target == "schedules" and intent["action"] == "analyze":
-            result = _execute_schedule_analysis(
-                db=db,
-                actor=actor,
-                role_name=role_name,
-            )
-            status = "executed"
+        else:
+            status = workflow_instance.status
 
-    proposal_record = update_proposal_record(
-        db=db,
-        proposal_record=proposal_record,
-        execution_status=status,
-        result_payload=result,
-    )
+        proposal_record = update_proposal_record(
+            db=db,
+            proposal_record=proposal_record,
+            execution_status=status,
+            result_payload=result,
+            deterministic_execution_payload=deterministic_execution,
+        )
 
-    log_malone_action(
-        db,
-        action="malone.proposal.executed" if status == "executed" else "malone.proposal.recorded",
-        proposal_id=proposal_record.id,
-        actor=actor_payload,
-        meta_json={
-            "execution_status": status,
-            "target": intent.get("target"),
-            "result_type": result.get("type") if result else None,
-        },
-    )
-
+    # ---------------------------------------------------------
+    # Truth packet
+    # ---------------------------------------------------------
     truth_packet = build_truth_packet(
         message=message,
         actor=actor_payload,
         intent=intent,
         proposal=proposal,
-        validation=validation,
+        validation={
+            **validation,
+            "action_validation": action_validation,
+        },
         result=result,
         status=status,
     )
 
-    rendered_output, verification, delivery_status = _deliver_rendered_response(
-        db=db,
-        proposal_record=proposal_record,
-        actor_payload=actor_payload,
-        truth_packet=truth_packet,
-    )
+    # ---------------------------------------------------------
+    # DELIVERY LOGIC (approval-aware)
+    # ---------------------------------------------------------
+    if status == "pending_approval":
+        delivery = {
+            "answer": "This request requires approval before execution.",
+            "mode": "approval_required",
+            "sources": [],
+        }
+
+        rendered_output = {}
+        verification = {"verified": True, "delivery_mode": "approval_required"}
+        delivery_status = "approval_required"
+
+    else:
+        rendered_output, verification, delivery_status = _deliver_rendered_response(
+            db=db,
+            proposal_record=proposal_record,
+            actor_payload=actor_payload,
+            truth_packet=truth_packet,
+        )
+
+        delivery = {
+            "answer": verification.get("delivery_answer"),
+            "mode": verification.get("delivery_mode"),
+            "sources": rendered_output.get("web_sources", []),
+        }
 
     proposal_record = update_proposal_record(
         db=db,
@@ -385,13 +333,14 @@ def handle_malone_request(
         "intent": intent,
         "status": status,
         "result": result,
-        "delivery": {
-            "answer": verification.get("delivery_answer"),
-            "mode": verification.get("delivery_mode"),
-            "sources": rendered_output.get("web_sources", []),
-        },
+        "deterministic_execution": deterministic_execution,
+        "workflow_instance": serialize_workflow_instance(workflow_instance, db=db)
+        if workflow_instance
+        else None,
+        "delivery": delivery,
         "proposal_record": serialize_proposal_record(proposal_record),
         "truth_packet": truth_packet,
         "rendered_output": rendered_output,
         "verification": verification,
+        "capabilities": list_actions(),
     }

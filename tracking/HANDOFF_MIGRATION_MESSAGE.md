@@ -1,4 +1,4 @@
-# DSOS Single Handoff Migration Message — v0.9.0
+# DSOS Single Handoff Migration Message — v0.9.3
 
 Paste this message into the first prompt of the new AI thread together with the current DSOS zip upload.
 
@@ -11,6 +11,7 @@ Before proposing or writing code, do the following in order:
 1. Read the entire `/tracking` folder, starting with:
    - `/tracking/NEXT_THREAD_PROMPT.md`
    - `/tracking/NEW_THREAD_BOOT_SEQUENCE.md`
+   - `/tracking/CLEAN_SYSTEM_PROTOCOL.md`
    - `/tracking/current_state.json`
    - `/tracking/progress.json`
    - `/tracking/handoff_state_snapshot.json`
@@ -21,17 +22,21 @@ Before proposing or writing code, do the following in order:
    - `/tracking/malone/malone_build_sequence_v1.json`
    - `/tracking/micro_steps.json`
 
-2. Treat the tracking folder as the governing doctrine and handoff source of truth unless the live mapper/bootstrap audits prove drift.
+2. Treat the tracking folder as governing doctrine unless live mapper/bootstrap/size audits prove drift.
 
 3. Before making recommendations or edits, run:
    - `python tools/project_map_audit.py`
    - `python tools/self_verify_bootstrap.py`
+   - `python tools/scaffold_size_audit.py`
+   - `python scripts/build_map.py`
+   - `python scripts/update_progress.py`
 
 4. Use the audit outputs to determine:
    - what is fully working
    - what is partially implemented
    - what is still scaffold or stub
    - what drift exists between tracking and live code
+   - which roots are active vs passive
    - what the safest single next production slice should be
 
 5. Preserve all working functionality. Do not regress:
@@ -45,7 +50,21 @@ Before proposing or writing code, do the following in order:
    - web retrieval controls
    - Malone output-first UI
 
-6. Provide exact full-file production-grade replacements only.
+6. Treat active roots as:
+   - backend: `app/`
+   - frontend: `src/`
+
+   Treat these as passive until explicitly reconciled:
+   - `backend/app/`
+   - `frontend/src/`
+   - `dsos_replacements/`
+
+7. Ignore noise when auditing structure unless a task requires it:
+   - `.git/`
+   - `.venv/`
+   - `node_modules/`
+
+8. Provide exact full-file production-grade replacements only.
 
 ## Core system doctrine
 - Deterministic core establishes truth.
@@ -76,18 +95,22 @@ The system already includes:
 - deterministic registry foundation
 - deterministic validator + executor foundations
 - Malone capability discovery endpoint
+- workflow engine foundation
+- approval and clarification request services with resume hooks
+- workflow package split in progress
 
 ## Highest-priority next protocol
 After audits, default to:
-1. workflow engine foundation
-2. approval workflow foundation
+1. workflow package split completion
+2. approval workflow completion
 3. pending clarification conversation state
 4. internal DSOS retrieval layer
 5. department-aware governed execution
+6. migration standardization
 
 ## What to deliver in the new thread
 1. readiness audit
-2. mapper/bootstrap findings
+2. mapper/bootstrap/size findings
 3. selected bounded next slice
 4. risk check
 5. full-file production-grade replacements

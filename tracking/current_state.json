@@ -1,42 +1,98 @@
 {
   "current_phase": "phase_7_malone_governed_execution",
-  "active_module": "deterministic_brain_v2_foundation_with_registry_execution_and_web_governance",
-  "current_task": "freeze tracking, handoff doctrine, and boot protocol so the next thread can rerun mapper and bootstrap audits before taking the next bounded slice",
-  "progress": 93,
-  "last_working_version": "v0.9.0-deterministic-brain-v2-foundation",
+  "active_module": "workflow_package_split_cleanup_and_approval_completion_readiness",
+  "current_task": "Cleanup and normalize the build map first, verify active roots, stabilize tracking tooling, then continue workflow package split and approval completion without drift.",
+  "progress": 94,
+  "last_working_version": "v0.9.3-cleanup-protocol-and-size-audit",
+  "system_mode": "in_progress",
+  "build_posture": "production_grade_hardening",
   "seed_login": {
     "email": "owner@test.com",
     "password": "ChangeMe123!"
   },
+  "active_roots": {
+    "backend": "app",
+    "frontend": "src"
+  },
+  "passive_or_review_roots": [
+    "backend/app",
+    "frontend/src",
+    "dsos_replacements"
+  ],
+  "generated_or_excluded_artifacts": [
+    ".git",
+    ".venv",
+    "node_modules",
+    "runtime_v5.db",
+    "test.db"
+  ],
   "working_now": [
-    "FastAPI backend boots cleanly locally",
-    "React/Vite frontend boots cleanly locally",
+    "FastAPI backend imports and boots",
+    "React/Vite frontend source is present under src/",
     "JWT login works through /api/auth/login",
-    "dashboard renders after login",
-    "schedules feed works",
-    "schedule create and cancel routes are present and governed by role checks",
-    "Malone page is present in navigation",
-    "Malone proposal and validation flow works",
-    "Malone proposals are durably persisted",
-    "Malone lifecycle audit logging works",
-    "Malone can safely execute schedule read and schedule analysis through deterministic validation",
-    "OpenAI conversational rendering layer is wired behind backend-only configuration",
-    "render verification and deterministic fallback delivery are wired",
-    "governed web retrieval is wired behind retrieval rules and verified source handling",
-    "technical proof is hidden behind dropdowns on the Malone page",
-    "deterministic action registry foundation is now present",
-    "deterministic validator and deterministic executor foundations are now present",
+    "dashboard, schedules, and Malone navigation are present",
+    "Malone proposal and validation flow is present",
+    "Malone proposals persist",
+    "Malone lifecycle audit logging is present",
+    "deterministic registry, validator, and executor foundations are present",
     "Malone capability discovery endpoint is present at /api/malone/capabilities",
-    "proposal records can persist deterministic execution envelopes alongside rendered output and verification"
+    "workflow seed data is wired at startup",
+    "workflow instances and step executions are queryable through API routes",
+    "approval and clarification services exist with workflow resume hooks",
+    "workflow package health verifies required handlers when runtime dependencies are installed",
+    "project map and bootstrap verification scripts run cleanly",
+    "scaffold size audit script is now part of the boot protocol",
+    "scripts/update_progress.py now handles both string and structured task lists"
   ],
+  "architecture_state": {
+    "malone_layer": "active",
+    "deterministic_layer": "active",
+    "workflow_engine": "active_and_being_modularized",
+    "workflow_package_split": "in_progress",
+    "approval_system": "partial",
+    "clarification_system": "partial",
+    "internal_retrieval_layer": "missing",
+    "governed_write_execution": "not_started",
+    "database_migrations": "partial_foundation_only",
+    "scaffold_audit": "active"
+  },
   "blocking_issues": [
-    "tracking docs before this update were behind the live deterministic and web-enabled codebase",
-    "new thread must rerun tools/project_map_audit.py and tools/self_verify_bootstrap.py before further coding",
-    "workflow engine foundation is not yet implemented",
-    "approval hooks exist conceptually through deterministic metadata, but full approval workflow is not yet implemented",
+    "parallel code roots exist and can cause thread drift if not explicitly treated as passive",
+    "approval workflow is only partially implemented and still needs lifecycle completion",
+    "pending clarification conversation state is only partially implemented end-to-end",
     "internal DSOS retrieval layer is not yet implemented",
-    "pending clarification conversation state is not yet implemented",
-    "formal DB migrations are still not established for long-term schema evolution"
+    "formal migration usage is not yet standardized beyond foundation files",
+    "workflow package split must continue carefully to avoid duplicate logic between the facade and package modules"
   ],
-  "next_recommended_slice": "workflow_engine_foundation_on_top_of_deterministic_brain_v2"
+  "risk_flags": [
+    "thread_drift",
+    "duplicate_logic_risk",
+    "dual_root_confusion",
+    "workflow_split_incomplete",
+    "missing_retrieval_layer",
+    "approval_flow_not_complete",
+    "clarification_flow_not_complete"
+  ],
+  "next_required_actions": [
+    "rerun_mapper_bootstrap_and_size_audits_before_feature_work",
+    "treat_app_and_src_as_only_active_code_roots",
+    "complete_workflow_package_split",
+    "finish_approval_workflow_lifecycle",
+    "finish_clarification_state_integration",
+    "build_internal_retrieval_layer",
+    "begin_governed_write_execution",
+    "standardize_database_migrations"
+  ],
+  "next_recommended_slice": "complete_workflow_package_split_then_finish_approval_workflow_lifecycle",
+  "boot_requirements_for_next_thread": [
+    "read tracking/current_state.json first",
+    "read tracking/progress.json",
+    "read tracking/micro_steps.json",
+    "read tracking/CLEAN_SYSTEM_PROTOCOL.md",
+    "run project_map_audit, self_verify_bootstrap, scaffold_size_audit, build_map, and update_progress",
+    "verify workflow package health before coding",
+    "treat app/services/workflow_service.py as facade only",
+    "do not reintroduce monolithic workflow logic",
+    "do not treat backend/app or frontend/src as active roots without runtime proof"
+  ]
 }

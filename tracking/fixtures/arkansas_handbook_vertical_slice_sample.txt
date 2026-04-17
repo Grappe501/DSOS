@@ -1,0 +1,25 @@
+Arkansas State Board of Pharmacy
+Statutes and Rules — November 2025 Compilation
+
+Excerpt for deterministic vertical-slice testing (synthetic, not an official reproduction).
+
+A. Pharmacy Practice Act (May 2023)
+
+17-92-101 Short title
+This Act shall be known as the Arkansas Pharmacy Practice Act.
+
+17-92-115 Pharmacies
+(a) A pharmacy shall maintain records as required by the board.
+(b) When a pharmacy dispenses controlled substances:
+(1) The board may inspect records under this section.
+(2) Additional requirements apply as provided by rule.
+(A) Controlled substance records must be stored securely.
+(i) Electronic records must meet board standards.
+(b)(1) Nested example text continuing under subsection (b)(1).
+
+H. Prescription Drug Monitoring Program (August 2025)
+
+PDMP Section VII
+Reporting requirements for dispensers.
+(a) Each dispenser shall submit required information.
+(b) Failures to report may subject the dispenser to discipline.

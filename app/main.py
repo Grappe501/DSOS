@@ -11,7 +11,9 @@ from app.api.routes import api_router, router
 from app.core.scheduler import start_scheduler
 from app.core.wiring import wire_events
 from app.db.session import Base, SessionLocal, engine
+from app.models import legal_handbook as _legal_handbook_models  # noqa: F401 — register legal ORM tables
 from app.services.auth_service import ensure_seed_data
+from app.services.workflow_service import ensure_workflow_seed_data
 from app.utils.logger import log
 
 
@@ -30,7 +32,9 @@ async def lifespan(app: FastAPI):
 
         db = SessionLocal()
         ensure_seed_data(db)
+        ensure_workflow_seed_data(db)
         log("Seed data ensured")
+        log("Workflow seed data ensured")
 
         wire_events()
         log("Event wiring initialized")

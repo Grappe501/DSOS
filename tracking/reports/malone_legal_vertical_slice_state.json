@@ -1,0 +1,36 @@
+{
+  "schema_version": "malone_legal_vertical_slice_state_v1",
+  "generated_at": "2026-04-16",
+  "pass_name": "malone_legal_handbook_vertical_slice",
+  "active_lanes": ["app/", "schemas/", "alembic/", "tracking/"],
+  "passive_lanes_excluded_from_work": ["backend/", "frontend/", "dsos_replacements/"],
+  "repository_facts": {
+    "legal_migration": "alembic/versions/0003_legal_handbook_knowledge_foundation.py",
+    "legal_sql_proposal": "schemas/legal_handbook_knowledge_v0.sql",
+    "regulation_migration": "alembic/versions/0002_regulation_knowledge_foundation.py",
+    "ingest_entrypoint": "app/services/legal_ingestion/arkansas_pipeline.py:ingest_arkansas_handbook_text",
+    "lexical_entrypoint": "app/services/legal_retrieval/lexical.py:search_legal_chunks_lexical",
+    "citation_lookup_entrypoint": "app/services/legal_retrieval/citation_lookup.py",
+    "orm_models": "app/models/legal_handbook.py",
+    "sample_fixture": "tracking/fixtures/arkansas_handbook_vertical_slice_sample.txt"
+  },
+  "completion_status": {
+    "reports_written": true,
+    "legal_orm_models_added": true,
+    "arkansas_text_pipeline_implemented": true,
+    "chunks_and_citations_persisted": true,
+    "lexical_mvp_implemented": true,
+    "truth_packet_wired": false,
+    "malone_intent_wired": false,
+    "embeddings_implemented": false
+  },
+  "hard_fail_compliance_this_pass": {
+    "passive_roots_modified": false,
+    "malone_wholesale_replacement": false,
+    "scaffolds_without_integration_purpose": false,
+    "schema_missing_versioning_or_citations": false,
+    "tracking_outputs_skipped": false,
+    "speculative_qa_without_registry": false
+  },
+  "next_pass_hint": "PDF page extraction + page anchors; optional truth_packet legal_handbook_evidence block; intent branch for regulation scope; FTS5 or scoped version filters"
+}

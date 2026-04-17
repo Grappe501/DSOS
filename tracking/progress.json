@@ -77,7 +77,7 @@
     ]
   },
   "phase_7_malone_governed_execution": {
-    "progress": 45,
+    "progress": 68,
     "status": "in_progress",
     "tasks": [
       "deterministic brain v2 foundation",
@@ -90,7 +90,11 @@
       "approval workflow foundation",
       "governed write execution",
       "tool orchestration registry",
-      "department-aware action enforcement"
+      "department-aware action enforcement",
+      "workflow engine foundation",
+      "Malone workflow orchestration integration",
+      "seeded malone_governed_execution workflow definition",
+      "workflow instance and step execution audit visibility"
     ]
   },
   "phase_8_malone_super_agent": {

@@ -39,12 +39,20 @@ def _coerce_json(value: str | None) -> Any:
 def _result_bundle(row: MaloneProposal) -> dict[str, Any]:
     raw = _coerce_json(getattr(row, "result_json", None))
     if isinstance(raw, dict) and any(
-        key in raw for key in ["deterministic_result", "rendered_output", "verification", "delivery_status"]
+        key in raw
+        for key in [
+            "deterministic_result",
+            "deterministic_execution",
+            "rendered_output",
+            "verification",
+            "delivery_status",
+        ]
     ):
         return raw
 
     return {
         "deterministic_result": raw,
+        "deterministic_execution": None,
         "rendered_output": None,
         "verification": None,
         "delivery_status": "deterministic_only" if raw is not None else None,
@@ -70,6 +78,7 @@ def serialize_proposal_record(row: MaloneProposal) -> dict[str, Any]:
         "candidate_output": _coerce_json(getattr(row, "candidate_output_json", None)),
         "validation": _coerce_json(getattr(row, "validation_json", None)),
         "result": bundle.get("deterministic_result"),
+        "deterministic_execution": bundle.get("deterministic_execution"),
         "rendered_output": bundle.get("rendered_output"),
         "verification": bundle.get("verification"),
         "created_at": getattr(row, "created_at", None).isoformat()
@@ -166,6 +175,7 @@ def update_proposal_record(
     execution_status: str | None = None,
     validation_payload: dict[str, Any] | None = None,
     result_payload: dict[str, Any] | None = None,
+    deterministic_execution_payload: dict[str, Any] | None = None,
     rendered_output_payload: dict[str, Any] | None = None,
     verification_payload: dict[str, Any] | None = None,
     delivery_status: str | None = None,
@@ -182,6 +192,7 @@ def update_proposal_record(
     current_bundle = _result_bundle(proposal_record)
     next_bundle = {
         "deterministic_result": current_bundle.get("deterministic_result"),
+        "deterministic_execution": current_bundle.get("deterministic_execution"),
         "rendered_output": current_bundle.get("rendered_output"),
         "verification": current_bundle.get("verification"),
         "delivery_status": current_bundle.get("delivery_status"),
@@ -189,6 +200,8 @@ def update_proposal_record(
 
     if result_payload is not None:
         next_bundle["deterministic_result"] = result_payload
+    if deterministic_execution_payload is not None:
+        next_bundle["deterministic_execution"] = deterministic_execution_payload
     if rendered_output_payload is not None:
         next_bundle["rendered_output"] = rendered_output_payload
     if verification_payload is not None:

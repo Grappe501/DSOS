@@ -1,0 +1,66 @@
+{
+  "schema_version": "malone_regulation_foundation_state_v1",
+  "generated_at": "2026-04-16",
+  "pass_name": "malone_regulation_foundation",
+  "active_lanes": ["app/", "src/", "tracking/"],
+  "passive_lanes_excluded_from_work": ["backend/", "frontend/", "dsos_replacements/"],
+  "repository_facts": {
+    "backend_framework": "FastAPI",
+    "frontend_framework": "React+Vite",
+    "database_runtime": "sqlite",
+    "database_url_file": "app/db/session.py",
+    "malone_entry": "app/services/malone_service.py:handle_malone_request",
+    "malone_routes": "app/api/malone_routes.py",
+    "truth_packet": "app/services/truth_packet_service.py",
+    "openai_render": "app/services/openai_service.py"
+  },
+  "artifacts": {
+    "human_report": "tracking/reports/malone_regulation_foundation_report.md",
+    "module_plan": "tracking/reports/malone_regulation_module_plan.json",
+    "schema_plan": "tracking/reports/malone_regulation_schema_plan.md",
+    "api_plan": "tracking/reports/malone_regulation_api_plan.md",
+    "sql_proposal": "schemas/regulation_knowledge_v0.sql",
+    "alembic_migration_draft": "alembic/versions/0002_regulation_knowledge_foundation.py",
+    "service_scaffolds": [
+      "app/services/ingestion/",
+      "app/services/knowledge/",
+      "app/services/retrieval/",
+      "app/services/compliance/",
+      "app/services/assistant/"
+    ]
+  },
+  "completion_status": {
+    "reports_written": true,
+    "sql_proposal_written": true,
+    "alembic_draft_written": true,
+    "python_scaffolds_written": true,
+    "orm_models_added": false,
+    "api_routes_wired": false,
+    "frontend_changes": false,
+    "ingestion_implemented": false,
+    "retrieval_implemented": false
+  },
+  "hard_fail_conditions": [
+    "modify backend/, frontend/, or dsos_replacements/",
+    "replace existing Malone behavior wholesale",
+    "create scaffolds with no declared integration purpose",
+    "propose a schema without versioning and citations",
+    "skip tracking outputs",
+    "build speculative Q&A behavior without the source registry foundation"
+  ],
+  "hard_fail_compliance_this_pass": {
+    "passive_roots_modified": false,
+    "malone_wholesale_replacement": false,
+    "scaffolds_without_integration_purpose": false,
+    "schema_missing_versioning_or_citations": false,
+    "tracking_outputs_skipped": false,
+    "speculative_qa_without_registry": false
+  },
+  "explicit_non_goals_this_pass": [
+    "full_regulation_qa_behavior",
+    "upload_ui",
+    "replacing_malone_or_workflow_architecture",
+    "vector_database_in_sqlite"
+  ],
+  "next_pass_hint": "Apply migration + add SQLAlchemy models; implement ingestion job + chunk persistence; lexical retrieval MVP; optional truth_packet evidence hook"
+}

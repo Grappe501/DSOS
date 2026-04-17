@@ -1,0 +1,83 @@
+{
+  "plan_version": "1",
+  "description": "Deterministic module plan for Arkansas pharmacy law handbook ingestion and Malone-grounded retrieval.",
+  "packages": [
+    {
+      "name": "legal_ingestion",
+      "path": "app/services/legal_ingestion/",
+      "modules": [
+        {"file": "__init__.py", "role": "package boundary"},
+        {"file": "profile.py", "role": "handbook constants and citation pattern hints"},
+        {"file": "source_profiler.py", "role": "cover/edition signals"},
+        {"file": "toc_parser.py", "role": "TOC families A–H"},
+        {"file": "legal_unit_parser.py", "role": "statute/rule unit detection"},
+        {"file": "subsection_parser.py", "role": "(a)(1)(A)(i) segmentation"},
+        {"file": "chunk_builder.py", "role": "legal_unit_chunks rows"},
+        {"file": "cross_reference_extractor.py", "role": "legal_cross_references"},
+        {"file": "date_layering.py", "role": "legal_date_layers"}
+      ],
+      "depends_on": [],
+      "produces": ["legal_document_families", "legal_units", "legal_unit_chunks", "legal_cross_references", "legal_date_layers"]
+    },
+    {
+      "name": "legal_knowledge",
+      "path": "app/services/legal_knowledge/",
+      "modules": [
+        {"file": "__init__.py", "role": "package boundary"},
+        {"file": "document_registry.py", "role": "legal_documents + legal_source_versions"},
+        {"file": "source_families.py", "role": "legal_document_families"},
+        {"file": "legal_units.py", "role": "legal_units tree"},
+        {"file": "citations.py", "role": "legal_citations"},
+        {"file": "taxonomy.py", "role": "legal_tags / legal_chunk_tags"},
+        {"file": "versioning.py", "role": "edition vs regulation bridge"}
+      ],
+      "depends_on": ["legal_ingestion (artifacts)"],
+      "produces": ["persisted rows via future ORM/session helpers"]
+    },
+    {
+      "name": "legal_retrieval",
+      "path": "app/services/legal_retrieval/",
+      "modules": [
+        {"file": "__init__.py", "role": "package boundary"},
+        {"file": "citation_lookup.py", "role": "exact citation path"},
+        {"file": "lexical.py", "role": "FTS/keyword"},
+        {"file": "hybrid.py", "role": "merge lexical + vector"},
+        {"file": "reranker.py", "role": "deterministic rerank"},
+        {"file": "authority_filter.py", "role": "statute vs rule filter"}
+      ],
+      "depends_on": ["legal_knowledge (read)", "legal_unit_chunks populated"],
+      "produces": ["ranked chunk ids", "citation keys for traces"]
+    },
+    {
+      "name": "legal_compliance",
+      "path": "app/services/legal_compliance/",
+      "modules": [
+        {"file": "__init__.py", "role": "package boundary"},
+        {"file": "authority_typing.py", "role": "authority_type labels"},
+        {"file": "conflict_flags.py", "role": "multi-chunk conflict detection"},
+        {"file": "effective_dates.py", "role": "date layer explanations"},
+        {"file": "escalation.py", "role": "safe refusal / clarify templates"}
+      ],
+      "depends_on": ["legal_retrieval (candidates)", "legal_date_layers"],
+      "produces": ["flags for formatter and traces"]
+    },
+    {
+      "name": "legal_assistant",
+      "path": "app/services/legal_assistant/",
+      "modules": [
+        {"file": "__init__.py", "role": "package boundary"},
+        {"file": "orchestrator.py", "role": "pipeline entry (future)"},
+        {"file": "answer_formatter.py", "role": "citation-preserving answer text"},
+        {"file": "guardrails.py", "role": "forbidden claims for legal mode"}
+      ],
+      "depends_on": ["legal_retrieval", "legal_compliance"],
+      "produces": ["draft envelope for truth_packet + verify (future)"]
+    }
+  ],
+  "explicit_non_goals_this_pass": [
+    "Full PDF execution pipeline",
+    "Malone chat route changes",
+    "LLM-based parsing of statutes",
+    "Frontend upload UI"
+  ]
+}

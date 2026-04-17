@@ -1,5 +1,5 @@
 {
-  "handoff_version": "2026-04-03-dsos-thread-migration-v0.9.0",
+  "handoff_version": "2026-04-03-dsos-thread-migration-v0.9.1",
   "system_name": "DSOS / AllCare Pharmacy",
   "repo_branch": "main",
   "doctrine": {
@@ -21,16 +21,19 @@
     "Web retrieval is gated by retrieval rules and source-aware delivery",
     "Technical proof is hidden by default behind dropdowns in the Malone UI",
     "Deterministic registry foundation is present",
-    "Capabilities endpoint is present for Malone action discovery"
+    "Capabilities endpoint is present for Malone action discovery",
+    "Workflow engine foundation is now present with definition, instance, and step execution models",
+    "Malone requests now route through malone_governed_execution before deterministic execution is attempted",
+    "Workflow definition, handler, and workflow instance endpoints are available under /api"
   ],
   "observed_open_items": [
     "Need fresh mapper and bootstrap verification in the next thread before coding",
-    "Workflow engine foundation is the most natural next slice",
     "Pending clarification conversation state is still missing",
     "Internal DSOS retrieval layer is still missing",
     "Approval workflow foundation is still missing",
     "Governed write execution is still missing",
-    "Formal migrations remain missing"
+    "Formal migrations remain missing",
+    "Approval workflow foundation is the next natural slice on top of the workflow engine"
   ],
   "next_thread_protocol": [
     "Read tracking first",

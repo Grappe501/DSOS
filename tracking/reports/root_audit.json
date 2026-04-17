@@ -1,0 +1,3492 @@
+{
+  "root": "H:\\DSOS",
+  "summary": {
+    "file_count": 262,
+    "total_size_bytes": 1696146,
+    "readiness": {
+      "frontend": 100,
+      "backend": 70,
+      "auth": 20,
+      "ingestion_ai": 0,
+      "tracking": 100
+    }
+  },
+  "files": [
+    {
+      "path": "H:\\DSOS\\.env",
+      "relative_path": ".env",
+      "extension": "",
+      "size_bytes": 882,
+      "line_count": 28,
+      "sha256_first_64k": "dff5c037f23d73900898ee8ecd6d0e4901d29ae62cbba1b4fb2502cac13f58f0",
+      "is_text": true,
+      "signals": [
+        "ai",
+        "auth"
+      ]
+    },
+    {
+      "path": "H:\\DSOS\\.env.example",
+      "relative_path": ".env.example",
+      "extension": ".example",
+      "size_bytes": 36,
+      "line_count": 2,
+      "sha256_first_64k": "821a2d0c3e897a8b9afb45f6d286d330beabfd67ff74b32c6f09dfd38146c0d4",
+      "is_text": true,
+      "signals": []
+    },
+    {
+      "path": "H:\\DSOS\\.gitignore",
+      "relative_path": ".gitignore",
+      "extension": "",
+      "size_bytes": 83,
+      "line_count": null,
+      "sha256_first_64k": "e79c3ee6deb7840e6337f022cc26da8df262229251eedaa184a1562b458a30b6",
+      "is_text": false,
+      "signals": []
+    },
+    {
+      "path": "H:\\DSOS\\alembic.ini",
+      "relative_path": "alembic.ini",
+      "extension": ".ini",
+      "size_bytes": 592,
+      "line_count": 37,
+      "sha256_first_64k": "7f43638cfa31efcdd35eab159af30f669378958cbea1a1340a571af994d4e2b0",
+      "is_text": true,
+      "signals": []
+    },
+    {
+      "path": "H:\\DSOS\\dsos_file_replacements_v070_malone_persistence.txt",
+      "relative_path": "dsos_file_replacements_v070_malone_persistence.txt",
+      "extension": ".txt",
+      "size_bytes": 46505,
+      "line_count": 1514,
+      "sha256_first_64k": "c0e16bcad03294ffdfea16f9ffc2feddbc638baba28c1d45bb28163d098b5845",
+      "is_text": true,
+      "signals": [
+        "auth",
+        "backend",
+        "database",
+        "frontend",
+        "ingestion",
+        "tracking"
+      ]
+    },
+    {
+      "path": "H:\\DSOS\\HANDOFF_SUMMARY.txt",
+      "relative_path": "HANDOFF_SUMMARY.txt",
+      "extension": ".txt",
+      "size_bytes": 373,
+      "line_count": 16,
+      "sha256_first_64k": "a6252204db8fdc0d9f7b517d3e280c80da4c69d87e47076e8d8e586bc024db0e",
+      "is_text": true,
+      "signals": [
+        "auth",
+        "tracking"
+      ]
+    },
+    {
+      "path": "H:\\DSOS\\index.html",
+      "relative_path": "index.html",
+      "extension": ".html",
+      "size_bytes": 298,
+      "line_count": 13,
+      "sha256_first_64k": "20696c7a70c38e9cd40caf71c4eb761b89affa93acaf483d4a80d71956907667",
+      "is_text": true,
+      "signals": []
+    },
+    {
+      "path": "H:\\DSOS\\package-lock.json",
+      "relative_path": "package-lock.json",
+      "extension": ".json",
+      "size_bytes": 57499,
+      "line_count": 1492,
+      "sha256_first_64k": "e3ca2c0c180b58bbee5313070da6671b8dafccf8fceb4c50f022820165a74df0",
+      "is_text": true,
+      "signals": [
+        "frontend"
+      ]
+    },
+    {
+      "path": "H:\\DSOS\\package.json",
+      "relative_path": "package.json",
+      "extension": ".json",
+      "size_bytes": 392,
+      "line_count": 21,
+      "sha256_first_64k": "96faaf19a0ca291c1acd4416f8687dc7c0fa2fd0dad28958b5138e6237c9bf64",
+      "is_text": true,
+      "signals": [
+        "frontend"
+      ]
+    },
+    {
+      "path": "H:\\DSOS\\README.md",
+      "relative_path": "README.md",
+      "extension": ".md",
+      "size_bytes": 658,
+      "line_count": 23,
+      "sha256_first_64k": "ae775ba20a44d1a7c348d032fae3f05072e662c7a75c48995f509790999caa8f",
+      "is_text": true,
+      "signals": [
+        "tracking"
+      ]
+    },
+    {
+      "path": "H:\\DSOS\\README_TEMPLATE_ENGINE.md",
+      "relative_path": "README_TEMPLATE_ENGINE.md",
+      "extension": ".md",
+      "size_bytes": 655,
+      "line_count": 22,
+      "sha256_first_64k": "80eb9c45d3560bb29a1f57c8d4c5e04e177cec353e0ffe4b9a6c56d5dccb2b3c",
+      "is_text": true,
+      "signals": [
+        "tracking"
+      ]
+    },
+    {
+      "path": "H:\\DSOS\\README_TEMPLATE_REGISTRY_ENGINE.md",
+      "relative_path": "README_TEMPLATE_REGISTRY_ENGINE.md",
+      "extension": ".md",
+      "size_bytes": 1254,
+      "line_count": 49,
+      "sha256_first_64k": "7ba17ae0a242a507f97696b781059399394304358bb17a5f096221d928ca3aa0",
+      "is_text": true,
+      "signals": [
+        "tracking"
+      ]
+    },
+    {
+      "path": "H:\\DSOS\\requirements.txt",
+      "relative_path": "requirements.txt",
+      "extension": ".txt",
+      "size_bytes": 73,
+      "line_count": 7,
+      "sha256_first_64k": "cbbce7a73e0de6a7867b13055d322e383938a5d5527398d7d07b0b9eb054737d",
+      "is_text": true,
+      "signals": []
+    },
+    {
+      "path": "H:\\DSOS\\runtime_v5.db",
+      "relative_path": "runtime_v5.db",
+      "extension": ".db",
+      "size_bytes": 630784,
+      "line_count": null,
+      "sha256_first_64k": "4c189bf9d55d087bf8c1c98d5f5573fb5305d29d7f212d382afccb364eab28d0",
+      "is_text": false,
+      "signals": []
+    },
+    {
+      "path": "H:\\DSOS\\test.db",
+      "relative_path": "test.db",
+      "extension": ".db",
+      "size_bytes": 20480,
+      "line_count": null,
+      "sha256_first_64k": "0644058bb82c8b7e21da25415fc265e6148c07dfe4de0d675dc84b135edb1277",
+      "is_text": false,
+      "signals": []
+    },
+    {
+      "path": "H:\\DSOS\\vite.config.js",
+      "relative_path": "vite.config.js",
+      "extension": ".js",
+      "size_bytes": 470,
+      "line_count": 23,
+      "sha256_first_64k": "24b2491916c5ecb267eeeb1de93ff35519279306c653e6b4db346b82d24e70e5",
+      "is_text": true,
+      "signals": [
+        "backend",
+        "frontend"
+      ]
+    },
+    {
+      "path": "H:\\DSOS\\alembic\\env.py",
+      "relative_path": "alembic\\env.py",
+      "extension": ".py",
+      "size_bytes": 1159,
+      "line_count": 41,
+      "sha256_first_64k": "bfc5346c87333e6a0c96fdf31d747cdb7e5f0118fa8dd35297046e31f5437872",
+      "is_text": true,
+      "signals": []
+    },
+    {
+      "path": "H:\\DSOS\\alembic\\versions\\0001_v070_department_workflow.py",
+      "relative_path": "alembic\\versions\\0001_v070_department_workflow.py",
+      "extension": ".py",
+      "size_bytes": 1525,
+      "line_count": 38,
+      "sha256_first_64k": "bb3c3567e1a432d05c1315a39173cbd834a6dd91c5abc4ea73680d802969d8bd",
+      "is_text": true,
+      "signals": [
+        "database",
+        "tracking"
+      ]
+    },
+    {
+      "path": "H:\\DSOS\\api\\contracts.md",
+      "relative_path": "api\\contracts.md",
+      "extension": ".md",
+      "size_bytes": 82,
+      "line_count": 7,
+      "sha256_first_64k": "0155690e0a9f67a7995d928c4e96abd38de47460c02afed1bf4fdd8d3d0f438f",
+      "is_text": true,
+      "signals": [
+        "backend"
+      ]
+    },
+    {
+      "path": "H:\\DSOS\\api\\endpoints.md",
+      "relative_path": "api\\endpoints.md",
+      "extension": ".md",
+      "size_bytes": 340,
+      "line_count": 29,
+      "sha256_first_64k": "0f2efefa0f12f699bc697c2de7456a16d09162f53b94ac361af8b0310f780de5",
+      "is_text": true,
+      "signals": [
+        "auth",
+        "backend",
+        "tracking"
+      ]
+    },
+    {
+      "path": "H:\\DSOS\\app\\main.py",
+      "relative_path": "app\\main.py",
+      "extension": ".py",
+      "size_bytes": 2086,
+      "line_count": 88,
+      "sha256_first_64k": "2156ce0717eb7d817394e1422e9a95f4d9e6288b84e0b136d5c62c478d8c8e33",
+      "is_text": true,
+      "signals": [
+        "backend"
+      ]
+    },
+    {
+      "path": "H:\\DSOS\\app\\adapters\\office365_adapter.py",
+      "relative_path": "app\\adapters\\office365_adapter.py",
+      "extension": ".py",
+      "size_bytes": 693,
+      "line_count": 18,
+      "sha256_first_64k": "8669889c395aa95848831989433f500e13c26061d8121cb5a0da8a39adf61d7d",
+      "is_text": true,
+      "signals": []
+    },
+    {
+      "path": "H:\\DSOS\\app\\api\\auth_routes.py",
+      "relative_path": "app\\api\\auth_routes.py",
+      "extension": ".py",
+      "size_bytes": 1437,
+      "line_count": 45,
+      "sha256_first_64k": "370eb90d100335a6d7cc061161e22763ce8f88f8b507e000b4ab9dd11f1080aa",
+      "is_text": true,
+      "signals": [
+        "auth",
+        "backend",
+        "ingestion"
+      ]
+    },
+    {
+      "path": "H:\\DSOS\\app\\api\\deps.py",
+      "relative_path": "app\\api\\deps.py",
+      "extension": ".py",
+      "size_bytes": 2176,
+      "line_count": 79,
+      "sha256_first_64k": "dc1c43fe9646f34c42ceb9147e91293b054656388530c9b8f83386fdb174d280",
+      "is_text": true,
+      "signals": [
+        "auth",
+        "ingestion"
+      ]
+    },
+    {
+      "path": "H:\\DSOS\\app\\api\\malone_routes.py",
+      "relative_path": "app\\api\\malone_routes.py",
+      "extension": ".py",
+      "size_bytes": 1605,
+      "line_count": 63,
+      "sha256_first_64k": "d32e88acec9c62d2c6ac5f317c31ac490505538319eabb014e5c45acaa778af2",
+      "is_text": true,
+      "signals": [
+        "backend"
+      ]
+    },
+    {
+      "path": "H:\\DSOS\\app\\api\\routes.py",
+      "relative_path": "app\\api\\routes.py",
+      "extension": ".py",
+      "size_bytes": 21544,
+      "line_count": 649,
+      "sha256_first_64k": "7900cec8186468c9703b6082e02fc87c765a172357f8a3e31bf8f2863ea7ff51",
+      "is_text": true,
+      "signals": [
+        "backend",
+        "tracking"
+      ]
+    },
+    {
+      "path": "H:\\DSOS\\app\\api\\schemas.py",
+      "relative_path": "app\\api\\schemas.py",
+      "extension": ".py",
+      "size_bytes": 9170,
+      "line_count": 313,
+      "sha256_first_64k": "491a6b775366b736b6cc0aa364eaf8ad38999ecf2faedfc3d53ff0a5851a304b",
+      "is_text": true,
+      "signals": [
+        "ai"
+      ]
+    },
+    {
+      "path": "H:\\DSOS\\app\\core\\scheduler.py",
+      "relative_path": "app\\core\\scheduler.py",
+      "extension": ".py",
+      "size_bytes": 913,
+      "line_count": 31,
+      "sha256_first_64k": "329f6859222661c3aaf520186552a63feb0ad5c3196a97b5c8e9087e83106a2b",
+      "is_text": true,
+      "signals": []
+    },
+    {
+      "path": "H:\\DSOS\\app\\core\\wiring.py",
+      "relative_path": "app\\core\\wiring.py",
+      "extension": ".py",
+      "size_bytes": 1991,
+      "line_count": 40,
+      "sha256_first_64k": "aa86e9614060e29017de941176a482c527f5a7ba4c820c88ccec8dbb1eb8fd87",
+      "is_text": true,
+      "signals": []
+    },
+    {
+      "path": "H:\\DSOS\\app\\db\\session.py",
+      "relative_path": "app\\db\\session.py",
+      "extension": ".py",
+      "size_bytes": 323,
+      "line_count": 10,
+      "sha256_first_64k": "e7866faf56858f97212dedf4f02f7f0790823925ea2027cade00c3e24fa7695e",
+      "is_text": true,
+      "signals": []
+    },
+    {
+      "path": "H:\\DSOS\\app\\events\\event_bus.py",
+      "relative_path": "app\\events\\event_bus.py",
+      "extension": ".py",
+      "size_bytes": 978,
+      "line_count": 30,
+      "sha256_first_64k": "9a14350b72e92f0e127ab6179a8f518e6f184cd618384883b37fe7db5422f959",
+      "is_text": true,
+      "signals": [
+        "backend"
+      ]
+    },
+    {
+      "path": "H:\\DSOS\\app\\models\\models.py",
+      "relative_path": "app\\models\\models.py",
+      "extension": ".py",
+      "size_bytes": 16198,
+      "line_count": 484,
+      "sha256_first_64k": "03981db957d71564596e47aa33fbd8669514625c030b065bbd0a579b30b6f620",
+      "is_text": true,
+      "signals": [
+        "ai",
+        "ingestion"
+      ]
+    },
+    {
+      "path": "H:\\DSOS\\app\\services\\agent_service.py",
+      "relative_path": "app\\services\\agent_service.py",
+      "extension": ".py",
+      "size_bytes": 3397,
+      "line_count": 148,
+      "sha256_first_64k": "efdc53fbb541ca64a26dfa628774340c62f8659db69428f36d74645b6fe6c348",
+      "is_text": true,
+      "signals": []
+    },
+    {
+      "path": "H:\\DSOS\\app\\services\\approval_service.py",
+      "relative_path": "app\\services\\approval_service.py",
+      "extension": ".py",
+      "size_bytes": 8582,
+      "line_count": 268,
+      "sha256_first_64k": "e0a80637af68585b01985bbad5aeb295a136ab413590eed191bca8b7bc956163",
+      "is_text": true,
+      "signals": []
+    },
+    {
+      "path": "H:\\DSOS\\app\\services\\audit_service.py",
+      "relative_path": "app\\services\\audit_service.py",
+      "extension": ".py",
+      "size_bytes": 2741,
+      "line_count": 127,
+      "sha256_first_64k": "27a6a58674f9d3a5403f05275fcf6093dd8464054bc0f90b389cb8e9cff5f682",
+      "is_text": true,
+      "signals": []
+    },
+    {
+      "path": "H:\\DSOS\\app\\services\\auth_service.py",
+      "relative_path": "app\\services\\auth_service.py",
+      "extension": ".py",
+      "size_bytes": 2945,
+      "line_count": 104,
+      "sha256_first_64k": "d484f41d7e140e211c66672fca2cbf674ccabbc2156713a48350a4949c9bab2c",
+      "is_text": true,
+      "signals": [
+        "auth",
+        "ingestion"
+      ]
+    },
+    {
+      "path": "H:\\DSOS\\app\\services\\clarification_service.py",
+      "relative_path": "app\\services\\clarification_service.py",
+      "extension": ".py",
+      "size_bytes": 9255,
+      "line_count": 277,
+      "sha256_first_64k": "26008c612217146f51803083bed44a4b99da92ae6e955aab90f33faf791b6308",
+      "is_text": true,
+      "signals": [
+        "ai"
+      ]
+    },
+    {
+      "path": "H:\\DSOS\\app\\services\\department_service.py",
+      "relative_path": "app\\services\\department_service.py",
+      "extension": ".py",
+      "size_bytes": 3194,
+      "line_count": 81,
+      "sha256_first_64k": "acda41f20e946b891f8bf793164b38b4a5c99e63f3f5a7184b0f47e1919ee548",
+      "is_text": true,
+      "signals": []
+    },
+    {
+      "path": "H:\\DSOS\\app\\services\\deterministic_actions_schedule.py",
+      "relative_path": "app\\services\\deterministic_actions_schedule.py",
+      "extension": ".py",
+      "size_bytes": 2665,
+      "line_count": 93,
+      "sha256_first_64k": "77758793878c9dedfe048007b17efe9f07b4c310b50097f7969ffb4285e0e3fb",
+      "is_text": true,
+      "signals": []
+    },
+    {
+      "path": "H:\\DSOS\\app\\services\\deterministic_executor.py",
+      "relative_path": "app\\services\\deterministic_executor.py",
+      "extension": ".py",
+      "size_bytes": 1802,
+      "line_count": 57,
+      "sha256_first_64k": "118abe99dcf6474bd44c69a983955a2aa92e046e09adf09f02e606f551554523",
+      "is_text": true,
+      "signals": []
+    },
+    {
+      "path": "H:\\DSOS\\app\\services\\deterministic_registry.py",
+      "relative_path": "app\\services\\deterministic_registry.py",
+      "extension": ".py",
+      "size_bytes": 7308,
+      "line_count": 228,
+      "sha256_first_64k": "7601707c584d76a742d5ad2b22f7ccbd09d2e2fa50c76871a66ce40ecd70f2f9",
+      "is_text": true,
+      "signals": []
+    },
+    {
+      "path": "H:\\DSOS\\app\\services\\deterministic_validator.py",
+      "relative_path": "app\\services\\deterministic_validator.py",
+      "extension": ".py",
+      "size_bytes": 5246,
+      "line_count": 168,
+      "sha256_first_64k": "55d7182190b63801cdd2e8db909bed867283779b514a507dcd7ea71c063b4f09",
+      "is_text": true,
+      "signals": []
+    },
+    {
+      "path": "H:\\DSOS\\app\\services\\intent_service.py",
+      "relative_path": "app\\services\\intent_service.py",
+      "extension": ".py",
+      "size_bytes": 1775,
+      "line_count": 59,
+      "sha256_first_64k": "37f1ca56e4a71f130bcbec0c8babb3d4b3d1708c8591800f8ab6bc07b84c72cb",
+      "is_text": true,
+      "signals": []
+    },
+    {
+      "path": "H:\\DSOS\\app\\services\\malone_service.py",
+      "relative_path": "app\\services\\malone_service.py",
+      "extension": ".py",
+      "size_bytes": 11149,
+      "line_count": 346,
+      "sha256_first_64k": "8c8ca96c3d9e4a533aebb9fdaeb4e7963bc43a67060020d466d306cdab8c423c",
+      "is_text": true,
+      "signals": [
+        "ai"
+      ]
+    },
+    {
+      "path": "H:\\DSOS\\app\\services\\messaging_service.py",
+      "relative_path": "app\\services\\messaging_service.py",
+      "extension": ".py",
+      "size_bytes": 3956,
+      "line_count": 146,
+      "sha256_first_64k": "45b30c8de92830ab67772bb992af4736be59db7101c9108a290cf46df2790d0b",
+      "is_text": true,
+      "signals": []
+    },
+    {
+      "path": "H:\\DSOS\\app\\services\\openai_service.py",
+      "relative_path": "app\\services\\openai_service.py",
+      "extension": ".py",
+      "size_bytes": 12965,
+      "line_count": 367,
+      "sha256_first_64k": "b7c7a5b93dcc1d0525163ecfb88e6458da492f144950ff211c58f3ccdf381378",
+      "is_text": true,
+      "signals": [
+        "ai",
+        "backend",
+        "ingestion"
+      ]
+    },
+    {
+      "path": "H:\\DSOS\\app\\services\\prompt_registry_service.py",
+      "relative_path": "app\\services\\prompt_registry_service.py",
+      "extension": ".py",
+      "size_bytes": 357,
+      "line_count": 9,
+      "sha256_first_64k": "3c5fe81de2e767159441bc97ef8b7eca8f29401215320940988a36e752a1c277",
+      "is_text": true,
+      "signals": [
+        "ai"
+      ]
+    },
+    {
+      "path": "H:\\DSOS\\app\\services\\proposal_service.py",
+      "relative_path": "app\\services\\proposal_service.py",
+      "extension": ".py",
+      "size_bytes": 7665,
+      "line_count": 229,
+      "sha256_first_64k": "2234a65319bb817540cc8d37230d4f69892cec025bb898664a8d44b3d916a128",
+      "is_text": true,
+      "signals": []
+    },
+    {
+      "path": "H:\\DSOS\\app\\services\\reminder_service.py",
+      "relative_path": "app\\services\\reminder_service.py",
+      "extension": ".py",
+      "size_bytes": 3030,
+      "line_count": 91,
+      "sha256_first_64k": "8b3f2331092e4120cca65936dc8d94d96707093c6f15307bc70a6aabe229afcc",
+      "is_text": true,
+      "signals": []
+    },
+    {
+      "path": "H:\\DSOS\\app\\services\\render_verifier.py",
+      "relative_path": "app\\services\\render_verifier.py",
+      "extension": ".py",
+      "size_bytes": 6763,
+      "line_count": 190,
+      "sha256_first_64k": "274be53e6f69117a11381576282cb619f9952acee9884be4df39297571af4a1b",
+      "is_text": true,
+      "signals": [
+        "ai",
+        "ingestion"
+      ]
+    },
+    {
+      "path": "H:\\DSOS\\app\\services\\schedule_service.py",
+      "relative_path": "app\\services\\schedule_service.py",
+      "extension": ".py",
+      "size_bytes": 9482,
+      "line_count": 302,
+      "sha256_first_64k": "8bf262ab3300d4588b8b0aa5cf9e26d6ad073b0b4c7f3a7447bc9acc3631574a",
+      "is_text": true,
+      "signals": []
+    },
+    {
+      "path": "H:\\DSOS\\app\\services\\task_service.py",
+      "relative_path": "app\\services\\task_service.py",
+      "extension": ".py",
+      "size_bytes": 723,
+      "line_count": 29,
+      "sha256_first_64k": "b35df90a57aae0a1a8bec8f18804296504ead422fecd809372fcb5d3c4a4cfc6",
+      "is_text": true,
+      "signals": []
+    },
+    {
+      "path": "H:\\DSOS\\app\\services\\truth_packet_service.py",
+      "relative_path": "app\\services\\truth_packet_service.py",
+      "extension": ".py",
+      "size_bytes": 10248,
+      "line_count": 330,
+      "sha256_first_64k": "0b899e540b1b0e145f6c4db2eb540ff0d1e3f2631eb49b96b11161e227096bce",
+      "is_text": true,
+      "signals": [
+        "ai",
+        "ingestion"
+      ]
+    },
+    {
+      "path": "H:\\DSOS\\app\\services\\workflow_service.py",
+      "relative_path": "app\\services\\workflow_service.py",
+      "extension": ".py",
+      "size_bytes": 7194,
+      "line_count": 227,
+      "sha256_first_64k": "7d13401bbc48c65de6b3914789519f702916f9fd9e4d073cfee93db986b39c47",
+      "is_text": true,
+      "signals": [
+        "backend"
+      ]
+    },
+    {
+      "path": "H:\\DSOS\\app\\services\\workflows\\constants.py",
+      "relative_path": "app\\services\\workflows\\constants.py",
+      "extension": ".py",
+      "size_bytes": 2169,
+      "line_count": 38,
+      "sha256_first_64k": "1235063a1ab416c7de0bf7324ee88fed207137f77e1a7badf64bff59456c46c1",
+      "is_text": true,
+      "signals": []
+    },
+    {
+      "path": "H:\\DSOS\\app\\services\\workflows\\definitions.py",
+      "relative_path": "app\\services\\workflows\\definitions.py",
+      "extension": ".py",
+      "size_bytes": 6713,
+      "line_count": 65,
+      "sha256_first_64k": "5684b8c27569bd13189c95e8abdd9dc6ec667a217716fe3b9b3bc5cb8135ab7d",
+      "is_text": true,
+      "signals": []
+    },
+    {
+      "path": "H:\\DSOS\\app\\services\\workflows\\engine.py",
+      "relative_path": "app\\services\\workflows\\engine.py",
+      "extension": ".py",
+      "size_bytes": 2415,
+      "line_count": 15,
+      "sha256_first_64k": "767b9fc31268f8af13ff6a415e31955ec43b7d21c2dafe920409faef43ad9d9b",
+      "is_text": true,
+      "signals": [
+        "tracking"
+      ]
+    },
+    {
+      "path": "H:\\DSOS\\app\\services\\workflows\\handlers_malone.py",
+      "relative_path": "app\\services\\workflows\\handlers_malone.py",
+      "extension": ".py",
+      "size_bytes": 8541,
+      "line_count": 259,
+      "sha256_first_64k": "870ae3395e8e2d909fe6be9b8391f4977c24abfaf020b1f8f16fdade23e4e9ae",
+      "is_text": true,
+      "signals": [
+        "backend"
+      ]
+    },
+    {
+      "path": "H:\\DSOS\\app\\services\\workflows\\hooks.py",
+      "relative_path": "app\\services\\workflows\\hooks.py",
+      "extension": ".py",
+      "size_bytes": 3733,
+      "line_count": 132,
+      "sha256_first_64k": "8b275294726d0b30033d92a3a14f79feff51b71a1c6417a9f33a2ba5822857d9",
+      "is_text": true,
+      "signals": [
+        "ai"
+      ]
+    },
+    {
+      "path": "H:\\DSOS\\app\\services\\workflows\\json_utils.py",
+      "relative_path": "app\\services\\workflows\\json_utils.py",
+      "extension": ".py",
+      "size_bytes": 2949,
+      "line_count": 87,
+      "sha256_first_64k": "6dc6e6c19a1595248718c8245085b9bc75ef0f6111562cab0bfd6865d636a344",
+      "is_text": true,
+      "signals": []
+    },
+    {
+      "path": "H:\\DSOS\\app\\services\\workflows\\registry.py",
+      "relative_path": "app\\services\\workflows\\registry.py",
+      "extension": ".py",
+      "size_bytes": 1819,
+      "line_count": 30,
+      "sha256_first_64k": "7a4beb434b886332b11c5576a637ed9d0faa0bc725169f7887cf5dac78daef28",
+      "is_text": true,
+      "signals": [
+        "backend"
+      ]
+    },
+    {
+      "path": "H:\\DSOS\\app\\services\\workflows\\serializers.py",
+      "relative_path": "app\\services\\workflows\\serializers.py",
+      "extension": ".py",
+      "size_bytes": 3581,
+      "line_count": 26,
+      "sha256_first_64k": "33739f6d18ae6f71bd3adabfe81a2a6884b1b9e6d8471544144f02b9de5fd3bd",
+      "is_text": true,
+      "signals": []
+    },
+    {
+      "path": "H:\\DSOS\\app\\services\\workflows\\state_helpers.py",
+      "relative_path": "app\\services\\workflows\\state_helpers.py",
+      "extension": ".py",
+      "size_bytes": 3643,
+      "line_count": 36,
+      "sha256_first_64k": "ab33c646333f573f8fa1f5fdac3e46bfc80bfda85ab5d5401d30b4ab675fefdf",
+      "is_text": true,
+      "signals": []
+    },
+    {
+      "path": "H:\\DSOS\\app\\services\\workflows\\__init__.py",
+      "relative_path": "app\\services\\workflows\\__init__.py",
+      "extension": ".py",
+      "size_bytes": 47,
+      "line_count": 2,
+      "sha256_first_64k": "4605b2ba037b90a71a1e469d2ee4a3bd31d9bf903739e0465aa4f03dc53e16cc",
+      "is_text": true,
+      "signals": []
+    },
+    {
+      "path": "H:\\DSOS\\app\\services\\workflows\\engine_parts\\audit.py",
+      "relative_path": "app\\services\\workflows\\engine_parts\\audit.py",
+      "extension": ".py",
+      "size_bytes": 547,
+      "line_count": 9,
+      "sha256_first_64k": "5e1f2218d960e07db63978d03add86e2f0ea04f624255c19a9e08ff697cb77d1",
+      "is_text": true,
+      "signals": []
+    },
+    {
+      "path": "H:\\DSOS\\app\\services\\workflows\\engine_parts\\context.py",
+      "relative_path": "app\\services\\workflows\\engine_parts\\context.py",
+      "extension": ".py",
+      "size_bytes": 636,
+      "line_count": 12,
+      "sha256_first_64k": "ba0f70208f638d9f725f76951df339000543b211f9229ff7940271a43b4aa32c",
+      "is_text": true,
+      "signals": []
+    },
+    {
+      "path": "H:\\DSOS\\app\\services\\workflows\\engine_parts\\lifecycle.py",
+      "relative_path": "app\\services\\workflows\\engine_parts\\lifecycle.py",
+      "extension": ".py",
+      "size_bytes": 11427,
+      "line_count": 394,
+      "sha256_first_64k": "84d7df064e39350dd8fb61fc24bf6bba39a7cbe59fda65393b50aa2a7c43ca83",
+      "is_text": true,
+      "signals": [
+        "backend",
+        "tracking"
+      ]
+    },
+    {
+      "path": "H:\\DSOS\\app\\services\\workflows\\engine_parts\\persistence.py",
+      "relative_path": "app\\services\\workflows\\engine_parts\\persistence.py",
+      "extension": ".py",
+      "size_bytes": 1185,
+      "line_count": 13,
+      "sha256_first_64k": "5ef6654d5b72f4618873f6da3e5ca9a21c8f28651fe2064109f2d9526c010621",
+      "is_text": true,
+      "signals": []
+    },
+    {
+      "path": "H:\\DSOS\\app\\services\\workflows\\engine_parts\\queries.py",
+      "relative_path": "app\\services\\workflows\\engine_parts\\queries.py",
+      "extension": ".py",
+      "size_bytes": 1401,
+      "line_count": 19,
+      "sha256_first_64k": "14552ebb05c5d963257f7e3677f4dea323ce4586067a02c94050392851807a23",
+      "is_text": true,
+      "signals": []
+    },
+    {
+      "path": "H:\\DSOS\\app\\services\\workflows\\engine_parts\\__init__.py",
+      "relative_path": "app\\services\\workflows\\engine_parts\\__init__.py",
+      "extension": ".py",
+      "size_bytes": 37,
+      "line_count": 2,
+      "sha256_first_64k": "1bde840a3408de51f692d078bb960b3420b5f4c9dc21f43aaf571f48b6319e18",
+      "is_text": true,
+      "signals": []
+    },
+    {
+      "path": "H:\\DSOS\\app\\utils\\logger.py",
+      "relative_path": "app\\utils\\logger.py",
+      "extension": ".py",
+      "size_bytes": 121,
+      "line_count": 6,
+      "sha256_first_64k": "cacd1b983df5fbad0d90185d1c652e41f97616093eb8f420d2500a236cda08fc",
+      "is_text": true,
+      "signals": []
+    },
+    {
+      "path": "H:\\DSOS\\backend\\requirements.txt",
+      "relative_path": "backend\\requirements.txt",
+      "extension": ".txt",
+      "size_bytes": 58,
+      "line_count": 7,
+      "sha256_first_64k": "3e09e3617e703a22606656bcad9205306a2eb08f8ff5369226434aa3c896aa84",
+      "is_text": true,
+      "signals": []
+    },
+    {
+      "path": "H:\\DSOS\\backend\\app\\main.py",
+      "relative_path": "backend\\app\\main.py",
+      "extension": ".py",
+      "size_bytes": 1551,
+      "line_count": 71,
+      "sha256_first_64k": "4002c419e3693e4a055a08a21ba30828c914a1e89bcdd541faf10d7dac56c60b",
+      "is_text": true,
+      "signals": [
+        "backend"
+      ]
+    },
+    {
+      "path": "H:\\DSOS\\backend\\app\\api\\auth_routes.py",
+      "relative_path": "backend\\app\\api\\auth_routes.py",
+      "extension": ".py",
+      "size_bytes": 1359,
+      "line_count": 43,
+      "sha256_first_64k": "a3090f6169761915d12251ead6f5d3126c33caf95f11b1d0d1f77859d49701d0",
+      "is_text": true,
+      "signals": [
+        "auth",
+        "backend",
+        "ingestion"
+      ]
+    },
+    {
+      "path": "H:\\DSOS\\backend\\app\\api\\deps.py",
+      "relative_path": "backend\\app\\api\\deps.py",
+      "extension": ".py",
+      "size_bytes": 1682,
+      "line_count": 56,
+      "sha256_first_64k": "c97915e90c7edcf91796849daf289c50e7c2232e9fb00080c900dc96001073c2",
+      "is_text": true,
+      "signals": [
+        "ingestion"
+      ]
+    },
+    {
+      "path": "H:\\DSOS\\backend\\app\\api\\routes.py",
+      "relative_path": "backend\\app\\api\\routes.py",
+      "extension": ".py",
+      "size_bytes": 0,
+      "line_count": 0,
+      "sha256_first_64k": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "is_text": true,
+      "signals": []
+    },
+    {
+      "path": "H:\\DSOS\\backend\\app\\api\\schemas.py",
+      "relative_path": "backend\\app\\api\\schemas.py",
+      "extension": ".py",
+      "size_bytes": 1520,
+      "line_count": 73,
+      "sha256_first_64k": "e446b55952b069cb072da1683083bba941754effeb11bf0e2f2d9a3fce2ad995",
+      "is_text": true,
+      "signals": []
+    },
+    {
+      "path": "H:\\DSOS\\backend\\app\\models\\models.py",
+      "relative_path": "backend\\app\\models\\models.py",
+      "extension": ".py",
+      "size_bytes": 6880,
+      "line_count": 145,
+      "sha256_first_64k": "14f85c22d5b03c38b38cdcbd2b73897ba597ba5f0276b2ccd263e2aa1f90c44c",
+      "is_text": true,
+      "signals": [
+        "ingestion"
+      ]
+    },
+    {
+      "path": "H:\\DSOS\\backend\\app\\services\\audit_service.py",
+      "relative_path": "backend\\app\\services\\audit_service.py",
+      "extension": ".py",
+      "size_bytes": 0,
+      "line_count": 0,
+      "sha256_first_64k": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "is_text": true,
+      "signals": []
+    },
+    {
+      "path": "H:\\DSOS\\backend\\app\\services\\auth_service.py",
+      "relative_path": "backend\\app\\services\\auth_service.py",
+      "extension": ".py",
+      "size_bytes": 2876,
+      "line_count": 96,
+      "sha256_first_64k": "841e6dfc9088105d1af296f3bb68fedd6306b306a3dd7eeccd31c75244f51f4b",
+      "is_text": true,
+      "signals": [
+        "auth",
+        "ingestion"
+      ]
+    },
+    {
+      "path": "H:\\DSOS\\backend\\app\\services\\department_service.py",
+      "relative_path": "backend\\app\\services\\department_service.py",
+      "extension": ".py",
+      "size_bytes": 0,
+      "line_count": 0,
+      "sha256_first_64k": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "is_text": true,
+      "signals": []
+    },
+    {
+      "path": "H:\\DSOS\\backend\\app\\services\\schedule_service.py",
+      "relative_path": "backend\\app\\services\\schedule_service.py",
+      "extension": ".py",
+      "size_bytes": 0,
+      "line_count": 0,
+      "sha256_first_64k": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "is_text": true,
+      "signals": []
+    },
+    {
+      "path": "H:\\DSOS\\backend\\app\\services\\workflow_service.py",
+      "relative_path": "backend\\app\\services\\workflow_service.py",
+      "extension": ".py",
+      "size_bytes": 0,
+      "line_count": 0,
+      "sha256_first_64k": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "is_text": true,
+      "signals": []
+    },
+    {
+      "path": "H:\\DSOS\\config\\settings.py",
+      "relative_path": "config\\settings.py",
+      "extension": ".py",
+      "size_bytes": 86,
+      "line_count": 7,
+      "sha256_first_64k": "7530f9aa32ef0b428d4706b46c70725832b7fbd7f5926250c6b11dd47cd53140",
+      "is_text": true,
+      "signals": []
+    },
+    {
+      "path": "H:\\DSOS\\docs\\architecture\\WORKING_ARCHITECTURE.md",
+      "relative_path": "docs\\architecture\\WORKING_ARCHITECTURE.md",
+      "extension": ".md",
+      "size_bytes": 999,
+      "line_count": 41,
+      "sha256_first_64k": "d0c3772f28a09050e2bb1d6b6dba512dbc970c4eb745e1707092a37c88214c3f",
+      "is_text": true,
+      "signals": [
+        "auth",
+        "backend",
+        "frontend",
+        "ingestion"
+      ]
+    },
+    {
+      "path": "H:\\DSOS\\docs\\core\\overview.md",
+      "relative_path": "docs\\core\\overview.md",
+      "extension": ".md",
+      "size_bytes": 54,
+      "line_count": 2,
+      "sha256_first_64k": "517afa18c51a1e36e62f8f6771486b712656a35860788f03545dbd12d48e1319",
+      "is_text": true,
+      "signals": []
+    },
+    {
+      "path": "H:\\DSOS\\docs\\data\\schema.md",
+      "relative_path": "docs\\data\\schema.md",
+      "extension": ".md",
+      "size_bytes": 46,
+      "line_count": 2,
+      "sha256_first_64k": "854a4705c2b6a2d2eb9e0856901b67ffce0f056126e82f6d8637a178d99112c7",
+      "is_text": true,
+      "signals": []
+    },
+    {
+      "path": "H:\\DSOS\\docs\\git\\GIT_SETUP_AND_RELEASE.md",
+      "relative_path": "docs\\git\\GIT_SETUP_AND_RELEASE.md",
+      "extension": ".md",
+      "size_bytes": 528,
+      "line_count": 34,
+      "sha256_first_64k": "d1cf4c59c2d193d214ce41728202a13891c48270a334a4246a2ab9ed8684f1b4",
+      "is_text": true,
+      "signals": [
+        "auth"
+      ]
+    },
+    {
+      "path": "H:\\DSOS\\docs\\modules\\module_template.md",
+      "relative_path": "docs\\modules\\module_template.md",
+      "extension": ".md",
+      "size_bytes": 135,
+      "line_count": 12,
+      "sha256_first_64k": "bd6f38dff128c9635100204b10401ffce9fb109d1b10cc4b406e48583a467752",
+      "is_text": true,
+      "signals": []
+    },
+    {
+      "path": "H:\\DSOS\\docs\\plan\\NEXT_PHASE_PLAN.md",
+      "relative_path": "docs\\plan\\NEXT_PHASE_PLAN.md",
+      "extension": ".md",
+      "size_bytes": 1740,
+      "line_count": 62,
+      "sha256_first_64k": "b3b409ff77f615b34cb7a9a27839e8912fddf60aa1a8b6f54a3abff45a5f148c",
+      "is_text": true,
+      "signals": [
+        "tracking"
+      ]
+    },
+    {
+      "path": "H:\\DSOS\\docs\\process\\build_process.md",
+      "relative_path": "docs\\process\\build_process.md",
+      "extension": ".md",
+      "size_bytes": 45,
+      "line_count": 2,
+      "sha256_first_64k": "dd2207d9b083386e41defa84ebc8669be6c3636796d79ad821ce6a54eb23afc0",
+      "is_text": true,
+      "signals": []
+    },
+    {
+      "path": "H:\\DSOS\\docs\\spine\\ai_orchestration.md",
+      "relative_path": "docs\\spine\\ai_orchestration.md",
+      "extension": ".md",
+      "size_bytes": 104,
+      "line_count": 14,
+      "sha256_first_64k": "24cd793af0958e5303d7794f45bd1f7ccf104f27e8816c832b4c11b2b688a9a5",
+      "is_text": true,
+      "signals": []
+    },
+    {
+      "path": "H:\\DSOS\\docs\\spine\\audit_logging.md",
+      "relative_path": "docs\\spine\\audit_logging.md",
+      "extension": ".md",
+      "size_bytes": 101,
+      "line_count": 14,
+      "sha256_first_64k": "a84c59c655b43cbc091fbaeee7da3d61b07dcd81ed1d7237d93abd92a5becd08",
+      "is_text": true,
+      "signals": []
+    },
+    {
+      "path": "H:\\DSOS\\docs\\spine\\auth_service.md",
+      "relative_path": "docs\\spine\\auth_service.md",
+      "extension": ".md",
+      "size_bytes": 100,
+      "line_count": 14,
+      "sha256_first_64k": "26b3f85897b28dff0b78d81ee4039b9a50e9837e6f81cc257f48a73b08bf86ed",
+      "is_text": true,
+      "signals": []
+    },
+    {
+      "path": "H:\\DSOS\\docs\\spine\\event_bus.md",
+      "relative_path": "docs\\spine\\event_bus.md",
+      "extension": ".md",
+      "size_bytes": 97,
+      "line_count": 14,
+      "sha256_first_64k": "f326bd131ccf474dbd4acba88a64b8414e7bb82f9578395bfccc568f2ef3f006",
+      "is_text": true,
+      "signals": []
+    },
+    {
+      "path": "H:\\DSOS\\docs\\spine\\forms_engine.md",
+      "relative_path": "docs\\spine\\forms_engine.md",
+      "extension": ".md",
+      "size_bytes": 100,
+      "line_count": 14,
+      "sha256_first_64k": "13c418091063111d7071315f1fba4097dd14aaced5535869310bcb94586c6dc6",
+      "is_text": true,
+      "signals": []
+    },
+    {
+      "path": "H:\\DSOS\\docs\\spine\\integration_gateway.md",
+      "relative_path": "docs\\spine\\integration_gateway.md",
+      "extension": ".md",
+      "size_bytes": 107,
+      "line_count": 14,
+      "sha256_first_64k": "aab958ff6bc4b83d0d464957c49e3eb794c03fc7b7cf29c9a75dde8e7dc4152b",
+      "is_text": true,
+      "signals": []
+    },
+    {
+      "path": "H:\\DSOS\\docs\\spine\\messaging_engine.md",
+      "relative_path": "docs\\spine\\messaging_engine.md",
+      "extension": ".md",
+      "size_bytes": 104,
+      "line_count": 14,
+      "sha256_first_64k": "04c8d13635cb4d1e9bd37f030b9355de6572a57c3662dbf606e71c7d5720805a",
+      "is_text": true,
+      "signals": []
+    },
+    {
+      "path": "H:\\DSOS\\docs\\spine\\reminder_engine.md",
+      "relative_path": "docs\\spine\\reminder_engine.md",
+      "extension": ".md",
+      "size_bytes": 103,
+      "line_count": 14,
+      "sha256_first_64k": "10592c6d5b7fd71313f0832ebd868493237ef6bdea1f4df986c88505a5fbac86",
+      "is_text": true,
+      "signals": []
+    },
+    {
+      "path": "H:\\DSOS\\docs\\spine\\reporting_engine.md",
+      "relative_path": "docs\\spine\\reporting_engine.md",
+      "extension": ".md",
+      "size_bytes": 104,
+      "line_count": 14,
+      "sha256_first_64k": "52d0c5f6322fd6fc33edd0441a3ff5e6b4fe45be3a843328f603c7f079dc473d",
+      "is_text": true,
+      "signals": []
+    },
+    {
+      "path": "H:\\DSOS\\docs\\spine\\services.md",
+      "relative_path": "docs\\spine\\services.md",
+      "extension": ".md",
+      "size_bytes": 309,
+      "line_count": 20,
+      "sha256_first_64k": "e5089e88a73b4cb6910383c749053637d5e923a770c2792fe0f5348cf44bd034",
+      "is_text": true,
+      "signals": [
+        "auth",
+        "tracking"
+      ]
+    },
+    {
+      "path": "H:\\DSOS\\docs\\spine\\task_engine.md",
+      "relative_path": "docs\\spine\\task_engine.md",
+      "extension": ".md",
+      "size_bytes": 99,
+      "line_count": 14,
+      "sha256_first_64k": "30e9bb5a6383aa0b4e86e5d0097f81112e4e0f63a99c88443a51d9f93132c9de",
+      "is_text": true,
+      "signals": []
+    },
+    {
+      "path": "H:\\DSOS\\docs\\spine\\workflow_engine.md",
+      "relative_path": "docs\\spine\\workflow_engine.md",
+      "extension": ".md",
+      "size_bytes": 103,
+      "line_count": 14,
+      "sha256_first_64k": "801b7a0e7e7ff7ffb3c9e895e9316e20ba6c613d0fc33c866c9e3fc0f1d78d60",
+      "is_text": true,
+      "signals": []
+    },
+    {
+      "path": "H:\\DSOS\\docs\\status\\CURRENT_STATE.md",
+      "relative_path": "docs\\status\\CURRENT_STATE.md",
+      "extension": ".md",
+      "size_bytes": 1849,
+      "line_count": 74,
+      "sha256_first_64k": "1207afdcf5afefc3b9b4de82db94c799f5ad17e075b4de4bf11d85bf7c1cf88c",
+      "is_text": true,
+      "signals": [
+        "auth",
+        "backend",
+        "frontend"
+      ]
+    },
+    {
+      "path": "H:\\DSOS\\docs\\testing\\SMOKE_TEST_CHECKLIST.md",
+      "relative_path": "docs\\testing\\SMOKE_TEST_CHECKLIST.md",
+      "extension": ".md",
+      "size_bytes": 508,
+      "line_count": 29,
+      "sha256_first_64k": "c87c9d8fcaa57c3114f960ad526b220d3e87b685a2d440537c7f86bd479f8e35",
+      "is_text": true,
+      "signals": [
+        "auth",
+        "backend"
+      ]
+    },
+    {
+      "path": "H:\\DSOS\\dsos_replacements\\BUILD_NOTES.md",
+      "relative_path": "dsos_replacements\\BUILD_NOTES.md",
+      "extension": ".md",
+      "size_bytes": 2397,
+      "line_count": 47,
+      "sha256_first_64k": "5e3f72455eab1d6e6d68fa3aeeb2be1836ba2e9f69ed1cc7de32f8f2335818d9",
+      "is_text": true,
+      "signals": [
+        "auth",
+        "frontend",
+        "tracking"
+      ]
+    },
+    {
+      "path": "H:\\DSOS\\dsos_replacements\\app\\main.py",
+      "relative_path": "dsos_replacements\\app\\main.py",
+      "extension": ".py",
+      "size_bytes": 1626,
+      "line_count": 72,
+      "sha256_first_64k": "12982bc09403a8b9052649fd9beb5106babf6d8d78e3a4f541cbd7a41f250701",
+      "is_text": true,
+      "signals": [
+        "backend"
+      ]
+    },
+    {
+      "path": "H:\\DSOS\\dsos_replacements\\app\\api\\routes.py",
+      "relative_path": "dsos_replacements\\app\\api\\routes.py",
+      "extension": ".py",
+      "size_bytes": 17523,
+      "line_count": 506,
+      "sha256_first_64k": "8dc4f68ee2a308139d7d5cf00391094f32934d657cd7bef161699528c32ebea3",
+      "is_text": true,
+      "signals": [
+        "auth",
+        "backend",
+        "tracking"
+      ]
+    },
+    {
+      "path": "H:\\DSOS\\dsos_replacements\\app\\api\\schemas.py",
+      "relative_path": "dsos_replacements\\app\\api\\schemas.py",
+      "extension": ".py",
+      "size_bytes": 1712,
+      "line_count": 81,
+      "sha256_first_64k": "83bf9a6863b2d7876f87b525b437d0a0d1789f00f4ca7e938a3412c5e3984a6d",
+      "is_text": true,
+      "signals": []
+    },
+    {
+      "path": "H:\\DSOS\\dsos_replacements\\app\\db\\session.py",
+      "relative_path": "dsos_replacements\\app\\db\\session.py",
+      "extension": ".py",
+      "size_bytes": 2118,
+      "line_count": 52,
+      "sha256_first_64k": "1cfc5f80005947c08dc372c72d18bc2fa991ce59051eee7ba4f67d520c3db5f0",
+      "is_text": true,
+      "signals": [
+        "ingestion"
+      ]
+    },
+    {
+      "path": "H:\\DSOS\\dsos_replacements\\app\\services\\audit_service.py",
+      "relative_path": "dsos_replacements\\app\\services\\audit_service.py",
+      "extension": ".py",
+      "size_bytes": 2217,
+      "line_count": 81,
+      "sha256_first_64k": "aa3f3581b30edfc6e14e8c697aef2d433fc0b34ae229f1931e7a763ba01ebf4b",
+      "is_text": true,
+      "signals": [
+        "tracking"
+      ]
+    },
+    {
+      "path": "H:\\DSOS\\dsos_replacements\\app\\services\\messaging_service.py",
+      "relative_path": "dsos_replacements\\app\\services\\messaging_service.py",
+      "extension": ".py",
+      "size_bytes": 3653,
+      "line_count": 134,
+      "sha256_first_64k": "bec1e5ea523f7e5438ab7ee965cf029264921c1df54fb4f7cc0363ace70da686",
+      "is_text": true,
+      "signals": []
+    },
+    {
+      "path": "H:\\DSOS\\dsos_replacements\\app\\services\\schedule_service.py",
+      "relative_path": "dsos_replacements\\app\\services\\schedule_service.py",
+      "extension": ".py",
+      "size_bytes": 11650,
+      "line_count": 354,
+      "sha256_first_64k": "3b9c6102f4be7517223632e46d2350bdcf5dedb7f01e19dc727bb6790220493a",
+      "is_text": true,
+      "signals": []
+    },
+    {
+      "path": "H:\\DSOS\\dsos_replacements\\app\\services\\task_service.py",
+      "relative_path": "dsos_replacements\\app\\services\\task_service.py",
+      "extension": ".py",
+      "size_bytes": 1198,
+      "line_count": 43,
+      "sha256_first_64k": "890d2f52adec8274119113f1262e8ef9ebbdd76911fad45dd2cb708dba4da966",
+      "is_text": true,
+      "signals": []
+    },
+    {
+      "path": "H:\\DSOS\\dsos_replacements\\app\\services\\workflow_service.py",
+      "relative_path": "dsos_replacements\\app\\services\\workflow_service.py",
+      "extension": ".py",
+      "size_bytes": 3990,
+      "line_count": 140,
+      "sha256_first_64k": "109bdf9733ae6da6576e8674a6f0b5c931999f2ead8fcb6b1e458a74e8993459",
+      "is_text": true,
+      "signals": []
+    },
+    {
+      "path": "H:\\DSOS\\dsos_replacements\\src\\App.jsx",
+      "relative_path": "dsos_replacements\\src\\App.jsx",
+      "extension": ".jsx",
+      "size_bytes": 2701,
+      "line_count": 83,
+      "sha256_first_64k": "84cefcfe44c7f4edc4e37879d3cc79b3aa2abe1182da8f27a9ec1786903f7238",
+      "is_text": true,
+      "signals": [
+        "frontend",
+        "tracking"
+      ]
+    },
+    {
+      "path": "H:\\DSOS\\dsos_replacements\\src\\styles.css",
+      "relative_path": "dsos_replacements\\src\\styles.css",
+      "extension": ".css",
+      "size_bytes": 6196,
+      "line_count": 372,
+      "sha256_first_64k": "8984fa95daa49ca799c8068ed647482970a7ec4948c5d862740063d658c194da",
+      "is_text": true,
+      "signals": [
+        "tracking"
+      ]
+    },
+    {
+      "path": "H:\\DSOS\\dsos_replacements\\src\\lib\\api.js",
+      "relative_path": "dsos_replacements\\src\\lib\\api.js",
+      "extension": ".js",
+      "size_bytes": 1899,
+      "line_count": 63,
+      "sha256_first_64k": "f852e53828f6d8a8ff9c4dfaeaa652f77356c170f3bb3bbd62b91daef4f58c96",
+      "is_text": true,
+      "signals": [
+        "auth",
+        "backend",
+        "ingestion",
+        "tracking"
+      ]
+    },
+    {
+      "path": "H:\\DSOS\\dsos_replacements\\src\\pages\\AuditPage.jsx",
+      "relative_path": "dsos_replacements\\src\\pages\\AuditPage.jsx",
+      "extension": ".jsx",
+      "size_bytes": 4500,
+      "line_count": 116,
+      "sha256_first_64k": "99d00e7699beb0da2c7cc409e20b7f8b7f88cbb64d1f424fa0a3cb0dd229b8eb",
+      "is_text": true,
+      "signals": [
+        "backend",
+        "frontend",
+        "tracking"
+      ]
+    },
+    {
+      "path": "H:\\DSOS\\dsos_replacements\\src\\pages\\DashboardPage.jsx",
+      "relative_path": "dsos_replacements\\src\\pages\\DashboardPage.jsx",
+      "extension": ".jsx",
+      "size_bytes": 2901,
+      "line_count": 63,
+      "sha256_first_64k": "5b8b148ac5c8d3202f4bcc20bb6caac5d551ef326214d15e2af4834b4513e4ef",
+      "is_text": true,
+      "signals": [
+        "backend",
+        "tracking"
+      ]
+    },
+    {
+      "path": "H:\\DSOS\\dsos_replacements\\src\\pages\\SchedulesPage.jsx",
+      "relative_path": "dsos_replacements\\src\\pages\\SchedulesPage.jsx",
+      "extension": ".jsx",
+      "size_bytes": 8268,
+      "line_count": 250,
+      "sha256_first_64k": "386a3eff6d5e30440dddc70f0325c9325eeadd53258b648b840548f1426c530c",
+      "is_text": true,
+      "signals": [
+        "backend",
+        "frontend"
+      ]
+    },
+    {
+      "path": "H:\\DSOS\\events\\events.json",
+      "relative_path": "events\\events.json",
+      "extension": ".json",
+      "size_bytes": 519,
+      "line_count": 38,
+      "sha256_first_64k": "117e0a9fa9ba18d7c2fa7fd51596fd3b18b0c3d44da7aae62285c4ea7494dfb8",
+      "is_text": true,
+      "signals": []
+    },
+    {
+      "path": "H:\\DSOS\\events\\event_registry.md",
+      "relative_path": "events\\event_registry.md",
+      "extension": ".md",
+      "size_bytes": 116,
+      "line_count": 8,
+      "sha256_first_64k": "8360249b3a41ef33b83f5ed7196da428bd57730591bcac5268056093ee538b1a",
+      "is_text": true,
+      "signals": []
+    },
+    {
+      "path": "H:\\DSOS\\flows\\scheduling_flow.md",
+      "relative_path": "flows\\scheduling_flow.md",
+      "extension": ".md",
+      "size_bytes": 275,
+      "line_count": 12,
+      "sha256_first_64k": "52fc7e4456da900c883297e6c4d5a575a9a1d5866c0a44a6b66d458487d606a6",
+      "is_text": true,
+      "signals": [
+        "tracking"
+      ]
+    },
+    {
+      "path": "H:\\DSOS\\frontend\\src\\App.jsx",
+      "relative_path": "frontend\\src\\App.jsx",
+      "extension": ".jsx",
+      "size_bytes": 2346,
+      "line_count": 72,
+      "sha256_first_64k": "43d2726106bcbe26ba85d5d154cbe3ef67f55bef611068335354b9334d8e6816",
+      "is_text": true,
+      "signals": [
+        "frontend"
+      ]
+    },
+    {
+      "path": "H:\\DSOS\\frontend\\src\\main.jsx",
+      "relative_path": "frontend\\src\\main.jsx",
+      "extension": ".jsx",
+      "size_bytes": 421,
+      "line_count": 17,
+      "sha256_first_64k": "0a3a14c5eb81a47d35e3e64d36b2e1c37a9e6ca9120a84ed50e8a8133d0bd607",
+      "is_text": true,
+      "signals": [
+        "frontend"
+      ]
+    },
+    {
+      "path": "H:\\DSOS\\frontend\\src\\components\\ProtectedRoute.jsx",
+      "relative_path": "frontend\\src\\components\\ProtectedRoute.jsx",
+      "extension": ".jsx",
+      "size_bytes": 329,
+      "line_count": 11,
+      "sha256_first_64k": "f71a0b4e19c7c066388b84ffdf49cd50bc33ac590e4d8485a781610b41150abe",
+      "is_text": true,
+      "signals": [
+        "frontend"
+      ]
+    },
+    {
+      "path": "H:\\DSOS\\frontend\\src\\context\\AuthContext.jsx",
+      "relative_path": "frontend\\src\\context\\AuthContext.jsx",
+      "extension": ".jsx",
+      "size_bytes": 1338,
+      "line_count": 54,
+      "sha256_first_64k": "5be3b15a511504fec62111f185d024dfa6e33a2246177b819224b8e3ba2e6bc3",
+      "is_text": true,
+      "signals": [
+        "backend",
+        "frontend",
+        "ingestion"
+      ]
+    },
+    {
+      "path": "H:\\DSOS\\frontend\\src\\lib\\api.js",
+      "relative_path": "frontend\\src\\lib\\api.js",
+      "extension": ".js",
+      "size_bytes": 1421,
+      "line_count": 51,
+      "sha256_first_64k": "4921008bd925e759c7a8ab9ff7cf77b48a77a454efcd22b2d1fcd134a4ef4dd3",
+      "is_text": true,
+      "signals": [
+        "auth",
+        "backend",
+        "ingestion"
+      ]
+    },
+    {
+      "path": "H:\\DSOS\\frontend\\src\\pages\\ApprovalsPage.jsx",
+      "relative_path": "frontend\\src\\pages\\ApprovalsPage.jsx",
+      "extension": ".jsx",
+      "size_bytes": 0,
+      "line_count": 0,
+      "sha256_first_64k": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "is_text": true,
+      "signals": []
+    },
+    {
+      "path": "H:\\DSOS\\frontend\\src\\pages\\AuditPage.jsx",
+      "relative_path": "frontend\\src\\pages\\AuditPage.jsx",
+      "extension": ".jsx",
+      "size_bytes": 0,
+      "line_count": 0,
+      "sha256_first_64k": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "is_text": true,
+      "signals": []
+    },
+    {
+      "path": "H:\\DSOS\\frontend\\src\\pages\\DepartmentsPage.jsx",
+      "relative_path": "frontend\\src\\pages\\DepartmentsPage.jsx",
+      "extension": ".jsx",
+      "size_bytes": 0,
+      "line_count": 0,
+      "sha256_first_64k": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "is_text": true,
+      "signals": []
+    },
+    {
+      "path": "H:\\DSOS\\frontend\\src\\pages\\LoginPage.jsx",
+      "relative_path": "frontend\\src\\pages\\LoginPage.jsx",
+      "extension": ".jsx",
+      "size_bytes": 1886,
+      "line_count": 52,
+      "sha256_first_64k": "0370297a77d1e575aa716adbae65b6dae5dfffb969bf5b5b2176867dfc52db61",
+      "is_text": true,
+      "signals": [
+        "frontend"
+      ]
+    },
+    {
+      "path": "H:\\DSOS\\registry\\events.json",
+      "relative_path": "registry\\events.json",
+      "extension": ".json",
+      "size_bytes": 109,
+      "line_count": 8,
+      "sha256_first_64k": "22f7d34868c645cbf677d168fa8d754cd90ec47e83314917c4629f99bc1d3bde",
+      "is_text": true,
+      "signals": []
+    },
+    {
+      "path": "H:\\DSOS\\registry\\modules.json",
+      "relative_path": "registry\\modules.json",
+      "extension": ".json",
+      "size_bytes": 94,
+      "line_count": 7,
+      "sha256_first_64k": "cf02c51e2848960057590bf71a3f3a261115ce6aea3ecb803bb5cb0aebb84df0",
+      "is_text": true,
+      "signals": []
+    },
+    {
+      "path": "H:\\DSOS\\runtime\\runtime.md",
+      "relative_path": "runtime\\runtime.md",
+      "extension": ".md",
+      "size_bytes": 115,
+      "line_count": 10,
+      "sha256_first_64k": "036703b4d04d528bb391d93a6332d7972e821c25ecfd8be72b01bf79229adb40",
+      "is_text": true,
+      "signals": [
+        "auth",
+        "backend"
+      ]
+    },
+    {
+      "path": "H:\\DSOS\\schemas\\core.sql",
+      "relative_path": "schemas\\core.sql",
+      "extension": ".sql",
+      "size_bytes": 1356,
+      "line_count": 85,
+      "sha256_first_64k": "abf94ace4b7b6f69347c9ff334afcfee515679a1222aabfb10f419746758f96b",
+      "is_text": true,
+      "signals": [
+        "tracking"
+      ]
+    },
+    {
+      "path": "H:\\DSOS\\schemas\\core_tables.md",
+      "relative_path": "schemas\\core_tables.md",
+      "extension": ".md",
+      "size_bytes": 55,
+      "line_count": 9,
+      "sha256_first_64k": "adb2010d56c65c51c12f40bf624f6c9b7283ad3eaf56fc2cb90979fd37575cf4",
+      "is_text": true,
+      "signals": []
+    },
+    {
+      "path": "H:\\DSOS\\scripts\\build_map.py",
+      "relative_path": "scripts\\build_map.py",
+      "extension": ".py",
+      "size_bytes": 581,
+      "line_count": 27,
+      "sha256_first_64k": "132576245a3958974f5be55adfc962f32c15f3174cc1e533841eb2615e93121e",
+      "is_text": true,
+      "signals": [
+        "tracking"
+      ]
+    },
+    {
+      "path": "H:\\DSOS\\scripts\\update_progress.py",
+      "relative_path": "scripts\\update_progress.py",
+      "extension": ".py",
+      "size_bytes": 2263,
+      "line_count": 71,
+      "sha256_first_64k": "1520a6ff75e846445df50f4614bbaf405d66843abb61cfa666d5584b5b8b24c2",
+      "is_text": true,
+      "signals": [
+        "tracking"
+      ]
+    },
+    {
+      "path": "H:\\DSOS\\spine\\ai\\ai.md",
+      "relative_path": "spine\\ai\\ai.md",
+      "extension": ".md",
+      "size_bytes": 276,
+      "line_count": 29,
+      "sha256_first_64k": "418a5bf2c43879a40d4730c889b8ff2026cb81385a551c52e167a133d17892a9",
+      "is_text": true,
+      "signals": [
+        "ai",
+        "backend",
+        "tracking"
+      ]
+    },
+    {
+      "path": "H:\\DSOS\\spine\\ai\\ai_service.md",
+      "relative_path": "spine\\ai\\ai_service.md",
+      "extension": ".md",
+      "size_bytes": 307,
+      "line_count": 26,
+      "sha256_first_64k": "4d088796ace808d3bb52ff8e6c42067776664ecc4024b5e826ca5105c5110353",
+      "is_text": true,
+      "signals": [
+        "backend"
+      ]
+    },
+    {
+      "path": "H:\\DSOS\\spine\\audit\\audit.md",
+      "relative_path": "spine\\audit\\audit.md",
+      "extension": ".md",
+      "size_bytes": 270,
+      "line_count": 29,
+      "sha256_first_64k": "4d92b0026ed3fd826c16f5b51aa781e9673a441d360befe37336a73e4252f5df",
+      "is_text": true,
+      "signals": [
+        "backend",
+        "tracking"
+      ]
+    },
+    {
+      "path": "H:\\DSOS\\spine\\audit\\audit_service.md",
+      "relative_path": "spine\\audit\\audit_service.md",
+      "extension": ".md",
+      "size_bytes": 302,
+      "line_count": 26,
+      "sha256_first_64k": "78d8336aad7f391214390ce1796fe6d729a1f8b2cceec7b7dadf3c382c280f71",
+      "is_text": true,
+      "signals": [
+        "backend",
+        "tracking"
+      ]
+    },
+    {
+      "path": "H:\\DSOS\\spine\\auth\\auth.md",
+      "relative_path": "spine\\auth\\auth.md",
+      "extension": ".md",
+      "size_bytes": 319,
+      "line_count": 29,
+      "sha256_first_64k": "fb667317b8dfd3146db5618faea45e83d6e469d49a87a11c3c13b11e0cfef958",
+      "is_text": true,
+      "signals": [
+        "auth",
+        "backend",
+        "ingestion",
+        "tracking"
+      ]
+    },
+    {
+      "path": "H:\\DSOS\\spine\\auth\\auth_service.md",
+      "relative_path": "spine\\auth\\auth_service.md",
+      "extension": ".md",
+      "size_bytes": 317,
+      "line_count": 26,
+      "sha256_first_64k": "936152fde688e63dd2e1a21a335f1d909776afd7db23e120d2b6571d7faf2568",
+      "is_text": true,
+      "signals": [
+        "auth",
+        "backend"
+      ]
+    },
+    {
+      "path": "H:\\DSOS\\spine\\event_bus\\event_bus.md",
+      "relative_path": "spine\\event_bus\\event_bus.md",
+      "extension": ".md",
+      "size_bytes": 294,
+      "line_count": 29,
+      "sha256_first_64k": "5bcecad041011e85503adb0b69b2ef7287875e29c3251ee477374c889bb63cf6",
+      "is_text": true,
+      "signals": [
+        "backend",
+        "tracking"
+      ]
+    },
+    {
+      "path": "H:\\DSOS\\spine\\event_bus\\event_bus_service.md",
+      "relative_path": "spine\\event_bus\\event_bus_service.md",
+      "extension": ".md",
+      "size_bytes": 317,
+      "line_count": 26,
+      "sha256_first_64k": "5e3ae8b636245ecc1f09d4f8d15e760f09316ef02d169ed7be21f868906d1e15",
+      "is_text": true,
+      "signals": [
+        "backend"
+      ]
+    },
+    {
+      "path": "H:\\DSOS\\spine\\forms\\forms.md",
+      "relative_path": "spine\\forms\\forms.md",
+      "extension": ".md",
+      "size_bytes": 284,
+      "line_count": 29,
+      "sha256_first_64k": "d714c15805245965147ad1f54baa5ae08bbb81fdc535c0aa77bb2b7eff2e0183",
+      "is_text": true,
+      "signals": [
+        "backend",
+        "tracking"
+      ]
+    },
+    {
+      "path": "H:\\DSOS\\spine\\forms\\forms_service.md",
+      "relative_path": "spine\\forms\\forms_service.md",
+      "extension": ".md",
+      "size_bytes": 311,
+      "line_count": 26,
+      "sha256_first_64k": "394c0cbecc633001b86cc28b67dbd0ecd8d8d4714d07730a136b56c27563d842",
+      "is_text": true,
+      "signals": [
+        "backend"
+      ]
+    },
+    {
+      "path": "H:\\DSOS\\spine\\integration\\integration.md",
+      "relative_path": "spine\\integration\\integration.md",
+      "extension": ".md",
+      "size_bytes": 294,
+      "line_count": 29,
+      "sha256_first_64k": "ef020a7ffbc84c5ed05636d9059f9d7148aec190efb95ac27ab0676c04a185a0",
+      "is_text": true,
+      "signals": [
+        "ai",
+        "backend",
+        "tracking"
+      ]
+    },
+    {
+      "path": "H:\\DSOS\\spine\\integration\\integration_service.md",
+      "relative_path": "spine\\integration\\integration_service.md",
+      "extension": ".md",
+      "size_bytes": 316,
+      "line_count": 26,
+      "sha256_first_64k": "d139d96e38f47bd24b55f21d0cc8496a4404096f2a24c0711dbbfcb34f108fb8",
+      "is_text": true,
+      "signals": [
+        "backend"
+      ]
+    },
+    {
+      "path": "H:\\DSOS\\spine\\messaging\\messaging.md",
+      "relative_path": "spine\\messaging\\messaging.md",
+      "extension": ".md",
+      "size_bytes": 325,
+      "line_count": 29,
+      "sha256_first_64k": "48a6ee14d84825344f3c1b168fc43fc183b0f32fa705118388430f45a9694c93",
+      "is_text": true,
+      "signals": [
+        "backend",
+        "tracking"
+      ]
+    },
+    {
+      "path": "H:\\DSOS\\spine\\messaging\\messaging_service.md",
+      "relative_path": "spine\\messaging\\messaging_service.md",
+      "extension": ".md",
+      "size_bytes": 309,
+      "line_count": 26,
+      "sha256_first_64k": "00511e906e99c41fbb8845315445406a28e628841fa8e64544d90308623faf31",
+      "is_text": true,
+      "signals": [
+        "backend"
+      ]
+    },
+    {
+      "path": "H:\\DSOS\\spine\\reminder\\reminder.md",
+      "relative_path": "spine\\reminder\\reminder.md",
+      "extension": ".md",
+      "size_bytes": 325,
+      "line_count": 29,
+      "sha256_first_64k": "366d55126201be89a4d602fa42c3d3043ad04b37702c59b5f88de5126f27437a",
+      "is_text": true,
+      "signals": [
+        "backend",
+        "tracking"
+      ]
+    },
+    {
+      "path": "H:\\DSOS\\spine\\reminder\\reminder_service.md",
+      "relative_path": "spine\\reminder\\reminder_service.md",
+      "extension": ".md",
+      "size_bytes": 316,
+      "line_count": 26,
+      "sha256_first_64k": "3d737710e49224edb44a3fd5365f2822e91e2d5830e7d0e1bcbda66c177a6dfd",
+      "is_text": true,
+      "signals": [
+        "backend"
+      ]
+    },
+    {
+      "path": "H:\\DSOS\\spine\\reporting\\reporting.md",
+      "relative_path": "spine\\reporting\\reporting.md",
+      "extension": ".md",
+      "size_bytes": 271,
+      "line_count": 29,
+      "sha256_first_64k": "ea2530c67e2ef8f78958cbe9312c6b972492dd5ac1b6fbbb5768f95ff3e1de7e",
+      "is_text": true,
+      "signals": [
+        "backend",
+        "tracking"
+      ]
+    },
+    {
+      "path": "H:\\DSOS\\spine\\reporting\\reporting_service.md",
+      "relative_path": "spine\\reporting\\reporting_service.md",
+      "extension": ".md",
+      "size_bytes": 308,
+      "line_count": 26,
+      "sha256_first_64k": "18bb7399ee289dec934fb9663251d5d6301e803e092882005b81f98222975720",
+      "is_text": true,
+      "signals": [
+        "backend"
+      ]
+    },
+    {
+      "path": "H:\\DSOS\\spine\\task\\task.md",
+      "relative_path": "spine\\task\\task.md",
+      "extension": ".md",
+      "size_bytes": 301,
+      "line_count": 29,
+      "sha256_first_64k": "a4333304d95db333ee225f2fcda45f17a232b0db571f79c8e48b05c8ff0851c8",
+      "is_text": true,
+      "signals": [
+        "backend",
+        "tracking"
+      ]
+    },
+    {
+      "path": "H:\\DSOS\\spine\\task\\task_service.md",
+      "relative_path": "spine\\task\\task_service.md",
+      "extension": ".md",
+      "size_bytes": 306,
+      "line_count": 26,
+      "sha256_first_64k": "79359858bfb08198051a745c8fafbbc94ec2f897e33c52253483c69e33549fcd",
+      "is_text": true,
+      "signals": [
+        "backend"
+      ]
+    },
+    {
+      "path": "H:\\DSOS\\spine\\workflow\\workflow.md",
+      "relative_path": "spine\\workflow\\workflow.md",
+      "extension": ".md",
+      "size_bytes": 314,
+      "line_count": 29,
+      "sha256_first_64k": "916898017d1dff79e9cba9161102f9ac77d0fcb8df5a2ddc9b3ca306ca6d5446",
+      "is_text": true,
+      "signals": [
+        "backend",
+        "tracking"
+      ]
+    },
+    {
+      "path": "H:\\DSOS\\spine\\workflow\\workflow_service.md",
+      "relative_path": "spine\\workflow\\workflow_service.md",
+      "extension": ".md",
+      "size_bytes": 321,
+      "line_count": 26,
+      "sha256_first_64k": "4b6d0d0e418339d068d4badba7563696f7bbcc36168497a1f4056f3e86b5cbae",
+      "is_text": true,
+      "signals": [
+        "backend"
+      ]
+    },
+    {
+      "path": "H:\\DSOS\\src\\App.jsx",
+      "relative_path": "src\\App.jsx",
+      "extension": ".jsx",
+      "size_bytes": 3352,
+      "line_count": 106,
+      "sha256_first_64k": "d4ff358f49969747dc47c912f9861ab74b3fc1de1f4e17f4887d5a16704bd490",
+      "is_text": true,
+      "signals": [
+        "frontend",
+        "tracking"
+      ]
+    },
+    {
+      "path": "H:\\DSOS\\src\\main.jsx",
+      "relative_path": "src\\main.jsx",
+      "extension": ".jsx",
+      "size_bytes": 420,
+      "line_count": 16,
+      "sha256_first_64k": "e0da3d2cefc87b1d8018a97c0c2c25bf9816438b21d94afa7c8c45d9d44b5e9e",
+      "is_text": true,
+      "signals": [
+        "frontend"
+      ]
+    },
+    {
+      "path": "H:\\DSOS\\src\\styles.css",
+      "relative_path": "src\\styles.css",
+      "extension": ".css",
+      "size_bytes": 6822,
+      "line_count": 457,
+      "sha256_first_64k": "c7a8fb4b0cd41600a350d971be7cff283c0045aab2f7e1f7ecda693e2e3641be",
+      "is_text": true,
+      "signals": []
+    },
+    {
+      "path": "H:\\DSOS\\src\\components\\DataState.jsx",
+      "relative_path": "src\\components\\DataState.jsx",
+      "extension": ".jsx",
+      "size_bytes": 309,
+      "line_count": 7,
+      "sha256_first_64k": "38eaf6beee54a4ff2d536646160188454531b8118a23549c35ade3f500344f27",
+      "is_text": true,
+      "signals": []
+    },
+    {
+      "path": "H:\\DSOS\\src\\components\\PageHeader.jsx",
+      "relative_path": "src\\components\\PageHeader.jsx",
+      "extension": ".jsx",
+      "size_bytes": 296,
+      "line_count": 12,
+      "sha256_first_64k": "9135a165a6203330a18a52172c20dc36a585997dd05972af13228e674596ea4c",
+      "is_text": true,
+      "signals": []
+    },
+    {
+      "path": "H:\\DSOS\\src\\components\\ProtectedRoute.jsx",
+      "relative_path": "src\\components\\ProtectedRoute.jsx",
+      "extension": ".jsx",
+      "size_bytes": 337,
+      "line_count": 10,
+      "sha256_first_64k": "6a627126b4afde3184efd58b6df889cb8fd0158177103848bf6b8297c97e5989",
+      "is_text": true,
+      "signals": [
+        "frontend"
+      ]
+    },
+    {
+      "path": "H:\\DSOS\\src\\components\\StatCard.jsx",
+      "relative_path": "src\\components\\StatCard.jsx",
+      "extension": ".jsx",
+      "size_bytes": 282,
+      "line_count": 10,
+      "sha256_first_64k": "2ef6cc22c78f5ebb858a50c36be49cc47db757de57bbec5d0c4f4a86099651b3",
+      "is_text": true,
+      "signals": []
+    },
+    {
+      "path": "H:\\DSOS\\src\\components\\malone\\AgentRunPanel.jsx",
+      "relative_path": "src\\components\\malone\\AgentRunPanel.jsx",
+      "extension": ".jsx",
+      "size_bytes": 565,
+      "line_count": 18,
+      "sha256_first_64k": "caea1f09afa7dea11d3eaa3a0a714495f3bcc220c77e367151b8a59a844ac36f",
+      "is_text": true,
+      "signals": []
+    },
+    {
+      "path": "H:\\DSOS\\src\\components\\malone\\ChatPanel.jsx",
+      "relative_path": "src\\components\\malone\\ChatPanel.jsx",
+      "extension": ".jsx",
+      "size_bytes": 1922,
+      "line_count": 77,
+      "sha256_first_64k": "e283d213f8a521ba0f4fa26ca5cc226559b190da4e4af6c67a840c902a8c4443",
+      "is_text": true,
+      "signals": [
+        "frontend"
+      ]
+    },
+    {
+      "path": "H:\\DSOS\\src\\components\\malone\\ProposalPanel.jsx",
+      "relative_path": "src\\components\\malone\\ProposalPanel.jsx",
+      "extension": ".jsx",
+      "size_bytes": 4090,
+      "line_count": 139,
+      "sha256_first_64k": "188d707488c7b428f2f473b11ad80a99ba6525edf88f73dcdc5fdd7b3c6246e7",
+      "is_text": true,
+      "signals": [
+        "ingestion"
+      ]
+    },
+    {
+      "path": "H:\\DSOS\\src\\components\\malone\\VoiceInputButton.jsx",
+      "relative_path": "src\\components\\malone\\VoiceInputButton.jsx",
+      "extension": ".jsx",
+      "size_bytes": 184,
+      "line_count": 8,
+      "sha256_first_64k": "f958758625e51228c2e81481e7f5a1d237c62de2dcf90dd86179c0679be31402",
+      "is_text": true,
+      "signals": []
+    },
+    {
+      "path": "H:\\DSOS\\src\\context\\AuthContext.jsx",
+      "relative_path": "src\\context\\AuthContext.jsx",
+      "extension": ".jsx",
+      "size_bytes": 1389,
+      "line_count": 53,
+      "sha256_first_64k": "4f452c43c4e78505e26ff65f7ad34eaaa4c8b6ec12869003c65817d88c64a0c7",
+      "is_text": true,
+      "signals": [
+        "backend",
+        "frontend",
+        "ingestion"
+      ]
+    },
+    {
+      "path": "H:\\DSOS\\src\\hooks\\useAsync.js",
+      "relative_path": "src\\hooks\\useAsync.js",
+      "extension": ".js",
+      "size_bytes": 632,
+      "line_count": 29,
+      "sha256_first_64k": "1930e7abfebea5b1712da66116bcac30ec053ef7a29a44e015008321879542cd",
+      "is_text": true,
+      "signals": [
+        "frontend"
+      ]
+    },
+    {
+      "path": "H:\\DSOS\\src\\lib\\api.js",
+      "relative_path": "src\\lib\\api.js",
+      "extension": ".js",
+      "size_bytes": 4610,
+      "line_count": 191,
+      "sha256_first_64k": "9b80d73a7e8f329331ed1ec8bae4b8cc97673cd59e5f8baab1a4c0538a2aae13",
+      "is_text": true,
+      "signals": [
+        "auth",
+        "backend",
+        "ingestion",
+        "tracking"
+      ]
+    },
+    {
+      "path": "H:\\DSOS\\src\\lib\\date.js",
+      "relative_path": "src\\lib\\date.js",
+      "extension": ".js",
+      "size_bytes": 837,
+      "line_count": 36,
+      "sha256_first_64k": "033ead6ca61a8965d1aaa814367b4ceb9c3ecc268b7b06c635ed2daabeea8318",
+      "is_text": true,
+      "signals": []
+    },
+    {
+      "path": "H:\\DSOS\\src\\lib\\maloneApi.js",
+      "relative_path": "src\\lib\\maloneApi.js",
+      "extension": ".js",
+      "size_bytes": 1042,
+      "line_count": 45,
+      "sha256_first_64k": "c348c554b5d2f44919bd48dbfd69bdece5be95c607b2c4fb252857daea8c2c30",
+      "is_text": true,
+      "signals": [
+        "backend",
+        "ingestion"
+      ]
+    },
+    {
+      "path": "H:\\DSOS\\src\\pages\\ApprovalsPage.jsx",
+      "relative_path": "src\\pages\\ApprovalsPage.jsx",
+      "extension": ".jsx",
+      "size_bytes": 1595,
+      "line_count": 58,
+      "sha256_first_64k": "07cb64e5a3195abc2293fd77d1f9e3f7f20aa049ea273084ce00939385dfa311",
+      "is_text": true,
+      "signals": [
+        "ai",
+        "backend",
+        "frontend"
+      ]
+    },
+    {
+      "path": "H:\\DSOS\\src\\pages\\AuditPage.jsx",
+      "relative_path": "src\\pages\\AuditPage.jsx",
+      "extension": ".jsx",
+      "size_bytes": 563,
+      "line_count": 22,
+      "sha256_first_64k": "26eb4b5ce532cd56c442e5e2b511ea83575d4fb69f1b5431c775ba328df63c62",
+      "is_text": true,
+      "signals": [
+        "frontend",
+        "tracking"
+      ]
+    },
+    {
+      "path": "H:\\DSOS\\src\\pages\\CalendarPage.jsx",
+      "relative_path": "src\\pages\\CalendarPage.jsx",
+      "extension": ".jsx",
+      "size_bytes": 1904,
+      "line_count": 48,
+      "sha256_first_64k": "88b391c8da3c24295478640e7d452b15c9eecbb67aaf96fb8782b2585b63a69e",
+      "is_text": true,
+      "signals": [
+        "backend",
+        "frontend"
+      ]
+    },
+    {
+      "path": "H:\\DSOS\\src\\pages\\DashboardPage.jsx",
+      "relative_path": "src\\pages\\DashboardPage.jsx",
+      "extension": ".jsx",
+      "size_bytes": 2346,
+      "line_count": 64,
+      "sha256_first_64k": "45bf576409baf28c25ddf9b001bbad4e80076f5d3d6770cc3c4baf27fb65d502",
+      "is_text": true,
+      "signals": [
+        "backend"
+      ]
+    },
+    {
+      "path": "H:\\DSOS\\src\\pages\\DepartmentsPage.jsx",
+      "relative_path": "src\\pages\\DepartmentsPage.jsx",
+      "extension": ".jsx",
+      "size_bytes": 1123,
+      "line_count": 40,
+      "sha256_first_64k": "be4bef82873359ccbf7540f796520e5860a01e102941c6130c9de043cdc241a1",
+      "is_text": true,
+      "signals": [
+        "backend",
+        "frontend"
+      ]
+    },
+    {
+      "path": "H:\\DSOS\\src\\pages\\EventsPage.jsx",
+      "relative_path": "src\\pages\\EventsPage.jsx",
+      "extension": ".jsx",
+      "size_bytes": 2562,
+      "line_count": 94,
+      "sha256_first_64k": "1f18ac46fd696d1f74342797e39f44dce8ac6a243bb0b50782ba7f9f54c5ef53",
+      "is_text": true,
+      "signals": [
+        "backend",
+        "frontend"
+      ]
+    },
+    {
+      "path": "H:\\DSOS\\src\\pages\\LoginPage.jsx",
+      "relative_path": "src\\pages\\LoginPage.jsx",
+      "extension": ".jsx",
+      "size_bytes": 1798,
+      "line_count": 65,
+      "sha256_first_64k": "8a5af751cabc3314ceac248f1d737cdac8d353cbc19a17774525e3b4ad46e6e1",
+      "is_text": true,
+      "signals": [
+        "frontend"
+      ]
+    },
+    {
+      "path": "H:\\DSOS\\src\\pages\\MalonePage.jsx",
+      "relative_path": "src\\pages\\MalonePage.jsx",
+      "extension": ".jsx",
+      "size_bytes": 1754,
+      "line_count": 65,
+      "sha256_first_64k": "a278abf582e373e96099901c9a28bf48936c0ec5cb3d1080a10eb0af0be87111",
+      "is_text": true,
+      "signals": [
+        "frontend"
+      ]
+    },
+    {
+      "path": "H:\\DSOS\\src\\pages\\MessagesPage.jsx",
+      "relative_path": "src\\pages\\MessagesPage.jsx",
+      "extension": ".jsx",
+      "size_bytes": 2588,
+      "line_count": 94,
+      "sha256_first_64k": "9024018bd3478a9f97693f61c9e6a6b536ec22f6444561d3ff5e8428ba41188d",
+      "is_text": true,
+      "signals": [
+        "backend",
+        "frontend"
+      ]
+    },
+    {
+      "path": "H:\\DSOS\\src\\pages\\SchedulesPage.jsx",
+      "relative_path": "src\\pages\\SchedulesPage.jsx",
+      "extension": ".jsx",
+      "size_bytes": 5534,
+      "line_count": 181,
+      "sha256_first_64k": "e9c505c353ab5021f3a611fda51e22b05f3ee03d942586d59753f0f432f50c7e",
+      "is_text": true,
+      "signals": [
+        "backend",
+        "frontend"
+      ]
+    },
+    {
+      "path": "H:\\DSOS\\src\\pages\\WorkflowsPage.jsx",
+      "relative_path": "src\\pages\\WorkflowsPage.jsx",
+      "extension": ".jsx",
+      "size_bytes": 2602,
+      "line_count": 94,
+      "sha256_first_64k": "ed3437e7eb40e963f24088e8867b950c275fad8fe8722c7dc44231c54bc1b5e6",
+      "is_text": true,
+      "signals": [
+        "backend",
+        "frontend"
+      ]
+    },
+    {
+      "path": "H:\\DSOS\\tests\\testing_strategy.md",
+      "relative_path": "tests\\testing_strategy.md",
+      "extension": ".md",
+      "size_bytes": 107,
+      "line_count": 6,
+      "sha256_first_64k": "e6f986b8f5e3ba05e46619a1315fb01258188da825c0596072a285e8d461d64b",
+      "is_text": true,
+      "signals": []
+    },
+    {
+      "path": "H:\\DSOS\\tests\\tests.md",
+      "relative_path": "tests\\tests.md",
+      "extension": ".md",
+      "size_bytes": 48,
+      "line_count": 2,
+      "sha256_first_64k": "2c6d8b7dec1afb4dd1c6a0dd73ca9bf8cb090c965faae6748ef0ad6530e3f553",
+      "is_text": true,
+      "signals": []
+    },
+    {
+      "path": "H:\\DSOS\\tests\\test_basic.py",
+      "relative_path": "tests\\test_basic.py",
+      "extension": ".py",
+      "size_bytes": 35,
+      "line_count": 4,
+      "sha256_first_64k": "4cf65f457b6385d6ab4e2b2b1edef828c2a4c3079d279f7c65fa353fd69089c3",
+      "is_text": true,
+      "signals": []
+    },
+    {
+      "path": "H:\\DSOS\\tests\\test_flow.py",
+      "relative_path": "tests\\test_flow.py",
+      "extension": ".py",
+      "size_bytes": 34,
+      "line_count": 4,
+      "sha256_first_64k": "22311e3ee32803213639e845eb8585a86e8c810f353bc7a50db98adce2bbd1b2",
+      "is_text": true,
+      "signals": []
+    },
+    {
+      "path": "H:\\DSOS\\tools\\malone_template_registry.json",
+      "relative_path": "tools\\malone_template_registry.json",
+      "extension": ".json",
+      "size_bytes": 1390,
+      "line_count": 40,
+      "sha256_first_64k": "3bd07a2258abe00c2725c18c2243099ad94bf4dea75aafcf30c7f1ca75f1ef43",
+      "is_text": true,
+      "signals": []
+    },
+    {
+      "path": "H:\\DSOS\\tools\\project_map_audit.py",
+      "relative_path": "tools\\project_map_audit.py",
+      "extension": ".py",
+      "size_bytes": 2383,
+      "line_count": 75,
+      "sha256_first_64k": "d1ef6c692f0549b30f188cfed33d3ed2ebc3551199006bfe99f3306692f606f3",
+      "is_text": true,
+      "signals": [
+        "backend",
+        "tracking"
+      ]
+    },
+    {
+      "path": "H:\\DSOS\\tools\\root_mapper_audit.py",
+      "relative_path": "tools\\root_mapper_audit.py",
+      "extension": ".py",
+      "size_bytes": 25230,
+      "line_count": 765,
+      "sha256_first_64k": "60e3e9dc634f61929126702aa418296df9e4403e4555a0702920daa19278ab11",
+      "is_text": true,
+      "signals": [
+        "ai",
+        "auth",
+        "backend",
+        "database",
+        "frontend",
+        "ingestion",
+        "tracking"
+      ]
+    },
+    {
+      "path": "H:\\DSOS\\tools\\scaffold_malone_phase.py",
+      "relative_path": "tools\\scaffold_malone_phase.py",
+      "extension": ".py",
+      "size_bytes": 6349,
+      "line_count": 156,
+      "sha256_first_64k": "de105b65d8040d29b39ba072c4e65fd2e30d373d50e0d6c88eee0b521db19e60",
+      "is_text": true,
+      "signals": [
+        "backend",
+        "tracking"
+      ]
+    },
+    {
+      "path": "H:\\DSOS\\tools\\scaffold_next_phase.py",
+      "relative_path": "tools\\scaffold_next_phase.py",
+      "extension": ".py",
+      "size_bytes": 3265,
+      "line_count": 103,
+      "sha256_first_64k": "fb71efaee57b6829f6cb163c63c9a555eab45f595eddd5c244d71193d7286efe",
+      "is_text": true,
+      "signals": [
+        "tracking"
+      ]
+    },
+    {
+      "path": "H:\\DSOS\\tools\\scaffold_size_audit.py",
+      "relative_path": "tools\\scaffold_size_audit.py",
+      "extension": ".py",
+      "size_bytes": 11980,
+      "line_count": 357,
+      "sha256_first_64k": "a410e6788bd84101cc49ada2cccc6e5ae1de4cfd206af12b406102da6ebe7d0f",
+      "is_text": true,
+      "signals": [
+        "tracking"
+      ]
+    },
+    {
+      "path": "H:\\DSOS\\tools\\self_verify_bootstrap.py",
+      "relative_path": "tools\\self_verify_bootstrap.py",
+      "extension": ".py",
+      "size_bytes": 2552,
+      "line_count": 80,
+      "sha256_first_64k": "7e5db337cc163bf7a6a64173dc4f039ee3cc4f67a84dbfb9a0d74b09b560bac1",
+      "is_text": true,
+      "signals": [
+        "backend",
+        "tracking"
+      ]
+    },
+    {
+      "path": "H:\\DSOS\\tools\\template_registry.json",
+      "relative_path": "tools\\template_registry.json",
+      "extension": ".json",
+      "size_bytes": 3563,
+      "line_count": 82,
+      "sha256_first_64k": "c6b663db999d3c2d68a83b1ae141951053860177c00f385c5fe560d4d10c6a67",
+      "is_text": true,
+      "signals": [
+        "auth",
+        "backend",
+        "database",
+        "tracking"
+      ]
+    },
+    {
+      "path": "H:\\DSOS\\tools\\templates\\backend\\api\\deps.py.tpl",
+      "relative_path": "tools\\templates\\backend\\api\\deps.py.tpl",
+      "extension": ".tpl",
+      "size_bytes": 781,
+      "line_count": null,
+      "sha256_first_64k": "1d5f01e88921e4c3f7d922082273d53e2c7d408e8b94428f06a865791d96ddba",
+      "is_text": false,
+      "signals": []
+    },
+    {
+      "path": "H:\\DSOS\\tools\\templates\\backend\\api\\routes.py.tpl",
+      "relative_path": "tools\\templates\\backend\\api\\routes.py.tpl",
+      "extension": ".tpl",
+      "size_bytes": 1080,
+      "line_count": null,
+      "sha256_first_64k": "9d316e6242e265eb0d63081560fd5ddc85af19a99434d1a19b90727417781393",
+      "is_text": false,
+      "signals": []
+    },
+    {
+      "path": "H:\\DSOS\\tools\\templates\\backend\\api\\schemas.py.tpl",
+      "relative_path": "tools\\templates\\backend\\api\\schemas.py.tpl",
+      "extension": ".tpl",
+      "size_bytes": 964,
+      "line_count": null,
+      "sha256_first_64k": "de7130ca674c08bbc6a586f47c2b1e65a71314de63a7702fa00cd346b2a500d1",
+      "is_text": false,
+      "signals": []
+    },
+    {
+      "path": "H:\\DSOS\\tools\\templates\\backend\\migrations\\0001_v070_department_workflow.py.tpl",
+      "relative_path": "tools\\templates\\backend\\migrations\\0001_v070_department_workflow.py.tpl",
+      "extension": ".tpl",
+      "size_bytes": 292,
+      "line_count": null,
+      "sha256_first_64k": "37bd32b8fd7e0f14996f21073db1f403f0a3a6bd71f46e4caa9c7ada6347967f",
+      "is_text": false,
+      "signals": []
+    },
+    {
+      "path": "H:\\DSOS\\tools\\templates\\backend\\migrations\\alembic.ini.tpl",
+      "relative_path": "tools\\templates\\backend\\migrations\\alembic.ini.tpl",
+      "extension": ".tpl",
+      "size_bytes": 556,
+      "line_count": null,
+      "sha256_first_64k": "26a3e65a2757e6109802fe7eea5e4c3d64d3821c2ebdc434b8d3df7fce809feb",
+      "is_text": false,
+      "signals": []
+    },
+    {
+      "path": "H:\\DSOS\\tools\\templates\\backend\\migrations\\env.py.tpl",
+      "relative_path": "tools\\templates\\backend\\migrations\\env.py.tpl",
+      "extension": ".tpl",
+      "size_bytes": 1125,
+      "line_count": null,
+      "sha256_first_64k": "8e613ce14ffaf6cbec6fbd0691cca9eae7a5217dbf511fa6fb41a3e55850c5e0",
+      "is_text": false,
+      "signals": []
+    },
+    {
+      "path": "H:\\DSOS\\tools\\templates\\backend\\services\\audit_service.py.tpl",
+      "relative_path": "tools\\templates\\backend\\services\\audit_service.py.tpl",
+      "extension": ".tpl",
+      "size_bytes": 938,
+      "line_count": null,
+      "sha256_first_64k": "2d62d8e8dc552b372bb1f8723717e16cfa4ec49536b91a4f06a2e65edd590b3a",
+      "is_text": false,
+      "signals": []
+    },
+    {
+      "path": "H:\\DSOS\\tools\\templates\\backend\\services\\department_service.py.tpl",
+      "relative_path": "tools\\templates\\backend\\services\\department_service.py.tpl",
+      "extension": ".tpl",
+      "size_bytes": 991,
+      "line_count": null,
+      "sha256_first_64k": "5e437e4c845feb90c16b0469a04423bec991225167638eac063df1949706d812",
+      "is_text": false,
+      "signals": []
+    },
+    {
+      "path": "H:\\DSOS\\tools\\templates\\backend\\services\\schedule_service.py.tpl",
+      "relative_path": "tools\\templates\\backend\\services\\schedule_service.py.tpl",
+      "extension": ".tpl",
+      "size_bytes": 1170,
+      "line_count": null,
+      "sha256_first_64k": "e92b00e3333e2ea1ef4dc67a5131ecca1d249722d56eaf61109e699b07c27e6d",
+      "is_text": false,
+      "signals": []
+    },
+    {
+      "path": "H:\\DSOS\\tools\\templates\\backend\\services\\workflow_service.py.tpl",
+      "relative_path": "tools\\templates\\backend\\services\\workflow_service.py.tpl",
+      "extension": ".tpl",
+      "size_bytes": 635,
+      "line_count": null,
+      "sha256_first_64k": "f7023f4d9981fa3cc92ddf4ff7d3663308b7800966fe0b1da5b1f1725a2a6370",
+      "is_text": false,
+      "signals": []
+    },
+    {
+      "path": "H:\\DSOS\\tools\\templates\\frontend\\context\\AuthContext.jsx.tpl",
+      "relative_path": "tools\\templates\\frontend\\context\\AuthContext.jsx.tpl",
+      "extension": ".tpl",
+      "size_bytes": 552,
+      "line_count": null,
+      "sha256_first_64k": "c9d65c3f38d5bf8a40866fc880e8a9102ac7a84a1a6f9672db04213347dbc55d",
+      "is_text": false,
+      "signals": []
+    },
+    {
+      "path": "H:\\DSOS\\tools\\templates\\frontend\\lib\\api.js.tpl",
+      "relative_path": "tools\\templates\\frontend\\lib\\api.js.tpl",
+      "extension": ".tpl",
+      "size_bytes": 963,
+      "line_count": null,
+      "sha256_first_64k": "096b30eafc36698dadea82b42fc6fe4ec7f1135ee1b1864b1c98dc2c4e77b0b0",
+      "is_text": false,
+      "signals": []
+    },
+    {
+      "path": "H:\\DSOS\\tools\\templates\\frontend\\pages\\ApprovalsPage.jsx.tpl",
+      "relative_path": "tools\\templates\\frontend\\pages\\ApprovalsPage.jsx.tpl",
+      "extension": ".tpl",
+      "size_bytes": 457,
+      "line_count": null,
+      "sha256_first_64k": "573b5bdee98aa475837847f3b624ad96cf7393430a4257bcdd58608787f5ad1f",
+      "is_text": false,
+      "signals": []
+    },
+    {
+      "path": "H:\\DSOS\\tools\\templates\\frontend\\pages\\AuditPage.jsx.tpl",
+      "relative_path": "tools\\templates\\frontend\\pages\\AuditPage.jsx.tpl",
+      "extension": ".tpl",
+      "size_bytes": 485,
+      "line_count": null,
+      "sha256_first_64k": "b681c70f902749fc66b1d5c946c1bbaf1f63fcc44d1f832d5ce9f03b88e5941a",
+      "is_text": false,
+      "signals": []
+    },
+    {
+      "path": "H:\\DSOS\\tools\\templates\\frontend\\pages\\DepartmentsPage.jsx.tpl",
+      "relative_path": "tools\\templates\\frontend\\pages\\DepartmentsPage.jsx.tpl",
+      "extension": ".tpl",
+      "size_bytes": 538,
+      "line_count": null,
+      "sha256_first_64k": "64ca29da090dd8a5924825168fbda12af42dd0c657dbee10899b066acfea44a2",
+      "is_text": false,
+      "signals": []
+    },
+    {
+      "path": "H:\\DSOS\\tools\\templates\\malone\\backend_agent_service.py.tpl",
+      "relative_path": "tools\\templates\\malone\\backend_agent_service.py.tpl",
+      "extension": ".tpl",
+      "size_bytes": 486,
+      "line_count": null,
+      "sha256_first_64k": "c4f0c192f4314d0a7399bdcf55afbff379108e4467785b3a58371c0fa9475a17",
+      "is_text": false,
+      "signals": []
+    },
+    {
+      "path": "H:\\DSOS\\tools\\templates\\malone\\backend_intent_service.py.tpl",
+      "relative_path": "tools\\templates\\malone\\backend_intent_service.py.tpl",
+      "extension": ".tpl",
+      "size_bytes": 649,
+      "line_count": null,
+      "sha256_first_64k": "0afca33549f10d8d6a82d603e909f4ebe70ee6ac01ce51a54faac0de6e64b06e",
+      "is_text": false,
+      "signals": []
+    },
+    {
+      "path": "H:\\DSOS\\tools\\templates\\malone\\backend_malone_routes.py.tpl",
+      "relative_path": "tools\\templates\\malone\\backend_malone_routes.py.tpl",
+      "extension": ".tpl",
+      "size_bytes": 675,
+      "line_count": null,
+      "sha256_first_64k": "47b5cd7c163621cfb3e884d5e5eb564ecc28dce26359a40be5a2f49052ab481c",
+      "is_text": false,
+      "signals": []
+    },
+    {
+      "path": "H:\\DSOS\\tools\\templates\\malone\\backend_malone_service.py.tpl",
+      "relative_path": "tools\\templates\\malone\\backend_malone_service.py.tpl",
+      "extension": ".tpl",
+      "size_bytes": 980,
+      "line_count": null,
+      "sha256_first_64k": "1fae66d603d5e17b3ae962497f1f0ef13b4558587d3a580aad369314dde217a8",
+      "is_text": false,
+      "signals": []
+    },
+    {
+      "path": "H:\\DSOS\\tools\\templates\\malone\\backend_prompt_registry_service.py.tpl",
+      "relative_path": "tools\\templates\\malone\\backend_prompt_registry_service.py.tpl",
+      "extension": ".tpl",
+      "size_bytes": 330,
+      "line_count": null,
+      "sha256_first_64k": "dc03ca54b7943bda437e09da3e0ce184bd2ebe64a6de7282879f54677a5d7be6",
+      "is_text": false,
+      "signals": []
+    },
+    {
+      "path": "H:\\DSOS\\tools\\templates\\malone\\backend_proposal_service.py.tpl",
+      "relative_path": "tools\\templates\\malone\\backend_proposal_service.py.tpl",
+      "extension": ".tpl",
+      "size_bytes": 574,
+      "line_count": null,
+      "sha256_first_64k": "fa84245aa4b9bc02fc48013b7af30ef91b2db9f9bdd735d37f04afd4976697e7",
+      "is_text": false,
+      "signals": []
+    },
+    {
+      "path": "H:\\DSOS\\tools\\templates\\malone\\frontend_agent_run_panel.jsx.tpl",
+      "relative_path": "tools\\templates\\malone\\frontend_agent_run_panel.jsx.tpl",
+      "extension": ".tpl",
+      "size_bytes": 246,
+      "line_count": null,
+      "sha256_first_64k": "5a6c865ff60034807d60ae00d128ccdc5d2f14a4176e88a936a453acc4ef654e",
+      "is_text": false,
+      "signals": []
+    },
+    {
+      "path": "H:\\DSOS\\tools\\templates\\malone\\frontend_chat_panel.jsx.tpl",
+      "relative_path": "tools\\templates\\malone\\frontend_chat_panel.jsx.tpl",
+      "extension": ".tpl",
+      "size_bytes": 1305,
+      "line_count": null,
+      "sha256_first_64k": "ee727fd4e0a0a93697a3770c2c0007d36be64a4c1887228381877805654a9532",
+      "is_text": false,
+      "signals": []
+    },
+    {
+      "path": "H:\\DSOS\\tools\\templates\\malone\\frontend_malone_api.js.tpl",
+      "relative_path": "tools\\templates\\malone\\frontend_malone_api.js.tpl",
+      "extension": ".tpl",
+      "size_bytes": 945,
+      "line_count": null,
+      "sha256_first_64k": "41649bc973aa0925a94288e570951ee1e747f8ea9e9d11ea3ce660f48419899b",
+      "is_text": false,
+      "signals": []
+    },
+    {
+      "path": "H:\\DSOS\\tools\\templates\\malone\\frontend_malone_page.jsx.tpl",
+      "relative_path": "tools\\templates\\malone\\frontend_malone_page.jsx.tpl",
+      "extension": ".tpl",
+      "size_bytes": 706,
+      "line_count": null,
+      "sha256_first_64k": "cb0cb51a373bf61abdb64582cfb74ce1cb7f832a8bf48972a341b4734cb73cf5",
+      "is_text": false,
+      "signals": []
+    },
+    {
+      "path": "H:\\DSOS\\tools\\templates\\malone\\frontend_proposal_panel.jsx.tpl",
+      "relative_path": "tools\\templates\\malone\\frontend_proposal_panel.jsx.tpl",
+      "extension": ".tpl",
+      "size_bytes": 309,
+      "line_count": null,
+      "sha256_first_64k": "6abf71c17db86b950961c7b047373f3af318a82e6d1e882a4b63cf7193629f36",
+      "is_text": false,
+      "signals": []
+    },
+    {
+      "path": "H:\\DSOS\\tools\\templates\\malone\\frontend_voice_input_button.jsx.tpl",
+      "relative_path": "tools\\templates\\malone\\frontend_voice_input_button.jsx.tpl",
+      "extension": ".tpl",
+      "size_bytes": 179,
+      "line_count": null,
+      "sha256_first_64k": "93c1e27cc3c13c10c7cf526539ded6423653b4170d9c38f124a4649d351e5200",
+      "is_text": false,
+      "signals": []
+    },
+    {
+      "path": "H:\\DSOS\\tracking\\00_system_doctrine.md",
+      "relative_path": "tracking\\00_system_doctrine.md",
+      "extension": ".md",
+      "size_bytes": 228,
+      "line_count": 12,
+      "sha256_first_64k": "f51040e5a8f20145da24b9e1861979f0b461ec1e869ac1d4ea433ca1dcf58ecf",
+      "is_text": true,
+      "signals": []
+    },
+    {
+      "path": "H:\\DSOS\\tracking\\01_architecture_layers.md",
+      "relative_path": "tracking\\01_architecture_layers.md",
+      "extension": ".md",
+      "size_bytes": 128,
+      "line_count": 10,
+      "sha256_first_64k": "43015035c8abd92efa257465f7f705feee598f20911d81deefe9f132a5da632a",
+      "is_text": true,
+      "signals": []
+    },
+    {
+      "path": "H:\\DSOS\\tracking\\02_malone_agent_design.md",
+      "relative_path": "tracking\\02_malone_agent_design.md",
+      "extension": ".md",
+      "size_bytes": 113,
+      "line_count": 12,
+      "sha256_first_64k": "09c5d4f6732061a4695306b385a1bf099f30f085db8f800dc5c377666df7c208",
+      "is_text": true,
+      "signals": []
+    },
+    {
+      "path": "H:\\DSOS\\tracking\\03_self_improvement_loop.md",
+      "relative_path": "tracking\\03_self_improvement_loop.md",
+      "extension": ".md",
+      "size_bytes": 95,
+      "line_count": 5,
+      "sha256_first_64k": "60688c73c65299b079a6d4032c70c599d4b9c054a8117741083636f53fa0b0bc",
+      "is_text": true,
+      "signals": []
+    },
+    {
+      "path": "H:\\DSOS\\tracking\\04_voice_first_design.md",
+      "relative_path": "tracking\\04_voice_first_design.md",
+      "extension": ".md",
+      "size_bytes": 68,
+      "line_count": 5,
+      "sha256_first_64k": "45d7961d6b1e7942f6dbf94138876675a9b81bcf820648ad4ce047b5565c8666",
+      "is_text": true,
+      "signals": []
+    },
+    {
+      "path": "H:\\DSOS\\tracking\\05_ai_infrastructure.md",
+      "relative_path": "tracking\\05_ai_infrastructure.md",
+      "extension": ".md",
+      "size_bytes": 47,
+      "line_count": 5,
+      "sha256_first_64k": "1dc3d435e213d92a5ac4ccdaa5fbd7c02913e76c54c42bcae0238d381dddac88",
+      "is_text": true,
+      "signals": [
+        "ai",
+        "tracking"
+      ]
+    },
+    {
+      "path": "H:\\DSOS\\tracking\\06_building_blocks.md",
+      "relative_path": "tracking\\06_building_blocks.md",
+      "extension": ".md",
+      "size_bytes": 67,
+      "line_count": 5,
+      "sha256_first_64k": "f0c1078655b8e0109110fecfe2c3024ef2d2dbecffd7434104e74254faa1746f",
+      "is_text": true,
+      "signals": []
+    },
+    {
+      "path": "H:\\DSOS\\tracking\\07_agent_replication.md",
+      "relative_path": "tracking\\07_agent_replication.md",
+      "extension": ".md",
+      "size_bytes": 67,
+      "line_count": 5,
+      "sha256_first_64k": "196a353da7b430e9cc46689cb27edca4811f0ec96a26c362b47537bc71845b0c",
+      "is_text": true,
+      "signals": []
+    },
+    {
+      "path": "H:\\DSOS\\tracking\\08_phase4_direction.md",
+      "relative_path": "tracking\\08_phase4_direction.md",
+      "extension": ".md",
+      "size_bytes": 70,
+      "line_count": 7,
+      "sha256_first_64k": "a352d715e23692d39237d5f028dd0ca577528b791c47e3801222a2b568bd7c46",
+      "is_text": true,
+      "signals": [
+        "tracking"
+      ]
+    },
+    {
+      "path": "H:\\DSOS\\tracking\\bootstrap_verification_report.json",
+      "relative_path": "tracking\\bootstrap_verification_report.json",
+      "extension": ".json",
+      "size_bytes": 9381,
+      "line_count": 228,
+      "sha256_first_64k": "3adc73264d9b098e82718126306ae06f7e309274a28c50e4fca59b6635747916",
+      "is_text": true,
+      "signals": [
+        "ai",
+        "auth",
+        "backend",
+        "frontend",
+        "tracking"
+      ]
+    },
+    {
+      "path": "H:\\DSOS\\tracking\\build_map.json",
+      "relative_path": "tracking\\build_map.json",
+      "extension": ".json",
+      "size_bytes": 334388,
+      "line_count": 1188,
+      "sha256_first_64k": "bec53a7c723461b316c080a8dfc6764f337bee40d7c960cea7a19a81b0e4dae3",
+      "is_text": true,
+      "signals": [
+        "frontend",
+        "ingestion"
+      ]
+    },
+    {
+      "path": "H:\\DSOS\\tracking\\CLEAN_SYSTEM_PROTOCOL.md",
+      "relative_path": "tracking\\CLEAN_SYSTEM_PROTOCOL.md",
+      "extension": ".md",
+      "size_bytes": 1707,
+      "line_count": 53,
+      "sha256_first_64k": "89456ab11b3e4fee973c73f50738b008f632f3857595e587b43e47ea605e1b01",
+      "is_text": true,
+      "signals": [
+        "ai",
+        "tracking"
+      ]
+    },
+    {
+      "path": "H:\\DSOS\\tracking\\current_state.json",
+      "relative_path": "tracking\\current_state.json",
+      "extension": ".json",
+      "size_bytes": 4224,
+      "line_count": 99,
+      "sha256_first_64k": "3d1b4932d1315915b845b1b54f4f238117a4618694ce61c88e0d0e66174a04a5",
+      "is_text": true,
+      "signals": [
+        "ai",
+        "auth",
+        "backend",
+        "database",
+        "frontend",
+        "tracking"
+      ]
+    },
+    {
+      "path": "H:\\DSOS\\tracking\\file_map_v0.7.0.json",
+      "relative_path": "tracking\\file_map_v0.7.0.json",
+      "extension": ".json",
+      "size_bytes": 2942,
+      "line_count": 100,
+      "sha256_first_64k": "ff075decf3d117dc86a54bbd60cec8e53230c04f8628dc90a65a821f0e85a545",
+      "is_text": true,
+      "signals": [
+        "auth",
+        "backend",
+        "database",
+        "tracking"
+      ]
+    },
+    {
+      "path": "H:\\DSOS\\tracking\\HANDOFF_MIGRATION_MESSAGE.md",
+      "relative_path": "tracking\\HANDOFF_MIGRATION_MESSAGE.md",
+      "extension": ".md",
+      "size_bytes": 3731,
+      "line_count": 118,
+      "sha256_first_64k": "66498e5dd0e3a4c18eb7e604e0cc6ad859ac127a49eb0e6a756bba4ad6a593ad",
+      "is_text": true,
+      "signals": [
+        "ai",
+        "auth",
+        "database",
+        "frontend",
+        "tracking"
+      ]
+    },
+    {
+      "path": "H:\\DSOS\\tracking\\handoff_state_snapshot.json",
+      "relative_path": "tracking\\handoff_state_snapshot.json",
+      "extension": ".json",
+      "size_bytes": 2282,
+      "line_count": 47,
+      "sha256_first_64k": "4512d8f700a2505b63ba116127b000e1037405989d60ed1e6507acc58a31560a",
+      "is_text": true,
+      "signals": [
+        "ai",
+        "auth",
+        "backend",
+        "database",
+        "frontend",
+        "tracking"
+      ]
+    },
+    {
+      "path": "H:\\DSOS\\tracking\\manifest_rules_v0.7.0.json",
+      "relative_path": "tracking\\manifest_rules_v0.7.0.json",
+      "extension": ".json",
+      "size_bytes": 3186,
+      "line_count": 107,
+      "sha256_first_64k": "f54f4f83b101d62a6d97aa819f05ba8e40ebd8a77abadcb1ec1db7b76c9fb141",
+      "is_text": true,
+      "signals": [
+        "backend",
+        "database",
+        "tracking"
+      ]
+    },
+    {
+      "path": "H:\\DSOS\\tracking\\micro_steps.json",
+      "relative_path": "tracking\\micro_steps.json",
+      "extension": ".json",
+      "size_bytes": 3194,
+      "line_count": 92,
+      "sha256_first_64k": "0bb0f220b88fa9a80f7f01f048245c685ee3fd7f5a242e9ba219a21a13da14e0",
+      "is_text": true,
+      "signals": [
+        "ai",
+        "database",
+        "tracking"
+      ]
+    },
+    {
+      "path": "H:\\DSOS\\tracking\\NEW_THREAD_BOOT_SEQUENCE.md",
+      "relative_path": "tracking\\NEW_THREAD_BOOT_SEQUENCE.md",
+      "extension": ".md",
+      "size_bytes": 2394,
+      "line_count": 86,
+      "sha256_first_64k": "2d3bcdfa26edbcedb98b6dec3dab13b97ffd76c2dc71efc94994393064647339",
+      "is_text": true,
+      "signals": [
+        "ai",
+        "auth",
+        "database",
+        "tracking"
+      ]
+    },
+    {
+      "path": "H:\\DSOS\\tracking\\NEXT_PHASE_MASTER_BUILD_PLAN_v0.7.0.md",
+      "relative_path": "tracking\\NEXT_PHASE_MASTER_BUILD_PLAN_v0.7.0.md",
+      "extension": ".md",
+      "size_bytes": 24716,
+      "line_count": 1067,
+      "sha256_first_64k": "1325898bc7f5a686adb92187d89d94a834f12414aba965c68d6413b2bbd2e75f",
+      "is_text": true,
+      "signals": [
+        "ai",
+        "auth",
+        "backend",
+        "database",
+        "frontend",
+        "tracking"
+      ]
+    },
+    {
+      "path": "H:\\DSOS\\tracking\\NEXT_PHASE_MASTER_BUILD_PLAN_v0.8.0.md",
+      "relative_path": "tracking\\NEXT_PHASE_MASTER_BUILD_PLAN_v0.8.0.md",
+      "extension": ".md",
+      "size_bytes": 12964,
+      "line_count": 451,
+      "sha256_first_64k": "375b4126ad08606b1424d59271e2f4df7c0a22d1ee0a0ed79f582a45e2a1104b",
+      "is_text": true,
+      "signals": [
+        "ai",
+        "auth",
+        "frontend",
+        "ingestion",
+        "tracking"
+      ]
+    },
+    {
+      "path": "H:\\DSOS\\tracking\\NEXT_THREAD_PROMPT.md",
+      "relative_path": "tracking\\NEXT_THREAD_PROMPT.md",
+      "extension": ".md",
+      "size_bytes": 3661,
+      "line_count": 173,
+      "sha256_first_64k": "2702bf71f357927c538e26fd75140f4af8a90087b2a6aea0e663f4050e7f2f8b",
+      "is_text": true,
+      "signals": [
+        "ai",
+        "database",
+        "tracking"
+      ]
+    },
+    {
+      "path": "H:\\DSOS\\tracking\\phase_manifest_v0.7.0.json",
+      "relative_path": "tracking\\phase_manifest_v0.7.0.json",
+      "extension": ".json",
+      "size_bytes": 2186,
+      "line_count": 70,
+      "sha256_first_64k": "6080e0daecf44b114f17fa0710f48f8e74348d89bbaf27c92d58f0c0cda7c64d",
+      "is_text": true,
+      "signals": [
+        "auth",
+        "frontend",
+        "tracking"
+      ]
+    },
+    {
+      "path": "H:\\DSOS\\tracking\\progress.json",
+      "relative_path": "tracking\\progress.json",
+      "extension": ".json",
+      "size_bytes": 3298,
+      "line_count": 112,
+      "sha256_first_64k": "245c7defe4c051819cbbc3ab4495a846e41ada5d01a60a8fb3006d0936518133",
+      "is_text": true,
+      "signals": [
+        "ai",
+        "auth",
+        "backend",
+        "frontend",
+        "tracking"
+      ]
+    },
+    {
+      "path": "H:\\DSOS\\tracking\\project_audit_report.json",
+      "relative_path": "tracking\\project_audit_report.json",
+      "extension": ".json",
+      "size_bytes": 1316,
+      "line_count": 43,
+      "sha256_first_64k": "0d16ecb2a11377874edecea2865fb431c0dd8507a97d1751ceebbb3854c2a543",
+      "is_text": true,
+      "signals": [
+        "backend",
+        "tracking"
+      ]
+    },
+    {
+      "path": "H:\\DSOS\\tracking\\PROJECT_MAP_AUDIT_README.md",
+      "relative_path": "tracking\\PROJECT_MAP_AUDIT_README.md",
+      "extension": ".md",
+      "size_bytes": 972,
+      "line_count": 38,
+      "sha256_first_64k": "82d6ad256f576d51b37dfa96369861608141271e49672073b48545716414127b",
+      "is_text": true,
+      "signals": [
+        "tracking"
+      ]
+    },
+    {
+      "path": "H:\\DSOS\\tracking\\scaffold_size_audit_report.json",
+      "relative_path": "tracking\\scaffold_size_audit_report.json",
+      "extension": ".json",
+      "size_bytes": 22365,
+      "line_count": 959,
+      "sha256_first_64k": "fb70faf527734aabb284ba72fa532de3dbc18c4729091d1ae68999199b65b3c5",
+      "is_text": true,
+      "signals": [
+        "backend",
+        "frontend",
+        "ingestion",
+        "tracking"
+      ]
+    },
+    {
+      "path": "H:\\DSOS\\tracking\\scaffold_targets_v0.7.0.json",
+      "relative_path": "tracking\\scaffold_targets_v0.7.0.json",
+      "extension": ".json",
+      "size_bytes": 2087,
+      "line_count": 82,
+      "sha256_first_64k": "9d50ba32fbcc3addc2e5636e3bf01c984c437c1e8f558a5370d46665df283f9e",
+      "is_text": true,
+      "signals": [
+        "tracking"
+      ]
+    },
+    {
+      "path": "H:\\DSOS\\tracking\\THREAD_MEMORY_COMPRESSION.md",
+      "relative_path": "tracking\\THREAD_MEMORY_COMPRESSION.md",
+      "extension": ".md",
+      "size_bytes": 2120,
+      "line_count": 73,
+      "sha256_first_64k": "f45fd6b7801f1458cfe7a0c2ff39f011252c335203a06a49c3bb4b057ac4de4d",
+      "is_text": true,
+      "signals": [
+        "ai",
+        "auth",
+        "backend",
+        "frontend",
+        "tracking"
+      ]
+    },
+    {
+      "path": "H:\\DSOS\\tracking\\update_progress_report.json",
+      "relative_path": "tracking\\update_progress_report.json",
+      "extension": ".json",
+      "size_bytes": 1424,
+      "line_count": 53,
+      "sha256_first_64k": "7baf19c60c6929e068ffa159d52863a4c9eaede0164befbb183e89418650e50b",
+      "is_text": true,
+      "signals": []
+    },
+    {
+      "path": "H:\\DSOS\\tracking\\malone\\malone_build_map.json",
+      "relative_path": "tracking\\malone\\malone_build_map.json",
+      "extension": ".json",
+      "size_bytes": 617,
+      "line_count": 24,
+      "sha256_first_64k": "b5df7d8c66a0b61cbc58b0e0d09f814c63eaa26a1d8540ebe141463edf356e04",
+      "is_text": true,
+      "signals": [
+        "backend"
+      ]
+    },
+    {
+      "path": "H:\\DSOS\\tracking\\malone\\malone_build_sequence_v1.json",
+      "relative_path": "tracking\\malone\\malone_build_sequence_v1.json",
+      "extension": ".json",
+      "size_bytes": 633,
+      "line_count": 18,
+      "sha256_first_64k": "2df61274b417e676306e9897ca8bf02ef659f7b16d1f23f2e7e3728b6acdc688",
+      "is_text": true,
+      "signals": [
+        "tracking"
+      ]
+    },
+    {
+      "path": "H:\\DSOS\\tracking\\malone\\malone_manifest_v1.json",
+      "relative_path": "tracking\\malone\\malone_manifest_v1.json",
+      "extension": ".json",
+      "size_bytes": 3469,
+      "line_count": 108,
+      "sha256_first_64k": "7905de15a41816c28cc913e9cb7458bdbf504ebca28b7f9dd1d8f2baa7c2d503",
+      "is_text": true,
+      "signals": [
+        "tracking"
+      ]
+    },
+    {
+      "path": "H:\\DSOS\\tracking\\malone\\MALONE_V1_MASTER_PLAN.md",
+      "relative_path": "tracking\\malone\\MALONE_V1_MASTER_PLAN.md",
+      "extension": ".md",
+      "size_bytes": 4218,
+      "line_count": 142,
+      "sha256_first_64k": "2ef09b56549831953b87a78459712a02e1d0ee0825f247f359f7321a642bd14c",
+      "is_text": true,
+      "signals": [
+        "ai",
+        "tracking"
+      ]
+    }
+  ],
+  "package_json": {
+    "name": "pharmacy-os-frontend",
+    "version": "0.1.0",
+    "scripts": {
+      "dev": "vite",
+      "build": "vite build",
+      "preview": "vite preview"
+    },
+    "dependencies": {
+      "react": "^18.3.1",
+      "react-dom": "^18.3.1",
+      "react-router-dom": "^6.28.0"
+    },
+    "devDependencies": {
+      "@vitejs/plugin-react": "^4.3.1",
+      "vite": "^5.4.8"
+    }
+  },
+  "api_routes": [
+    "api/contracts.md",
+    "api/endpoints.md",
+    "app/api/auth_routes.py",
+    "app/api/deps.py",
+    "app/api/malone_routes.py",
+    "app/api/routes.py",
+    "app/api/schemas.py",
+    "backend/app/api/auth_routes.py",
+    "backend/app/api/deps.py",
+    "backend/app/api/routes.py",
+    "backend/app/api/schemas.py",
+    "dsos_replacements/app/api/routes.py",
+    "dsos_replacements/app/api/schemas.py",
+    "tools/templates/backend/api/deps.py.tpl",
+    "tools/templates/backend/api/routes.py.tpl",
+    "tools/templates/backend/api/schemas.py.tpl"
+  ],
+  "tracking_docs": [
+    "HANDOFF_SUMMARY.txt",
+    "app\\services\\audit_service.py",
+    "app\\services\\workflows\\engine_parts\\audit.py",
+    "backend\\app\\services\\audit_service.py",
+    "docs\\spine\\audit_logging.md",
+    "dsos_replacements\\app\\services\\audit_service.py",
+    "dsos_replacements\\src\\pages\\AuditPage.jsx",
+    "frontend\\src\\pages\\AuditPage.jsx",
+    "spine\\audit\\audit.md",
+    "spine\\audit\\audit_service.md",
+    "src\\pages\\AuditPage.jsx",
+    "tools\\project_map_audit.py",
+    "tools\\root_mapper_audit.py",
+    "tools\\scaffold_size_audit.py",
+    "tools\\templates\\backend\\services\\audit_service.py.tpl",
+    "tools\\templates\\frontend\\pages\\AuditPage.jsx.tpl",
+    "tracking\\00_system_doctrine.md",
+    "tracking\\01_architecture_layers.md",
+    "tracking\\02_malone_agent_design.md",
+    "tracking\\03_self_improvement_loop.md",
+    "tracking\\04_voice_first_design.md",
+    "tracking\\05_ai_infrastructure.md",
+    "tracking\\06_building_blocks.md",
+    "tracking\\07_agent_replication.md",
+    "tracking\\08_phase4_direction.md",
+    "tracking\\CLEAN_SYSTEM_PROTOCOL.md",
+    "tracking\\HANDOFF_MIGRATION_MESSAGE.md",
+    "tracking\\NEW_THREAD_BOOT_SEQUENCE.md",
+    "tracking\\NEXT_PHASE_MASTER_BUILD_PLAN_v0.7.0.md",
+    "tracking\\NEXT_PHASE_MASTER_BUILD_PLAN_v0.8.0.md",
+    "tracking\\NEXT_THREAD_PROMPT.md",
+    "tracking\\PROJECT_MAP_AUDIT_README.md",
+    "tracking\\THREAD_MEMORY_COMPRESSION.md",
+    "tracking\\bootstrap_verification_report.json",
+    "tracking\\build_map.json",
+    "tracking\\current_state.json",
+    "tracking\\file_map_v0.7.0.json",
+    "tracking\\handoff_state_snapshot.json",
+    "tracking\\malone\\MALONE_V1_MASTER_PLAN.md",
+    "tracking\\malone\\malone_build_map.json",
+    "tracking\\malone\\malone_build_sequence_v1.json",
+    "tracking\\malone\\malone_manifest_v1.json",
+    "tracking\\manifest_rules_v0.7.0.json",
+    "tracking\\micro_steps.json",
+    "tracking\\phase_manifest_v0.7.0.json",
+    "tracking\\progress.json",
+    "tracking\\project_audit_report.json",
+    "tracking\\scaffold_size_audit_report.json",
+    "tracking\\scaffold_targets_v0.7.0.json",
+    "tracking\\update_progress_report.json"
+  ],
+  "docs": [
+    "HANDOFF_SUMMARY.txt",
+    "README.md",
+    "README_TEMPLATE_ENGINE.md",
+    "README_TEMPLATE_REGISTRY_ENGINE.md",
+    "api\\contracts.md",
+    "api\\endpoints.md",
+    "backend\\requirements.txt",
+    "docs\\architecture\\WORKING_ARCHITECTURE.md",
+    "docs\\core\\overview.md",
+    "docs\\data\\schema.md",
+    "docs\\git\\GIT_SETUP_AND_RELEASE.md",
+    "docs\\modules\\module_template.md",
+    "docs\\plan\\NEXT_PHASE_PLAN.md",
+    "docs\\process\\build_process.md",
+    "docs\\spine\\ai_orchestration.md",
+    "docs\\spine\\audit_logging.md",
+    "docs\\spine\\auth_service.md",
+    "docs\\spine\\event_bus.md",
+    "docs\\spine\\forms_engine.md",
+    "docs\\spine\\integration_gateway.md",
+    "docs\\spine\\messaging_engine.md",
+    "docs\\spine\\reminder_engine.md",
+    "docs\\spine\\reporting_engine.md",
+    "docs\\spine\\services.md",
+    "docs\\spine\\task_engine.md",
+    "docs\\spine\\workflow_engine.md",
+    "docs\\status\\CURRENT_STATE.md",
+    "docs\\testing\\SMOKE_TEST_CHECKLIST.md",
+    "dsos_file_replacements_v070_malone_persistence.txt",
+    "dsos_replacements\\BUILD_NOTES.md",
+    "events\\event_registry.md",
+    "flows\\scheduling_flow.md",
+    "requirements.txt",
+    "runtime\\runtime.md",
+    "schemas\\core_tables.md",
+    "spine\\ai\\ai.md",
+    "spine\\ai\\ai_service.md",
+    "spine\\audit\\audit.md",
+    "spine\\audit\\audit_service.md",
+    "spine\\auth\\auth.md",
+    "spine\\auth\\auth_service.md",
+    "spine\\event_bus\\event_bus.md",
+    "spine\\event_bus\\event_bus_service.md",
+    "spine\\forms\\forms.md",
+    "spine\\forms\\forms_service.md",
+    "spine\\integration\\integration.md",
+    "spine\\integration\\integration_service.md",
+    "spine\\messaging\\messaging.md",
+    "spine\\messaging\\messaging_service.md",
+    "spine\\reminder\\reminder.md",
+    "spine\\reminder\\reminder_service.md",
+    "spine\\reporting\\reporting.md",
+    "spine\\reporting\\reporting_service.md",
+    "spine\\task\\task.md",
+    "spine\\task\\task_service.md",
+    "spine\\workflow\\workflow.md",
+    "spine\\workflow\\workflow_service.md",
+    "tests\\testing_strategy.md",
+    "tests\\tests.md",
+    "tracking\\00_system_doctrine.md",
+    "tracking\\01_architecture_layers.md",
+    "tracking\\02_malone_agent_design.md",
+    "tracking\\03_self_improvement_loop.md",
+    "tracking\\04_voice_first_design.md",
+    "tracking\\05_ai_infrastructure.md",
+    "tracking\\06_building_blocks.md",
+    "tracking\\07_agent_replication.md",
+    "tracking\\08_phase4_direction.md",
+    "tracking\\CLEAN_SYSTEM_PROTOCOL.md",
+    "tracking\\HANDOFF_MIGRATION_MESSAGE.md",
+    "tracking\\NEW_THREAD_BOOT_SEQUENCE.md",
+    "tracking\\NEXT_PHASE_MASTER_BUILD_PLAN_v0.7.0.md",
+    "tracking\\NEXT_PHASE_MASTER_BUILD_PLAN_v0.8.0.md",
+    "tracking\\NEXT_THREAD_PROMPT.md",
+    "tracking\\PROJECT_MAP_AUDIT_README.md",
+    "tracking\\THREAD_MEMORY_COMPRESSION.md",
+    "tracking\\malone\\MALONE_V1_MASTER_PLAN.md"
+  ],
+  "env_var_refs": {
+    "OPENAI_API_KEY": [
+      "app\\services\\openai_service.py"
+    ],
+    "VITE_API_BASE": [
+      "dsos_replacements\\src\\lib\\api.js",
+      "frontend\\src\\lib\\api.js"
+    ]
+  },
+  "file_signal_counts": {
+    "ai": 28,
+    "auth": 35,
+    "backend": 77,
+    "database": 13,
+    "frontend": 43,
+    "ingestion": 26,
+    "tracking": 70
+  },
+  "duplicate_filenames": {
+    "requirements.txt": [
+      "requirements.txt",
+      "backend\\requirements.txt"
+    ],
+    "main.py": [
+      "app\\main.py",
+      "backend\\app\\main.py",
+      "dsos_replacements\\app\\main.py"
+    ],
+    "auth_routes.py": [
+      "app\\api\\auth_routes.py",
+      "backend\\app\\api\\auth_routes.py"
+    ],
+    "deps.py": [
+      "app\\api\\deps.py",
+      "backend\\app\\api\\deps.py"
+    ],
+    "routes.py": [
+      "app\\api\\routes.py",
+      "backend\\app\\api\\routes.py",
+      "dsos_replacements\\app\\api\\routes.py"
+    ],
+    "schemas.py": [
+      "app\\api\\schemas.py",
+      "backend\\app\\api\\schemas.py",
+      "dsos_replacements\\app\\api\\schemas.py"
+    ],
+    "session.py": [
+      "app\\db\\session.py",
+      "dsos_replacements\\app\\db\\session.py"
+    ],
+    "models.py": [
+      "app\\models\\models.py",
+      "backend\\app\\models\\models.py"
+    ],
+    "audit_service.py": [
+      "app\\services\\audit_service.py",
+      "backend\\app\\services\\audit_service.py",
+      "dsos_replacements\\app\\services\\audit_service.py"
+    ],
+    "auth_service.py": [
+      "app\\services\\auth_service.py",
+      "backend\\app\\services\\auth_service.py"
+    ],
+    "department_service.py": [
+      "app\\services\\department_service.py",
+      "backend\\app\\services\\department_service.py"
+    ],
+    "messaging_service.py": [
+      "app\\services\\messaging_service.py",
+      "dsos_replacements\\app\\services\\messaging_service.py"
+    ],
+    "schedule_service.py": [
+      "app\\services\\schedule_service.py",
+      "backend\\app\\services\\schedule_service.py",
+      "dsos_replacements\\app\\services\\schedule_service.py"
+    ],
+    "task_service.py": [
+      "app\\services\\task_service.py",
+      "dsos_replacements\\app\\services\\task_service.py"
+    ],
+    "workflow_service.py": [
+      "app\\services\\workflow_service.py",
+      "backend\\app\\services\\workflow_service.py",
+      "dsos_replacements\\app\\services\\workflow_service.py"
+    ],
+    "__init__.py": [
+      "app\\services\\workflows\\__init__.py",
+      "app\\services\\workflows\\engine_parts\\__init__.py"
+    ],
+    "auth_service.md": [
+      "docs\\spine\\auth_service.md",
+      "spine\\auth\\auth_service.md"
+    ],
+    "event_bus.md": [
+      "docs\\spine\\event_bus.md",
+      "spine\\event_bus\\event_bus.md"
+    ],
+    "App.jsx": [
+      "dsos_replacements\\src\\App.jsx",
+      "frontend\\src\\App.jsx",
+      "src\\App.jsx"
+    ],
+    "styles.css": [
+      "dsos_replacements\\src\\styles.css",
+      "src\\styles.css"
+    ],
+    "api.js": [
+      "dsos_replacements\\src\\lib\\api.js",
+      "frontend\\src\\lib\\api.js",
+      "src\\lib\\api.js"
+    ],
+    "AuditPage.jsx": [
+      "dsos_replacements\\src\\pages\\AuditPage.jsx",
+      "frontend\\src\\pages\\AuditPage.jsx",
+      "src\\pages\\AuditPage.jsx"
+    ],
+    "DashboardPage.jsx": [
+      "dsos_replacements\\src\\pages\\DashboardPage.jsx",
+      "src\\pages\\DashboardPage.jsx"
+    ],
+    "SchedulesPage.jsx": [
+      "dsos_replacements\\src\\pages\\SchedulesPage.jsx",
+      "src\\pages\\SchedulesPage.jsx"
+    ],
+    "events.json": [
+      "events\\events.json",
+      "registry\\events.json"
+    ],
+    "main.jsx": [
+      "frontend\\src\\main.jsx",
+      "src\\main.jsx"
+    ],
+    "ProtectedRoute.jsx": [
+      "frontend\\src\\components\\ProtectedRoute.jsx",
+      "src\\components\\ProtectedRoute.jsx"
+    ],
+    "AuthContext.jsx": [
+      "frontend\\src\\context\\AuthContext.jsx",
+      "src\\context\\AuthContext.jsx"
+    ],
+    "ApprovalsPage.jsx": [
+      "frontend\\src\\pages\\ApprovalsPage.jsx",
+      "src\\pages\\ApprovalsPage.jsx"
+    ],
+    "DepartmentsPage.jsx": [
+      "frontend\\src\\pages\\DepartmentsPage.jsx",
+      "src\\pages\\DepartmentsPage.jsx"
+    ],
+    "LoginPage.jsx": [
+      "frontend\\src\\pages\\LoginPage.jsx",
+      "src\\pages\\LoginPage.jsx"
+    ]
+  },
+  "large_files": [],
+  "dead_zone_candidates": [
+    {
+      "relative_path": "app\\services\\workflows\\__init__.py",
+      "line_count": 2,
+      "size_bytes": 47,
+      "reason": "tiny source file"
+    },
+    {
+      "relative_path": "app\\services\\workflows\\engine_parts\\__init__.py",
+      "line_count": 2,
+      "size_bytes": 37,
+      "reason": "tiny source file"
+    },
+    {
+      "relative_path": "backend\\app\\api\\routes.py",
+      "line_count": 0,
+      "size_bytes": 0,
+      "reason": "tiny source file"
+    },
+    {
+      "relative_path": "backend\\app\\services\\audit_service.py",
+      "line_count": 0,
+      "size_bytes": 0,
+      "reason": "tiny source file"
+    },
+    {
+      "relative_path": "backend\\app\\services\\department_service.py",
+      "line_count": 0,
+      "size_bytes": 0,
+      "reason": "tiny source file"
+    },
+    {
+      "relative_path": "backend\\app\\services\\schedule_service.py",
+      "line_count": 0,
+      "size_bytes": 0,
+      "reason": "tiny source file"
+    },
+    {
+      "relative_path": "backend\\app\\services\\workflow_service.py",
+      "line_count": 0,
+      "size_bytes": 0,
+      "reason": "tiny source file"
+    },
+    {
+      "relative_path": "frontend\\src\\pages\\ApprovalsPage.jsx",
+      "line_count": 0,
+      "size_bytes": 0,
+      "reason": "tiny source file"
+    },
+    {
+      "relative_path": "frontend\\src\\pages\\AuditPage.jsx",
+      "line_count": 0,
+      "size_bytes": 0,
+      "reason": "tiny source file"
+    },
+    {
+      "relative_path": "frontend\\src\\pages\\DepartmentsPage.jsx",
+      "line_count": 0,
+      "size_bytes": 0,
+      "reason": "tiny source file"
+    }
+  ],
+  "empty_dirs": [
+    "tracking\\reports"
+  ],
+  "dir_sizes": {
+    "runtime_v5.db": 630784,
+    "tracking": 454358,
+    "app": 232520,
+    "tools": 75623,
+    "dsos_replacements": 74549,
+    "package-lock.json": 57499,
+    "src": 51458,
+    "dsos_file_replacements_v070_malone_persistence.txt": 46505,
+    "test.db": 20480,
+    "backend": 15926,
+    "frontend": 7741,
+    "docs": 7335,
+    "spine": 6703,
+    "scripts": 2844,
+    "alembic": 2684,
+    "schemas": 1411,
+    "README_TEMPLATE_REGISTRY_ENGINE.md": 1254,
+    ".env": 882,
+    "README.md": 658,
+    "README_TEMPLATE_ENGINE.md": 655,
+    "events": 635,
+    "alembic.ini": 592,
+    "vite.config.js": 470,
+    "api": 422,
+    "package.json": 392,
+    "HANDOFF_SUMMARY.txt": 373,
+    "index.html": 298,
+    "flows": 275,
+    "tests": 224,
+    "registry": 203,
+    "runtime": 115,
+    "config": 86,
+    ".gitignore": 83,
+    "requirements.txt": 73,
+    ".env.example": 36
+  }
+}

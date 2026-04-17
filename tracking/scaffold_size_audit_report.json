@@ -1,0 +1,959 @@
+{
+  "project_root": "/mnt/data/work/dsos/DSOS",
+  "excluded_dir_names": [
+    ".git",
+    ".idea",
+    ".pytest_cache",
+    ".venv",
+    ".vscode",
+    "__pycache__",
+    "build",
+    "dist",
+    "node_modules"
+  ],
+  "excluded_file_names": [
+    ".DS_Store",
+    "Thumbs.db"
+  ],
+  "root_summary": {
+    "tracked_file_count": 259,
+    "tracked_total_bytes": 1647126,
+    "tracked_total_size_human": "1.57 MB"
+  },
+  "top_level_summary": [
+    {
+      "path": "runtime_v5.db",
+      "kind": "file",
+      "file_count": 1,
+      "bytes": 630784,
+      "size_human": "616.00 KB"
+    },
+    {
+      "path": "tracking",
+      "kind": "directory",
+      "file_count": 32,
+      "bytes": 430568,
+      "size_human": "420.48 KB"
+    },
+    {
+      "path": "app",
+      "kind": "directory",
+      "file_count": 51,
+      "bytes": 232520,
+      "size_human": "227.07 KB"
+    },
+    {
+      "path": "dsos_replacements",
+      "kind": "directory",
+      "file_count": 16,
+      "bytes": 74549,
+      "size_human": "72.80 KB"
+    },
+    {
+      "path": "package-lock.json",
+      "kind": "file",
+      "file_count": 1,
+      "bytes": 57499,
+      "size_human": "56.15 KB"
+    },
+    {
+      "path": "src",
+      "kind": "directory",
+      "file_count": 27,
+      "bytes": 51458,
+      "size_human": "50.25 KB"
+    },
+    {
+      "path": "tools",
+      "kind": "directory",
+      "file_count": 34,
+      "bytes": 50393,
+      "size_human": "49.21 KB"
+    },
+    {
+      "path": "dsos_file_replacements_v070_malone_persistence.txt",
+      "kind": "file",
+      "file_count": 1,
+      "bytes": 46505,
+      "size_human": "45.42 KB"
+    },
+    {
+      "path": "test.db",
+      "kind": "file",
+      "file_count": 1,
+      "bytes": 20480,
+      "size_human": "20.00 KB"
+    },
+    {
+      "path": "backend",
+      "kind": "directory",
+      "file_count": 12,
+      "bytes": 15926,
+      "size_human": "15.55 KB"
+    },
+    {
+      "path": "frontend",
+      "kind": "directory",
+      "file_count": 9,
+      "bytes": 7741,
+      "size_human": "7.56 KB"
+    },
+    {
+      "path": "docs",
+      "kind": "directory",
+      "file_count": 21,
+      "bytes": 7335,
+      "size_human": "7.16 KB"
+    },
+    {
+      "path": "spine",
+      "kind": "directory",
+      "file_count": 22,
+      "bytes": 6703,
+      "size_human": "6.55 KB"
+    },
+    {
+      "path": "scripts",
+      "kind": "directory",
+      "file_count": 2,
+      "bytes": 2844,
+      "size_human": "2.78 KB"
+    },
+    {
+      "path": "alembic",
+      "kind": "directory",
+      "file_count": 2,
+      "bytes": 2684,
+      "size_human": "2.62 KB"
+    },
+    {
+      "path": "schemas",
+      "kind": "directory",
+      "file_count": 2,
+      "bytes": 1411,
+      "size_human": "1.38 KB"
+    },
+    {
+      "path": "README_TEMPLATE_REGISTRY_ENGINE.md",
+      "kind": "file",
+      "file_count": 1,
+      "bytes": 1254,
+      "size_human": "1.22 KB"
+    },
+    {
+      "path": ".env",
+      "kind": "file",
+      "file_count": 1,
+      "bytes": 882,
+      "size_human": "882.00 B"
+    },
+    {
+      "path": "README.md",
+      "kind": "file",
+      "file_count": 1,
+      "bytes": 658,
+      "size_human": "658.00 B"
+    },
+    {
+      "path": "README_TEMPLATE_ENGINE.md",
+      "kind": "file",
+      "file_count": 1,
+      "bytes": 655,
+      "size_human": "655.00 B"
+    },
+    {
+      "path": "events",
+      "kind": "directory",
+      "file_count": 2,
+      "bytes": 635,
+      "size_human": "635.00 B"
+    },
+    {
+      "path": "alembic.ini",
+      "kind": "file",
+      "file_count": 1,
+      "bytes": 592,
+      "size_human": "592.00 B"
+    },
+    {
+      "path": "vite.config.js",
+      "kind": "file",
+      "file_count": 1,
+      "bytes": 470,
+      "size_human": "470.00 B"
+    },
+    {
+      "path": "api",
+      "kind": "directory",
+      "file_count": 2,
+      "bytes": 422,
+      "size_human": "422.00 B"
+    },
+    {
+      "path": "package.json",
+      "kind": "file",
+      "file_count": 1,
+      "bytes": 392,
+      "size_human": "392.00 B"
+    },
+    {
+      "path": "HANDOFF_SUMMARY.txt",
+      "kind": "file",
+      "file_count": 1,
+      "bytes": 373,
+      "size_human": "373.00 B"
+    },
+    {
+      "path": "index.html",
+      "kind": "file",
+      "file_count": 1,
+      "bytes": 298,
+      "size_human": "298.00 B"
+    },
+    {
+      "path": "flows",
+      "kind": "directory",
+      "file_count": 1,
+      "bytes": 275,
+      "size_human": "275.00 B"
+    },
+    {
+      "path": "tests",
+      "kind": "directory",
+      "file_count": 4,
+      "bytes": 224,
+      "size_human": "224.00 B"
+    },
+    {
+      "path": "registry",
+      "kind": "directory",
+      "file_count": 2,
+      "bytes": 203,
+      "size_human": "203.00 B"
+    },
+    {
+      "path": "runtime",
+      "kind": "directory",
+      "file_count": 1,
+      "bytes": 115,
+      "size_human": "115.00 B"
+    },
+    {
+      "path": "config",
+      "kind": "directory",
+      "file_count": 1,
+      "bytes": 86,
+      "size_human": "86.00 B"
+    },
+    {
+      "path": ".gitignore",
+      "kind": "file",
+      "file_count": 1,
+      "bytes": 83,
+      "size_human": "83.00 B"
+    },
+    {
+      "path": "requirements.txt",
+      "kind": "file",
+      "file_count": 1,
+      "bytes": 73,
+      "size_human": "73.00 B"
+    },
+    {
+      "path": ".env.example",
+      "kind": "file",
+      "file_count": 1,
+      "bytes": 36,
+      "size_human": "36.00 B"
+    }
+  ],
+  "largest_files": [
+    {
+      "path": "runtime_v5.db",
+      "bytes": 630784,
+      "size_human": "616.00 KB"
+    },
+    {
+      "path": "tracking/build_map.json",
+      "bytes": 334388,
+      "size_human": "326.55 KB"
+    },
+    {
+      "path": "package-lock.json",
+      "bytes": 57499,
+      "size_human": "56.15 KB"
+    },
+    {
+      "path": "dsos_file_replacements_v070_malone_persistence.txt",
+      "bytes": 46505,
+      "size_human": "45.42 KB"
+    },
+    {
+      "path": "tracking/NEXT_PHASE_MASTER_BUILD_PLAN_v0.7.0.md",
+      "bytes": 24716,
+      "size_human": "24.14 KB"
+    },
+    {
+      "path": "app/api/routes.py",
+      "bytes": 21544,
+      "size_human": "21.04 KB"
+    },
+    {
+      "path": "test.db",
+      "bytes": 20480,
+      "size_human": "20.00 KB"
+    },
+    {
+      "path": "dsos_replacements/app/api/routes.py",
+      "bytes": 17523,
+      "size_human": "17.11 KB"
+    },
+    {
+      "path": "app/models/models.py",
+      "bytes": 16198,
+      "size_human": "15.82 KB"
+    },
+    {
+      "path": "app/services/openai_service.py",
+      "bytes": 12965,
+      "size_human": "12.66 KB"
+    },
+    {
+      "path": "tracking/NEXT_PHASE_MASTER_BUILD_PLAN_v0.8.0.md",
+      "bytes": 12964,
+      "size_human": "12.66 KB"
+    },
+    {
+      "path": "tools/scaffold_size_audit.py",
+      "bytes": 11980,
+      "size_human": "11.70 KB"
+    },
+    {
+      "path": "dsos_replacements/app/services/schedule_service.py",
+      "bytes": 11650,
+      "size_human": "11.38 KB"
+    },
+    {
+      "path": "app/services/workflows/engine_parts/lifecycle.py",
+      "bytes": 11427,
+      "size_human": "11.16 KB"
+    },
+    {
+      "path": "app/services/malone_service.py",
+      "bytes": 11149,
+      "size_human": "10.89 KB"
+    },
+    {
+      "path": "app/services/truth_packet_service.py",
+      "bytes": 10248,
+      "size_human": "10.01 KB"
+    },
+    {
+      "path": "app/services/schedule_service.py",
+      "bytes": 9482,
+      "size_human": "9.26 KB"
+    },
+    {
+      "path": "tracking/bootstrap_verification_report.json",
+      "bytes": 9381,
+      "size_human": "9.16 KB"
+    },
+    {
+      "path": "app/services/clarification_service.py",
+      "bytes": 9255,
+      "size_human": "9.04 KB"
+    },
+    {
+      "path": "app/api/schemas.py",
+      "bytes": 9170,
+      "size_human": "8.96 KB"
+    },
+    {
+      "path": "app/services/approval_service.py",
+      "bytes": 8582,
+      "size_human": "8.38 KB"
+    },
+    {
+      "path": "app/services/workflows/handlers_malone.py",
+      "bytes": 8541,
+      "size_human": "8.34 KB"
+    },
+    {
+      "path": "dsos_replacements/src/pages/SchedulesPage.jsx",
+      "bytes": 8268,
+      "size_human": "8.07 KB"
+    },
+    {
+      "path": "app/services/proposal_service.py",
+      "bytes": 7665,
+      "size_human": "7.49 KB"
+    },
+    {
+      "path": "app/services/deterministic_registry.py",
+      "bytes": 7308,
+      "size_human": "7.14 KB"
+    },
+    {
+      "path": "app/services/workflow_service.py",
+      "bytes": 7194,
+      "size_human": "7.03 KB"
+    },
+    {
+      "path": "backend/app/models/models.py",
+      "bytes": 6880,
+      "size_human": "6.72 KB"
+    },
+    {
+      "path": "src/styles.css",
+      "bytes": 6822,
+      "size_human": "6.66 KB"
+    },
+    {
+      "path": "app/services/render_verifier.py",
+      "bytes": 6763,
+      "size_human": "6.60 KB"
+    },
+    {
+      "path": "app/services/workflows/definitions.py",
+      "bytes": 6713,
+      "size_human": "6.56 KB"
+    },
+    {
+      "path": "tools/scaffold_malone_phase.py",
+      "bytes": 6349,
+      "size_human": "6.20 KB"
+    },
+    {
+      "path": "dsos_replacements/src/styles.css",
+      "bytes": 6196,
+      "size_human": "6.05 KB"
+    },
+    {
+      "path": "src/pages/SchedulesPage.jsx",
+      "bytes": 5534,
+      "size_human": "5.40 KB"
+    },
+    {
+      "path": "app/services/deterministic_validator.py",
+      "bytes": 5246,
+      "size_human": "5.12 KB"
+    },
+    {
+      "path": "src/lib/api.js",
+      "bytes": 4610,
+      "size_human": "4.50 KB"
+    },
+    {
+      "path": "dsos_replacements/src/pages/AuditPage.jsx",
+      "bytes": 4500,
+      "size_human": "4.39 KB"
+    },
+    {
+      "path": "tracking/current_state.json",
+      "bytes": 4224,
+      "size_human": "4.12 KB"
+    },
+    {
+      "path": "tracking/malone/MALONE_V1_MASTER_PLAN.md",
+      "bytes": 4218,
+      "size_human": "4.12 KB"
+    },
+    {
+      "path": "src/components/malone/ProposalPanel.jsx",
+      "bytes": 4090,
+      "size_human": "3.99 KB"
+    },
+    {
+      "path": "dsos_replacements/app/services/workflow_service.py",
+      "bytes": 3990,
+      "size_human": "3.90 KB"
+    },
+    {
+      "path": "app/services/messaging_service.py",
+      "bytes": 3956,
+      "size_human": "3.86 KB"
+    },
+    {
+      "path": "app/services/workflows/hooks.py",
+      "bytes": 3733,
+      "size_human": "3.65 KB"
+    },
+    {
+      "path": "tracking/HANDOFF_MIGRATION_MESSAGE.md",
+      "bytes": 3731,
+      "size_human": "3.64 KB"
+    },
+    {
+      "path": "tracking/NEXT_THREAD_PROMPT.md",
+      "bytes": 3661,
+      "size_human": "3.58 KB"
+    },
+    {
+      "path": "dsos_replacements/app/services/messaging_service.py",
+      "bytes": 3653,
+      "size_human": "3.57 KB"
+    },
+    {
+      "path": "app/services/workflows/state_helpers.py",
+      "bytes": 3643,
+      "size_human": "3.56 KB"
+    },
+    {
+      "path": "app/services/workflows/serializers.py",
+      "bytes": 3581,
+      "size_human": "3.50 KB"
+    },
+    {
+      "path": "tools/template_registry.json",
+      "bytes": 3563,
+      "size_human": "3.48 KB"
+    },
+    {
+      "path": "tracking/malone/malone_manifest_v1.json",
+      "bytes": 3469,
+      "size_human": "3.39 KB"
+    },
+    {
+      "path": "app/services/agent_service.py",
+      "bytes": 3397,
+      "size_human": "3.32 KB"
+    }
+  ],
+  "largest_directories": [
+    {
+      "path": "tracking",
+      "file_count": 32,
+      "total_bytes": 430568,
+      "total_size_human": "420.48 KB"
+    },
+    {
+      "path": "app",
+      "file_count": 51,
+      "total_bytes": 232520,
+      "total_size_human": "227.07 KB"
+    },
+    {
+      "path": "app/services",
+      "file_count": 38,
+      "total_bytes": 173285,
+      "total_size_human": "169.22 KB"
+    },
+    {
+      "path": "dsos_replacements",
+      "file_count": 16,
+      "total_bytes": 74549,
+      "total_size_human": "72.80 KB"
+    },
+    {
+      "path": "src",
+      "file_count": 27,
+      "total_bytes": 51458,
+      "total_size_human": "50.25 KB"
+    },
+    {
+      "path": "app/services/workflows",
+      "file_count": 16,
+      "total_bytes": 50843,
+      "total_size_human": "49.65 KB"
+    },
+    {
+      "path": "tools",
+      "file_count": 34,
+      "total_bytes": 50393,
+      "total_size_human": "49.21 KB"
+    },
+    {
+      "path": "dsos_replacements/app",
+      "file_count": 9,
+      "total_bytes": 45687,
+      "total_size_human": "44.62 KB"
+    },
+    {
+      "path": "app/api",
+      "file_count": 5,
+      "total_bytes": 35932,
+      "total_size_human": "35.09 KB"
+    },
+    {
+      "path": "dsos_replacements/src",
+      "file_count": 6,
+      "total_bytes": 26465,
+      "total_size_human": "25.84 KB"
+    },
+    {
+      "path": "src/pages",
+      "file_count": 11,
+      "total_bytes": 24369,
+      "total_size_human": "23.80 KB"
+    },
+    {
+      "path": "dsos_replacements/app/services",
+      "file_count": 5,
+      "total_bytes": 22708,
+      "total_size_human": "22.18 KB"
+    },
+    {
+      "path": "dsos_replacements/app/api",
+      "file_count": 2,
+      "total_bytes": 19235,
+      "total_size_human": "18.78 KB"
+    },
+    {
+      "path": "tools/templates",
+      "file_count": 27,
+      "total_bytes": 18911,
+      "total_size_human": "18.47 KB"
+    },
+    {
+      "path": "app/models",
+      "file_count": 1,
+      "total_bytes": 16198,
+      "total_size_human": "15.82 KB"
+    },
+    {
+      "path": "backend",
+      "file_count": 12,
+      "total_bytes": 15926,
+      "total_size_human": "15.55 KB"
+    },
+    {
+      "path": "backend/app",
+      "file_count": 11,
+      "total_bytes": 15868,
+      "total_size_human": "15.50 KB"
+    },
+    {
+      "path": "dsos_replacements/src/pages",
+      "file_count": 3,
+      "total_bytes": 15669,
+      "total_size_human": "15.30 KB"
+    },
+    {
+      "path": "app/services/workflows/engine_parts",
+      "file_count": 6,
+      "total_bytes": 15233,
+      "total_size_human": "14.88 KB"
+    },
+    {
+      "path": "tracking/malone",
+      "file_count": 4,
+      "total_bytes": 8937,
+      "total_size_human": "8.73 KB"
+    },
+    {
+      "path": "tools/templates/backend",
+      "file_count": 10,
+      "total_bytes": 8532,
+      "total_size_human": "8.33 KB"
+    },
+    {
+      "path": "src/components",
+      "file_count": 8,
+      "total_bytes": 7985,
+      "total_size_human": "7.80 KB"
+    },
+    {
+      "path": "frontend/src",
+      "file_count": 9,
+      "total_bytes": 7741,
+      "total_size_human": "7.56 KB"
+    },
+    {
+      "path": "frontend",
+      "file_count": 9,
+      "total_bytes": 7741,
+      "total_size_human": "7.56 KB"
+    },
+    {
+      "path": "tools/templates/malone",
+      "file_count": 12,
+      "total_bytes": 7384,
+      "total_size_human": "7.21 KB"
+    },
+    {
+      "path": "docs",
+      "file_count": 21,
+      "total_bytes": 7335,
+      "total_size_human": "7.16 KB"
+    },
+    {
+      "path": "backend/app/models",
+      "file_count": 1,
+      "total_bytes": 6880,
+      "total_size_human": "6.72 KB"
+    },
+    {
+      "path": "src/components/malone",
+      "file_count": 4,
+      "total_bytes": 6761,
+      "total_size_human": "6.60 KB"
+    },
+    {
+      "path": "spine",
+      "file_count": 22,
+      "total_bytes": 6703,
+      "total_size_human": "6.55 KB"
+    },
+    {
+      "path": "src/lib",
+      "file_count": 3,
+      "total_bytes": 6489,
+      "total_size_human": "6.34 KB"
+    },
+    {
+      "path": "backend/app/api",
+      "file_count": 4,
+      "total_bytes": 4561,
+      "total_size_human": "4.45 KB"
+    },
+    {
+      "path": "tools/templates/backend/services",
+      "file_count": 4,
+      "total_bytes": 3734,
+      "total_size_human": "3.65 KB"
+    },
+    {
+      "path": "tools/templates/frontend",
+      "file_count": 5,
+      "total_bytes": 2995,
+      "total_size_human": "2.92 KB"
+    },
+    {
+      "path": "app/core",
+      "file_count": 2,
+      "total_bytes": 2904,
+      "total_size_human": "2.84 KB"
+    },
+    {
+      "path": "backend/app/services",
+      "file_count": 5,
+      "total_bytes": 2876,
+      "total_size_human": "2.81 KB"
+    },
+    {
+      "path": "scripts",
+      "file_count": 2,
+      "total_bytes": 2844,
+      "total_size_human": "2.78 KB"
+    },
+    {
+      "path": "tools/templates/backend/api",
+      "file_count": 3,
+      "total_bytes": 2825,
+      "total_size_human": "2.76 KB"
+    },
+    {
+      "path": "alembic",
+      "file_count": 2,
+      "total_bytes": 2684,
+      "total_size_human": "2.62 KB"
+    },
+    {
+      "path": "dsos_replacements/app/db",
+      "file_count": 1,
+      "total_bytes": 2118,
+      "total_size_human": "2.07 KB"
+    },
+    {
+      "path": "tools/templates/backend/migrations",
+      "file_count": 3,
+      "total_bytes": 1973,
+      "total_size_human": "1.93 KB"
+    },
+    {
+      "path": "dsos_replacements/src/lib",
+      "file_count": 1,
+      "total_bytes": 1899,
+      "total_size_human": "1.85 KB"
+    },
+    {
+      "path": "frontend/src/pages",
+      "file_count": 4,
+      "total_bytes": 1886,
+      "total_size_human": "1.84 KB"
+    },
+    {
+      "path": "docs/status",
+      "file_count": 1,
+      "total_bytes": 1849,
+      "total_size_human": "1.81 KB"
+    },
+    {
+      "path": "docs/plan",
+      "file_count": 1,
+      "total_bytes": 1740,
+      "total_size_human": "1.70 KB"
+    },
+    {
+      "path": "alembic/versions",
+      "file_count": 1,
+      "total_bytes": 1525,
+      "total_size_human": "1.49 KB"
+    },
+    {
+      "path": "tools/templates/frontend/pages",
+      "file_count": 3,
+      "total_bytes": 1480,
+      "total_size_human": "1.45 KB"
+    },
+    {
+      "path": "docs/spine",
+      "file_count": 12,
+      "total_bytes": 1431,
+      "total_size_human": "1.40 KB"
+    },
+    {
+      "path": "frontend/src/lib",
+      "file_count": 1,
+      "total_bytes": 1421,
+      "total_size_human": "1.39 KB"
+    },
+    {
+      "path": "schemas",
+      "file_count": 2,
+      "total_bytes": 1411,
+      "total_size_human": "1.38 KB"
+    },
+    {
+      "path": "src/context",
+      "file_count": 1,
+      "total_bytes": 1389,
+      "total_size_human": "1.36 KB"
+    }
+  ],
+  "expected_vs_present": {
+    "tracking_sources": [
+      "tracking/file_map_v0.7.0.json",
+      "tracking/build_map.json",
+      "tracking/scaffold_targets_v0.7.0.json"
+    ],
+    "expected_file_count": 29,
+    "present_expected_files": [
+      "alembic.ini",
+      "alembic/env.py",
+      "alembic/versions/0001_v070_department_workflow.py",
+      "app/api/deps.py",
+      "app/api/routes.py",
+      "app/api/schemas.py",
+      "app/db/session.py",
+      "app/main.py",
+      "app/models/models.py",
+      "app/services/audit_service.py",
+      "app/services/auth_service.py",
+      "app/services/department_service.py",
+      "app/services/messaging_service.py",
+      "app/services/schedule_service.py",
+      "app/services/task_service.py",
+      "app/services/workflow_service.py",
+      "src/context/AuthContext.jsx",
+      "src/lib/api.js",
+      "src/pages/ApprovalsPage.jsx",
+      "src/pages/AuditPage.jsx",
+      "src/pages/DepartmentsPage.jsx",
+      "tools",
+      "tools/template_registry.json",
+      "tools/templates",
+      "tracking",
+      "tracking/file_map_v0.7.0.json",
+      "tracking/manifest_rules_v0.7.0.json",
+      "tracking/phase_manifest_v0.7.0.json",
+      "tracking/scaffold_targets_v0.7.0.json"
+    ],
+    "missing_expected_files": [],
+    "notes": [
+      "build_map.json includes raw structure output but is too broad for exact expectation matching"
+    ]
+  },
+  "root_alignment": [
+    {
+      "area": "backend",
+      "active_root": {
+        "path": "app",
+        "exists": true,
+        "file_count": 51,
+        "bytes": 232520,
+        "size_human": "227.07 KB"
+      },
+      "passive_root_candidates": [
+        {
+          "path": "backend/app",
+          "exists": true,
+          "file_count": 11,
+          "bytes": 15868,
+          "size_human": "15.50 KB"
+        }
+      ],
+      "status": "review",
+      "notes": [
+        "Multiple root candidates exist for this layer. Treat the active root as source of truth unless the runtime proves otherwise."
+      ]
+    },
+    {
+      "area": "frontend",
+      "active_root": {
+        "path": "src",
+        "exists": true,
+        "file_count": 27,
+        "bytes": 51458,
+        "size_human": "50.25 KB"
+      },
+      "passive_root_candidates": [
+        {
+          "path": "frontend/src",
+          "exists": true,
+          "file_count": 9,
+          "bytes": 7741,
+          "size_human": "7.56 KB"
+        }
+      ],
+      "status": "review",
+      "notes": [
+        "Multiple root candidates exist for this layer. Treat the active root as source of truth unless the runtime proves otherwise."
+      ]
+    }
+  ],
+  "flags": [
+    {
+      "level": "review",
+      "code": "parallel_or_generated_artifact",
+      "message": "Parallel roots or generated artifacts exist and should be explicitly classified as active, passive, or disposable.",
+      "path": "backend/app"
+    },
+    {
+      "level": "review",
+      "code": "parallel_or_generated_artifact",
+      "message": "Parallel roots or generated artifacts exist and should be explicitly classified as active, passive, or disposable.",
+      "path": "frontend/src"
+    },
+    {
+      "level": "review",
+      "code": "parallel_or_generated_artifact",
+      "message": "Parallel roots or generated artifacts exist and should be explicitly classified as active, passive, or disposable.",
+      "path": "dsos_replacements"
+    },
+    {
+      "level": "review",
+      "code": "parallel_or_generated_artifact",
+      "message": "Parallel roots or generated artifacts exist and should be explicitly classified as active, passive, or disposable.",
+      "path": "test.db"
+    },
+    {
+      "level": "review",
+      "code": "parallel_or_generated_artifact",
+      "message": "Parallel roots or generated artifacts exist and should be explicitly classified as active, passive, or disposable.",
+      "path": "runtime_v5.db"
+    },
+    {
+      "level": "review",
+      "code": "dual_backend_roots",
+      "message": "Both app/ and backend/app/ contain code. Current runtime imports app/, so backend/app/ should be treated as passive until reconciled.",
+      "path": "app | backend/app"
+    },
+    {
+      "level": "review",
+      "code": "dual_frontend_roots",
+      "message": "Both src/ and frontend/src/ contain code. Current runtime and tooling reference src/, so frontend/src/ should be treated as passive until reconciled.",
+      "path": "src | frontend/src"
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "phases": {
+    "phase_1_runtime_foundation": {
+      "progress": 100,
+      "task_count": 4,
+      "done_count": null,
+      "mode": "string_tasks_preserved_existing_progress"
+    },
+    "phase_2_auth_rbac_branding": {
+      "progress": 100,
+      "task_count": 5,
+      "done_count": null,
+      "mode": "string_tasks_preserved_existing_progress"
+    },
+    "phase_3_department_audit": {
+      "progress": 100,
+      "task_count": 6,
+      "done_count": null,
+      "mode": "string_tasks_preserved_existing_progress"
+    },
+    "phase_4_malone_foundation": {
+      "progress": 100,
+      "task_count": 11,
+      "done_count": null,
+      "mode": "string_tasks_preserved_existing_progress"
+    },
+    "phase_5_malone_render_and_grounding": {
+      "progress": 100,
+      "task_count": 7,
+      "done_count": null,
+      "mode": "string_tasks_preserved_existing_progress"
+    },
+    "phase_6_malone_clarification_and_retrieval": {
+      "progress": 90,
+      "task_count": 8,
+      "done_count": null,
+      "mode": "string_tasks_preserved_existing_progress"
+    },
+    "phase_7_malone_governed_execution": {
+      "progress": 68,
+      "task_count": 15,
+      "done_count": null,
+      "mode": "string_tasks_preserved_existing_progress"
+    },
+    "phase_8_malone_super_agent": {
+      "progress": 0,
+      "task_count": 5,
+      "done_count": null,
+      "mode": "string_tasks_preserved_existing_progress"
+    }
+  }
+}

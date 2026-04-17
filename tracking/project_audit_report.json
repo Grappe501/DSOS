@@ -1,0 +1,43 @@
+{
+  "project_root": "/mnt/data/work/dsos/DSOS",
+  "counts": {
+    "tracking_files": 30,
+    "tool_files": 34,
+    "app_files": 99,
+    "src_files": 27
+  },
+  "presence": {
+    "tracking": {
+      "tracking/current_state.json": true,
+      "tracking/progress.json": true,
+      "tracking/NEXT_PHASE_MASTER_BUILD_PLAN_v0.7.0.md": true,
+      "tracking/malone/MALONE_V1_MASTER_PLAN.md": true,
+      "tracking/malone/malone_manifest_v1.json": true,
+      "tracking/malone/malone_build_map.json": true
+    },
+    "backend": {
+      "app/main.py": true,
+      "app/api/routes.py": true,
+      "app/api/auth_routes.py": true,
+      "app/api/malone_routes.py": true,
+      "app/services/schedule_service.py": true,
+      "app/services/malone_service.py": true,
+      "app/services/intent_service.py": true,
+      "app/services/proposal_service.py": true
+    },
+    "frontend": {
+      "src/App.jsx": true,
+      "src/lib/api.js": true,
+      "src/lib/maloneApi.js": true,
+      "src/pages/SchedulesPage.jsx": true,
+      "src/pages/MalonePage.jsx": true,
+      "src/components/malone/ChatPanel.jsx": true
+    },
+    "tooling": {
+      "tools/scaffold_next_phase.py": true,
+      "tools/scaffold_malone_phase.py": true,
+      "tools/template_registry.json": true,
+      "tools/malone_template_registry.json": true
+    }
+  }
+}

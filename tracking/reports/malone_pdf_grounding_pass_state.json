@@ -1,0 +1,32 @@
+{
+  "schema_version": "malone_pdf_grounding_pass_state_v1",
+  "generated_at": "2026-04-16",
+  "pass_name": "malone_pdf_grounding",
+  "active_lanes": ["app/", "schemas/", "alembic/", "tracking/"],
+  "dependencies_added": ["pypdf>=4.0"],
+  "artifacts": {
+    "report": "tracking/reports/malone_pdf_grounding_pass_report.md",
+    "pdf_extraction_contract": "tracking/reports/legal_pdf_extraction_contract.md",
+    "page_grounding_contract": "tracking/reports/legal_page_grounding_contract.md",
+    "retrieval_scoping_plan": "tracking/reports/legal_retrieval_scoping_plan.md",
+    "next_thread_prompt": "tracking/reports/NEXT_THREAD_PROMPT_PDF_GROUNDING.md",
+    "smoke_script": "tracking/scripts/pdf_grounding_smoke.py"
+  },
+  "code_entrypoints": {
+    "pdf_extract": "app/services/legal_ingestion/pdf_extractor.py",
+    "page_map": "app/services/legal_ingestion/page_mapper.py",
+    "anchor_display": "app/services/legal_ingestion/anchor_builder.py",
+    "ingest_pdf": "app/services/legal_ingestion/arkansas_pipeline.py:ingest_arkansas_handbook_pdf"
+  },
+  "migrations": ["0004_legal_unit_chunk_source_version"],
+  "hard_fail_compliance": {
+    "passive_roots_modified": false,
+    "malone_wholesale_replacement": false,
+    "speculative_user_qa": false,
+    "tracking_skipped": false
+  },
+  "known_limitations": [
+    "TOC family regex may under-segment some PDF text layouts",
+    "No OCR for image-only pages"
+  ]
+}

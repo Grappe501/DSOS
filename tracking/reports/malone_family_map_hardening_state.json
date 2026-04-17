@@ -1,0 +1,35 @@
+{
+  "schema_version": "malone_family_map_hardening_state_v1",
+  "generated_at": "2026-04-16",
+  "pass_name": "malone_family_map_hardening",
+  "active_lanes": ["app/", "schemas/", "alembic/", "tracking/", "tests/"],
+  "target_source": "Arkansas State Board of Pharmacy Statutes and Rules — November 2025 compilation",
+  "artifacts": {
+    "report": "tracking/reports/malone_family_map_hardening_report.md",
+    "family_extraction_contract": "tracking/reports/legal_family_extraction_contract.md",
+    "family_reconciliation_contract": "tracking/reports/legal_family_reconciliation_contract.md",
+    "family_validation_report": "tracking/reports/arkansas_lawbook_family_validation.md",
+    "family_retrieval_plan": "tracking/reports/legal_family_retrieval_plan.md",
+    "next_thread_prompt": "tracking/reports/NEXT_THREAD_PROMPT_FAMILY_MAP_HARDENING.md",
+    "validate_script": "tracking/scripts/family_map_validate.py"
+  },
+  "code_entrypoints": {
+    "family_boundary": "app/services/legal_ingestion/family_boundary.py",
+    "toc_parser": "app/services/legal_ingestion/toc_parser.py",
+    "source_profiler": "app/services/legal_ingestion/source_profiler.py",
+    "ingest_pipeline": "app/services/legal_ingestion/arkansas_pipeline.py",
+    "source_families_meta": "app/services/legal_knowledge/source_families.py",
+    "lexical_family_filters": "app/services/legal_retrieval/lexical.py"
+  },
+  "expected_family_codes": ["A", "B", "C", "D", "E", "F", "G", "H"],
+  "fixture_validation_snapshot": {
+    "fixture_path": "tracking/fixtures/arkansas_handbook_vertical_slice_sample.txt",
+    "note": "Excerpt detects A and H only; full PDF validation is operator-run via family_map_validate.py"
+  },
+  "hard_fail_compliance": {
+    "passive_roots_modified": false,
+    "malone_wholesale_replacement": false,
+    "speculative_user_qa": false,
+    "tracking_skipped": false
+  }
+}

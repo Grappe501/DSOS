@@ -1,44 +1,228 @@
 {
-  "project_root": "C:\\Users\\User\\Desktop\\DSOS",
+  "project_root": "/mnt/data/work/dsos/DSOS",
   "tracking_ok": true,
   "tools_ok": true,
   "runtime_ok": true,
-  "note": "This report is a handoff baseline only. The next thread must rerun project_map_audit.py and self_verify_bootstrap.py before coding.",
   "tracking_presence": {
     "tracking/current_state.json": true,
     "tracking/progress.json": true,
     "tracking/NEXT_THREAD_PROMPT.md": true,
     "tracking/HANDOFF_MIGRATION_MESSAGE.md": true,
     "tracking/handoff_state_snapshot.json": true,
-    "tracking/NEW_THREAD_BOOT_SEQUENCE.md": true,
     "tracking/malone/MALONE_V1_MASTER_PLAN.md": true,
-    "tracking/malone/malone_manifest_v1.json": true,
-    "tracking/malone/malone_build_sequence_v1.json": true
+    "tracking/malone/malone_manifest_v1.json": true
   },
   "tool_presence": {
-    "tools/project_map_audit.py": true,
-    "tools/self_verify_bootstrap.py": true
+    "tools/project_map_audit.py": true
   },
   "runtime_presence": {
     "app/main.py": true,
     "app/api/routes.py": true,
     "app/api/auth_routes.py": true,
     "app/api/malone_routes.py": true,
-    "app/services/malone_service.py": true,
-    "app/services/deterministic_registry.py": true,
-    "app/services/deterministic_validator.py": true,
-    "app/services/deterministic_executor.py": true,
-    "app/services/deterministic_actions_schedule.py": true,
     "src/App.jsx": true,
+    "src/lib/api.js": true,
     "src/lib/maloneApi.js": true,
     "src/pages/SchedulesPage.jsx": true,
     "src/pages/MalonePage.jsx": true
   },
-  "expected_next_thread_actions": [
-    "run project_map_audit.py",
-    "run self_verify_bootstrap.py",
-    "compare output to tracking",
-    "choose one bounded next slice only",
-    "update tracking again after coding"
-  ]
+  "current_state": {
+    "current_phase": "phase_7_malone_governed_execution",
+    "active_module": "workflow_engine_modularized_and_integrated_with_malone_governed_execution",
+    "current_task": "workflow package split is underway and the governed execution layer is being hardened for approval completion, clarification state integration, and internal retrieval readiness",
+    "progress": 96,
+    "last_working_version": "v0.9.2-workflow-package-split-in-progress",
+    "system_mode": "in_progress",
+    "build_posture": "production_grade_hardening",
+    "seed_login": {
+      "email": "owner@test.com",
+      "password": "ChangeMe123!"
+    },
+    "working_now": [
+      "FastAPI backend boots cleanly locally",
+      "React/Vite frontend boots cleanly locally",
+      "JWT login works through /api/auth/login",
+      "dashboard renders after login",
+      "schedules feed works",
+      "schedule create and cancel routes are present and governed by role checks",
+      "Malone page is present in navigation",
+      "Malone proposal and validation flow works",
+      "Malone proposals are durably persisted",
+      "Malone lifecycle audit logging works",
+      "Malone can safely execute schedule read and schedule analysis through deterministic validation",
+      "OpenAI conversational rendering layer is wired behind backend-only configuration",
+      "render verification and deterministic fallback delivery are wired",
+      "governed web retrieval is wired behind retrieval rules and verified source handling",
+      "technical proof is hidden behind dropdowns on the Malone page",
+      "deterministic action registry foundation is now present",
+      "deterministic validator and deterministic executor foundations are now present",
+      "Malone capability discovery endpoint is present at /api/malone/capabilities",
+      "proposal records can persist deterministic execution envelopes alongside rendered output and verification",
+      "workflow engine foundation tables are modeled in SQLAlchemy for new runtime bootstraps",
+      "seeded workflow definition malone_governed_execution v1 is wired at startup",
+      "Malone validated proposals now enter the workflow engine instead of directly calling deterministic execution",
+      "workflow instances and step executions are auditable and queryable through API routes",
+      "workflow definition, handler, and instance visibility endpoints are present under /api",
+      "workflow architecture is now being split into a dedicated app/services/workflows package to prevent monolith growth",
+      "workflow_service.py is now intended to operate as a stable facade over modular workflow internals",
+      "workflow constants, registry, serializers, state helpers, and json utility modules are being hardened as independent workflow subsystems"
+    ],
+    "architecture_state": {
+      "malone_layer": "active",
+      "deterministic_layer": "active",
+      "workflow_engine": "active_and_being_modularized",
+      "workflow_package_split": "in_progress",
+      "approval_system": "partial",
+      "clarification_system": "partial",
+      "internal_retrieval_layer": "missing",
+      "governed_write_execution": "not_started",
+      "database_migrations": "not_standardized"
+    },
+    "blocking_issues": [
+      "new thread must load tracking and workflow package architecture before writing code",
+      "new thread must rerun tools/project_map_audit.py and tools/self_verify_bootstrap.py before further coding",
+      "approval workflow is only partially implemented and still needs full lifecycle completion",
+      "pending clarification conversation state is only partially implemented and not yet fully integrated end-to-end",
+      "internal DSOS retrieval layer is not yet implemented",
+      "formal DB migrations are still not established for long-term schema evolution",
+      "workflow package split must continue carefully to avoid duplicate logic between facade and package modules"
+    ],
+    "risk_flags": [
+      "thread_drift",
+      "duplicate_logic_risk",
+      "workflow_split_incomplete",
+      "missing_retrieval_layer",
+      "approval_flow_not_complete",
+      "clarification_flow_not_complete"
+    ],
+    "next_required_actions": [
+      "complete_workflow_package_split",
+      "finish_approval_workflow_lifecycle",
+      "finish_clarification_state_integration",
+      "build_internal_retrieval_layer",
+      "begin_governed_write_execution",
+      "standardize_database_migrations"
+    ],
+    "next_recommended_slice": "complete_workflow_package_split_and_finish_approval_workflow_lifecycle",
+    "boot_requirements_for_next_thread": [
+      "read tracking/current_state.json first",
+      "read tracking/progress.json",
+      "read tracking/micro_steps.json",
+      "read workflow architecture tracking docs",
+      "verify workflow package health before coding",
+      "treat app/services/workflow_service.py as facade only",
+      "do not reintroduce monolithic workflow logic"
+    ]
+  },
+  "progress": {
+    "phase_1_runtime_foundation": {
+      "progress": 100,
+      "status": "complete",
+      "tasks": [
+        "runtime foundation",
+        "api routes",
+        "schedule slice",
+        "frontend shell"
+      ]
+    },
+    "phase_2_auth_rbac_branding": {
+      "progress": 100,
+      "status": "complete",
+      "tasks": [
+        "jwt auth",
+        "seed login",
+        "protected routes",
+        "rbac enforcement v1",
+        "allcare branding v1"
+      ]
+    },
+    "phase_3_department_audit": {
+      "progress": 100,
+      "status": "complete",
+      "tasks": [
+        "runtime/login stabilization",
+        "auth route and schema contract repair",
+        "workflow/messages/events slice activation",
+        "actor-aware audit tracking baseline",
+        "department scoping baseline",
+        "owner admin operational visibility baseline"
+      ]
+    },
+    "phase_4_malone_foundation": {
+      "progress": 100,
+      "status": "complete",
+      "tasks": [
+        "Malone v1 master build plan and manifests",
+        "Malone scaffolder concept lock",
+        "Malone backend services scaffold",
+        "Malone frontend page scaffold",
+        "Malone route wiring",
+        "Malone proposal + validation",
+        "Malone safe schedule-read execution",
+        "Malone proposal persistence",
+        "Malone audit lifecycle expansion",
+        "Malone world-class roadmap tracking integration",
+        "Stage 1 conversational rendering plan locked"
+      ]
+    },
+    "phase_5_malone_render_and_grounding": {
+      "progress": 100,
+      "status": "complete",
+      "tasks": [
+        "OpenAI backend integration",
+        "truth packet builder",
+        "structured conversational rendering",
+        "deterministic render verification",
+        "render audit events",
+        "Malone UI conversational answer panel",
+        "fallback deterministic response path"
+      ]
+    },
+    "phase_6_malone_clarification_and_retrieval": {
+      "progress": 90,
+      "status": "nearly_complete",
+      "tasks": [
+        "clarification refinement loop",
+        "pending clarification conversation state",
+        "internal DSOS retrieval layer",
+        "evidence packet model",
+        "source-aware UI responses",
+        "web retrieval with governed response",
+        "verified source enforcement",
+        "UI source display with dropdown architecture"
+      ]
+    },
+    "phase_7_malone_governed_execution": {
+      "progress": 68,
+      "status": "in_progress",
+      "tasks": [
+        "deterministic brain v2 foundation",
+        "deterministic action registry",
+        "deterministic validator",
+        "deterministic executor",
+        "Malone capability discovery endpoint",
+        "proposal persistence of deterministic execution envelope",
+        "deterministic audit entity tracking",
+        "approval workflow foundation",
+        "governed write execution",
+        "tool orchestration registry",
+        "department-aware action enforcement",
+        "workflow engine foundation",
+        "Malone workflow orchestration integration",
+        "seeded malone_governed_execution workflow definition",
+        "workflow instance and step execution audit visibility"
+      ]
+    },
+    "phase_8_malone_super_agent": {
+      "progress": 0,
+      "status": "planned",
+      "tasks": [
+        "multi-agent orchestration",
+        "voice runtime",
+        "watcher agents",
+        "self-improvement proposal loop",
+        "local-model abstraction for GPU transition"
+      ]
+    }
+  }
 }

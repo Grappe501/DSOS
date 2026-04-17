@@ -1,0 +1,1828 @@
+{
+  "root": "H:\\DSOS",
+  "tree": {
+    "name": "DSOS",
+    "type": "dir",
+    "children": [
+      {
+        "name": "alembic",
+        "type": "dir",
+        "children": [
+          {
+            "name": "versions",
+            "type": "dir",
+            "children": [
+              {
+                "name": "0001_v070_department_workflow.py",
+                "type": "file",
+                "size_bytes": 1525
+              }
+            ]
+          },
+          {
+            "name": "env.py",
+            "type": "file",
+            "size_bytes": 1159
+          }
+        ]
+      },
+      {
+        "name": "api",
+        "type": "dir",
+        "children": [
+          {
+            "name": "contracts.md",
+            "type": "file",
+            "size_bytes": 82
+          },
+          {
+            "name": "endpoints.md",
+            "type": "file",
+            "size_bytes": 340
+          }
+        ]
+      },
+      {
+        "name": "app",
+        "type": "dir",
+        "children": [
+          {
+            "name": "adapters",
+            "type": "dir",
+            "children": [
+              {
+                "name": "office365_adapter.py",
+                "type": "file",
+                "size_bytes": 693
+              }
+            ]
+          },
+          {
+            "name": "api",
+            "type": "dir",
+            "children": [
+              {
+                "name": "auth_routes.py",
+                "type": "file",
+                "size_bytes": 1437
+              },
+              {
+                "name": "deps.py",
+                "type": "file",
+                "size_bytes": 2176
+              },
+              {
+                "name": "malone_routes.py",
+                "type": "file",
+                "size_bytes": 1605
+              },
+              {
+                "name": "routes.py",
+                "type": "file",
+                "size_bytes": 21544
+              },
+              {
+                "name": "schemas.py",
+                "type": "file",
+                "size_bytes": 9170
+              }
+            ]
+          },
+          {
+            "name": "core",
+            "type": "dir",
+            "children": [
+              {
+                "name": "scheduler.py",
+                "type": "file",
+                "size_bytes": 913
+              },
+              {
+                "name": "wiring.py",
+                "type": "file",
+                "size_bytes": 1991
+              }
+            ]
+          },
+          {
+            "name": "db",
+            "type": "dir",
+            "children": [
+              {
+                "name": "session.py",
+                "type": "file",
+                "size_bytes": 323
+              }
+            ]
+          },
+          {
+            "name": "events",
+            "type": "dir",
+            "children": [
+              {
+                "name": "event_bus.py",
+                "type": "file",
+                "size_bytes": 978
+              }
+            ]
+          },
+          {
+            "name": "models",
+            "type": "dir",
+            "children": [
+              {
+                "name": "models.py",
+                "type": "file",
+                "size_bytes": 16198
+              }
+            ]
+          },
+          {
+            "name": "services",
+            "type": "dir",
+            "children": [
+              {
+                "name": "workflows",
+                "type": "dir",
+                "children": [
+                  {
+                    "name": "engine_parts",
+                    "type": "dir",
+                    "children": [
+                      {
+                        "name": "__init__.py",
+                        "type": "file",
+                        "size_bytes": 37
+                      },
+                      {
+                        "name": "audit.py",
+                        "type": "file",
+                        "size_bytes": 547
+                      },
+                      {
+                        "name": "context.py",
+                        "type": "file",
+                        "size_bytes": 636
+                      },
+                      {
+                        "name": "lifecycle.py",
+                        "type": "file",
+                        "size_bytes": 11427
+                      },
+                      {
+                        "name": "persistence.py",
+                        "type": "file",
+                        "size_bytes": 1185
+                      },
+                      {
+                        "name": "queries.py",
+                        "type": "file",
+                        "size_bytes": 1401
+                      }
+                    ]
+                  },
+                  {
+                    "name": "__init__.py",
+                    "type": "file",
+                    "size_bytes": 47
+                  },
+                  {
+                    "name": "constants.py",
+                    "type": "file",
+                    "size_bytes": 2169
+                  },
+                  {
+                    "name": "definitions.py",
+                    "type": "file",
+                    "size_bytes": 6713
+                  },
+                  {
+                    "name": "engine.py",
+                    "type": "file",
+                    "size_bytes": 2415
+                  },
+                  {
+                    "name": "handlers_malone.py",
+                    "type": "file",
+                    "size_bytes": 8541
+                  },
+                  {
+                    "name": "hooks.py",
+                    "type": "file",
+                    "size_bytes": 3733
+                  },
+                  {
+                    "name": "json_utils.py",
+                    "type": "file",
+                    "size_bytes": 2949
+                  },
+                  {
+                    "name": "registry.py",
+                    "type": "file",
+                    "size_bytes": 1819
+                  },
+                  {
+                    "name": "serializers.py",
+                    "type": "file",
+                    "size_bytes": 3581
+                  },
+                  {
+                    "name": "state_helpers.py",
+                    "type": "file",
+                    "size_bytes": 3643
+                  }
+                ]
+              },
+              {
+                "name": "agent_service.py",
+                "type": "file",
+                "size_bytes": 3397
+              },
+              {
+                "name": "approval_service.py",
+                "type": "file",
+                "size_bytes": 8582
+              },
+              {
+                "name": "audit_service.py",
+                "type": "file",
+                "size_bytes": 2741
+              },
+              {
+                "name": "auth_service.py",
+                "type": "file",
+                "size_bytes": 2945
+              },
+              {
+                "name": "clarification_service.py",
+                "type": "file",
+                "size_bytes": 9255
+              },
+              {
+                "name": "department_service.py",
+                "type": "file",
+                "size_bytes": 3194
+              },
+              {
+                "name": "deterministic_actions_schedule.py",
+                "type": "file",
+                "size_bytes": 2665
+              },
+              {
+                "name": "deterministic_executor.py",
+                "type": "file",
+                "size_bytes": 1802
+              },
+              {
+                "name": "deterministic_registry.py",
+                "type": "file",
+                "size_bytes": 7308
+              },
+              {
+                "name": "deterministic_validator.py",
+                "type": "file",
+                "size_bytes": 5246
+              },
+              {
+                "name": "intent_service.py",
+                "type": "file",
+                "size_bytes": 1775
+              },
+              {
+                "name": "malone_service.py",
+                "type": "file",
+                "size_bytes": 11149
+              },
+              {
+                "name": "messaging_service.py",
+                "type": "file",
+                "size_bytes": 3956
+              },
+              {
+                "name": "openai_service.py",
+                "type": "file",
+                "size_bytes": 12965
+              },
+              {
+                "name": "prompt_registry_service.py",
+                "type": "file",
+                "size_bytes": 357
+              },
+              {
+                "name": "proposal_service.py",
+                "type": "file",
+                "size_bytes": 7665
+              },
+              {
+                "name": "reminder_service.py",
+                "type": "file",
+                "size_bytes": 3030
+              },
+              {
+                "name": "render_verifier.py",
+                "type": "file",
+                "size_bytes": 6763
+              },
+              {
+                "name": "schedule_service.py",
+                "type": "file",
+                "size_bytes": 9482
+              },
+              {
+                "name": "task_service.py",
+                "type": "file",
+                "size_bytes": 723
+              },
+              {
+                "name": "truth_packet_service.py",
+                "type": "file",
+                "size_bytes": 10248
+              },
+              {
+                "name": "workflow_service.py",
+                "type": "file",
+                "size_bytes": 7194
+              }
+            ]
+          },
+          {
+            "name": "utils",
+            "type": "dir",
+            "children": [
+              {
+                "name": "logger.py",
+                "type": "file",
+                "size_bytes": 121
+              }
+            ]
+          },
+          {
+            "name": "main.py",
+            "type": "file",
+            "size_bytes": 2086
+          }
+        ]
+      },
+      {
+        "name": "backend",
+        "type": "dir",
+        "children": [
+          {
+            "name": "app",
+            "type": "dir",
+            "children": [
+              {
+                "name": "api",
+                "type": "dir",
+                "children": [
+                  {
+                    "name": "auth_routes.py",
+                    "type": "file",
+                    "size_bytes": 1359
+                  },
+                  {
+                    "name": "deps.py",
+                    "type": "file",
+                    "size_bytes": 1682
+                  },
+                  {
+                    "name": "routes.py",
+                    "type": "file",
+                    "size_bytes": 0
+                  },
+                  {
+                    "name": "schemas.py",
+                    "type": "file",
+                    "size_bytes": 1520
+                  }
+                ]
+              },
+              {
+                "name": "models",
+                "type": "dir",
+                "children": [
+                  {
+                    "name": "models.py",
+                    "type": "file",
+                    "size_bytes": 6880
+                  }
+                ]
+              },
+              {
+                "name": "services",
+                "type": "dir",
+                "children": [
+                  {
+                    "name": "audit_service.py",
+                    "type": "file",
+                    "size_bytes": 0
+                  },
+                  {
+                    "name": "auth_service.py",
+                    "type": "file",
+                    "size_bytes": 2876
+                  },
+                  {
+                    "name": "department_service.py",
+                    "type": "file",
+                    "size_bytes": 0
+                  },
+                  {
+                    "name": "schedule_service.py",
+                    "type": "file",
+                    "size_bytes": 0
+                  },
+                  {
+                    "name": "workflow_service.py",
+                    "type": "file",
+                    "size_bytes": 0
+                  }
+                ]
+              },
+              {
+                "name": "main.py",
+                "type": "file",
+                "size_bytes": 1551
+              }
+            ]
+          },
+          {
+            "name": "requirements.txt",
+            "type": "file",
+            "size_bytes": 58
+          }
+        ]
+      },
+      {
+        "name": "config",
+        "type": "dir",
+        "children": [
+          {
+            "name": "settings.py",
+            "type": "file",
+            "size_bytes": 86
+          }
+        ]
+      },
+      {
+        "name": "docs",
+        "type": "dir",
+        "children": [
+          {
+            "name": "architecture",
+            "type": "dir",
+            "children": [
+              {
+                "name": "WORKING_ARCHITECTURE.md",
+                "type": "file",
+                "size_bytes": 999
+              }
+            ]
+          },
+          {
+            "name": "core",
+            "type": "dir",
+            "children": [
+              {
+                "name": "overview.md",
+                "type": "file",
+                "size_bytes": 54
+              }
+            ]
+          },
+          {
+            "name": "data",
+            "type": "dir",
+            "children": [
+              {
+                "name": "schema.md",
+                "type": "file",
+                "size_bytes": 46
+              }
+            ]
+          },
+          {
+            "name": "git",
+            "type": "dir",
+            "children": [
+              {
+                "name": "GIT_SETUP_AND_RELEASE.md",
+                "type": "file",
+                "size_bytes": 528
+              }
+            ]
+          },
+          {
+            "name": "modules",
+            "type": "dir",
+            "children": [
+              {
+                "name": "module_template.md",
+                "type": "file",
+                "size_bytes": 135
+              }
+            ]
+          },
+          {
+            "name": "plan",
+            "type": "dir",
+            "children": [
+              {
+                "name": "NEXT_PHASE_PLAN.md",
+                "type": "file",
+                "size_bytes": 1740
+              }
+            ]
+          },
+          {
+            "name": "process",
+            "type": "dir",
+            "children": [
+              {
+                "name": "build_process.md",
+                "type": "file",
+                "size_bytes": 45
+              }
+            ]
+          },
+          {
+            "name": "spine",
+            "type": "dir",
+            "children": [
+              {
+                "name": "ai_orchestration.md",
+                "type": "file",
+                "size_bytes": 104
+              },
+              {
+                "name": "audit_logging.md",
+                "type": "file",
+                "size_bytes": 101
+              },
+              {
+                "name": "auth_service.md",
+                "type": "file",
+                "size_bytes": 100
+              },
+              {
+                "name": "event_bus.md",
+                "type": "file",
+                "size_bytes": 97
+              },
+              {
+                "name": "forms_engine.md",
+                "type": "file",
+                "size_bytes": 100
+              },
+              {
+                "name": "integration_gateway.md",
+                "type": "file",
+                "size_bytes": 107
+              },
+              {
+                "name": "messaging_engine.md",
+                "type": "file",
+                "size_bytes": 104
+              },
+              {
+                "name": "reminder_engine.md",
+                "type": "file",
+                "size_bytes": 103
+              },
+              {
+                "name": "reporting_engine.md",
+                "type": "file",
+                "size_bytes": 104
+              },
+              {
+                "name": "services.md",
+                "type": "file",
+                "size_bytes": 309
+              },
+              {
+                "name": "task_engine.md",
+                "type": "file",
+                "size_bytes": 99
+              },
+              {
+                "name": "workflow_engine.md",
+                "type": "file",
+                "size_bytes": 103
+              }
+            ]
+          },
+          {
+            "name": "status",
+            "type": "dir",
+            "children": [
+              {
+                "name": "CURRENT_STATE.md",
+                "type": "file",
+                "size_bytes": 1849
+              }
+            ]
+          },
+          {
+            "name": "testing",
+            "type": "dir",
+            "children": [
+              {
+                "name": "SMOKE_TEST_CHECKLIST.md",
+                "type": "file",
+                "size_bytes": 508
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "dsos_replacements",
+        "type": "dir",
+        "children": [
+          {
+            "name": "app",
+            "type": "dir",
+            "children": [
+              {
+                "name": "api",
+                "type": "dir",
+                "children": [
+                  {
+                    "name": "routes.py",
+                    "type": "file",
+                    "size_bytes": 17523
+                  },
+                  {
+                    "name": "schemas.py",
+                    "type": "file",
+                    "size_bytes": 1712
+                  }
+                ]
+              },
+              {
+                "name": "db",
+                "type": "dir",
+                "children": [
+                  {
+                    "name": "session.py",
+                    "type": "file",
+                    "size_bytes": 2118
+                  }
+                ]
+              },
+              {
+                "name": "services",
+                "type": "dir",
+                "children": [
+                  {
+                    "name": "audit_service.py",
+                    "type": "file",
+                    "size_bytes": 2217
+                  },
+                  {
+                    "name": "messaging_service.py",
+                    "type": "file",
+                    "size_bytes": 3653
+                  },
+                  {
+                    "name": "schedule_service.py",
+                    "type": "file",
+                    "size_bytes": 11650
+                  },
+                  {
+                    "name": "task_service.py",
+                    "type": "file",
+                    "size_bytes": 1198
+                  },
+                  {
+                    "name": "workflow_service.py",
+                    "type": "file",
+                    "size_bytes": 3990
+                  }
+                ]
+              },
+              {
+                "name": "main.py",
+                "type": "file",
+                "size_bytes": 1626
+              }
+            ]
+          },
+          {
+            "name": "src",
+            "type": "dir",
+            "children": [
+              {
+                "name": "lib",
+                "type": "dir",
+                "children": [
+                  {
+                    "name": "api.js",
+                    "type": "file",
+                    "size_bytes": 1899
+                  }
+                ]
+              },
+              {
+                "name": "pages",
+                "type": "dir",
+                "children": [
+                  {
+                    "name": "AuditPage.jsx",
+                    "type": "file",
+                    "size_bytes": 4500
+                  },
+                  {
+                    "name": "DashboardPage.jsx",
+                    "type": "file",
+                    "size_bytes": 2901
+                  },
+                  {
+                    "name": "SchedulesPage.jsx",
+                    "type": "file",
+                    "size_bytes": 8268
+                  }
+                ]
+              },
+              {
+                "name": "App.jsx",
+                "type": "file",
+                "size_bytes": 2701
+              },
+              {
+                "name": "styles.css",
+                "type": "file",
+                "size_bytes": 6196
+              }
+            ]
+          },
+          {
+            "name": "BUILD_NOTES.md",
+            "type": "file",
+            "size_bytes": 2397
+          }
+        ]
+      },
+      {
+        "name": "events",
+        "type": "dir",
+        "children": [
+          {
+            "name": "event_registry.md",
+            "type": "file",
+            "size_bytes": 116
+          },
+          {
+            "name": "events.json",
+            "type": "file",
+            "size_bytes": 519
+          }
+        ]
+      },
+      {
+        "name": "flows",
+        "type": "dir",
+        "children": [
+          {
+            "name": "scheduling_flow.md",
+            "type": "file",
+            "size_bytes": 275
+          }
+        ]
+      },
+      {
+        "name": "frontend",
+        "type": "dir",
+        "children": [
+          {
+            "name": "src",
+            "type": "dir",
+            "children": [
+              {
+                "name": "components",
+                "type": "dir",
+                "children": [
+                  {
+                    "name": "ProtectedRoute.jsx",
+                    "type": "file",
+                    "size_bytes": 329
+                  }
+                ]
+              },
+              {
+                "name": "context",
+                "type": "dir",
+                "children": [
+                  {
+                    "name": "AuthContext.jsx",
+                    "type": "file",
+                    "size_bytes": 1338
+                  }
+                ]
+              },
+              {
+                "name": "lib",
+                "type": "dir",
+                "children": [
+                  {
+                    "name": "api.js",
+                    "type": "file",
+                    "size_bytes": 1421
+                  }
+                ]
+              },
+              {
+                "name": "pages",
+                "type": "dir",
+                "children": [
+                  {
+                    "name": "ApprovalsPage.jsx",
+                    "type": "file",
+                    "size_bytes": 0
+                  },
+                  {
+                    "name": "AuditPage.jsx",
+                    "type": "file",
+                    "size_bytes": 0
+                  },
+                  {
+                    "name": "DepartmentsPage.jsx",
+                    "type": "file",
+                    "size_bytes": 0
+                  },
+                  {
+                    "name": "LoginPage.jsx",
+                    "type": "file",
+                    "size_bytes": 1886
+                  }
+                ]
+              },
+              {
+                "name": "App.jsx",
+                "type": "file",
+                "size_bytes": 2346
+              },
+              {
+                "name": "main.jsx",
+                "type": "file",
+                "size_bytes": 421
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "registry",
+        "type": "dir",
+        "children": [
+          {
+            "name": "events.json",
+            "type": "file",
+            "size_bytes": 109
+          },
+          {
+            "name": "modules.json",
+            "type": "file",
+            "size_bytes": 94
+          }
+        ]
+      },
+      {
+        "name": "runtime",
+        "type": "dir",
+        "children": [
+          {
+            "name": "runtime.md",
+            "type": "file",
+            "size_bytes": 115
+          }
+        ]
+      },
+      {
+        "name": "schemas",
+        "type": "dir",
+        "children": [
+          {
+            "name": "core.sql",
+            "type": "file",
+            "size_bytes": 1356
+          },
+          {
+            "name": "core_tables.md",
+            "type": "file",
+            "size_bytes": 55
+          }
+        ]
+      },
+      {
+        "name": "scripts",
+        "type": "dir",
+        "children": [
+          {
+            "name": "build_map.py",
+            "type": "file",
+            "size_bytes": 581
+          },
+          {
+            "name": "update_progress.py",
+            "type": "file",
+            "size_bytes": 2263
+          }
+        ]
+      },
+      {
+        "name": "spine",
+        "type": "dir",
+        "children": [
+          {
+            "name": "ai",
+            "type": "dir",
+            "children": [
+              {
+                "name": "ai.md",
+                "type": "file",
+                "size_bytes": 276
+              },
+              {
+                "name": "ai_service.md",
+                "type": "file",
+                "size_bytes": 307
+              }
+            ]
+          },
+          {
+            "name": "audit",
+            "type": "dir",
+            "children": [
+              {
+                "name": "audit.md",
+                "type": "file",
+                "size_bytes": 270
+              },
+              {
+                "name": "audit_service.md",
+                "type": "file",
+                "size_bytes": 302
+              }
+            ]
+          },
+          {
+            "name": "auth",
+            "type": "dir",
+            "children": [
+              {
+                "name": "auth.md",
+                "type": "file",
+                "size_bytes": 319
+              },
+              {
+                "name": "auth_service.md",
+                "type": "file",
+                "size_bytes": 317
+              }
+            ]
+          },
+          {
+            "name": "event_bus",
+            "type": "dir",
+            "children": [
+              {
+                "name": "event_bus.md",
+                "type": "file",
+                "size_bytes": 294
+              },
+              {
+                "name": "event_bus_service.md",
+                "type": "file",
+                "size_bytes": 317
+              }
+            ]
+          },
+          {
+            "name": "forms",
+            "type": "dir",
+            "children": [
+              {
+                "name": "forms.md",
+                "type": "file",
+                "size_bytes": 284
+              },
+              {
+                "name": "forms_service.md",
+                "type": "file",
+                "size_bytes": 311
+              }
+            ]
+          },
+          {
+            "name": "integration",
+            "type": "dir",
+            "children": [
+              {
+                "name": "integration.md",
+                "type": "file",
+                "size_bytes": 294
+              },
+              {
+                "name": "integration_service.md",
+                "type": "file",
+                "size_bytes": 316
+              }
+            ]
+          },
+          {
+            "name": "messaging",
+            "type": "dir",
+            "children": [
+              {
+                "name": "messaging.md",
+                "type": "file",
+                "size_bytes": 325
+              },
+              {
+                "name": "messaging_service.md",
+                "type": "file",
+                "size_bytes": 309
+              }
+            ]
+          },
+          {
+            "name": "reminder",
+            "type": "dir",
+            "children": [
+              {
+                "name": "reminder.md",
+                "type": "file",
+                "size_bytes": 325
+              },
+              {
+                "name": "reminder_service.md",
+                "type": "file",
+                "size_bytes": 316
+              }
+            ]
+          },
+          {
+            "name": "reporting",
+            "type": "dir",
+            "children": [
+              {
+                "name": "reporting.md",
+                "type": "file",
+                "size_bytes": 271
+              },
+              {
+                "name": "reporting_service.md",
+                "type": "file",
+                "size_bytes": 308
+              }
+            ]
+          },
+          {
+            "name": "task",
+            "type": "dir",
+            "children": [
+              {
+                "name": "task.md",
+                "type": "file",
+                "size_bytes": 301
+              },
+              {
+                "name": "task_service.md",
+                "type": "file",
+                "size_bytes": 306
+              }
+            ]
+          },
+          {
+            "name": "workflow",
+            "type": "dir",
+            "children": [
+              {
+                "name": "workflow.md",
+                "type": "file",
+                "size_bytes": 314
+              },
+              {
+                "name": "workflow_service.md",
+                "type": "file",
+                "size_bytes": 321
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "src",
+        "type": "dir",
+        "children": [
+          {
+            "name": "components",
+            "type": "dir",
+            "children": [
+              {
+                "name": "malone",
+                "type": "dir",
+                "children": [
+                  {
+                    "name": "AgentRunPanel.jsx",
+                    "type": "file",
+                    "size_bytes": 565
+                  },
+                  {
+                    "name": "ChatPanel.jsx",
+                    "type": "file",
+                    "size_bytes": 1922
+                  },
+                  {
+                    "name": "ProposalPanel.jsx",
+                    "type": "file",
+                    "size_bytes": 4090
+                  },
+                  {
+                    "name": "VoiceInputButton.jsx",
+                    "type": "file",
+                    "size_bytes": 184
+                  }
+                ]
+              },
+              {
+                "name": "DataState.jsx",
+                "type": "file",
+                "size_bytes": 309
+              },
+              {
+                "name": "PageHeader.jsx",
+                "type": "file",
+                "size_bytes": 296
+              },
+              {
+                "name": "ProtectedRoute.jsx",
+                "type": "file",
+                "size_bytes": 337
+              },
+              {
+                "name": "StatCard.jsx",
+                "type": "file",
+                "size_bytes": 282
+              }
+            ]
+          },
+          {
+            "name": "context",
+            "type": "dir",
+            "children": [
+              {
+                "name": "AuthContext.jsx",
+                "type": "file",
+                "size_bytes": 1389
+              }
+            ]
+          },
+          {
+            "name": "hooks",
+            "type": "dir",
+            "children": [
+              {
+                "name": "useAsync.js",
+                "type": "file",
+                "size_bytes": 632
+              }
+            ]
+          },
+          {
+            "name": "lib",
+            "type": "dir",
+            "children": [
+              {
+                "name": "api.js",
+                "type": "file",
+                "size_bytes": 4610
+              },
+              {
+                "name": "date.js",
+                "type": "file",
+                "size_bytes": 837
+              },
+              {
+                "name": "maloneApi.js",
+                "type": "file",
+                "size_bytes": 1042
+              }
+            ]
+          },
+          {
+            "name": "pages",
+            "type": "dir",
+            "children": [
+              {
+                "name": "ApprovalsPage.jsx",
+                "type": "file",
+                "size_bytes": 1595
+              },
+              {
+                "name": "AuditPage.jsx",
+                "type": "file",
+                "size_bytes": 563
+              },
+              {
+                "name": "CalendarPage.jsx",
+                "type": "file",
+                "size_bytes": 1904
+              },
+              {
+                "name": "DashboardPage.jsx",
+                "type": "file",
+                "size_bytes": 2346
+              },
+              {
+                "name": "DepartmentsPage.jsx",
+                "type": "file",
+                "size_bytes": 1123
+              },
+              {
+                "name": "EventsPage.jsx",
+                "type": "file",
+                "size_bytes": 2562
+              },
+              {
+                "name": "LoginPage.jsx",
+                "type": "file",
+                "size_bytes": 1798
+              },
+              {
+                "name": "MalonePage.jsx",
+                "type": "file",
+                "size_bytes": 1754
+              },
+              {
+                "name": "MessagesPage.jsx",
+                "type": "file",
+                "size_bytes": 2588
+              },
+              {
+                "name": "SchedulesPage.jsx",
+                "type": "file",
+                "size_bytes": 5534
+              },
+              {
+                "name": "WorkflowsPage.jsx",
+                "type": "file",
+                "size_bytes": 2602
+              }
+            ]
+          },
+          {
+            "name": "App.jsx",
+            "type": "file",
+            "size_bytes": 3352
+          },
+          {
+            "name": "main.jsx",
+            "type": "file",
+            "size_bytes": 420
+          },
+          {
+            "name": "styles.css",
+            "type": "file",
+            "size_bytes": 6822
+          }
+        ]
+      },
+      {
+        "name": "tests",
+        "type": "dir",
+        "children": [
+          {
+            "name": "test_basic.py",
+            "type": "file",
+            "size_bytes": 35
+          },
+          {
+            "name": "test_flow.py",
+            "type": "file",
+            "size_bytes": 34
+          },
+          {
+            "name": "testing_strategy.md",
+            "type": "file",
+            "size_bytes": 107
+          },
+          {
+            "name": "tests.md",
+            "type": "file",
+            "size_bytes": 48
+          }
+        ]
+      },
+      {
+        "name": "tools",
+        "type": "dir",
+        "children": [
+          {
+            "name": "templates",
+            "type": "dir",
+            "children": [
+              {
+                "name": "backend",
+                "type": "dir",
+                "children": [
+                  {
+                    "name": "api",
+                    "type": "dir",
+                    "children": [
+                      {
+                        "name": "deps.py.tpl",
+                        "type": "file",
+                        "size_bytes": 781
+                      },
+                      {
+                        "name": "routes.py.tpl",
+                        "type": "file",
+                        "size_bytes": 1080
+                      },
+                      {
+                        "name": "schemas.py.tpl",
+                        "type": "file",
+                        "size_bytes": 964
+                      }
+                    ]
+                  },
+                  {
+                    "name": "migrations",
+                    "type": "dir",
+                    "children": [
+                      {
+                        "name": "0001_v070_department_workflow.py.tpl",
+                        "type": "file",
+                        "size_bytes": 292
+                      },
+                      {
+                        "name": "alembic.ini.tpl",
+                        "type": "file",
+                        "size_bytes": 556
+                      },
+                      {
+                        "name": "env.py.tpl",
+                        "type": "file",
+                        "size_bytes": 1125
+                      }
+                    ]
+                  },
+                  {
+                    "name": "services",
+                    "type": "dir",
+                    "children": [
+                      {
+                        "name": "audit_service.py.tpl",
+                        "type": "file",
+                        "size_bytes": 938
+                      },
+                      {
+                        "name": "department_service.py.tpl",
+                        "type": "file",
+                        "size_bytes": 991
+                      },
+                      {
+                        "name": "schedule_service.py.tpl",
+                        "type": "file",
+                        "size_bytes": 1170
+                      },
+                      {
+                        "name": "workflow_service.py.tpl",
+                        "type": "file",
+                        "size_bytes": 635
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "frontend",
+                "type": "dir",
+                "children": [
+                  {
+                    "name": "context",
+                    "type": "dir",
+                    "children": [
+                      {
+                        "name": "AuthContext.jsx.tpl",
+                        "type": "file",
+                        "size_bytes": 552
+                      }
+                    ]
+                  },
+                  {
+                    "name": "lib",
+                    "type": "dir",
+                    "children": [
+                      {
+                        "name": "api.js.tpl",
+                        "type": "file",
+                        "size_bytes": 963
+                      }
+                    ]
+                  },
+                  {
+                    "name": "pages",
+                    "type": "dir",
+                    "children": [
+                      {
+                        "name": "ApprovalsPage.jsx.tpl",
+                        "type": "file",
+                        "size_bytes": 457
+                      },
+                      {
+                        "name": "AuditPage.jsx.tpl",
+                        "type": "file",
+                        "size_bytes": 485
+                      },
+                      {
+                        "name": "DepartmentsPage.jsx.tpl",
+                        "type": "file",
+                        "size_bytes": 538
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "malone",
+                "type": "dir",
+                "children": [
+                  {
+                    "name": "backend_agent_service.py.tpl",
+                    "type": "file",
+                    "size_bytes": 486
+                  },
+                  {
+                    "name": "backend_intent_service.py.tpl",
+                    "type": "file",
+                    "size_bytes": 649
+                  },
+                  {
+                    "name": "backend_malone_routes.py.tpl",
+                    "type": "file",
+                    "size_bytes": 675
+                  },
+                  {
+                    "name": "backend_malone_service.py.tpl",
+                    "type": "file",
+                    "size_bytes": 980
+                  },
+                  {
+                    "name": "backend_prompt_registry_service.py.tpl",
+                    "type": "file",
+                    "size_bytes": 330
+                  },
+                  {
+                    "name": "backend_proposal_service.py.tpl",
+                    "type": "file",
+                    "size_bytes": 574
+                  },
+                  {
+                    "name": "frontend_agent_run_panel.jsx.tpl",
+                    "type": "file",
+                    "size_bytes": 246
+                  },
+                  {
+                    "name": "frontend_chat_panel.jsx.tpl",
+                    "type": "file",
+                    "size_bytes": 1305
+                  },
+                  {
+                    "name": "frontend_malone_api.js.tpl",
+                    "type": "file",
+                    "size_bytes": 945
+                  },
+                  {
+                    "name": "frontend_malone_page.jsx.tpl",
+                    "type": "file",
+                    "size_bytes": 706
+                  },
+                  {
+                    "name": "frontend_proposal_panel.jsx.tpl",
+                    "type": "file",
+                    "size_bytes": 309
+                  },
+                  {
+                    "name": "frontend_voice_input_button.jsx.tpl",
+                    "type": "file",
+                    "size_bytes": 179
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "malone_template_registry.json",
+            "type": "file",
+            "size_bytes": 1390
+          },
+          {
+            "name": "project_map_audit.py",
+            "type": "file",
+            "size_bytes": 2383
+          },
+          {
+            "name": "root_mapper_audit.py",
+            "type": "file",
+            "size_bytes": 25230
+          },
+          {
+            "name": "scaffold_malone_phase.py",
+            "type": "file",
+            "size_bytes": 6349
+          },
+          {
+            "name": "scaffold_next_phase.py",
+            "type": "file",
+            "size_bytes": 3265
+          },
+          {
+            "name": "scaffold_size_audit.py",
+            "type": "file",
+            "size_bytes": 11980
+          },
+          {
+            "name": "self_verify_bootstrap.py",
+            "type": "file",
+            "size_bytes": 2552
+          },
+          {
+            "name": "template_registry.json",
+            "type": "file",
+            "size_bytes": 3563
+          }
+        ]
+      },
+      {
+        "name": "tracking",
+        "type": "dir",
+        "children": [
+          {
+            "name": "malone",
+            "type": "dir",
+            "children": [
+              {
+                "name": "malone_build_map.json",
+                "type": "file",
+                "size_bytes": 617
+              },
+              {
+                "name": "malone_build_sequence_v1.json",
+                "type": "file",
+                "size_bytes": 633
+              },
+              {
+                "name": "malone_manifest_v1.json",
+                "type": "file",
+                "size_bytes": 3469
+              },
+              {
+                "name": "MALONE_V1_MASTER_PLAN.md",
+                "type": "file",
+                "size_bytes": 4218
+              }
+            ]
+          },
+          {
+            "name": "reports",
+            "type": "dir",
+            "children": []
+          },
+          {
+            "name": "00_system_doctrine.md",
+            "type": "file",
+            "size_bytes": 228
+          },
+          {
+            "name": "01_architecture_layers.md",
+            "type": "file",
+            "size_bytes": 128
+          },
+          {
+            "name": "02_malone_agent_design.md",
+            "type": "file",
+            "size_bytes": 113
+          },
+          {
+            "name": "03_self_improvement_loop.md",
+            "type": "file",
+            "size_bytes": 95
+          },
+          {
+            "name": "04_voice_first_design.md",
+            "type": "file",
+            "size_bytes": 68
+          },
+          {
+            "name": "05_ai_infrastructure.md",
+            "type": "file",
+            "size_bytes": 47
+          },
+          {
+            "name": "06_building_blocks.md",
+            "type": "file",
+            "size_bytes": 67
+          },
+          {
+            "name": "07_agent_replication.md",
+            "type": "file",
+            "size_bytes": 67
+          },
+          {
+            "name": "08_phase4_direction.md",
+            "type": "file",
+            "size_bytes": 70
+          },
+          {
+            "name": "bootstrap_verification_report.json",
+            "type": "file",
+            "size_bytes": 9381
+          },
+          {
+            "name": "build_map.json",
+            "type": "file",
+            "size_bytes": 334388
+          },
+          {
+            "name": "CLEAN_SYSTEM_PROTOCOL.md",
+            "type": "file",
+            "size_bytes": 1707
+          },
+          {
+            "name": "current_state.json",
+            "type": "file",
+            "size_bytes": 4224
+          },
+          {
+            "name": "file_map_v0.7.0.json",
+            "type": "file",
+            "size_bytes": 2942
+          },
+          {
+            "name": "HANDOFF_MIGRATION_MESSAGE.md",
+            "type": "file",
+            "size_bytes": 3731
+          },
+          {
+            "name": "handoff_state_snapshot.json",
+            "type": "file",
+            "size_bytes": 2282
+          },
+          {
+            "name": "manifest_rules_v0.7.0.json",
+            "type": "file",
+            "size_bytes": 3186
+          },
+          {
+            "name": "micro_steps.json",
+            "type": "file",
+            "size_bytes": 3194
+          },
+          {
+            "name": "NEW_THREAD_BOOT_SEQUENCE.md",
+            "type": "file",
+            "size_bytes": 2394
+          },
+          {
+            "name": "NEXT_PHASE_MASTER_BUILD_PLAN_v0.7.0.md",
+            "type": "file",
+            "size_bytes": 24716
+          },
+          {
+            "name": "NEXT_PHASE_MASTER_BUILD_PLAN_v0.8.0.md",
+            "type": "file",
+            "size_bytes": 12964
+          },
+          {
+            "name": "NEXT_THREAD_PROMPT.md",
+            "type": "file",
+            "size_bytes": 3661
+          },
+          {
+            "name": "phase_manifest_v0.7.0.json",
+            "type": "file",
+            "size_bytes": 2186
+          },
+          {
+            "name": "progress.json",
+            "type": "file",
+            "size_bytes": 3298
+          },
+          {
+            "name": "project_audit_report.json",
+            "type": "file",
+            "size_bytes": 1316
+          },
+          {
+            "name": "PROJECT_MAP_AUDIT_README.md",
+            "type": "file",
+            "size_bytes": 972
+          },
+          {
+            "name": "scaffold_size_audit_report.json",
+            "type": "file",
+            "size_bytes": 22365
+          },
+          {
+            "name": "scaffold_targets_v0.7.0.json",
+            "type": "file",
+            "size_bytes": 2087
+          },
+          {
+            "name": "THREAD_MEMORY_COMPRESSION.md",
+            "type": "file",
+            "size_bytes": 2120
+          },
+          {
+            "name": "update_progress_report.json",
+            "type": "file",
+            "size_bytes": 1424
+          }
+        ]
+      },
+      {
+        "name": ".env",
+        "type": "file",
+        "size_bytes": 882
+      },
+      {
+        "name": ".env.example",
+        "type": "file",
+        "size_bytes": 36
+      },
+      {
+        "name": ".gitignore",
+        "type": "file",
+        "size_bytes": 83
+      },
+      {
+        "name": "alembic.ini",
+        "type": "file",
+        "size_bytes": 592
+      },
+      {
+        "name": "dsos_file_replacements_v070_malone_persistence.txt",
+        "type": "file",
+        "size_bytes": 46505
+      },
+      {
+        "name": "HANDOFF_SUMMARY.txt",
+        "type": "file",
+        "size_bytes": 373
+      },
+      {
+        "name": "index.html",
+        "type": "file",
+        "size_bytes": 298
+      },
+      {
+        "name": "package-lock.json",
+        "type": "file",
+        "size_bytes": 57499
+      },
+      {
+        "name": "package.json",
+        "type": "file",
+        "size_bytes": 392
+      },
+      {
+        "name": "README.md",
+        "type": "file",
+        "size_bytes": 658
+      },
+      {
+        "name": "README_TEMPLATE_ENGINE.md",
+        "type": "file",
+        "size_bytes": 655
+      },
+      {
+        "name": "README_TEMPLATE_REGISTRY_ENGINE.md",
+        "type": "file",
+        "size_bytes": 1254
+      },
+      {
+        "name": "requirements.txt",
+        "type": "file",
+        "size_bytes": 73
+      },
+      {
+        "name": "runtime_v5.db",
+        "type": "file",
+        "size_bytes": 630784
+      },
+      {
+        "name": "test.db",
+        "type": "file",
+        "size_bytes": 20480
+      },
+      {
+        "name": "vite.config.js",
+        "type": "file",
+        "size_bytes": 470
+      }
+    ]
+  }
+}

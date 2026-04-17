@@ -5,6 +5,7 @@ from pydantic import BaseModel
 from sqlalchemy.orm import Session
 
 from app.api.deps import get_current_user, get_db, require_roles
+from app.services.deterministic_registry import list_actions
 from app.services.malone_service import handle_malone_request
 from app.services.proposal_service import list_recent_proposals, serialize_proposal_record
 
@@ -44,6 +45,15 @@ def recent_malone_proposals(
         limit=limit,
     )
     return [serialize_proposal_record(row) for row in rows]
+
+
+@router.get("/capabilities")
+def malone_capabilities(
+    current=Depends(get_current_user),
+):
+    return {
+        "actions": list_actions(),
+    }
 
 
 @router.get("/agents")

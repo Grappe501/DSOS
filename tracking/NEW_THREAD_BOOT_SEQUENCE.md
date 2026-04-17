@@ -14,16 +14,20 @@ Read the following in order:
 5. `tracking/THREAD_MEMORY_COMPRESSION.md`
 6. `tracking/NEXT_PHASE_MASTER_BUILD_PLAN_v0.8.0.md`
 7. `tracking/micro_steps.json`
-8. `tracking/malone/MALONE_V1_MASTER_PLAN.md`
-9. `tracking/malone/malone_manifest_v1.json`
-10. `tracking/malone/malone_build_sequence_v1.json`
+8. `tracking/CLEAN_SYSTEM_PROTOCOL.md`
+9. `tracking/malone/MALONE_V1_MASTER_PLAN.md`
+10. `tracking/malone/malone_manifest_v1.json`
+11. `tracking/malone/malone_build_sequence_v1.json`
 
-## Step 1 — Run live mapper and bootstrap tools
+## Step 1 — Run live mapper, bootstrap, and size tools
 Run:
 - `python tools/project_map_audit.py`
 - `python tools/self_verify_bootstrap.py`
+- `python tools/scaffold_size_audit.py`
+- `python scripts/build_map.py`
+- `python scripts/update_progress.py`
 
-Do not code until both are reviewed.
+Do not code until all outputs are reviewed.
 
 ## Step 2 — Reconcile tracking with live code
 Explicitly answer:
@@ -31,6 +35,7 @@ Explicitly answer:
 - what is partial
 - what is stubbed
 - what drift exists between tracking and code
+- which roots are active and passive
 - what the safest bounded next slice is
 
 ## Step 3 — Protect the live system
@@ -43,16 +48,33 @@ Preserve:
 - deterministic fallback
 - governed web retrieval
 - Malone UI output-first behavior
+- workflow package split direction
 
-## Step 4 — Choose one bounded slice
+## Step 4 — Enforce source-of-truth roots
+Treat these as active unless runtime proof says otherwise:
+- backend: `app/`
+- frontend: `src/`
+
+Treat these as passive until reconciled:
+- `backend/app/`
+- `frontend/src/`
+- `dsos_replacements/`
+
+Exclude these from structural reasoning unless the task specifically requires them:
+- `.git/`
+- `.venv/`
+- `node_modules/`
+
+## Step 5 — Choose one bounded slice
 Preferred order:
-1. workflow engine foundation
-2. approval workflow foundation
+1. workflow package split completion
+2. approval workflow completion
 3. pending clarification conversation state
 4. internal DSOS retrieval layer
 5. department-aware governed execution
+6. migration standardization
 
-## Step 5 — Delivery standard
+## Step 6 — Delivery standard
 Return only:
 - readiness audit
 - chosen slice

@@ -1,0 +1,52 @@
+{
+  "schema_version": "malone_regulation_module_plan_v1",
+  "description": "Deterministic module dependency plan for pharmacy regulation ingestion and grounded Q&A. Order is recommended build sequence.",
+  "modules": [
+    {
+      "name": "ingestion",
+      "path": "app/services/ingestion",
+      "depends_on": [],
+      "delivers": ["Parsed extract", "Normalized text", "Chunk records (future)", "Ingestion metadata"],
+      "consumes": ["Raw handbook files / blobs", "source_version_id"],
+      "notes": "Keep parsers behind interfaces; pharmacy PDFs vary in layout."
+    },
+    {
+      "name": "knowledge",
+      "path": "app/services/knowledge",
+      "depends_on": ["ingestion"],
+      "delivers": ["Source registry operations", "Version graph", "Citation keys", "Tag assignments"],
+      "consumes": ["regulation_* tables"],
+      "notes": "Authoritative store for what Malone is allowed to cite."
+    },
+    {
+      "name": "retrieval",
+      "path": "app/services/retrieval",
+      "depends_on": ["knowledge"],
+      "delivers": ["Ranked chunk hits", "Evidence bundle for truth packet"],
+      "consumes": ["Chunk text", "Lexical index / embeddings ref"],
+      "notes": "Start lexical; add embeddings when storage strategy is chosen."
+    },
+    {
+      "name": "compliance",
+      "path": "app/services/compliance",
+      "depends_on": ["knowledge"],
+      "delivers": ["Active-on-date checks", "Authority validation", "Conflict flags", "Escalation signals"],
+      "consumes": ["source_versions", "tags", "jurisdiction"],
+      "notes": "Fail closed: prefer clarification over confident wrong regulatory text."
+    },
+    {
+      "name": "assistant",
+      "path": "app/services/assistant",
+      "depends_on": ["retrieval", "compliance"],
+      "delivers": ["Formatted answer draft with citations", "Guardrail decisions"],
+      "consumes": ["User question", "Evidence bundle", "Actor/role context"],
+      "notes": "Orchestrator feeds truth_packet_service; does not bypass render verification."
+    }
+  ],
+  "integration_points": {
+    "malone_service": "Future branch: if intent is regulation_qa, attach regulation evidence before render.",
+    "truth_packet_service": "Add optional regulation_evidence block with chunk IDs and citation keys.",
+    "malone_proposal": "answer_traces.proposal_id links audit to existing proposal row.",
+    "openai_service": "Render step unchanged; input gains citation-structured evidence."
+  }
+}

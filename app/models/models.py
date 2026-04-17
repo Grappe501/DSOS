@@ -19,6 +19,7 @@ class TimestampMixin:
         nullable=False,
         default=dt.datetime.utcnow,
         server_default=func.now(),
+        index=True,
     )
     updated_at: Mapped[dt.datetime] = mapped_column(
         DateTime(timezone=False),
@@ -26,6 +27,7 @@ class TimestampMixin:
         default=dt.datetime.utcnow,
         onupdate=dt.datetime.utcnow,
         server_default=func.now(),
+        index=True,
     )
 
 
@@ -45,7 +47,10 @@ class User(Base, TimestampMixin):
     password_hash: Mapped[str] = mapped_column(String, nullable=False)
     full_name: Mapped[str | None] = mapped_column(String, nullable=True)
     role_id: Mapped[str | None] = mapped_column(
-        String, ForeignKey("roles.id"), nullable=True, index=True
+        String,
+        ForeignKey("roles.id"),
+        nullable=True,
+        index=True,
     )
     is_active: Mapped[bool] = mapped_column(Boolean, nullable=False, default=True)
     department: Mapped[str | None] = mapped_column(String, nullable=True, index=True)
@@ -58,13 +63,17 @@ class Task(Base):
     type: Mapped[str] = mapped_column(String, nullable=False, index=True)
     assigned_to: Mapped[str] = mapped_column(String, nullable=False, index=True)
     status: Mapped[str] = mapped_column(
-        String, nullable=False, default="pending", index=True
+        String,
+        nullable=False,
+        default="pending",
+        index=True,
     )
     created_at: Mapped[dt.datetime] = mapped_column(
         DateTime(timezone=False),
         nullable=False,
         default=dt.datetime.utcnow,
         server_default=func.now(),
+        index=True,
     )
 
 
@@ -75,13 +84,21 @@ class Reminder(Base):
     task_id: Mapped[str | None] = mapped_column(String, nullable=True, index=True)
     schedule_id: Mapped[str | None] = mapped_column(String, nullable=True, index=True)
     trigger_time: Mapped[dt.datetime] = mapped_column(
-        DateTime(timezone=False), nullable=False, index=True
+        DateTime(timezone=False),
+        nullable=False,
+        index=True,
     )
     status: Mapped[str] = mapped_column(
-        String, nullable=False, default="scheduled", index=True
+        String,
+        nullable=False,
+        default="scheduled",
+        index=True,
     )
     channel: Mapped[str] = mapped_column(
-        String, nullable=False, default="in_app", index=True
+        String,
+        nullable=False,
+        default="in_app",
+        index=True,
     )
     message: Mapped[str] = mapped_column(Text, nullable=False, default="")
     created_at: Mapped[dt.datetime] = mapped_column(
@@ -89,6 +106,7 @@ class Reminder(Base):
         nullable=False,
         default=dt.datetime.utcnow,
         server_default=func.now(),
+        index=True,
     )
 
 
@@ -99,27 +117,44 @@ class Schedule(Base, TimestampMixin):
     title: Mapped[str] = mapped_column(String, nullable=False, index=True)
     assigned_to: Mapped[str] = mapped_column(String, nullable=False, index=True)
     start_time: Mapped[dt.datetime] = mapped_column(
-        DateTime(timezone=False), nullable=False, index=True
+        DateTime(timezone=False),
+        nullable=False,
+        index=True,
     )
     end_time: Mapped[dt.datetime] = mapped_column(
-        DateTime(timezone=False), nullable=False, index=True
+        DateTime(timezone=False),
+        nullable=False,
+        index=True,
     )
     status: Mapped[str] = mapped_column(
-        String, nullable=False, default="scheduled", index=True
+        String,
+        nullable=False,
+        default="scheduled",
+        index=True,
     )
-    source: Mapped[str] = mapped_column(String, nullable=False, default="local")
+    source: Mapped[str] = mapped_column(String, nullable=False, default="local", index=True)
     synced_to_office365: Mapped[bool] = mapped_column(
-        Boolean, nullable=False, default=False
+        Boolean,
+        nullable=False,
+        default=False,
+        index=True,
     )
     office365_event_id: Mapped[str | None] = mapped_column(
-        String, nullable=True, index=True
+        String,
+        nullable=True,
+        index=True,
     )
     recurrence_rule: Mapped[str | None] = mapped_column(String, nullable=True)
     parent_schedule_id: Mapped[str | None] = mapped_column(
-        String, nullable=True, index=True
+        String,
+        nullable=True,
+        index=True,
     )
     created_by_user_id: Mapped[str | None] = mapped_column(
-        String, ForeignKey("users.id"), nullable=True, index=True
+        String,
+        ForeignKey("users.id"),
+        nullable=True,
+        index=True,
     )
     department: Mapped[str | None] = mapped_column(String, nullable=True, index=True)
 
@@ -133,9 +168,128 @@ class WorkflowState(Base, TimestampMixin):
     entity_id: Mapped[str] = mapped_column(String, nullable=False, index=True)
     state: Mapped[str] = mapped_column(String, nullable=False, index=True)
     status: Mapped[str] = mapped_column(
-        String, nullable=False, default="active", index=True
+        String,
+        nullable=False,
+        default="active",
+        index=True,
     )
     meta_json: Mapped[str] = mapped_column(Text, nullable=False, default="{}")
+
+
+class WorkflowDefinition(Base, TimestampMixin):
+    __tablename__ = "workflow_definitions"
+
+    id: Mapped[str] = mapped_column(String, primary_key=True, default=gen_id)
+    name: Mapped[str] = mapped_column(String, nullable=False, index=True)
+    version: Mapped[str] = mapped_column(
+        String,
+        nullable=False,
+        default="v1",
+        index=True,
+    )
+    description: Mapped[str | None] = mapped_column(Text, nullable=True)
+    status: Mapped[str] = mapped_column(
+        String,
+        nullable=False,
+        default="active",
+        index=True,
+    )
+    entry_step_id: Mapped[str | None] = mapped_column(String, nullable=True, index=True)
+
+
+class WorkflowStepDefinition(Base, TimestampMixin):
+    __tablename__ = "workflow_step_definitions"
+
+    id: Mapped[str] = mapped_column(String, primary_key=True, default=gen_id)
+    workflow_definition_id: Mapped[str] = mapped_column(
+        String,
+        ForeignKey("workflow_definitions.id"),
+        nullable=False,
+        index=True,
+    )
+    name: Mapped[str] = mapped_column(String, nullable=False, index=True)
+    step_key: Mapped[str] = mapped_column(String, nullable=False, index=True)
+    step_order: Mapped[int] = mapped_column(
+        Integer,
+        nullable=False,
+        default=1,
+        index=True,
+    )
+    next_step_id: Mapped[str | None] = mapped_column(String, nullable=True, index=True)
+    is_terminal: Mapped[bool] = mapped_column(
+        Boolean,
+        nullable=False,
+        default=False,
+        index=True,
+    )
+    config_json: Mapped[str] = mapped_column(Text, nullable=False, default="{}")
+
+
+class WorkflowInstance(Base, TimestampMixin):
+    __tablename__ = "workflow_instances"
+
+    id: Mapped[str] = mapped_column(String, primary_key=True, default=gen_id)
+    workflow_definition_id: Mapped[str] = mapped_column(
+        String,
+        ForeignKey("workflow_definitions.id"),
+        nullable=False,
+        index=True,
+    )
+    entity_type: Mapped[str | None] = mapped_column(String, nullable=True, index=True)
+    entity_id: Mapped[str | None] = mapped_column(String, nullable=True, index=True)
+    status: Mapped[str] = mapped_column(
+        String,
+        nullable=False,
+        default="pending",
+        index=True,
+    )
+    current_step_id: Mapped[str | None] = mapped_column(String, nullable=True, index=True)
+    context_json: Mapped[str] = mapped_column(Text, nullable=False, default="{}")
+    last_error: Mapped[str | None] = mapped_column(Text, nullable=True)
+    started_at: Mapped[dt.datetime | None] = mapped_column(
+        DateTime(timezone=False),
+        nullable=True,
+        index=True,
+    )
+    completed_at: Mapped[dt.datetime | None] = mapped_column(
+        DateTime(timezone=False),
+        nullable=True,
+        index=True,
+    )
+
+
+class WorkflowStepExecution(Base):
+    __tablename__ = "workflow_step_executions"
+
+    id: Mapped[str] = mapped_column(String, primary_key=True, default=gen_id)
+    workflow_instance_id: Mapped[str] = mapped_column(
+        String,
+        ForeignKey("workflow_instances.id"),
+        nullable=False,
+        index=True,
+    )
+    workflow_step_id: Mapped[str] = mapped_column(
+        String,
+        ForeignKey("workflow_step_definitions.id"),
+        nullable=False,
+        index=True,
+    )
+    status: Mapped[str] = mapped_column(
+        String,
+        nullable=False,
+        default="pending",
+        index=True,
+    )
+    input_json: Mapped[str] = mapped_column(Text, nullable=False, default="{}")
+    output_json: Mapped[str | None] = mapped_column(Text, nullable=True)
+    error_message: Mapped[str | None] = mapped_column(Text, nullable=True)
+    executed_at: Mapped[dt.datetime] = mapped_column(
+        DateTime(timezone=False),
+        nullable=False,
+        default=dt.datetime.utcnow,
+        server_default=func.now(),
+        index=True,
+    )
 
 
 class EventLog(Base):
@@ -161,7 +315,10 @@ class AuditLog(Base):
     entity_type: Mapped[str] = mapped_column(String, nullable=False, index=True)
     entity_id: Mapped[str | None] = mapped_column(String, nullable=True, index=True)
     actor_user_id: Mapped[str | None] = mapped_column(
-        String, ForeignKey("users.id"), nullable=True, index=True
+        String,
+        ForeignKey("users.id"),
+        nullable=True,
+        index=True,
     )
     meta_json: Mapped[str] = mapped_column(Text, nullable=False, default="{}")
     created_at: Mapped[dt.datetime] = mapped_column(
@@ -178,27 +335,135 @@ class MaloneProposal(Base, TimestampMixin):
 
     id: Mapped[str] = mapped_column(String, primary_key=True, default=gen_id)
     proposal_type: Mapped[str] = mapped_column(String, nullable=False, index=True)
-    requested_action: Mapped[str] = mapped_column(String, nullable=False, index=True)
+    requested_action: Mapped[str] = mapped_column(
+        String,
+        nullable=False,
+        index=True,
+    )
     target: Mapped[str | None] = mapped_column(String, nullable=True, index=True)
     source_message: Mapped[str] = mapped_column(Text, nullable=False, default="")
     actor_user_id: Mapped[str | None] = mapped_column(
-        String, ForeignKey("users.id"), nullable=True, index=True
+        String,
+        ForeignKey("users.id"),
+        nullable=True,
+        index=True,
     )
     actor_email: Mapped[str | None] = mapped_column(String, nullable=True, index=True)
     actor_role: Mapped[str | None] = mapped_column(String, nullable=True, index=True)
-    actor_department: Mapped[str | None] = mapped_column(String, nullable=True, index=True)
+    actor_department: Mapped[str | None] = mapped_column(
+        String,
+        nullable=True,
+        index=True,
+    )
     validation_status: Mapped[str] = mapped_column(
-        String, nullable=False, default="pending", index=True
+        String,
+        nullable=False,
+        default="pending",
+        index=True,
     )
     approval_status: Mapped[str] = mapped_column(
-        String, nullable=False, default="pending", index=True
+        String,
+        nullable=False,
+        default="pending",
+        index=True,
     )
     execution_status: Mapped[str] = mapped_column(
-        String, nullable=False, default="proposal_only", index=True
+        String,
+        nullable=False,
+        default="proposal_only",
+        index=True,
     )
-    candidate_output_json: Mapped[str] = mapped_column(Text, nullable=False, default="{}")
+    candidate_output_json: Mapped[str] = mapped_column(
+        Text,
+        nullable=False,
+        default="{}",
+    )
     validation_json: Mapped[str | None] = mapped_column(Text, nullable=True)
     result_json: Mapped[str | None] = mapped_column(Text, nullable=True)
+
+
+class ApprovalRequest(Base, TimestampMixin):
+    __tablename__ = "approval_requests"
+
+    id: Mapped[str] = mapped_column(String, primary_key=True, default=gen_id)
+    workflow_instance_id: Mapped[str] = mapped_column(
+        String,
+        ForeignKey("workflow_instances.id"),
+        nullable=False,
+        index=True,
+    )
+    entity_type: Mapped[str | None] = mapped_column(String, nullable=True, index=True)
+    entity_id: Mapped[str | None] = mapped_column(String, nullable=True, index=True)
+    required_role: Mapped[str] = mapped_column(String, nullable=False, index=True)
+    status: Mapped[str] = mapped_column(
+        String,
+        nullable=False,
+        default="pending",
+        index=True,
+    )
+    department: Mapped[str | None] = mapped_column(String, nullable=True, index=True)
+    requested_by_user_id: Mapped[str | None] = mapped_column(
+        String,
+        ForeignKey("users.id"),
+        nullable=True,
+        index=True,
+    )
+    resolved_by_user_id: Mapped[str | None] = mapped_column(
+        String,
+        ForeignKey("users.id"),
+        nullable=True,
+        index=True,
+    )
+    context_json: Mapped[str] = mapped_column(Text, nullable=False, default="{}")
+    decision_reason: Mapped[str | None] = mapped_column(Text, nullable=True)
+    decision_at: Mapped[dt.datetime | None] = mapped_column(
+        DateTime(timezone=False),
+        nullable=True,
+        index=True,
+    )
+
+
+class ClarificationRequest(Base, TimestampMixin):
+    __tablename__ = "clarification_requests"
+
+    id: Mapped[str] = mapped_column(String, primary_key=True, default=gen_id)
+    workflow_instance_id: Mapped[str] = mapped_column(
+        String,
+        ForeignKey("workflow_instances.id"),
+        nullable=False,
+        index=True,
+    )
+    entity_type: Mapped[str | None] = mapped_column(String, nullable=True, index=True)
+    entity_id: Mapped[str | None] = mapped_column(String, nullable=True, index=True)
+    status: Mapped[str] = mapped_column(
+        String,
+        nullable=False,
+        default="pending",
+        index=True,
+    )
+    department: Mapped[str | None] = mapped_column(String, nullable=True, index=True)
+    requested_by_user_id: Mapped[str | None] = mapped_column(
+        String,
+        ForeignKey("users.id"),
+        nullable=True,
+        index=True,
+    )
+    resolved_by_user_id: Mapped[str | None] = mapped_column(
+        String,
+        ForeignKey("users.id"),
+        nullable=True,
+        index=True,
+    )
+    prompt: Mapped[str] = mapped_column(Text, nullable=False, default="")
+    fields_json: Mapped[str] = mapped_column(Text, nullable=False, default="[]")
+    context_json: Mapped[str] = mapped_column(Text, nullable=False, default="{}")
+    response_json: Mapped[str | None] = mapped_column(Text, nullable=True)
+    resolution_note: Mapped[str | None] = mapped_column(Text, nullable=True)
+    resolved_at: Mapped[dt.datetime | None] = mapped_column(
+        DateTime(timezone=False),
+        nullable=True,
+        index=True,
+    )
 
 
 class MessageQueue(Base, TimestampMixin):
@@ -209,7 +474,10 @@ class MessageQueue(Base, TimestampMixin):
     recipient: Mapped[str] = mapped_column(String, nullable=False, index=True)
     content: Mapped[str] = mapped_column(Text, nullable=False)
     status: Mapped[str] = mapped_column(
-        String, nullable=False, default="pending", index=True
+        String,
+        nullable=False,
+        default="pending",
+        index=True,
     )
     retry_count: Mapped[int] = mapped_column(Integer, nullable=False, default=0)
     max_retries: Mapped[int] = mapped_column(Integer, nullable=False, default=3)
