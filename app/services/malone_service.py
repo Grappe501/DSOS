@@ -9,7 +9,7 @@ from app.models.models import MaloneProposal
 from app.services.audit_service import log_malone_action
 from app.services.deterministic_actions_schedule import register_schedule_actions
 from app.services.deterministic_registry import list_actions
-from app.services.intent_service import classify_intent
+from app.services.intent_service import classify_intent, cross_source_legal_policy_triggered
 from app.services.openai_service import (
     OpenAIServiceError,
     is_openai_enabled,
@@ -28,15 +28,23 @@ from app.services.render_verifier import (
     verify_rendered_response,
 )
 from app.services.legal_assistant.answer_formatter import format_legal_lookup_answer, format_policy_lookup_answer
+from app.services.decision_reasoning import build_decision_workflow_block
 from app.services.legal_evidence_service import (
     build_legal_evidence_bundle,
     build_policy_evidence_bundle,
+    build_sop_evidence_bundle,
+    enrich_truth_packet_with_decision_workflow,
     enrich_truth_packet_with_legal,
     enrich_truth_packet_with_policy,
+    enrich_truth_packet_with_sop,
+    malone_cross_source_decision_enabled,
+    malone_decision_reasoning_enabled,
     malone_legal_evidence_enabled,
     malone_legal_lookup_enabled,
     malone_policy_evidence_enabled,
     malone_policy_lookup_enabled,
+    malone_sop_evidence_enabled,
+    malone_sop_lookup_enabled,
     persist_legal_answer_trace,
 )
 from app.services.truth_packet_service import build_truth_packet
@@ -109,10 +117,17 @@ def _deliver_legal_handbook_deterministic(
     proposal_record: Any,
     actor_payload: dict[str, Any],
     truth_packet: dict[str, Any],
+    message: str,
 ) -> tuple[dict[str, Any], dict[str, Any], str]:
     bundle = truth_packet.get("legal_evidence") or {}
     items = bundle.get("items") or []
-    text = format_legal_lookup_answer(items, normalized_bundle=bundle.get("normalized"))
+    text = format_legal_lookup_answer(
+        items,
+        normalized_bundle=bundle.get("normalized"),
+        decision_workflow=truth_packet.get("decision_workflow"),
+        message=message,
+        truth_packet=truth_packet,
+    )
     verification = {
         "verified": True,
         "reasons": [],
@@ -133,6 +148,7 @@ def _deliver_legal_handbook_deterministic(
             "legal_source_version_id": bundle.get("legal_source_version_id"),
             "warnings": bundle.get("warnings"),
             "normalized_fallback": (bundle.get("normalized") or {}).get("fallback_reason"),
+            "answer_pattern": truth_packet.get("answer_pattern"),
         },
     )
     return {}, verification, "legal_grounded_deterministic"
@@ -144,10 +160,17 @@ def _deliver_policy_manual_deterministic(
     proposal_record: Any,
     actor_payload: dict[str, Any],
     truth_packet: dict[str, Any],
+    message: str,
 ) -> tuple[dict[str, Any], dict[str, Any], str]:
     bundle = truth_packet.get("policy_evidence") or {}
     items = bundle.get("items") or []
-    text = format_policy_lookup_answer(items, normalized_bundle=bundle.get("normalized"))
+    text = format_policy_lookup_answer(
+        items,
+        normalized_bundle=bundle.get("normalized"),
+        decision_workflow=truth_packet.get("decision_workflow"),
+        message=message,
+        truth_packet=truth_packet,
+    )
     verification = {
         "verified": True,
         "reasons": [],
@@ -168,9 +191,54 @@ def _deliver_policy_manual_deterministic(
             "ingestion_source_version_id": bundle.get("ingestion_source_version_id"),
             "warnings": bundle.get("warnings"),
             "normalized_fallback": (bundle.get("normalized") or {}).get("fallback_reason"),
+            "answer_pattern": truth_packet.get("answer_pattern"),
         },
     )
     return {}, verification, "policy_grounded_deterministic"
+
+
+def _deliver_sop_workflow_deterministic(
+    *,
+    db: Session,
+    proposal_record: Any,
+    actor_payload: dict[str, Any],
+    truth_packet: dict[str, Any],
+    message: str,
+) -> tuple[dict[str, Any], dict[str, Any], str]:
+    bundle = truth_packet.get("sop_evidence") or {}
+    items = bundle.get("items") or []
+    text = format_policy_lookup_answer(
+        items,
+        normalized_bundle=bundle.get("normalized"),
+        decision_workflow=truth_packet.get("decision_workflow"),
+        answer_title="SOP / workflow — reference only (confirm with process owners).",
+        message=message,
+        truth_packet=truth_packet,
+    )
+    verification = {
+        "verified": True,
+        "reasons": [],
+        "grounding_refs": [],
+        "source_refs": [],
+        "verified_source_urls": [],
+        "fallback_answer": text,
+        "delivery_answer": text,
+        "delivery_mode": "sop_grounded_deterministic",
+    }
+    log_malone_action(
+        db,
+        action="malone.delivery.sop_workflow",
+        proposal_id=proposal_record.id,
+        actor=actor_payload,
+        meta_json={
+            "item_count": len(items),
+            "ingestion_source_version_id": bundle.get("ingestion_source_version_id"),
+            "warnings": bundle.get("warnings"),
+            "normalized_fallback": (bundle.get("normalized") or {}).get("fallback_reason"),
+            "answer_pattern": truth_packet.get("answer_pattern"),
+        },
+    )
+    return {}, verification, "sop_grounded_deterministic"
 
 
 def _deliver_rendered_response(
@@ -361,13 +429,20 @@ def handle_malone_request(
     # ---------------------------------------------------------
     # Truth packet
     # ---------------------------------------------------------
+    cross = malone_cross_source_decision_enabled() and cross_source_legal_policy_triggered(message)
+    sop_cross = cross and ("[sop]" in message.lower() or "runbook" in message.lower())
+
     legal_bundle = None
-    if malone_legal_evidence_enabled() and intent.get("target") == "legal_handbook":
+    if malone_legal_evidence_enabled() and (intent.get("target") == "legal_handbook" or cross):
         legal_bundle = build_legal_evidence_bundle(db, message)
 
     policy_bundle = None
-    if malone_policy_evidence_enabled() and intent.get("target") == "policy_manual":
+    if malone_policy_evidence_enabled() and (intent.get("target") == "policy_manual" or cross):
         policy_bundle = build_policy_evidence_bundle(db, message)
+
+    sop_bundle = None
+    if malone_sop_evidence_enabled() and (intent.get("target") == "sop_workflow" or sop_cross):
+        sop_bundle = build_sop_evidence_bundle(db, message)
 
     truth_packet = build_truth_packet(
         message=message,
@@ -391,6 +466,20 @@ def handle_malone_request(
         intent=intent,
         policy_evidence_bundle=policy_bundle,
     )
+    truth_packet = enrich_truth_packet_with_sop(
+        truth_packet,
+        intent=intent,
+        sop_evidence_bundle=sop_bundle,
+    )
+
+    decision_block = build_decision_workflow_block(
+        message=message,
+        legal_bundle=legal_bundle,
+        policy_bundle=policy_bundle,
+        sop_bundle=sop_bundle,
+        enabled=malone_decision_reasoning_enabled(),
+    )
+    truth_packet = enrich_truth_packet_with_decision_workflow(truth_packet, decision_block)
 
     if malone_legal_evidence_enabled() and intent.get("target") == "legal_handbook" and legal_bundle is not None:
         persist_legal_answer_trace(
@@ -425,6 +514,7 @@ def handle_malone_request(
             proposal_record=proposal_record,
             actor_payload=actor_payload,
             truth_packet=truth_packet,
+            message=message,
         )
         delivery = {
             "answer": verification.get("delivery_answer"),
@@ -442,6 +532,25 @@ def handle_malone_request(
             proposal_record=proposal_record,
             actor_payload=actor_payload,
             truth_packet=truth_packet,
+            message=message,
+        )
+        delivery = {
+            "answer": verification.get("delivery_answer"),
+            "mode": verification.get("delivery_mode"),
+            "sources": [],
+        }
+
+    elif (
+        malone_sop_lookup_enabled()
+        and malone_sop_evidence_enabled()
+        and intent.get("target") == "sop_workflow"
+    ):
+        rendered_output, verification, delivery_status = _deliver_sop_workflow_deterministic(
+            db=db,
+            proposal_record=proposal_record,
+            actor_payload=actor_payload,
+            truth_packet=truth_packet,
+            message=message,
         )
         delivery = {
             "answer": verification.get("delivery_answer"),

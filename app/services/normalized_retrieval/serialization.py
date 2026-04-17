@@ -2,12 +2,13 @@
 
 from __future__ import annotations
 
+import json
 from typing import Any
 
 
 def normalized_unit_to_dict(unit: object) -> dict[str, Any]:
     """JSON-safe dict for truth packet / API (no SQLAlchemy objects)."""
-    return {
+    out: dict[str, Any] = {
         "id": getattr(unit, "id", None),
         "normalized_unit_type": getattr(unit, "normalized_unit_type", None),
         "source_type": getattr(unit, "source_type", None),
@@ -27,7 +28,17 @@ def normalized_unit_to_dict(unit: object) -> dict[str, Any]:
         "citation_keys_json": getattr(unit, "citation_keys_json", None),
         "anchor_json": getattr(unit, "anchor_json", None),
         "retrieval_headline": getattr(unit, "retrieval_headline", None),
+        "structured_facets_json": getattr(unit, "structured_facets_json", None),
     }
+    raw_facets = out.get("structured_facets_json")
+    if isinstance(raw_facets, str) and raw_facets.strip():
+        try:
+            parsed = json.loads(raw_facets)
+            if isinstance(parsed, dict):
+                out["structured_facets"] = parsed
+        except json.JSONDecodeError:
+            pass
+    return out
 
 
 def _truncate(s: str | None, n: int) -> str | None:

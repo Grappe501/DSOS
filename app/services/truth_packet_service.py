@@ -230,6 +230,9 @@ def _compute_web_search_flags(
     if intent.get("target") == "policy_manual":
         return False, "policy_manual_uses_internal_evidence_only"
 
+    if intent.get("target") == "sop_workflow":
+        return False, "sop_workflow_uses_internal_evidence_only"
+
     if result is not None:
         return False, ""
 
@@ -255,6 +258,8 @@ def _compute_clarification_flags(
     if target == "legal_handbook":
         return False, ""
     if target == "policy_manual":
+        return False, ""
+    if target == "sop_workflow":
         return False, ""
     action = intent.get("action")
     mode = intent.get("mode")

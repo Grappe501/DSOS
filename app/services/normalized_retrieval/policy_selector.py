@@ -9,21 +9,31 @@ from sqlalchemy.orm import Session
 
 from app.models.ingestion_control import IngestionSegment, IngestionSource, IngestionSourceVersion
 from app.models.knowledge_normalization import NormalizationRun, NormalizedKnowledgeUnit
-from app.services.ingestion_control.source_types import POLICY_MANUAL
+from app.services.ingestion_control.source_types import POLICY_MANUAL, SOP_WORKFLOW
 from app.services.normalized_retrieval.fallback import unit_is_blocked
 from app.services.normalized_retrieval.ranking import pick_top_per_key, sort_units_for_display
 
 
 def resolve_default_policy_source_version_id(db: Session) -> str | None:
     """Latest policy_manual version by ``updated_at`` (any ingest status)."""
+    return resolve_default_segment_source_version_id(db, POLICY_MANUAL)
+
+
+def resolve_default_segment_source_version_id(db: Session, source_type: str) -> str | None:
+    """Latest ingestion version for a business source type (policy, SOP, etc.)."""
     hit = (
         db.query(IngestionSourceVersion)
         .join(IngestionSource, IngestionSourceVersion.ingestion_source_id == IngestionSource.id)
-        .filter(IngestionSource.source_type == POLICY_MANUAL)
+        .filter(IngestionSource.source_type == source_type)
         .order_by(IngestionSourceVersion.updated_at.desc())
         .first()
     )
     return str(hit.id) if hit else None
+
+
+def resolve_default_sop_source_version_id(db: Session) -> str | None:
+    """Latest sop_workflow version by ``updated_at``."""
+    return resolve_default_segment_source_version_id(db, SOP_WORKFLOW)
 
 
 _TOKEN = re.compile(r"\w{3,}")

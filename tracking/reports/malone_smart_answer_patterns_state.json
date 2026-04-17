@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "status": "implemented",
+  "completed_at": "2026-04-17",
+  "package": "app/services/answer_patterns/",
+  "env_flags": ["MALONE_SMART_ANSWER_PATTERNS_ENABLED"],
+  "patterns_implemented": [
+    "requirement",
+    "workflow",
+    "exception",
+    "source_locator",
+    "standard"
+  ],
+  "patterns_scaffolded_deferred": [
+    "definition",
+    "escalation",
+    "comparison",
+    "operational_summary"
+  ],
+  "source_types_supported": ["legal_handbook", "policy_manual"],
+  "integration_points": [
+    "app/services/legal_assistant/answer_formatter.py",
+    "app/services/answer_patterns/integration.py",
+    "app/services/malone_service.py",
+    "app/services/legal_assistant/guardrails.py"
+  ],
+  "verification": {
+    "pytest": "45 passed",
+    "compileall": "app tools tracking/scripts"
+  }
+}

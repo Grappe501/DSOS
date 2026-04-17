@@ -65,6 +65,30 @@ def malone_policy_lookup_enabled() -> bool:
     return malone_policy_evidence_enabled()
 
 
+def malone_sop_evidence_enabled() -> bool:
+    from app.services.decision_reasoning.fallback import malone_sop_evidence_enabled as _sop_ev
+
+    return _sop_ev()
+
+
+def malone_sop_lookup_enabled() -> bool:
+    from app.services.decision_reasoning.fallback import malone_sop_lookup_enabled as _sop_lu
+
+    return _sop_lu()
+
+
+def malone_decision_reasoning_enabled() -> bool:
+    from app.services.decision_reasoning.fallback import malone_decision_reasoning_enabled as _dr
+
+    return _dr()
+
+
+def malone_cross_source_decision_enabled() -> bool:
+    from app.services.decision_reasoning.fallback import malone_cross_source_decision_enabled as _xc
+
+    return _xc()
+
+
 def resolve_default_legal_source_version_id(db: Session) -> str | None:
     """Latest ingested compilation (by row creation time)."""
     row = (
@@ -195,6 +219,27 @@ def build_policy_evidence_bundle(
     )
 
 
+def build_sop_evidence_bundle(
+    db: Session,
+    message: str,
+    *,
+    ingestion_source_version_id: str | None = None,
+    limit: int = 8,
+) -> dict[str, Any]:
+    """SOP / workflow segment retrieval + normalized attachment."""
+    from app.services.normalized_retrieval.policy_selector import resolve_default_sop_source_version_id
+    from app.services.normalized_retrieval.bundle_builder import build_sop_evidence_bundle_with_normalized
+
+    vid = ingestion_source_version_id or resolve_default_sop_source_version_id(db)
+    return build_sop_evidence_bundle_with_normalized(
+        db,
+        message,
+        ingestion_source_version_id=vid,
+        limit=limit,
+        normalized_enabled=malone_normalized_retrieval_enabled(),
+    )
+
+
 def enrich_truth_packet_with_legal(
     packet: dict[str, Any],
     *,
@@ -283,6 +328,72 @@ def enrich_truth_packet_with_policy(
             )
         )
     packet["allowed_claims"] = claims[:50]
+    return packet
+
+
+def enrich_truth_packet_with_sop(
+    packet: dict[str, Any],
+    *,
+    intent: dict[str, Any],
+    sop_evidence_bundle: dict[str, Any] | None,
+) -> dict[str, Any]:
+    """Attach SOP segment evidence + normalized meta."""
+    target = intent.get("target")
+    packet["sop_evidence"] = sop_evidence_bundle
+    meta = packet.get("packet_meta") or {}
+    bundle = sop_evidence_bundle or {}
+    items = bundle.get("items") or []
+    meta["sop_evidence_item_count"] = len(items)
+    meta["sop_evidence_warnings"] = list(bundle.get("warnings") or [])
+    norm = bundle.get("normalized") or {}
+    meta["sop_normalized_enabled"] = bool(norm.get("enabled"))
+    meta["sop_normalized_unit_groups"] = sum(
+        len(v) for v in (norm.get("units_by_segment_id") or {}).values()
+    )
+    packet["packet_meta"] = meta
+
+    if target != "sop_workflow":
+        return packet
+
+    claims = packet.get("allowed_claims") or []
+    for idx, it in enumerate(items[:25]):
+        claims.append(
+            _base_claim(
+                f"sop_evidence_{idx}",
+                "sop workflow excerpt",
+                {
+                    "ingestion_segment_id": it.get("ingestion_segment_id"),
+                    "heading": it.get("heading"),
+                    "ordinal": it.get("ordinal"),
+                },
+            )
+        )
+    packet["allowed_claims"] = claims[:50]
+    return packet
+
+
+def enrich_truth_packet_with_decision_workflow(
+    packet: dict[str, Any],
+    decision_block: dict[str, Any] | None,
+) -> dict[str, Any]:
+    """Attach structured decision/workflow reasoning (additive audit metadata)."""
+    from app.services.decision_reasoning.fallback import should_emit_structured_sections
+    from app.services.legal_assistant.guardrails import decision_workflow_supplementary_forbidden_claims
+
+    meta = packet.get("packet_meta") or {}
+    block = decision_block or {}
+    meta["decision_workflow_enabled"] = bool(block.get("enabled"))
+    meta["decision_workflow_fallback_reason"] = block.get("fallback_reason")
+    if block.get("sources_present"):
+        meta["decision_workflow_sources"] = list(block["sources_present"])
+    if block.get("trust_tier"):
+        meta["decision_workflow_trust_tier"] = block.get("trust_tier")
+    packet["packet_meta"] = meta
+    packet["decision_workflow"] = block
+    if should_emit_structured_sections(block):
+        forb = list(packet.get("forbidden_claims") or [])
+        forb.extend(decision_workflow_supplementary_forbidden_claims())
+        packet["forbidden_claims"] = forb[:80]
     return packet
 
 

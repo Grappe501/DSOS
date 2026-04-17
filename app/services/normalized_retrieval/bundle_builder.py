@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-import json
 from typing import Any
 
 from sqlalchemy.orm import Session
@@ -17,6 +16,7 @@ from app.services.normalized_retrieval.policy_selector import (
     group_units_by_segment_id,
     search_policy_segments,
 )
+from app.services.ingestion_control.source_types import POLICY_MANUAL, SOP_WORKFLOW
 from app.services.normalized_retrieval.serialization import normalized_unit_to_dict
 
 
@@ -70,21 +70,25 @@ def attach_normalized_to_legal_bundle(
     return bundle
 
 
-def build_policy_evidence_bundle_with_normalized(
+def _build_segment_evidence_bundle_with_normalized(
     db: Session,
     message: str,
     *,
     ingestion_source_version_id: str | None,
+    segment_kind: str,
+    no_version_warning: str,
+    no_hits_warning: str,
     limit: int = 8,
     normalized_enabled: bool,
 ) -> dict[str, Any]:
-    """Segment search + optional normalized units (policy_manual)."""
+    """Shared path for policy_manual and sop_workflow segment stores."""
     vid = ingestion_source_version_id
     warnings: list[str] = []
     if not vid:
-        warnings.append("no_policy_source_version")
+        warnings.append(no_version_warning)
         return {
             "enabled": True,
+            "segment_kind": segment_kind,
             "ingestion_source_version_id": None,
             "items": [],
             "warnings": warnings,
@@ -93,7 +97,7 @@ def build_policy_evidence_bundle_with_normalized(
 
     items = search_policy_segments(db, message, ingestion_source_version_id=str(vid), limit=limit)
     if not items:
-        warnings.append("no_policy_segment_hits")
+        warnings.append(no_hits_warning)
 
     seg_ids = [str(it["ingestion_segment_id"]) for it in items if it.get("ingestion_segment_id")]
     norm_block: dict[str, Any] = {"enabled": False}
@@ -114,7 +118,7 @@ def build_policy_evidence_bundle_with_normalized(
                 ser[sid].append(d)
         norm_block = {
             "enabled": True,
-            "source_type": "policy_manual",
+            "source_type": segment_kind,
             "units_by_segment_id": ser,
             "warnings": nw,
             "fallback_reason": None if ser else "no_matching_normalized_units",
@@ -122,7 +126,7 @@ def build_policy_evidence_bundle_with_normalized(
     elif normalized_enabled:
         norm_block = {
             "enabled": True,
-            "source_type": "policy_manual",
+            "source_type": segment_kind,
             "units_by_segment_id": {},
             "warnings": [],
             "fallback_reason": "no_segments",
@@ -130,11 +134,54 @@ def build_policy_evidence_bundle_with_normalized(
 
     return {
         "enabled": True,
+        "segment_kind": segment_kind,
         "ingestion_source_version_id": str(vid),
         "items": items,
         "warnings": warnings,
         "normalized": norm_block,
     }
+
+
+def build_policy_evidence_bundle_with_normalized(
+    db: Session,
+    message: str,
+    *,
+    ingestion_source_version_id: str | None,
+    limit: int = 8,
+    normalized_enabled: bool,
+) -> dict[str, Any]:
+    """Segment search + optional normalized units (policy_manual)."""
+    return _build_segment_evidence_bundle_with_normalized(
+        db,
+        message,
+        ingestion_source_version_id=ingestion_source_version_id,
+        segment_kind=POLICY_MANUAL,
+        no_version_warning="no_policy_source_version",
+        no_hits_warning="no_policy_segment_hits",
+        limit=limit,
+        normalized_enabled=normalized_enabled,
+    )
+
+
+def build_sop_evidence_bundle_with_normalized(
+    db: Session,
+    message: str,
+    *,
+    ingestion_source_version_id: str | None,
+    limit: int = 8,
+    normalized_enabled: bool,
+) -> dict[str, Any]:
+    """Segment search + optional normalized units (sop_workflow)."""
+    return _build_segment_evidence_bundle_with_normalized(
+        db,
+        message,
+        ingestion_source_version_id=ingestion_source_version_id,
+        segment_kind=SOP_WORKFLOW,
+        no_version_warning="no_sop_source_version",
+        no_hits_warning="no_sop_segment_hits",
+        limit=limit,
+        normalized_enabled=normalized_enabled,
+    )
 
 
 def merge_normalized_into_item(
