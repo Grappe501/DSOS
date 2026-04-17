@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "status": "implemented",
+  "completed_at": "2026-04-16",
+  "package": "app/services/operating_copilot/",
+  "env_flags": [
+    "MALONE_OPERATING_COPILOT_ENABLED",
+    "MALONE_DECISION_REASONING_ENABLED"
+  ],
+  "source_types_supported": [
+    "legal_handbook",
+    "policy_manual",
+    "sop_workflow"
+  ],
+  "scenario_types": [
+    "next_steps",
+    "role",
+    "exception",
+    "escalation",
+    "operating_summary"
+  ],
+  "integration_points": [
+    "app/services/malone_service.py",
+    "app/services/legal_evidence_service.py",
+    "app/services/legal_assistant/answer_formatter.py",
+    "app/services/legal_assistant/guardrails.py",
+    "app/services/answer_patterns/integration.py",
+    "app/services/decision_reasoning/*"
+  ],
+  "verification": {
+    "pytest": "55 passed",
+    "compileall": "app tools tracking/scripts",
+    "npm_run_build": "ok"
+  }
+}

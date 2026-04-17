@@ -133,6 +133,90 @@ def append_decision_workflow_lines(lines: list[str], decision_workflow: dict[str
     _append_decision_workflow_sections(lines, decision_workflow)
 
 
+def append_operating_copilot_lines(lines: list[str], operating_copilot: dict[str, Any] | None) -> None:
+    """Append business operating copilot section after patterns + decision/workflow."""
+    from app.services.operating_copilot.fallback import should_emit_operating_copilot_section
+
+    block = operating_copilot or {}
+    if not should_emit_operating_copilot_section(block):
+        return
+    lines.append("")
+    lines.append("--- Business operating copilot (source-grounded; not independent legal advice) ---")
+    scen = block.get("primary_scenario") or ""
+    if scen:
+        lines.append(f"Scenario focus: {str(scen).replace('_', ' ')}")
+    g = block.get("guidance") or {}
+    if block.get("emit_minimal_only"):
+        un = g.get("uncertainty_note") or ""
+        if un:
+            lines.append(un)
+        lines.append("Structured guidance is thin — rely on citations and excerpts above.")
+        return
+    if g.get("situation_summary"):
+        lines.append("")
+        lines.append("Situation (user request, truncated)")
+        lines.append(str(g["situation_summary"])[:900])
+    wr = g.get("what_appears_required") or []
+    if wr:
+        lines.append("")
+        lines.append("What may be required / preview")
+        for x in wr[:12]:
+            lines.append(f"  - {str(x)[:900]}")
+    ns = g.get("recommended_next_steps") or []
+    if ns:
+        lines.append("")
+        lines.append("Recommended next steps (from evidence assembly)")
+        for x in ns[:15]:
+            lines.append(f"  - {str(x)[:900]}")
+    roles = g.get("who_should_act") or []
+    if roles:
+        lines.append("")
+        lines.append("Who should act (normalized role hints)")
+        for x in roles[:12]:
+            lines.append(f"  - {str(x)[:900]}")
+    conds = g.get("conditions_and_blockers") or []
+    if conds:
+        lines.append("")
+        lines.append("Conditions / blockers")
+        for x in conds[:10]:
+            lines.append(f"  - {str(x)[:900]}")
+    excs = g.get("exceptions") or []
+    if excs:
+        lines.append("")
+        lines.append("Exceptions")
+        for x in excs[:10]:
+            lines.append(f"  - {str(x)[:900]}")
+    esc = g.get("when_to_escalate") or []
+    if esc:
+        lines.append("")
+        lines.append("When to escalate / report")
+        for x in esc[:10]:
+            lines.append(f"  - {str(x)[:900]}")
+    ob = g.get("operating_summary_bullets") or []
+    if ob:
+        lines.append("")
+        lines.append("Operating summary bullets")
+        for x in ob[:8]:
+            lines.append(f"  - {str(x)[:900]}")
+    dist = g.get("distinction") or {}
+    if dist:
+        lines.append("")
+        lines.append("Required vs recommended vs uncertain")
+        for k in ("required", "recommended", "uncertain", "escalate"):
+            v = dist.get(k)
+            if v:
+                lines.append(f"  - {k.upper()}: {str(v)[:900]}")
+    src = g.get("supporting_sources") or {}
+    if src:
+        lines.append("")
+        lines.append(
+            f"Supporting source mix: {src.get('source_types')} "
+            f"cross_source={src.get('cross_source')} counts={src.get('item_counts')}"
+        )
+    lines.append("")
+    lines.append("Verify all obligations with official sources and local policy administrators.")
+
+
 def format_legal_lookup_answer_standard(
     items: list[dict[str, Any]],
     *,
@@ -226,6 +310,8 @@ def format_legal_lookup_answer(
         items, max_items=max_items, normalized_bundle=normalized_bundle
     ).split("\n")
     _append_decision_workflow_sections(lines, decision_workflow)
+    if truth_packet:
+        append_operating_copilot_lines(lines, truth_packet.get("operating_copilot"))
     return "\n".join(lines)
 
 
@@ -305,4 +391,6 @@ def format_policy_lookup_answer(
         items, max_items=max_items, normalized_bundle=normalized_bundle, answer_title=answer_title
     ).split("\n")
     _append_decision_workflow_sections(lines, decision_workflow)
+    if truth_packet:
+        append_operating_copilot_lines(lines, truth_packet.get("operating_copilot"))
     return "\n".join(lines)

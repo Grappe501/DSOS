@@ -29,6 +29,13 @@ def _append_decision(lines: list[str], decision_workflow: dict[str, Any] | None)
     append_decision_workflow_lines(lines, decision_workflow)
 
 
+def _append_copilot(lines: list[str], truth_packet: dict[str, Any] | None) -> None:
+    from app.services.legal_assistant.answer_formatter import append_operating_copilot_lines
+
+    if truth_packet:
+        append_operating_copilot_lines(lines, truth_packet.get("operating_copilot"))
+
+
 def render_legal_smart_answer(
     *,
     message: str,
@@ -108,6 +115,7 @@ def render_legal_smart_answer(
 
     lines = text.split("\n")
     _append_decision(lines, decision_workflow)
+    _append_copilot(lines, truth_packet)
     out = "\n".join(lines)
     if truth_packet is not None:
         truth_packet["answer_pattern"] = pattern_trace_to_dict(trace)
@@ -202,6 +210,7 @@ def render_policy_smart_answer(
 
     lines = text.split("\n")
     _append_decision(lines, decision_workflow)
+    _append_copilot(lines, truth_packet)
     out = "\n".join(lines)
     if truth_packet is not None:
         truth_packet["answer_pattern"] = pattern_trace_to_dict(trace)

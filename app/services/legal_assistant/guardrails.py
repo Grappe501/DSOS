@@ -41,3 +41,11 @@ def smart_answer_pattern_forbidden_claims() -> list[str]:
         "Do not treat pattern-based section headers as proof of completeness; verify against primary excerpts.",
         "Do not infer obligations or workflows that are not explicitly supported by cited source text.",
     ]
+
+
+def operating_copilot_supplementary_forbidden_claims() -> list[str]:
+    """When the business operating copilot section is emitted with structured guidance."""
+    return [
+        "Do not treat copilot next steps or role lines as exhaustive runbooks without verifying citations.",
+        "Do not present recommended actions as legal conclusions or binding policy when uncertainty is high.",
+    ]

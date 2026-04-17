@@ -29,11 +29,13 @@ from app.services.render_verifier import (
 )
 from app.services.legal_assistant.answer_formatter import format_legal_lookup_answer, format_policy_lookup_answer
 from app.services.decision_reasoning import build_decision_workflow_block
+from app.services.operating_copilot import build_operating_copilot_block, malone_operating_copilot_enabled
 from app.services.legal_evidence_service import (
     build_legal_evidence_bundle,
     build_policy_evidence_bundle,
     build_sop_evidence_bundle,
     enrich_truth_packet_with_decision_workflow,
+    enrich_truth_packet_with_operating_copilot,
     enrich_truth_packet_with_legal,
     enrich_truth_packet_with_policy,
     enrich_truth_packet_with_sop,
@@ -149,6 +151,7 @@ def _deliver_legal_handbook_deterministic(
             "warnings": bundle.get("warnings"),
             "normalized_fallback": (bundle.get("normalized") or {}).get("fallback_reason"),
             "answer_pattern": truth_packet.get("answer_pattern"),
+            "operating_copilot": truth_packet.get("operating_copilot"),
         },
     )
     return {}, verification, "legal_grounded_deterministic"
@@ -192,6 +195,7 @@ def _deliver_policy_manual_deterministic(
             "warnings": bundle.get("warnings"),
             "normalized_fallback": (bundle.get("normalized") or {}).get("fallback_reason"),
             "answer_pattern": truth_packet.get("answer_pattern"),
+            "operating_copilot": truth_packet.get("operating_copilot"),
         },
     )
     return {}, verification, "policy_grounded_deterministic"
@@ -236,6 +240,7 @@ def _deliver_sop_workflow_deterministic(
             "warnings": bundle.get("warnings"),
             "normalized_fallback": (bundle.get("normalized") or {}).get("fallback_reason"),
             "answer_pattern": truth_packet.get("answer_pattern"),
+            "operating_copilot": truth_packet.get("operating_copilot"),
         },
     )
     return {}, verification, "sop_grounded_deterministic"
@@ -480,6 +485,16 @@ def handle_malone_request(
         enabled=malone_decision_reasoning_enabled(),
     )
     truth_packet = enrich_truth_packet_with_decision_workflow(truth_packet, decision_block)
+
+    copilot_block = build_operating_copilot_block(
+        message=message,
+        legal_bundle=legal_bundle,
+        policy_bundle=policy_bundle,
+        sop_bundle=sop_bundle,
+        decision_workflow=decision_block,
+        enabled=malone_operating_copilot_enabled(),
+    )
+    truth_packet = enrich_truth_packet_with_operating_copilot(truth_packet, copilot_block)
 
     if malone_legal_evidence_enabled() and intent.get("target") == "legal_handbook" and legal_bundle is not None:
         persist_legal_answer_trace(

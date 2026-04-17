@@ -397,6 +397,27 @@ def enrich_truth_packet_with_decision_workflow(
     return packet
 
 
+def enrich_truth_packet_with_operating_copilot(
+    packet: dict[str, Any],
+    copilot_block: dict[str, Any] | None,
+) -> dict[str, Any]:
+    """Attach business operating copilot block (additive)."""
+    from app.services.legal_assistant.guardrails import operating_copilot_supplementary_forbidden_claims
+
+    block = copilot_block or {}
+    packet["operating_copilot"] = block
+    meta = packet.get("packet_meta") or {}
+    meta["operating_copilot_enabled"] = bool(block.get("enabled"))
+    meta["operating_copilot_scenario"] = block.get("primary_scenario")
+    meta["operating_copilot_fallback"] = block.get("fallback_reason")
+    packet["packet_meta"] = meta
+    if block.get("enabled") and (block.get("guidance") or block.get("emit_minimal_only")):
+        forb = list(packet.get("forbidden_claims") or [])
+        forb.extend(operating_copilot_supplementary_forbidden_claims())
+        packet["forbidden_claims"] = forb[:80]
+    return packet
+
+
 def persist_legal_answer_trace(
     db: Session,
     *,
