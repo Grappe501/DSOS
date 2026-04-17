@@ -1,0 +1,27 @@
+{
+  "phase": "voice_2_control_interruption",
+  "status": "complete",
+  "completed_at": "2026-04-16",
+  "active_lane": ["app/", "src/", "tracking/", "tests/", "tools/"],
+  "forbidden_roots_modified": [],
+  "frontend": {
+    "malone_api": "src/lib/maloneApi.js — chat(message, { signal }); tts(text, { signal })",
+    "voice_session": "src/lib/maloneVoiceSession.js — deriveMaloneVoiceSessionState, STT_HANDOFF_CONTRACT, createWakeActivationStub",
+    "chat_panel": "src/components/malone/ChatPanel.jsx — AbortController, Cancel request, sequence guard, onBusyChange",
+    "playback": "src/components/malone/MaloneAnswerPlayback.jsx — TTS abort, playbackKey + token guards, onTtsPhaseChange",
+    "proposal_panel": "src/components/malone/ProposalPanel.jsx — playbackEpoch in playbackKey",
+    "malone_page": "src/pages/MalonePage.jsx — playbackEpoch, chatBusy, ttsPhase, voice label",
+    "voice_input_button": "src/components/malone/VoiceInputButton.jsx — voice session label; mic/listen still deferred"
+  },
+  "backend_changed_in_phase2": false,
+  "malone_spine": "single_path_POST_/api/malone/chat_unchanged",
+  "verification": {
+    "commands": [
+      "python -m pytest tests -q",
+      "python -m compileall app -q",
+      "npm run build"
+    ],
+    "result": "pass",
+    "last_run": "2026-04-16"
+  }
+}

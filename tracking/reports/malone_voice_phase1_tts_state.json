@@ -1,0 +1,18 @@
+{
+  "phase": "voice_1_tts_foundation",
+  "status": "complete",
+  "completed_at": "2026-04-16",
+  "routes": {
+    "GET /api/malone/voice/status": "tts_configured + limits (no secrets)",
+    "POST /api/malone/tts": "audio/mpeg from ElevenLabs (authenticated)"
+  },
+  "service_module": "app/services/elevenlabs_service.py",
+  "ui_component": "src/components/malone/MaloneAnswerPlayback.jsx",
+  "env_required_for_audio": ["ELEVENLABS_API_KEY", "ELEVENLABS_VOICE_ID"],
+  "env_optional": ["ELEVENLABS_MODEL_ID", "ELEVENLABS_TTS_TIMEOUT_SECONDS", "MALONE_TTS_ENABLED", "MALONE_TTS_MAX_CHARS"],
+  "verification": {
+    "commands": ["python -m pytest tests -q", "python -m compileall app -q", "npm run build"],
+    "result": "pass",
+    "last_run": "2026-04-16"
+  }
+}

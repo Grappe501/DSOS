@@ -1,0 +1,31 @@
+{
+  "phase": "voice_3_stt_listen",
+  "status": "complete",
+  "completed_at": "2026-04-16",
+  "active_lane": ["app/", "src/", "tracking/", "tests/", "tools/"],
+  "forbidden_roots_modified": [],
+  "frontend": {
+    "malone_api": "src/lib/maloneApi.js — unchanged chat(tts with signal)",
+    "chat_hook": "src/hooks/useMaloneChatRequest.js — shared maloneApi.chat + abort policy",
+    "voice_session": "src/lib/maloneVoiceSession.js — listen phases + deriveMaloneVoiceSessionState",
+    "browser_stt": "src/lib/maloneBrowserSpeech.js — Web Speech factory + feature detect",
+    "mic_capability": "src/lib/micCapability.js — getUserMedia preflight + user-facing reasons",
+    "chat_panel": "src/components/malone/ChatPanel.jsx — consumes chat hook",
+    "playback": "src/components/malone/MaloneAnswerPlayback.jsx — onPlaybackReady({ stopPlayback })",
+    "proposal_panel": "src/components/malone/ProposalPanel.jsx — onPlaybackReady passthrough",
+    "voice_input_button": "src/components/malone/VoiceInputButton.jsx — Listen STT + review + send",
+    "malone_page": "src/pages/MalonePage.jsx — hook, listen phase, barge-in"
+  },
+  "backend_changed_in_phase3": false,
+  "malone_spine": "single_path_POST_/api/malone/chat_unchanged",
+  "stt_transport": "browser_Web_Speech_API",
+  "verification": {
+    "commands": [
+      "python -m pytest tests -q",
+      "python -m compileall app -q",
+      "npm run build"
+    ],
+    "result": "pass",
+    "last_run": "2026-04-16"
+  }
+}

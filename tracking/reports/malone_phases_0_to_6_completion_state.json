@@ -1,0 +1,30 @@
+{
+  "run_id": "malone_phases_0_to_6_2026_04_16",
+  "status": "complete",
+  "completed_at": "2026-04-16",
+  "phases": [0, 1, 2, 3, 4, 5, 6],
+  "forbidden_roots": ["backend/", "frontend/", "dsos_replacements/"],
+  "hard_fail_conditions_satisfied": true,
+  "artifacts": {
+    "consolidated_report": "tracking/reports/malone_phases_0_to_6_completion_report.md",
+    "consolidated_state": "tracking/reports/malone_phases_0_to_6_completion_state.json",
+    "post_phase6_prompt": "tracking/reports/NEXT_THREAD_PROMPT_POST_PHASE6.md",
+    "phase_reports_glob": "tracking/reports/malone_phase*_*.md"
+  },
+  "env_flags": {
+    "MALONE_LEGAL_EVIDENCE_ENABLED": "Enable legal handbook intent, evidence bundle, and legal_answer_traces flush",
+    "MALONE_LEGAL_LOOKUP_ENABLED": "Use deterministic citation-first delivery for legal_handbook (requires evidence flag)"
+  },
+  "verification": {
+    "commands": [
+      "python -m pytest tests -q",
+      "python -m compileall app -q",
+      "alembic upgrade head",
+      "npm run build",
+      "python tools/self_verify_bootstrap.py"
+    ],
+    "result": "pass",
+    "last_run": "2026-04-16"
+  },
+  "deferred_workstreams": ["voice_implementation", "embedding_retrieval", "richer_legal_intent_model"]
+}

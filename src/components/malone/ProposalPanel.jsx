@@ -1,3 +1,5 @@
+import MaloneAnswerPlayback from "./MaloneAnswerPlayback";
+
 function renderJson(value) {
   return JSON.stringify(value ?? {}, null, 2);
 }
@@ -45,10 +47,12 @@ function DeliverySources({ sources = [] }) {
   );
 }
 
-function DeliveryPanel({ response }) {
+function DeliveryPanel({ response, playbackEpoch = 0, onTtsPhaseChange, onPlaybackReady }) {
   const answer = response?.delivery?.answer;
   const mode = response?.delivery?.mode;
   const sources = response?.delivery?.sources || [];
+  const proposalRecord = response?.proposal_record ?? null;
+  const playbackKey = `${playbackEpoch}:${proposalRecord?.id ?? "noid"}:${(answer || "").length}`;
 
   if (!answer) {
     return (
@@ -66,12 +70,24 @@ function DeliveryPanel({ response }) {
       <div className="info-text" style={{ whiteSpace: "pre-wrap" }}>
         {answer}
       </div>
+      <MaloneAnswerPlayback
+        answerText={answer}
+        playbackKey={playbackKey}
+        onTtsPhaseChange={onTtsPhaseChange}
+        onPlaybackReady={onPlaybackReady}
+      />
       <DeliverySources sources={sources} />
     </div>
   );
 }
 
-export default function ProposalPanel({ response, recentProposals = [] }) {
+export default function ProposalPanel({
+  response,
+  recentProposals = [],
+  playbackEpoch = 0,
+  onTtsPhaseChange,
+  onPlaybackReady,
+}) {
   const proposalRecord = response?.proposal_record ?? null;
 
   return (
@@ -79,7 +95,12 @@ export default function ProposalPanel({ response, recentProposals = [] }) {
       <h3>Malone Output</h3>
       <p>This page now defaults to the delivered answer first. Technical proof and state are available only if you open the details.</p>
 
-      <DeliveryPanel response={response} />
+      <DeliveryPanel
+        response={response}
+        playbackEpoch={playbackEpoch}
+        onTtsPhaseChange={onTtsPhaseChange}
+        onPlaybackReady={onPlaybackReady}
+      />
 
       {response ? (
         <details className="stack">

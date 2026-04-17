@@ -1,0 +1,44 @@
+{
+  "queries": [
+    {
+      "label": "citation:17-92-115",
+      "kind": "citation_lookup",
+      "query": "17-92-115",
+      "hit_count": 78,
+      "scoped_to_version": true,
+      "has_family_or_citation_info": true
+    },
+    {
+      "label": "citation:17-92-101",
+      "kind": "citation_lookup",
+      "query": "17-92-101",
+      "hit_count": 2187,
+      "scoped_to_version": true,
+      "has_family_or_citation_info": true
+    },
+    {
+      "label": "citation:5-64-101",
+      "kind": "citation_lookup",
+      "query": "5-64-101",
+      "hit_count": 282,
+      "scoped_to_version": true,
+      "has_family_or_citation_info": true
+    },
+    {
+      "label": "phrase:Pharmacy Practice Act",
+      "kind": "lexical",
+      "query": "Pharmacy Practice Act",
+      "hit_count": 12,
+      "scoped_to_version": true,
+      "has_family_or_citation_info": true
+    },
+    {
+      "label": "phrase:PDMP",
+      "kind": "lexical",
+      "query": "Prescription Drug Monitoring Program",
+      "hit_count": 12,
+      "scoped_to_version": true,
+      "has_family_or_citation_info": true
+    }
+  ]
+}

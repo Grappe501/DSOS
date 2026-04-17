@@ -1,0 +1,18 @@
+{
+  "phase": 1,
+  "name": "legal_source_modeling_foundation",
+  "status": "complete",
+  "completed_at": "2026-04-16",
+  "orm_module": "app/models/legal_handbook.py",
+  "migrations": ["0003_legal_handbook_knowledge_foundation", "0004_legal_unit_chunk_source_version"],
+  "schema_docs": ["schemas/legal_handbook_knowledge_v0.sql"],
+  "alignment_notes": [
+    "Chunks carry legal_source_version_id for ingest/version scoping",
+    "Citations attach to chunks; citation_key unique"
+  ],
+  "deferred": ["explicit_sqlalchemy_relationship_graph_for_legal_tables"],
+  "verification": {
+    "commands": ["python -m pytest tests -q", "python -m compileall app -q", "alembic upgrade head"],
+    "last_run": "2026-04-16"
+  }
+}

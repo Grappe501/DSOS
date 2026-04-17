@@ -27,6 +27,14 @@ from app.services.render_verifier import (
     build_deterministic_fallback,
     verify_rendered_response,
 )
+from app.services.legal_assistant.answer_formatter import format_legal_lookup_answer
+from app.services.legal_evidence_service import (
+    build_legal_evidence_bundle,
+    enrich_truth_packet_with_legal,
+    malone_legal_evidence_enabled,
+    malone_legal_lookup_enabled,
+    persist_legal_answer_trace,
+)
 from app.services.truth_packet_service import build_truth_packet
 from app.services.workflow_service import (
     DEFAULT_WORKFLOW_NAME,
@@ -89,6 +97,40 @@ def _build_render_fallback(
         "delivery_mode": "deterministic_fallback",
     }
     return {}, verification, "deterministic_only"
+
+
+def _deliver_legal_handbook_deterministic(
+    *,
+    db: Session,
+    proposal_record: Any,
+    actor_payload: dict[str, Any],
+    truth_packet: dict[str, Any],
+) -> tuple[dict[str, Any], dict[str, Any], str]:
+    bundle = truth_packet.get("legal_evidence") or {}
+    items = bundle.get("items") or []
+    text = format_legal_lookup_answer(items)
+    verification = {
+        "verified": True,
+        "reasons": [],
+        "grounding_refs": [],
+        "source_refs": [],
+        "verified_source_urls": [],
+        "fallback_answer": text,
+        "delivery_answer": text,
+        "delivery_mode": "legal_grounded_deterministic",
+    }
+    log_malone_action(
+        db,
+        action="malone.delivery.legal_handbook",
+        proposal_id=proposal_record.id,
+        actor=actor_payload,
+        meta_json={
+            "item_count": len(items),
+            "legal_source_version_id": bundle.get("legal_source_version_id"),
+            "warnings": bundle.get("warnings"),
+        },
+    )
+    return {}, verification, "legal_grounded_deterministic"
 
 
 def _deliver_rendered_response(
@@ -279,6 +321,10 @@ def handle_malone_request(
     # ---------------------------------------------------------
     # Truth packet
     # ---------------------------------------------------------
+    legal_bundle = None
+    if malone_legal_evidence_enabled() and intent.get("target") == "legal_handbook":
+        legal_bundle = build_legal_evidence_bundle(db, message)
+
     truth_packet = build_truth_packet(
         message=message,
         actor=actor_payload,
@@ -291,6 +337,20 @@ def handle_malone_request(
         result=result,
         status=status,
     )
+    truth_packet = enrich_truth_packet_with_legal(
+        truth_packet,
+        intent=intent,
+        legal_evidence_bundle=legal_bundle,
+    )
+
+    if malone_legal_evidence_enabled() and intent.get("target") == "legal_handbook" and legal_bundle is not None:
+        persist_legal_answer_trace(
+            db,
+            proposal_id=str(proposal_record.id),
+            bundle=legal_bundle,
+            query_fingerprint=None,
+            verified=bool((legal_bundle.get("items") or [])),
+        )
 
     # ---------------------------------------------------------
     # DELIVERY LOGIC (approval-aware)
@@ -305,6 +365,23 @@ def handle_malone_request(
         rendered_output = {}
         verification = {"verified": True, "delivery_mode": "approval_required"}
         delivery_status = "approval_required"
+
+    elif (
+        malone_legal_lookup_enabled()
+        and malone_legal_evidence_enabled()
+        and intent.get("target") == "legal_handbook"
+    ):
+        rendered_output, verification, delivery_status = _deliver_legal_handbook_deterministic(
+            db=db,
+            proposal_record=proposal_record,
+            actor_payload=actor_payload,
+            truth_packet=truth_packet,
+        )
+        delivery = {
+            "answer": verification.get("delivery_answer"),
+            "mode": verification.get("delivery_mode"),
+            "sources": [],
+        }
 
     else:
         rendered_output, verification, delivery_status = _deliver_rendered_response(

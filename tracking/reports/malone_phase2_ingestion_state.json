@@ -1,0 +1,13 @@
+{
+  "phase": 2,
+  "name": "ingestion_execution_stability",
+  "status": "complete",
+  "completed_at": "2026-04-16",
+  "pipeline_module": "app/services/legal_ingestion/arkansas_pipeline.py",
+  "ingest_profiles": ["arkansas_asbp_handbook_pdf_v1", "arkansas_asbp_handbook_text_v1"],
+  "deferred": ["ci_ingest_with_real_pdf_asset"],
+  "verification": {
+    "commands": ["python -m pytest tests -q", "python -m compileall app -q"],
+    "last_run": "2026-04-16"
+  }
+}

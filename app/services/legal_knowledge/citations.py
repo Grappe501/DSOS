@@ -25,13 +25,18 @@ def stable_citation_key(
     primary_citation: str | None,
     subsection_path: str,
     ordinal: int,
+    legal_unit_id: str | None = None,
 ) -> str:
     """
     Deterministic key for idempotent re-ingest (same inputs produce the same key).
+
+    ``legal_unit_id`` disambiguates rare cases where two parsed units share the same
+    primary citation and chunk ordinal within one family (multi-strategy family spans).
     """
     cite = primary_citation or "UNIT"
     path = subsection_path or ""
-    payload = "|".join([edition_slug, family_code, cite, path, str(ordinal)])
+    scope = legal_unit_id or ""
+    payload = "|".join([edition_slug, family_code, cite, path, str(ordinal), scope])
     digest = hashlib.sha256(payload.encode("utf-8")).hexdigest()[:18]
     fam = family_code.upper()
     cite_part = _slug_fragment(cite, 48)

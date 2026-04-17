@@ -62,6 +62,7 @@ def find_chunks_by_section_title(
     like = f"%{q}%"
     units = db.query(LegalUnit).filter(LegalUnit.heading_raw.ilike(like)).limit(limit).all()
     out: list[dict[str, Any]] = []
+    seen_chunk: set[str] = set()
     for u in units:
         qchunks = db.query(LegalUnitChunk).filter(LegalUnitChunk.legal_unit_id == u.id)
         if legal_source_version_id:
@@ -69,6 +70,9 @@ def find_chunks_by_section_title(
         chunks = qchunks.all()
         fam = db.get(LegalDocumentFamily, u.legal_document_family_id)
         for ch in chunks:
+            if ch.id in seen_chunk:
+                continue
+            seen_chunk.add(ch.id)
             cite = (
                 db.query(LegalCitation).filter(LegalCitation.legal_unit_chunk_id == ch.id).one_or_none()
             )
@@ -120,7 +124,11 @@ def find_chunks_by_family_and_phrase(
         stmt = stmt.filter(LegalUnitChunk.legal_source_version_id == legal_source_version_id)
     rows = stmt.limit(limit).all()
     hits: list[dict[str, Any]] = []
+    seen_chunk: set[str] = set()
     for ch in rows:
+        if ch.id in seen_chunk:
+            continue
+        seen_chunk.add(ch.id)
         unit = db.get(LegalUnit, ch.legal_unit_id)
         fam = db.get(LegalDocumentFamily, unit.legal_document_family_id) if unit else None
         cite = (
@@ -142,10 +150,12 @@ def find_chunks_by_family_and_phrase(
 
 def _hydrate_citations(db: Session, cites: list[LegalCitation]) -> list[dict[str, Any]]:
     out: list[dict[str, Any]] = []
+    seen_chunk: set[str] = set()
     for c in cites:
         ch = db.get(LegalUnitChunk, c.legal_unit_chunk_id)
-        if not ch:
+        if not ch or ch.id in seen_chunk:
             continue
+        seen_chunk.add(ch.id)
         unit = db.get(LegalUnit, ch.legal_unit_id)
         fam = db.get(LegalDocumentFamily, unit.legal_document_family_id) if unit else None
         out.append(

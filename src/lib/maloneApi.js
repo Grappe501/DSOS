@@ -13,11 +13,13 @@ function buildHeaders() {
 }
 
 async function request(path, options = {}) {
+  const { signal, headers: optHeaders, ...rest } = options;
   const res = await fetch(path, {
-    ...options,
+    ...rest,
+    ...(signal ? { signal } : {}),
     headers: {
       ...buildHeaders(),
-      ...(options.headers || {}),
+      ...(optHeaders || {}),
     },
   });
 
@@ -31,14 +33,49 @@ async function request(path, options = {}) {
 }
 
 export const maloneApi = {
-  async chat(message) {
+  /**
+   * Same Malone chat spine as typing; optional AbortSignal cancels the HTTP request (Voice Phase 2+).
+   */
+  async chat(message, options = {}) {
+    const { signal } = options;
     return request("/api/malone/chat", {
       method: "POST",
       body: JSON.stringify({ message }),
+      ...(signal ? { signal } : {}),
     });
   },
 
   async getRecentProposals(limit = 12) {
     return request(`/api/malone/proposals?limit=${encodeURIComponent(limit)}`);
+  },
+
+  async voiceStatus() {
+    return request("/api/malone/voice/status");
+  },
+
+  /**
+   * Server-side ElevenLabs TTS; returns audio/mpeg Blob. Optional AbortSignal for cancellation (voice phase 2+).
+   */
+  async tts(text, options = {}) {
+    const { signal } = options;
+    const res = await fetch("/api/malone/tts", {
+      method: "POST",
+      headers: buildHeaders(),
+      body: JSON.stringify({ text }),
+      signal,
+    });
+    if (!res.ok) {
+      let detail = res.statusText;
+      try {
+        const j = await res.json();
+        if (j?.detail) {
+          detail = typeof j.detail === "string" ? j.detail : JSON.stringify(j.detail);
+        }
+      } catch {
+        /* ignore */
+      }
+      throw new Error(detail);
+    }
+    return res.blob();
   },
 };

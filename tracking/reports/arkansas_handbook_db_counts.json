@@ -1,0 +1,13 @@
+{
+  "document_found": true,
+  "version_found": true,
+  "family_count": 8,
+  "legal_unit_count": 184,
+  "chunk_count": 6289,
+  "citation_count": 6289,
+  "target_citations": {
+    "17-92-101": 2187,
+    "17-92-115": 78,
+    "5-64-101": 282
+  }
+}

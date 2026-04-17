@@ -170,3 +170,9 @@ Begin by stating:
 6. Any detected risks or gaps
 
 Then proceed.
+
+---
+
+## Malone legal phases 0–6 (2026-04-16)
+
+Handbook legal workstream artifacts live under `tracking/reports/malone_phase*_*.md` and `malone_phases_0_to_6_completion_*`. Post–phase-6 voice handoff: `tracking/reports/NEXT_THREAD_PROMPT_POST_PHASE6.md`. Active lane for that work: `app/`, `src/`, `schemas/`, `alembic/`, `tracking/`, `tests/`, `tools/` only.

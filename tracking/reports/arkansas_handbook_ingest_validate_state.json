@@ -1,0 +1,305 @@
+{
+  "pdf_path": "H:\\DSOS\\tracking\\data\\arkansas_handbook\\Lawbook-2025-Dec-1.pdf",
+  "run_timestamp": "2026-04-17T04:36:21+00:00",
+  "precheck": {
+    "pdf_exists": true,
+    "pdf_readable": true,
+    "db_ok": true,
+    "schema_ok": true,
+    "pdf_page_count": 439,
+    "corpus_chars": 870336
+  },
+  "family_validation": {
+    "parsed_family_count": 8,
+    "families": [
+      {
+        "family_code": "A",
+        "title": "Pharmacy Practice Act",
+        "span_provenance": "toc_confirmed_by_body",
+        "span_confidence": "high",
+        "char_start": 10385,
+        "char_end": 182051,
+        "page_start": 12,
+        "page_end": 73
+      },
+      {
+        "family_code": "B",
+        "title": "Miscellaneous Statutes Related to Pharmacy",
+        "span_provenance": "toc_confirmed_by_body",
+        "span_confidence": "high",
+        "char_start": 182051,
+        "char_end": 198670,
+        "page_start": 73,
+        "page_end": 79
+      },
+      {
+        "family_code": "C",
+        "title": "Uniform Controlled Substances Act",
+        "span_provenance": "toc_confirmed_by_body",
+        "span_confidence": "high",
+        "char_start": 198670,
+        "char_end": 271960,
+        "page_start": 79,
+        "page_end": 108
+      },
+      {
+        "family_code": "D",
+        "title": "Insurance Policies – Prescription Drug Benefits",
+        "span_provenance": "toc_confirmed_by_body",
+        "span_confidence": "high",
+        "char_start": 271960,
+        "char_end": 285315,
+        "page_start": 108,
+        "page_end": 113
+      },
+      {
+        "family_code": "E",
+        "title": "Food, Drug, and Cosmetic Act",
+        "span_provenance": "toc_confirmed_by_body",
+        "span_confidence": "high",
+        "char_start": 285315,
+        "char_end": 331236,
+        "page_start": 113,
+        "page_end": 129
+      },
+      {
+        "family_code": "F",
+        "title": "Controlled Substances and Legend Drugs",
+        "span_provenance": "toc_confirmed_by_body",
+        "span_confidence": "high",
+        "char_start": 331236,
+        "char_end": 344915,
+        "page_start": 129,
+        "page_end": 134
+      },
+      {
+        "family_code": "G",
+        "title": "Administrative Procedure Act",
+        "span_provenance": "toc_confirmed_by_body",
+        "span_confidence": "high",
+        "char_start": 344915,
+        "char_end": 392411,
+        "page_start": 134,
+        "page_end": 151
+      },
+      {
+        "family_code": "H",
+        "title": "Rules Pertaining to Arkansas Prescription Drug Monitoring Program",
+        "span_provenance": "toc_confirmed_by_body",
+        "span_confidence": "high",
+        "char_start": 392411,
+        "char_end": 870336,
+        "page_start": 151,
+        "page_end": 439
+      }
+    ],
+    "validation_payload": {
+      "body_start_char": 10385,
+      "reconciliation": {
+        "body_start_char": 10385,
+        "handbook_body_anchor_char": 10385,
+        "statute_line_char": 413,
+        "effective_zone_split_char": 10385,
+        "toc_zone_end_char": 10385,
+        "toc_hits_found": 8,
+        "body_hits_found": 121,
+        "detection_layers": {
+          "toc_trailing_letter": 8,
+          "body_letter_space": 121,
+          "dot_heading_all": 0
+        },
+        "per_code": {
+          "A": {
+            "body_char_start": 10385,
+            "body_strategy": "body_letter_space_title",
+            "toc_char_start": 389,
+            "toc_strategy": "toc_trailing_letter",
+            "note": "body_after_toc",
+            "detection_strategy": "reconciled_toc_body"
+          },
+          "B": {
+            "body_char_start": 182051,
+            "body_strategy": "body_letter_space_title",
+            "toc_char_start": 4717,
+            "toc_strategy": "toc_trailing_letter",
+            "note": "body_after_toc",
+            "detection_strategy": "reconciled_toc_body"
+          },
+          "C": {
+            "body_char_start": 198670,
+            "body_strategy": "body_letter_space_title",
+            "toc_char_start": 5107,
+            "toc_strategy": "toc_trailing_letter",
+            "note": "body_after_toc",
+            "detection_strategy": "reconciled_toc_body"
+          },
+          "D": {
+            "body_char_start": 271960,
+            "body_strategy": "body_letter_space_title",
+            "toc_char_start": 6620,
+            "toc_strategy": "toc_trailing_letter",
+            "note": "body_after_toc",
+            "detection_strategy": "reconciled_toc_body"
+          },
+          "E": {
+            "body_char_start": 285315,
+            "body_strategy": "body_letter_space_title",
+            "toc_char_start": 7199,
+            "toc_strategy": "toc_trailing_letter",
+            "note": "body_after_toc",
+            "detection_strategy": "reconciled_toc_body"
+          },
+          "F": {
+            "body_char_start": 331236,
+            "body_strategy": "body_letter_space_title",
+            "toc_char_start": 8263,
+            "toc_strategy": "toc_trailing_letter",
+            "note": "body_after_toc",
+            "detection_strategy": "reconciled_toc_body"
+          },
+          "G": {
+            "body_char_start": 344915,
+            "body_strategy": "body_letter_space_title_title_override",
+            "toc_char_start": 8760,
+            "toc_strategy": "toc_trailing_letter",
+            "note": "body_after_toc",
+            "detection_strategy": "reconciled_toc_body"
+          },
+          "H": {
+            "body_char_start": 392411,
+            "body_strategy": "body_letter_space_title_title_override",
+            "toc_char_start": 9592,
+            "toc_strategy": "toc_trailing_letter",
+            "note": "body_after_toc",
+            "detection_strategy": "reconciled_toc_body"
+          }
+        }
+      },
+      "title_validation": {
+        "expected_codes": [
+          "A",
+          "B",
+          "C",
+          "D",
+          "E",
+          "F",
+          "G",
+          "H"
+        ],
+        "detected_codes": [
+          "A",
+          "B",
+          "C",
+          "D",
+          "E",
+          "F",
+          "G",
+          "H"
+        ],
+        "missing_codes": [],
+        "title_mismatch_codes": []
+      },
+      "resolved_count": 8
+    },
+    "title_validation": {
+      "expected_codes": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F",
+        "G",
+        "H"
+      ],
+      "detected_codes": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F",
+        "G",
+        "H"
+      ],
+      "missing_codes": [],
+      "title_mismatch_codes": []
+    },
+    "missing_expected_codes": [],
+    "title_mismatch_codes": [],
+    "passes_title_checks": true,
+    "unexpected_codes": []
+  },
+  "ingestion": {
+    "status": "completed",
+    "job_id": "45b95f83-e666-4573-a156-da681467fee1",
+    "legal_document_id": "ef98ab86-eeb0-4a72-9e43-f7da504ed161",
+    "legal_source_version_id": "2dd613c7-4744-4d46-aa3a-2c1ae98e8ffb",
+    "family_count": 8,
+    "chunk_count": 6289,
+    "citation_count": 6289,
+    "page_grounded": true,
+    "pdf_page_count": 439
+  },
+  "db_checks": {
+    "document_found": true,
+    "version_found": true,
+    "family_count": 8,
+    "legal_unit_count": 184,
+    "chunk_count": 6289,
+    "citation_count": 6289,
+    "target_citations": {
+      "17-92-101": 2187,
+      "17-92-115": 78,
+      "5-64-101": 282
+    }
+  },
+  "retrieval_checks": {
+    "queries": [
+      {
+        "label": "citation:17-92-115",
+        "kind": "citation_lookup",
+        "query": "17-92-115",
+        "hit_count": 78,
+        "scoped_to_version": true,
+        "has_family_or_citation_info": true
+      },
+      {
+        "label": "citation:17-92-101",
+        "kind": "citation_lookup",
+        "query": "17-92-101",
+        "hit_count": 2187,
+        "scoped_to_version": true,
+        "has_family_or_citation_info": true
+      },
+      {
+        "label": "citation:5-64-101",
+        "kind": "citation_lookup",
+        "query": "5-64-101",
+        "hit_count": 282,
+        "scoped_to_version": true,
+        "has_family_or_citation_info": true
+      },
+      {
+        "label": "phrase:Pharmacy Practice Act",
+        "kind": "lexical",
+        "query": "Pharmacy Practice Act",
+        "hit_count": 12,
+        "scoped_to_version": true,
+        "has_family_or_citation_info": true
+      },
+      {
+        "label": "phrase:PDMP",
+        "kind": "lexical",
+        "query": "Prescription Drug Monitoring Program",
+        "hit_count": 12,
+        "scoped_to_version": true,
+        "has_family_or_citation_info": true
+      }
+    ]
+  },
+  "warnings": [],
+  "failures": [],
+  "next_action": "No action required; corpus is ingested and retrieval checks passed.",
+  "overall_status": "PASS"
+}

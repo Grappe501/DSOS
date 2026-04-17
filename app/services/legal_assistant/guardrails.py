@@ -16,3 +16,11 @@ TODO boundary:
 """
 
 from __future__ import annotations
+
+
+def legal_handbook_forbidden_claims() -> list[str]:
+    return [
+        "Do not present handbook excerpts as personal legal advice or as a substitute for counsel.",
+        "Do not extrapolate beyond the provided excerpts and citation metadata.",
+        "Do not claim the handbook compilation is the official filing if the source metadata says otherwise.",
+    ]

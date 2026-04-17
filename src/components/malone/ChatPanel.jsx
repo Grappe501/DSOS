@@ -1,10 +1,8 @@
 import { useState } from "react";
-import { maloneApi } from "../../lib/maloneApi";
 
-export default function ChatPanel({ onResponse }) {
+export default function ChatPanel({ chat }) {
   const [message, setMessage] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
+  const { loading, error, submitMessage, cancelRequest, setError } = chat;
 
   async function onSubmit(e) {
     e.preventDefault();
@@ -15,23 +13,14 @@ export default function ChatPanel({ onResponse }) {
       return;
     }
 
-    setLoading(true);
-    setError("");
-
-    try {
-      const data = await maloneApi.chat(nextMessage);
-      onResponse?.(data);
+    const ok = await submitMessage(nextMessage);
+    if (ok) {
       setMessage("");
-    } catch (err) {
-      const nextError =
-        err instanceof Error && err.message
-          ? err.message
-          : "Malone request failed";
-      setError(nextError);
-      onResponse?.(null);
-    } finally {
-      setLoading(false);
     }
+  }
+
+  function onCancelRequest() {
+    cancelRequest();
   }
 
   function onKeyDown(e) {
@@ -66,9 +55,20 @@ export default function ChatPanel({ onResponse }) {
           Press Enter to send. Press Shift+Enter for a new line.
         </div>
 
-        <button className="primary-button" type="submit" disabled={loading}>
-          {loading ? "Running..." : "Send"}
-        </button>
+        <div style={{ display: "flex", flexWrap: "wrap", gap: "0.5rem", alignItems: "center" }}>
+          <button className="primary-button" type="submit" disabled={loading}>
+            {loading ? "Running..." : "Send"}
+          </button>
+          <button
+            className="secondary-button"
+            type="button"
+            onClick={onCancelRequest}
+            disabled={!loading}
+            title="Cancel the in-flight Malone request (HTTP abort)."
+          >
+            Cancel request
+          </button>
+        </div>
       </form>
 
       {error ? <div className="error-text">{error}</div> : null}

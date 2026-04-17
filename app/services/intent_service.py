@@ -1,5 +1,38 @@
 from __future__ import annotations
 
+import os
+
+
+def _malone_legal_evidence_env_enabled() -> bool:
+    v = os.environ.get("MALONE_LEGAL_EVIDENCE_ENABLED", "").strip().lower()
+    return v in ("1", "true", "yes", "on")
+
+
+def _legal_handbook_triggered(text: str) -> bool:
+    """Narrow triggers for Arkansas / ASBP handbook grounding (not general law chat)."""
+    t = text.lower()
+    needles = (
+        "arkansas state board of pharmacy",
+        "asbp",
+        "arkansas pharmacy",
+        "ark. code ann",
+        "arkansas code",
+        "ac.a.",
+        "ac.b.",
+        "ac.c.",
+        "ac.d.",
+        "ac.e.",
+        "ac.f.",
+        "ac.g.",
+        "ac.h.",
+        "17-92-",
+        "pharmacy lawbook",
+        "lawbook",
+        "pdmp",
+        "uniform controlled substances",
+    )
+    return any(n in t for n in needles)
+
 
 def classify_intent(message: str) -> dict[str, str | None]:
     text = (message or "").strip().lower()
@@ -10,6 +43,16 @@ def classify_intent(message: str) -> dict[str, str | None]:
             "action": "respond",
             "target": "general",
             "action_key_hint": None,
+            "legal_profile": None,
+        }
+
+    if _malone_legal_evidence_env_enabled() and _legal_handbook_triggered(text):
+        return {
+            "mode": "answer",
+            "action": "respond",
+            "target": "legal_handbook",
+            "action_key_hint": None,
+            "legal_profile": "arkansas_asbp_handbook",
         }
 
     if "schedule" in text or "calendar" in text:
@@ -19,12 +62,14 @@ def classify_intent(message: str) -> dict[str, str | None]:
                 "action": "analyze",
                 "target": "schedules",
                 "action_key_hint": "schedule.analyze",
+                "legal_profile": None,
             }
         return {
             "mode": "answer",
             "action": "respond",
             "target": "schedules",
             "action_key_hint": "schedule.read",
+            "legal_profile": None,
         }
 
     if any(term in text for term in ["report", "analysis", "analyze", "optimize"]):
@@ -33,6 +78,7 @@ def classify_intent(message: str) -> dict[str, str | None]:
             "action": "analyze",
             "target": "operations",
             "action_key_hint": None,
+            "legal_profile": None,
         }
 
     if any(term in text for term in ["build", "create", "design", "assemble"]):
@@ -41,6 +87,7 @@ def classify_intent(message: str) -> dict[str, str | None]:
             "action": "propose_build",
             "target": "system",
             "action_key_hint": None,
+            "legal_profile": None,
         }
 
     if any(term in text for term in ["agent", "investigate", "delegate"]):
@@ -49,6 +96,7 @@ def classify_intent(message: str) -> dict[str, str | None]:
             "action": "spawn_agent",
             "target": "operations",
             "action_key_hint": None,
+            "legal_profile": None,
         }
 
     return {
@@ -56,4 +104,5 @@ def classify_intent(message: str) -> dict[str, str | None]:
         "action": "respond",
         "target": "general",
         "action_key_hint": None,
+        "legal_profile": None,
     }

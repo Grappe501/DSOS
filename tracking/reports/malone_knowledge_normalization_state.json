@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "status": "implemented",
+  "completed_at": "2026-04-17",
+  "alembic_revision": "0006_knowledge_normalization_layer",
+  "reference_sql": "schemas/knowledge_normalization_v0.sql",
+  "orm_models": "app/models/knowledge_normalization.py",
+  "service_package": "app/services/knowledge_normalization/",
+  "cli": "tools/run_knowledge_normalization.py",
+  "tables": [
+    "normalization_runs",
+    "normalized_knowledge_units",
+    "normalized_knowledge_review_events"
+  ],
+  "source_types_implemented": ["legal_handbook", "policy_manual"],
+  "profiles": {
+    "legal_handbook_v1": "Chunk-grounded keyword classification from legal_unit_chunks",
+    "policy_manual_v1": "Ingestion segment–grounded keyword classification"
+  },
+  "review_states": [
+    "draft",
+    "system_generated",
+    "reviewed",
+    "approved",
+    "rejected",
+    "superseded"
+  ],
+  "validation_outcomes": ["PASS", "PASS_WITH_WARNINGS", "FAIL"],
+  "forbidden_roots": ["backend/", "frontend/", "dsos_replacements/"],
+  "verification_commands": [
+    "python -m pytest tests -q",
+    "python -m compileall app tools -q",
+    "alembic upgrade head"
+  ]
+}

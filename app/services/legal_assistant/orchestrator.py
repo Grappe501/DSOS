@@ -1,18 +1,22 @@
 """
 Purpose:
-    Sequence: citation lookup → retrieval → authority filter → compliance → formatter.
+    Single import surface for handbook evidence + formatting (no duplicate agent).
 
 Role in Malone:
-    Single entry for “legal handbook” intent once routed from `intent_service` (future).
-
-Expected inputs:
-    Normalized request dict, db session handle (future).
-
-Expected outputs:
-    Structured response envelope with evidence and trace references.
-
-TODO boundary:
-    Stub only; wire-up happens after ingestion produces chunk rows.
+    Callers use ``build_legal_evidence_bundle`` and ``format_legal_lookup_answer``;
+    routing remains in ``malone_service``.
 """
 
 from __future__ import annotations
+
+from app.services.legal_assistant.answer_formatter import format_legal_lookup_answer
+from app.services.legal_evidence_service import (
+    build_legal_evidence_bundle,
+    enrich_truth_packet_with_legal,
+)
+
+__all__ = [
+    "build_legal_evidence_bundle",
+    "enrich_truth_packet_with_legal",
+    "format_legal_lookup_answer",
+]

@@ -1,0 +1,32 @@
+{
+  "repair_pass": "arkansas_asbp_dec_2025_family_parser",
+  "run_timestamp": "2026-04-17T04:36:21+00:00",
+  "pdf": "tracking/data/arkansas_handbook/Lawbook-2025-Dec-1.pdf",
+  "stable_key_used": "ARK_ASBP_STATUTES_RULES_2025_12_DEC1_V2",
+  "version_label": "Lawbook 2025-Dec-1 V2",
+  "before": {
+    "parsed_family_count": 1,
+    "toc_hits_found": 0,
+    "body_hits_found_legacy": 1,
+    "provenance": "legacy_body_slice",
+    "retrieval_probes_ran": false,
+    "overall_status": "FAIL"
+  },
+  "after": {
+    "parsed_family_count": 8,
+    "toc_trailing_letter_hits": 8,
+    "body_letter_space_hits_total": 121,
+    "handbook_body_anchor_char": 10385,
+    "effective_zone_split_char": 10385,
+    "title_validation_pass": true,
+    "db_family_count": 8,
+    "retrieval_probe_count": 5,
+    "overall_status": "PASS"
+  },
+  "supporting_code_changes": [
+    "app/services/legal_ingestion/family_boundary.py — multi-strategy detection + body anchor",
+    "app/services/legal_ingestion/toc_parser.py — strategy notes in reconciliation",
+    "app/services/legal_knowledge/citations.py + app/services/legal_ingestion/arkansas_pipeline.py — citation_key disambiguation by legal_unit_id when duplicate primary citations appear across units",
+    "tracking/scripts/run_arkansas_handbook_ingest_validate.py — retrieval QA no longer gated on unrelated DB failure list"
+  ]
+}

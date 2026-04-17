@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "run_id": "malone_business_ingestion_architecture_2026_04_16",
+  "status": "complete",
+  "completed_at": "2026-04-16",
+  "forbidden_roots": ["backend/", "frontend/", "dsos_replacements/"],
+  "hard_fail_conditions_satisfied": true,
+  "artifacts": {
+    "architecture_report": "tracking/reports/malone_business_ingestion_architecture_report.md",
+    "architecture_state": "tracking/reports/malone_business_ingestion_architecture_state.json",
+    "parser_profile_plan": "tracking/reports/malone_parser_profile_registry_plan.md",
+    "tagging_framework": "tracking/reports/malone_ingestion_tagging_framework.md",
+    "validation_framework": "tracking/reports/malone_ingestion_validation_framework.md",
+    "promotion_plan": "tracking/reports/malone_ingestion_promotion_plan.md",
+    "ingest_job_lifecycle": "tracking/reports/malone_ingest_job_lifecycle.md",
+    "next_thread_prompt": "tracking/reports/NEXT_THREAD_PROMPT_BUSINESS_INGESTION_ARCHITECTURE.md",
+    "reference_sql": "schemas/business_ingestion_control_v0.sql",
+    "alembic_revision": "0005_business_ingestion_control_plane"
+  },
+  "code_entrypoints": {
+    "package": "app/services/ingestion_control/",
+    "orchestrator": "app/services/ingestion_control/ingest_runner.py:run_business_ingest",
+    "cli": "tools/run_business_ingest.py",
+    "models": "app/models/ingestion_control.py"
+  },
+  "tables": [
+    "ingestion_sources",
+    "ingestion_source_versions",
+    "ingestion_segments",
+    "ingestion_jobs",
+    "ingestion_job_events",
+    "ingestion_validations",
+    "ingestion_promotions",
+    "ingestion_tag_definitions",
+    "ingestion_tag_assignments"
+  ],
+  "profiles_implemented_in_code": [
+    "legal_handbook",
+    "policy_manual",
+    "sop_workflow",
+    "training_module",
+    "contract_rules",
+    "meeting_memory",
+    "general_reference"
+  ],
+  "profiles_with_distinct_execution_in_this_pass": ["legal_handbook", "policy_manual"],
+  "verification": {
+    "commands": [
+      "python -m pytest tests -q",
+      "python -m compileall app tracking/scripts tools -q",
+      "alembic upgrade head",
+      "npm run build"
+    ],
+    "result": "pass",
+    "last_run": "2026-04-16"
+  }
+}

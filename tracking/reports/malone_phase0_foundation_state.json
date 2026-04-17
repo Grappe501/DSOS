@@ -1,0 +1,47 @@
+{
+  "phase": 0,
+  "name": "foundation_governance_stability",
+  "status": "complete",
+  "completed_at": "2026-04-16",
+  "active_lane": ["app/", "src/", "schemas/", "alembic/", "tracking/", "tests/", "tools/"],
+  "forbidden_roots": ["backend/", "frontend/", "dsos_replacements/"],
+  "hard_fail_conditions": [
+    "modify backend/, frontend/, or dsos_replacements/ for this Malone legal workstream",
+    "replace Malone request path wholesale or add a parallel agent orchestrator",
+    "add speculative public legal Q&A before internal evidence path is ready",
+    "break versioning, citation anchoring, or page-grounding direction",
+    "skip required tracking outputs",
+    "start voice implementation before phases 0-6 complete"
+  ],
+  "migration_chain": [
+    "0001_v070_department_workflow",
+    "0002_regulation_knowledge_foundation",
+    "0003_legal_handbook_knowledge_foundation",
+    "0004_legal_unit_chunk_source_version"
+  ],
+  "phase_sequence": [
+    "0_foundation",
+    "1_legal_modeling",
+    "2_ingestion_stability",
+    "3_retrieval_hardening",
+    "4_legal_evidence_integration",
+    "5_guarded_legal_lookup",
+    "6_production_hardening"
+  ],
+  "artifacts": {
+    "report": "tracking/reports/malone_phase0_foundation_report.md",
+    "state": "tracking/reports/malone_phase0_foundation_state.json",
+    "next_prompt": "tracking/reports/NEXT_THREAD_PROMPT_PHASE0.md"
+  },
+  "verification": {
+    "commands": [
+      "python -m pytest tests -q",
+      "python -m compileall app -q",
+      "alembic upgrade head",
+      "npm run build"
+    ],
+    "last_run": "2026-04-16",
+    "result": "pass",
+    "note": "Run from repository root; use grounded commands only."
+  }
+}

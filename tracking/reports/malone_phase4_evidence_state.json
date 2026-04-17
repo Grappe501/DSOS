@@ -1,0 +1,18 @@
+{
+  "phase": 4,
+  "name": "legal_evidence_integration",
+  "status": "complete",
+  "completed_at": "2026-04-16",
+  "modules": [
+    "app/services/legal_evidence_service.py",
+    "app/services/malone_service.py",
+    "app/services/truth_packet_service.py",
+    "app/services/intent_service.py"
+  ],
+  "env": ["MALONE_LEGAL_EVIDENCE_ENABLED"],
+  "audit_table": "legal_answer_traces",
+  "verification": {
+    "commands": ["python -m pytest tests -q", "python -m compileall app -q"],
+    "last_run": "2026-04-16"
+  }
+}

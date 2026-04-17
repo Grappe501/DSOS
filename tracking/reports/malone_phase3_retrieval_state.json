@@ -1,0 +1,15 @@
+{
+  "phase": 3,
+  "name": "retrieval_hardening",
+  "status": "complete",
+  "completed_at": "2026-04-16",
+  "modules_touched": [
+    "app/services/legal_retrieval/lexical.py",
+    "app/services/legal_retrieval/citation_lookup.py"
+  ],
+  "deferred": ["postgres_fts", "embedding_adapter"],
+  "verification": {
+    "commands": ["python -m pytest tests -q", "python -m compileall app -q"],
+    "last_run": "2026-04-16"
+  }
+}

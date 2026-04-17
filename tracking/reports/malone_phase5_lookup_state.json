@@ -1,0 +1,13 @@
+{
+  "phase": 5,
+  "name": "guarded_legal_lookup",
+  "status": "complete",
+  "completed_at": "2026-04-16",
+  "env": ["MALONE_LEGAL_EVIDENCE_ENABLED", "MALONE_LEGAL_LOOKUP_ENABLED"],
+  "delivery_mode": "legal_grounded_deterministic",
+  "audit_actions": ["malone.delivery.legal_handbook"],
+  "verification": {
+    "commands": ["python -m pytest tests -q", "python -m compileall app -q", "npm run build"],
+    "last_run": "2026-04-16"
+  }
+}

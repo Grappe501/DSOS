@@ -137,6 +137,9 @@ def _provenance_for_code(code: str, hit: RawFamilyHit, per_code: dict[str, Any])
     notes_list: list[str] = []
     if note:
         notes_list.append(note)
+    strat = pc.get("detection_strategy")
+    if strat:
+        notes_list.append(f"strategy={strat}")
 
     if hit.zone == "body":
         if "toc_char_start" in pc:

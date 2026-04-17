@@ -1,9 +1,9 @@
 {
-  "project_root": "/mnt/data/work/dsos/DSOS",
+  "project_root": "H:\\DSOS",
   "counts": {
-    "tracking_files": 30,
-    "tool_files": 34,
-    "app_files": 99,
+    "tracking_files": 87,
+    "tool_files": 37,
+    "app_files": 226,
     "src_files": 27
   },
   "presence": {

@@ -1,0 +1,29 @@
+{
+  "name": "malone_voice_kickoff",
+  "status": "complete",
+  "completed_at": "2026-04-16",
+  "voice_phases": {
+    "phase1_tts": "implemented",
+    "phase2_control": "not_started",
+    "phase3_stt": "not_started",
+    "phase4_polish": "not_started"
+  },
+  "active_lane": ["app/", "src/", "tracking/", "tests/", "tools/"],
+  "forbidden_roots": ["backend/", "frontend/", "dsos_replacements/"],
+  "malone_path": "unchanged_single_spine",
+  "backend_routes_added": [
+    "GET /api/malone/voice/status",
+    "POST /api/malone/tts"
+  ],
+  "frontend_components": [
+    "src/components/malone/MaloneAnswerPlayback.jsx",
+    "src/components/malone/ProposalPanel.jsx",
+    "src/lib/maloneApi.js"
+  ],
+  "secrets_policy": "ELEVENLABS_API_KEY server-side only",
+  "verification": {
+    "commands": ["python -m pytest tests -q", "python -m compileall app -q", "npm run build"],
+    "result": "pass",
+    "last_run": "2026-04-16"
+  }
+}

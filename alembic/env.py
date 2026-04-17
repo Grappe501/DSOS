@@ -6,6 +6,9 @@ from alembic import context
 from sqlalchemy import engine_from_config, pool
 
 from app.db.session import Base
+from app.models import ingestion_control as _ingestion_control_models  # noqa: F401
+from app.models import knowledge_normalization as _knowledge_normalization_models  # noqa: F401
+from app.models import legal_handbook as _legal_handbook_models  # noqa: F401
 from app.models import models  # noqa: F401
 
 config = context.config

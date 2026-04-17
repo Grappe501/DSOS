@@ -69,11 +69,16 @@ def search_legal_chunks_lexical(
     if family_code:
         fc = family_code.strip().upper()[:1]
         stmt = stmt.filter(LegalDocumentFamily.family_code == fc)
+    stmt = stmt.order_by(LegalUnitChunk.id)
     fetch = limit * 4 if min_family_span_confidence else limit
     rows = stmt.limit(fetch).all()
 
     hits: list[dict[str, Any]] = []
+    seen_ids: set[str] = set()
     for ch in rows:
+        if ch.id in seen_ids:
+            continue
+        seen_ids.add(ch.id)
         unit = db.get(LegalUnit, ch.legal_unit_id)
         fam = db.get(LegalDocumentFamily, unit.legal_document_family_id) if unit else None
         if fam and not family_meets_min_span_confidence(fam.meta_json, min_family_span_confidence):

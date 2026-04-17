@@ -2,6 +2,8 @@
 
 from app.services.legal_ingestion.family_boundary import (
     RawFamilyHit,
+    handbook_body_anchor_char,
+    infer_family_code_from_title,
     _zone_for_family_hit,
     first_statute_line_char,
     reconcile_arkansas_family_hits,
@@ -69,6 +71,33 @@ def test_parse_family_spans_merges_ordered_spans_with_end_boundaries():
     assert {s.family_code for s in spans} == set("ABCDEFGH")
     assert all(isinstance(s, FamilySpan) for s in spans)
     assert all(s.span_provenance for s in spans)
+
+
+def test_december_2025_style_toc_trailing_letter_and_body_anchors():
+    """ASBP PDFs often use ``Title … B`` in the TOC and ``B Title`` in the body (not ``B.``)."""
+    text = (
+        "Table of Contents\n"
+        "Pharmacy Practice Act A\n"
+        "Miscellaneous Statutes Related to Pharmacy B\n"
+        "Uniform Controlled Substances Act C\n"
+        "Insurance Policies – Prescription Drug Benefits D\n"
+        "Food, Drug, and Cosmetic Act E\n"
+        "Controlled Substances and Legend Drugs F\n"
+        "Administrative Procedure Act G\n"
+        "Rules Pertaining to Arkansas Prescription Drug H\n"
+        "Monitoring Program\n"
+        "1\nArkansas State Board of Pharmacy Law Book\n"
+        "Pharmacy Practice Act May 2023\n"
+        "A Pharmacy Practice Act\n\n"
+        "17-92-101. Definitions.\n\n"
+        "B Miscellaneous Statutes Related to Pharmacy\n\n"
+        "17-1-1. Placeholder.\n"
+    )
+    assert handbook_body_anchor_char(text) is not None
+    assert infer_family_code_from_title("F Administrative Procedure Act") == "G"
+    resolved, notes = reconcile_arkansas_family_hits(text, body_start=None)
+    assert len(resolved) >= 6
+    assert notes["detection_layers"]["toc_trailing_letter"] >= 6
 
 
 def test_family_span_provenance_toc_only_is_low_confidence():

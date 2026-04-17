@@ -1,0 +1,28 @@
+{
+  "run_timestamp": "2026-04-17T04:10:36+00:00",
+  "args": {
+    "stable_key": "CLI_SMOKE",
+    "title": "Smoke",
+    "source_type": "policy_manual",
+    "profile": "policy_manual",
+    "path": "C:\\Users\\User\\AppData\\Local\\Temp\\tmpniniem.tmp",
+    "version_label": "v1",
+    "domain": "general",
+    "owner": null,
+    "authority_tier": "internal",
+    "no_validate": true,
+    "promotion": "if_pass",
+    "tags_json": null,
+    "emit_report": "H:\\DSOS\\tracking\\reports\\business_ingest_last_run.json"
+  },
+  "result": {
+    "business_job_id": "75749810-7f11-40ed-9a3d-546e07908a0e",
+    "ingestion_source_id": "bd3c8059-4c87-448e-ad16-6cbf2e740a8c",
+    "parser_profile_key": "policy_manual",
+    "status": "completed",
+    "ingestion_source_version_id": "c2ddea82-0dfe-4ef0-8211-86bff2cf2707",
+    "segment_count": 1,
+    "content_checksum": "4f92294ac871bed62ad87434fa316372b8ad8c4ceb5b84930d78404849ce32d8",
+    "validation_status": null
+  }
+}

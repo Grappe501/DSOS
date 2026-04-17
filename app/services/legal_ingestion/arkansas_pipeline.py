@@ -655,6 +655,8 @@ def _ingest_arkansas_corpus(
 
                     ordinal=int(row["ordinal"]),
 
+                    legal_unit_id=unit_row.id,
+
                 )
 
                 anchor = build_anchor_json(
