@@ -24,6 +24,7 @@ from app.services.scenario_memory.trace_read import (
     list_recent_scenarios,
     serialize_readonly_trace_bundle,
 )
+from app.services.demo_mode.config import demo_config_payload
 from app.services.telemetry.malone_turn_telemetry import TELEMETRY_SCHEMA_V1
 
 router = APIRouter(prefix="/api/malone", tags=["malone"])
@@ -125,7 +126,15 @@ def malone_capabilities(
 ):
     return {
         "actions": list_actions(),
+        "demo": demo_config_payload(),
     }
+
+
+@router.get("/demo/status")
+def malone_demo_status(current=Depends(get_current_user)):
+    """Read-only demo mode flags for UI (no secrets)."""
+    _actor, _role = current
+    return {"read_only": True, **demo_config_payload()}
 
 
 @router.get("/inspect/telemetry-schema")

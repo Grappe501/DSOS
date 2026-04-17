@@ -7,7 +7,7 @@ function JsonBlock({ label, value }) {
   const rows = Math.min(30, Math.max(6, 6 + Math.floor(text.length / 120)));
   return (
     <div className="stack" style={{ marginTop: "0.75rem" }}>
-      <strong>{label}</strong>
+      {label ? <strong>{label}</strong> : null}
       <textarea
         readOnly
         className="info-text"
@@ -20,6 +20,21 @@ function JsonBlock({ label, value }) {
         }}
       />
     </div>
+  );
+}
+
+function MaybeCollapsedJson({ label, value, collapsed }) {
+  const inner = <JsonBlock label="" value={value} />;
+  if (!collapsed) {
+    return <JsonBlock label={label} value={value} />;
+  }
+  return (
+    <details style={{ marginTop: "0.75rem" }} className="info-text">
+      <summary style={{ cursor: "pointer" }}>
+        <strong>{label}</strong> — expand for raw JSON
+      </summary>
+      <div style={{ marginTop: "0.5rem" }}>{inner}</div>
+    </details>
   );
 }
 
@@ -43,6 +58,7 @@ export default function MaloneInspectionPanel({ response }) {
     }
   }, [open]);
 
+  const demoActive = Boolean(response?.demo?.active);
   const telemetry = response?.malone_telemetry ?? null;
   const sid =
     telemetry?.trace_ids?.scenario_memory_id ||
@@ -95,17 +111,29 @@ export default function MaloneInspectionPanel({ response }) {
       </p>
 
       {telemetry ? (
-        <JsonBlock label="malone_telemetry (this response)" value={telemetry} />
+        <MaybeCollapsedJson
+          label="malone_telemetry (this response)"
+          value={telemetry}
+          collapsed={demoActive}
+        />
       ) : (
         <div className="info-text">No malone_telemetry on the latest response yet.</div>
       )}
 
       {response?.truth_packet?.operating_copilot ? (
-        <JsonBlock label="truth_packet.operating_copilot (subset)" value={response.truth_packet.operating_copilot} />
+        <MaybeCollapsedJson
+          label="truth_packet.operating_copilot (subset)"
+          value={response.truth_packet.operating_copilot}
+          collapsed={demoActive}
+        />
       ) : null}
 
       {response?.truth_packet?.decision_workflow ? (
-        <JsonBlock label="truth_packet.decision_workflow (subset)" value={response.truth_packet.decision_workflow} />
+        <MaybeCollapsedJson
+          label="truth_packet.decision_workflow (subset)"
+          value={response.truth_packet.decision_workflow}
+          collapsed={demoActive}
+        />
       ) : null}
 
       <div style={{ marginTop: "0.75rem", display: "flex", flexWrap: "wrap", gap: "0.5rem", alignItems: "center" }}>
@@ -121,7 +149,9 @@ export default function MaloneInspectionPanel({ response }) {
         {!sid ? <span className="info-text">No trace id on this turn (memory may be off or ineligible).</span> : null}
       </div>
       {traceError ? <div className="error-text">{traceError}</div> : null}
-      {traceDetail ? <JsonBlock label="GET /api/malone/inspect/traces/{id}" value={traceDetail} /> : null}
+      {traceDetail ? (
+        <MaybeCollapsedJson label="GET /api/malone/inspect/traces/{id}" value={traceDetail} collapsed={demoActive} />
+      ) : null}
     </div>
   );
 }

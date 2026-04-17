@@ -54,6 +54,7 @@ from app.services.legal_evidence_service import (
     malone_sop_lookup_enabled,
     persist_legal_answer_trace,
 )
+from app.services.demo_mode import apply_demo_limited_scope_truth_packet, attach_demo_envelope
 from app.services.review_feedback.governance_hints import build_governance_hints_for_turn
 from app.services.telemetry import build_turn_telemetry
 from app.services.truth_packet_service import build_truth_packet
@@ -521,6 +522,8 @@ def handle_malone_request(
             precedence_note=PRECEDENCE_NOTE,
         )
 
+    apply_demo_limited_scope_truth_packet(truth_packet)
+
     if malone_legal_evidence_enabled() and intent.get("target") == "legal_handbook" and legal_bundle is not None:
         persist_legal_answer_trace(
             db,
@@ -653,7 +656,7 @@ def handle_malone_request(
     )
     malone_governance = build_governance_hints_for_turn(db, truth_packet)
 
-    return {
+    out: dict[str, Any] = {
         "mode": intent["mode"],
         "intent": intent,
         "status": status,
@@ -671,3 +674,4 @@ def handle_malone_request(
         "malone_governance": malone_governance,
         "capabilities": list_actions(),
     }
+    return attach_demo_envelope(out)

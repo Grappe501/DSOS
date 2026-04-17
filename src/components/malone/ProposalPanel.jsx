@@ -47,11 +47,91 @@ function DeliverySources({ sources = [] }) {
   );
 }
 
+function DemoPresentation({ presentation }) {
+  if (!presentation || typeof presentation !== "object") {
+    return null;
+  }
+  const h = presentation.headers || {};
+  const excerpt = presentation.what_the_rules_say;
+  const actions = presentation.next_best_actions || [];
+  const why = presentation.why_this_answer;
+  const who = presentation.who_should_act || [];
+  const esc = presentation.when_to_escalate || [];
+
+  const hasAny =
+    (excerpt && excerpt.length > 0) ||
+    actions.length > 0 ||
+    (why && why.length > 0) ||
+    who.length > 0 ||
+    esc.length > 0;
+  if (!hasAny) {
+    return null;
+  }
+
+  return (
+    <div className="stack" style={{ marginBottom: "0.75rem" }}>
+      {excerpt ? (
+        <div>
+          <strong>{h.evidence || "What the rules say"}</strong>
+          <div className="info-text" style={{ whiteSpace: "pre-wrap", marginTop: 4 }}>
+            {excerpt}
+          </div>
+        </div>
+      ) : null}
+      {actions.length ? (
+        <div>
+          <strong>{h.guidance || "What to do next"}</strong>
+          <ul style={{ margin: "0.35rem 0 0 1.1rem" }}>
+            {actions.map((line, i) => (
+              <li key={`${i}-${line}`} className="info-text">
+                {line}
+              </li>
+            ))}
+          </ul>
+        </div>
+      ) : null}
+      {who.length ? (
+        <div>
+          <strong>Who should act</strong>
+          <ul style={{ margin: "0.35rem 0 0 1.1rem" }}>
+            {who.map((line, i) => (
+              <li key={`w-${i}-${line}`} className="info-text">
+                {line}
+              </li>
+            ))}
+          </ul>
+        </div>
+      ) : null}
+      {esc.length ? (
+        <div>
+          <strong>When to escalate</strong>
+          <ul style={{ margin: "0.35rem 0 0 1.1rem" }}>
+            {esc.map((line, i) => (
+              <li key={`e-${i}-${line}`} className="info-text">
+                {line}
+              </li>
+            ))}
+          </ul>
+        </div>
+      ) : null}
+      {why ? (
+        <div>
+          <strong>{h.reasoning || "Why this answer"}</strong>
+          <div className="info-text" style={{ marginTop: 4 }}>
+            {why}
+          </div>
+        </div>
+      ) : null}
+    </div>
+  );
+}
+
 function DeliveryPanel({ response, playbackEpoch = 0, onTtsPhaseChange, onPlaybackReady }) {
   const answer = response?.delivery?.answer;
   const mode = response?.delivery?.mode;
   const sources = response?.delivery?.sources || [];
   const proposalRecord = response?.proposal_record ?? null;
+  const presentation = response?.presentation;
   const playbackKey = `${playbackEpoch}:${proposalRecord?.id ?? "noid"}:${(answer || "").length}`;
 
   if (!answer) {
@@ -67,6 +147,7 @@ function DeliveryPanel({ response, playbackEpoch = 0, onTtsPhaseChange, onPlayba
       <div className="info-text">
         <strong>Mode:</strong> {mode || "-"}
       </div>
+      <DemoPresentation presentation={presentation} />
       <div className="info-text" style={{ whiteSpace: "pre-wrap" }}>
         {answer}
       </div>

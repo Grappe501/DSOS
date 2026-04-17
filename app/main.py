@@ -25,7 +25,7 @@ from app.utils.logger import log
 
 
 APP_TITLE = "AllCare Pharmacy Runtime"
-APP_VERSION = "0.6.3"
+APP_VERSION = "0.6.4"
 
 
 @asynccontextmanager

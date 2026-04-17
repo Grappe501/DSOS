@@ -59,6 +59,11 @@ export const maloneApi = {
     return request("/api/malone/inspect/telemetry-schema");
   },
 
+  /** Read-only demo mode flags (MALONE_DEMO_* server env). */
+  async getDemoStatus() {
+    return request("/api/malone/demo/status");
+  },
+
   async getInspectTraces(limit = 20) {
     return request(`/api/malone/inspect/traces?limit=${encodeURIComponent(limit)}`);
   },

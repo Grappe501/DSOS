@@ -5,7 +5,12 @@ import { maloneApi } from "../../lib/maloneApi";
  * Minimal department intake surface: start session, post answers, materialize map, view map.
  * Uses the same authenticated Malone API path as chat (no separate bot).
  */
-export default function DepartmentIntakePanel() {
+const DEMO_INTAKE_PRESETS = [
+  { label: "Pharmacy — intake desk", name: "Pharmacy Intake" },
+  { label: "Prior authorization", name: "Prior Authorization" },
+];
+
+export default function DepartmentIntakePanel({ demoActive = false }) {
   const [departmentName, setDepartmentName] = useState("");
   const [sessionId, setSessionId] = useState("");
   const [departmentId, setDepartmentId] = useState("");
@@ -80,6 +85,21 @@ export default function DepartmentIntakePanel() {
       <p style={{ margin: "0 0 0.5rem", fontSize: "0.85rem", opacity: 0.85 }}>
         Draft only — does not replace policy/legal evidence. Same login as Malone chat.
       </p>
+      {demoActive ? (
+        <div style={{ marginBottom: 8, display: "flex", flexWrap: "wrap", gap: 6 }}>
+          {DEMO_INTAKE_PRESETS.map((p) => (
+            <button
+              key={p.name}
+              type="button"
+              className="secondary-button"
+              style={{ fontSize: "0.8rem" }}
+              onClick={() => setDepartmentName(p.name)}
+            >
+              {p.label}
+            </button>
+          ))}
+        </div>
+      ) : null}
       {error ? (
         <p style={{ color: "coral", fontSize: "0.85rem" }} role="alert">
           {error}

@@ -1,0 +1,24 @@
+{
+  "pass": "demo_readiness",
+  "version": "1",
+  "app_version": "0.6.4",
+  "env_flags": {
+    "MALONE_DEMO_MODE": "Enable presentation + UI demo affordances",
+    "MALONE_DEMO_SAFE_RESPONSES": "Cosmetic trim of delivery text only",
+    "MALONE_DEMO_LIMITED_SCOPE": "Force allow_web_search false on conversational render path"
+  },
+  "api": ["/api/malone/demo/status", "/api/malone/capabilities (includes demo)"],
+  "services": [
+    "app/services/demo_mode/config.py",
+    "app/services/demo_mode/response_adjustments.py"
+  ],
+  "tools": ["tools/demo_prompts.py"],
+  "tests": ["tests/test_demo_readiness.py"],
+  "frontend": [
+    "src/components/malone/ProposalPanel.jsx",
+    "src/components/malone/MaloneInspectionPanel.jsx",
+    "src/components/malone/ChatPanel.jsx",
+    "src/pages/MalonePage.jsx",
+    "src/lib/maloneApi.js"
+  ]
+}

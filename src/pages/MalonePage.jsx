@@ -14,6 +14,7 @@ import {
 
 export default function MalonePage() {
   const [response, setResponse] = useState(null);
+  const [demoFlags, setDemoFlags] = useState(null);
   const [recentProposals, setRecentProposals] = useState([]);
   const [playbackEpoch, setPlaybackEpoch] = useState(0);
   const [ttsPhase, setTtsPhase] = useState("silent");
@@ -58,7 +59,21 @@ export default function MalonePage() {
       }
     }
 
+    async function loadDemo() {
+      try {
+        const d = await maloneApi.getDemoStatus();
+        if (!cancelled && d && typeof d === "object") {
+          setDemoFlags(d);
+        }
+      } catch {
+        if (!cancelled) {
+          setDemoFlags(null);
+        }
+      }
+    }
+
     void loadRecent();
+    void loadDemo();
     return () => {
       cancelled = true;
     };
@@ -83,7 +98,26 @@ export default function MalonePage() {
     <section className="page">
       <div className="page-header">
         <div>
-          <h1>Malone</h1>
+          <h1 style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: "0.5rem" }}>
+            Malone
+            {demoFlags?.malone_demo_mode ? (
+              <span
+                title="Server MALONE_DEMO_MODE is on: tighter demo presentation and optional limited scope."
+                style={{
+                  fontSize: "0.65rem",
+                  fontWeight: 600,
+                  textTransform: "uppercase",
+                  letterSpacing: "0.04em",
+                  padding: "0.2rem 0.45rem",
+                  borderRadius: 6,
+                  border: "1px solid #6cf6",
+                  background: "#1a2330",
+                }}
+              >
+                Demo mode
+              </span>
+            ) : null}
+          </h1>
           <p>
             Ask Malone a question and get a governed answer first. Technical proof stays tucked away unless you need it.
           </p>
@@ -98,7 +132,7 @@ export default function MalonePage() {
       </div>
 
       <div className="stack">
-        <ChatPanel chat={chat} />
+        <ChatPanel chat={chat} demoActive={Boolean(demoFlags?.malone_demo_mode)} />
         <ProposalPanel
           response={response}
           recentProposals={recentProposals}
@@ -108,7 +142,7 @@ export default function MalonePage() {
         />
         <MaloneInspectionPanel response={response} />
         <MaloneReviewPanel response={response} />
-        <DepartmentIntakePanel />
+        <DepartmentIntakePanel demoActive={Boolean(demoFlags?.malone_demo_mode)} />
       </div>
     </section>
   );
