@@ -1,0 +1,42 @@
+{
+  "schema_version": "malone_voice_readiness_state_v1",
+  "generated_at": "2026-04-16",
+  "pass_name": "malone_voice_readiness_audit",
+  "active_lanes_this_pass": ["app/", "src/", "tracking/", "tests/"],
+  "passive_lanes_excluded_from_work": ["backend/", "frontend/", "dsos_replacements/"],
+  "inventory_script": "tools/malone_voice_inventory.py",
+  "inventory_outputs": [
+    "tracking/reports/malone_voice_inventory.json",
+    "tracking/reports/malone_voice_inventory.md"
+  ],
+  "readiness_summary": {
+    "overall": "early",
+    "voice_ui": "stub_only",
+    "stt": "none",
+    "tts": "none",
+    "backend_voice_routes": "none",
+    "streaming_malone_chat": "none",
+    "client_abort_inflight_chat": "none",
+    "audio_playback_controls": "none"
+  },
+  "grounded_entrypoints": {
+    "malone_http_chat": "POST /api/malone/chat -> app.services.malone_service.handle_malone_request",
+    "malone_route_file": "app/api/malone_routes.py",
+    "malone_client": "src/lib/maloneApi.js (maloneApi.chat)",
+    "malone_page": "src/pages/MalonePage.jsx",
+    "chat_ui": "src/components/malone/ChatPanel.jsx",
+    "answer_display": "src/components/malone/ProposalPanel.jsx (delivery.answer)",
+    "voice_stub": "src/components/malone/VoiceInputButton.jsx"
+  },
+  "related_prior_passes": {
+    "legal_vertical_slice": "tracking/reports/malone_legal_vertical_slice_report.md",
+    "pdf_grounding": "tracking/reports/malone_pdf_grounding_pass_report.md"
+  },
+  "hard_fail_compliance_this_pass": {
+    "passive_roots_modified": false,
+    "malone_wholesale_replacement": false,
+    "speculative_giant_rewrite": false,
+    "tracking_outputs_skipped": false,
+    "voice_stack_ungrounded_in_repo": false
+  }
+}

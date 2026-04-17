@@ -1,0 +1,682 @@
+{
+  "active_lanes": [
+    "app/",
+    "src/",
+    "tracking/",
+    "tests/"
+  ],
+  "files_with_any_match": [
+    "app/api/routes.py",
+    "src/components/malone/VoiceInputButton.jsx",
+    "src/lib/api.js",
+    "src/pages/SchedulesPage.jsx",
+    "tracking/04_voice_first_design.md",
+    "tracking/HANDOFF_MIGRATION_MESSAGE.md",
+    "tracking/NEXT_PHASE_MASTER_BUILD_PLAN_v0.7.0.md",
+    "tracking/NEXT_PHASE_MASTER_BUILD_PLAN_v0.8.0.md",
+    "tracking/bootstrap_verification_report.json",
+    "tracking/build_map.json",
+    "tracking/file_map_v0.7.0.json",
+    "tracking/handoff_state_snapshot.json",
+    "tracking/malone/MALONE_V1_MASTER_PLAN.md",
+    "tracking/malone/malone_manifest_v1.json",
+    "tracking/manifest_rules_v0.7.0.json",
+    "tracking/phase_manifest_v0.7.0.json",
+    "tracking/progress.json",
+    "tracking/reports/NEXT_THREAD_PROMPT_VOICE_READINESS.md",
+    "tracking/reports/malone_elevenlabs_plan.md",
+    "tracking/reports/malone_regulation_api_plan.md",
+    "tracking/reports/malone_stt_plan.md",
+    "tracking/reports/malone_voice_architecture_plan.md",
+    "tracking/reports/malone_voice_backend_plan.md",
+    "tracking/reports/malone_voice_interaction_plan.md",
+    "tracking/reports/malone_voice_inventory.json",
+    "tracking/reports/malone_voice_inventory.md",
+    "tracking/reports/malone_voice_readiness_report.md",
+    "tracking/reports/malone_voice_readiness_state.json"
+  ],
+  "generated_at_utc": "2026-04-17T03:22:01Z",
+  "matches": {
+    "app/api/routes.py": {
+      "cancel": [
+        246,
+        282
+      ]
+    },
+    "src/components/malone/VoiceInputButton.jsx": {
+      "voice": [
+        3,
+        4
+      ]
+    },
+    "src/lib/api.js": {
+      "cancel": [
+        158
+      ]
+    },
+    "src/pages/SchedulesPage.jsx": {
+      "cancel": [
+        167
+      ]
+    },
+    "tracking/04_voice_first_design.md": {
+      "speech": [
+        4
+      ],
+      "voice": [
+        2
+      ]
+    },
+    "tracking/HANDOFF_MIGRATION_MESSAGE.md": {
+      "voice": [
+        74
+      ]
+    },
+    "tracking/NEXT_PHASE_MASTER_BUILD_PLAN_v0.7.0.md": {
+      "cancel": [
+        142,
+        530,
+        585,
+        635,
+        741
+      ]
+    },
+    "tracking/NEXT_PHASE_MASTER_BUILD_PLAN_v0.8.0.md": {
+      "cancel": [
+        231
+      ],
+      "speech": [
+        302
+      ],
+      "voice": [
+        26,
+        58,
+        297,
+        352,
+        448
+      ]
+    },
+    "tracking/bootstrap_verification_report.json": {
+      "cancel": [
+        47
+      ],
+      "voice": [
+        221
+      ]
+    },
+    "tracking/build_map.json": {
+      "audio": [
+        8660,
+        8661
+      ],
+      "media_recorder": [
+        9019
+      ],
+      "speech": [
+        9114,
+        9115
+      ],
+      "streaming": [
+        4193,
+        8939
+      ],
+      "voice": [
+        10330
+      ],
+      "websocket": [
+        4181,
+        4286,
+        6770,
+        6821,
+        6933,
+        6935,
+        6936,
+        6940,
+        6942,
+        6943,
+        9207
+      ]
+    },
+    "tracking/file_map_v0.7.0.json": {
+      "cancel": [
+        57
+      ]
+    },
+    "tracking/handoff_state_snapshot.json": {
+      "cancel": [
+        15
+      ]
+    },
+    "tracking/malone/MALONE_V1_MASTER_PLAN.md": {
+      "voice": [
+        22,
+        74,
+        125
+      ]
+    },
+    "tracking/malone/malone_manifest_v1.json": {
+      "voice": [
+        99
+      ]
+    },
+    "tracking/manifest_rules_v0.7.0.json": {
+      "cancel": [
+        64
+      ]
+    },
+    "tracking/phase_manifest_v0.7.0.json": {
+      "cancel": [
+        16,
+        21
+      ]
+    },
+    "tracking/progress.json": {
+      "voice": [
+        105
+      ]
+    },
+    "tracking/reports/NEXT_THREAD_PROMPT_VOICE_READINESS.md": {
+      "audio": [
+        32
+      ],
+      "microphone": [
+        21
+      ],
+      "playback": [
+        21,
+        32
+      ],
+      "speech": [
+        36
+      ],
+      "streaming": [
+        22
+      ],
+      "voice": [
+        1,
+        3,
+        7,
+        21,
+        37,
+        41,
+        44
+      ],
+      "websocket": [
+        22
+      ]
+    },
+    "tracking/reports/malone_elevenlabs_plan.md": {
+      "audio": [
+        19
+      ],
+      "playback": [
+        10,
+        19
+      ],
+      "speech": [
+        4,
+        18
+      ],
+      "voice": [
+        1,
+        27
+      ]
+    },
+    "tracking/reports/malone_regulation_api_plan.md": {
+      "websocket": [
+        55
+      ]
+    },
+    "tracking/reports/malone_stt_plan.md": {
+      "audio": [
+        20,
+        37
+      ],
+      "media_recorder": [
+        11
+      ],
+      "microphone": [
+        43
+      ],
+      "speech": [
+        1,
+        11,
+        18
+      ],
+      "streaming": [
+        28
+      ],
+      "voice": [
+        1
+      ],
+      "websocket": [
+        28
+      ]
+    },
+    "tracking/reports/malone_voice_architecture_plan.md": {
+      "audio": [
+        49,
+        50,
+        65,
+        66,
+        72
+      ],
+      "microphone": [
+        40,
+        53,
+        63
+      ],
+      "playback": [
+        4,
+        50,
+        66,
+        83
+      ],
+      "streaming": [
+        63,
+        71
+      ],
+      "voice": [
+        1,
+        4,
+        65,
+        70
+      ],
+      "websocket": [
+        29,
+        71
+      ]
+    },
+    "tracking/reports/malone_voice_backend_plan.md": {
+      "audio": [
+        10,
+        21,
+        23,
+        27
+      ],
+      "playback": [
+        33,
+        63
+      ],
+      "streaming": [
+        10
+      ],
+      "voice": [
+        1,
+        20,
+        27,
+        37,
+        39,
+        61
+      ]
+    },
+    "tracking/reports/malone_voice_interaction_plan.md": {
+      "abort": [
+        23
+      ],
+      "audio": [
+        23,
+        24,
+        32,
+        39,
+        42,
+        50,
+        52
+      ],
+      "microphone": [
+        20,
+        39,
+        40,
+        51
+      ],
+      "playback": [
+        23
+      ],
+      "streaming": [
+        59
+      ],
+      "voice": [
+        1,
+        25,
+        31,
+        58,
+        60
+      ]
+    },
+    "tracking/reports/malone_voice_inventory.json": {
+      "abort": [
+        178,
+        180,
+        230,
+        231
+      ],
+      "audio": [
+        98,
+        183,
+        185,
+        233,
+        234
+      ],
+      "cancel": [
+        31,
+        43,
+        48,
+        66,
+        75,
+        90,
+        131,
+        136,
+        153,
+        158,
+        188,
+        190,
+        236,
+        237
+      ],
+      "media_recorder": [
+        195,
+        240
+      ],
+      "microphone": [
+        198,
+        200,
+        242,
+        243
+      ],
+      "playback": [
+        203,
+        205,
+        245,
+        246
+      ],
+      "speech": [
+        53,
+        78,
+        105,
+        208,
+        210,
+        248,
+        249
+      ],
+      "streaming": [
+        109,
+        213,
+        215,
+        251,
+        252
+      ],
+      "voice": [
+        37,
+        56,
+        61,
+        81,
+        93,
+        113,
+        141,
+        148,
+        164,
+        218,
+        220,
+        254,
+        255
+      ],
+      "websocket": [
+        116,
+        169,
+        223,
+        225,
+        257,
+        258
+      ]
+    },
+    "tracking/reports/malone_voice_inventory.md": {
+      "abort": [
+        18
+      ],
+      "audio": [
+        12,
+        48
+      ],
+      "cancel": [
+        19,
+        24,
+        28,
+        30,
+        37,
+        41,
+        44,
+        53,
+        55,
+        61,
+        63
+      ],
+      "media_recorder": [
+        14
+      ],
+      "microphone": [
+        13
+      ],
+      "playback": [
+        17
+      ],
+      "speech": [
+        11,
+        33,
+        40,
+        47
+      ],
+      "streaming": [
+        16,
+        51
+      ],
+      "voice": [
+        1,
+        10,
+        26,
+        32,
+        35,
+        39,
+        43,
+        46,
+        57,
+        59,
+        65
+      ],
+      "websocket": [
+        15,
+        50,
+        67
+      ]
+    },
+    "tracking/reports/malone_voice_readiness_report.md": {
+      "abort": [
+        59,
+        106,
+        121
+      ],
+      "audio": [
+        18,
+        19,
+        24,
+        25,
+        26,
+        27,
+        29,
+        44,
+        59,
+        63,
+        74,
+        75,
+        77,
+        90,
+        91,
+        102,
+        104,
+        110,
+        120
+      ],
+      "cancel": [
+        28,
+        59,
+        122
+      ],
+      "media_recorder": [
+        23
+      ],
+      "microphone": [
+        23,
+        72,
+        86,
+        110,
+        118
+      ],
+      "playback": [
+        25,
+        29,
+        75,
+        76,
+        90,
+        104
+      ],
+      "speech": [
+        24,
+        73,
+        108
+      ],
+      "streaming": [
+        24,
+        27,
+        64,
+        119
+      ],
+      "voice": [
+        1,
+        4,
+        9,
+        11,
+        13,
+        17,
+        18,
+        19,
+        26,
+        31,
+        39,
+        44,
+        49,
+        51,
+        54,
+        58,
+        59,
+        68,
+        78,
+        82,
+        92,
+        94,
+        102,
+        110,
+        122,
+        132
+      ],
+      "websocket": [
+        18,
+        27,
+        64
+      ]
+    },
+    "tracking/reports/malone_voice_readiness_state.json": {
+      "playback": [
+        20
+      ],
+      "streaming": [
+        18
+      ]
+    }
+  },
+  "repo_root": "H:\\DSOS",
+  "scanned_text_files": 228,
+  "schema_version": "malone_voice_inventory_v1",
+  "summary_by_term": {
+    "abort": {
+      "files_with_matches": 4,
+      "label": "abort",
+      "match_lines_total": 9
+    },
+    "audio": {
+      "files_with_matches": 10,
+      "label": "audio",
+      "match_lines_total": 48
+    },
+    "cancel": {
+      "files_with_matches": 13,
+      "label": "cancel",
+      "match_lines_total": 44
+    },
+    "media_recorder": {
+      "files_with_matches": 5,
+      "label": "media recorder / MediaRecorder",
+      "match_lines_total": 6
+    },
+    "microphone": {
+      "files_with_matches": 7,
+      "label": "microphone",
+      "match_lines_total": 19
+    },
+    "playback": {
+      "files_with_matches": 9,
+      "label": "playback",
+      "match_lines_total": 23
+    },
+    "speech": {
+      "files_with_matches": 9,
+      "label": "speech",
+      "match_lines_total": 24
+    },
+    "streaming": {
+      "files_with_matches": 10,
+      "label": "streaming",
+      "match_lines_total": 20
+    },
+    "voice": {
+      "files_with_matches": 18,
+      "label": "voice",
+      "match_lines_total": 91
+    },
+    "websocket": {
+      "files_with_matches": 8,
+      "label": "websocket",
+      "match_lines_total": 28
+    }
+  },
+  "term_groups": {
+    "abort": {
+      "label": "abort"
+    },
+    "audio": {
+      "label": "audio"
+    },
+    "cancel": {
+      "label": "cancel"
+    },
+    "media_recorder": {
+      "label": "media recorder / MediaRecorder"
+    },
+    "microphone": {
+      "label": "microphone"
+    },
+    "playback": {
+      "label": "playback"
+    },
+    "speech": {
+      "label": "speech"
+    },
+    "streaming": {
+      "label": "streaming"
+    },
+    "voice": {
+      "label": "voice"
+    },
+    "websocket": {
+      "label": "websocket"
+    }
+  }
+}
