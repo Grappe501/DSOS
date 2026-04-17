@@ -79,7 +79,7 @@
       "workflow_package_split": "in_progress",
       "approval_system": "partial",
       "clarification_system": "partial",
-      "internal_retrieval_layer": "missing",
+      "internal_retrieval_layer": "partial_handbook_lexical_citation_scoped",
       "governed_write_execution": "not_started",
       "database_migrations": "partial_foundation_only",
       "scaffold_audit": "active"
@@ -112,6 +112,25 @@
       "standardize_database_migrations"
     ],
     "next_recommended_slice": "complete_workflow_package_split_then_finish_approval_workflow_lifecycle",
+    "malone_voice": {
+      "phase": "voice_1_tts_complete",
+      "completed_at": "2026-04-16",
+      "next": "voice_2_interruption_control",
+      "artifacts": {
+        "kickoff_report": "tracking/reports/malone_voice_kickoff_report.md",
+        "phase1_tts": "tracking/reports/malone_voice_phase1_tts_report.md",
+        "next_prompt": "tracking/reports/NEXT_THREAD_PROMPT_VOICE_PHASE1.md"
+      }
+    },
+    "malone_legal_phases_0_to_6": {
+      "status": "complete_2026_04_16",
+      "reports_index": "tracking/reports/malone_phases_0_to_6_completion_report.md",
+      "handoff": "tracking/reports/NEXT_THREAD_PROMPT_POST_PHASE6.md",
+      "env_flags": {
+        "MALONE_LEGAL_EVIDENCE_ENABLED": "Attach legal evidence bundle to truth packet (1/true/yes/on)",
+        "MALONE_LEGAL_LOOKUP_ENABLED": "Deterministic citation-first delivery for legal_handbook intent (requires evidence flag)"
+      }
+    },
     "boot_requirements_for_next_thread": [
       "read tracking/current_state.json first",
       "read tracking/progress.json",
