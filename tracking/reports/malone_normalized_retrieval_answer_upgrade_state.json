@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "status": "implemented",
+  "completed_at": "2026-04-17",
+  "package": "app/services/normalized_retrieval/",
+  "integration_points": [
+    "app/services/legal_evidence_service.py",
+    "app/services/malone_service.py",
+    "app/services/legal_assistant/answer_formatter.py",
+    "app/services/intent_service.py",
+    "app/services/truth_packet_service.py"
+  ],
+  "env_flags": [
+    "MALONE_NORMALIZED_RETRIEVAL_ENABLED",
+    "MALONE_POLICY_EVIDENCE_ENABLED",
+    "MALONE_POLICY_LOOKUP_ENABLED"
+  ],
+  "source_types_supported": ["legal_handbook", "policy_manual"],
+  "delivery_modes": [
+    "legal_grounded_deterministic",
+    "policy_grounded_deterministic"
+  ],
+  "verification": {
+    "pytest": "32 passed",
+    "compileall": "app tools"
+  }
+}

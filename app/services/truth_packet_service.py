@@ -51,6 +51,7 @@ def _safe_intent(intent: dict[str, Any] | None) -> dict[str, Any]:
         "action": intent.get("action"),
         "target": intent.get("target"),
         "legal_profile": intent.get("legal_profile"),
+        "policy_profile": intent.get("policy_profile"),
     }
 
 
@@ -226,6 +227,9 @@ def _compute_web_search_flags(
     if intent.get("target") == "legal_handbook":
         return False, "legal_handbook_uses_internal_evidence_only"
 
+    if intent.get("target") == "policy_manual":
+        return False, "policy_manual_uses_internal_evidence_only"
+
     if result is not None:
         return False, ""
 
@@ -249,6 +253,8 @@ def _compute_clarification_flags(
 ) -> tuple[bool, str]:
     target = intent.get("target")
     if target == "legal_handbook":
+        return False, ""
+    if target == "policy_manual":
         return False, ""
     action = intent.get("action")
     mode = intent.get("mode")

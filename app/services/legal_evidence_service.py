@@ -36,6 +36,35 @@ def malone_legal_lookup_enabled() -> bool:
     return v in ("1", "true", "yes", "on")
 
 
+def malone_normalized_retrieval_enabled() -> bool:
+    """Augment legal/policy bundles with normalized knowledge units when available."""
+    v = os.environ.get("MALONE_NORMALIZED_RETRIEVAL_ENABLED", "").strip().lower()
+    if v in ("0", "false", "no", "off"):
+        return False
+    if v in ("1", "true", "yes", "on"):
+        return True
+    return malone_legal_evidence_enabled()
+
+
+def malone_policy_evidence_enabled() -> bool:
+    v = os.environ.get("MALONE_POLICY_EVIDENCE_ENABLED", "").strip().lower()
+    if v in ("0", "false", "no", "off"):
+        return False
+    if v in ("1", "true", "yes", "on"):
+        return True
+    return malone_legal_evidence_enabled()
+
+
+def malone_policy_lookup_enabled() -> bool:
+    """Deterministic policy manual answer path (like ``MALONE_LEGAL_LOOKUP_ENABLED``)."""
+    v = os.environ.get("MALONE_POLICY_LOOKUP_ENABLED", "").strip().lower()
+    if v in ("0", "false", "no", "off"):
+        return False
+    if v in ("1", "true", "yes", "on"):
+        return True
+    return malone_policy_evidence_enabled()
+
+
 def resolve_default_legal_source_version_id(db: Session) -> str | None:
     """Latest ingested compilation (by row creation time)."""
     row = (
@@ -128,13 +157,42 @@ def build_legal_evidence_bundle(
     if not items:
         warnings.append("no_lexical_or_citation_hits")
 
-    return {
+    out = {
         "enabled": True,
         "legal_source_version_id": version_id,
         "query_strategy": strategy,
         "items": items,
         "warnings": warnings,
     }
+    if malone_normalized_retrieval_enabled():
+        from app.services.normalized_retrieval.bundle_builder import attach_normalized_to_legal_bundle
+
+        attach_normalized_to_legal_bundle(db, out, enabled=True)
+    else:
+        out["normalized"] = {"enabled": False, "reason": "MALONE_NORMALIZED_RETRIEVAL_DISABLED"}
+    return out
+
+
+def build_policy_evidence_bundle(
+    db: Session,
+    message: str,
+    *,
+    ingestion_source_version_id: str | None = None,
+    limit: int = 8,
+) -> dict[str, Any]:
+    """Policy manual segment retrieval + normalized attachment (same additive pattern as legal)."""
+    from app.services.normalized_retrieval.policy_selector import resolve_default_policy_source_version_id
+
+    vid = ingestion_source_version_id or resolve_default_policy_source_version_id(db)
+    from app.services.normalized_retrieval.bundle_builder import build_policy_evidence_bundle_with_normalized
+
+    return build_policy_evidence_bundle_with_normalized(
+        db,
+        message,
+        ingestion_source_version_id=vid,
+        limit=limit,
+        normalized_enabled=malone_normalized_retrieval_enabled(),
+    )
 
 
 def enrich_truth_packet_with_legal(
@@ -152,6 +210,11 @@ def enrich_truth_packet_with_legal(
     meta["legal_evidence_item_count"] = len(items)
     meta["legal_evidence_warnings"] = list(bundle.get("warnings") or [])
     meta["legal_query_strategy"] = bundle.get("query_strategy")
+    norm = bundle.get("normalized") or {}
+    meta["legal_normalized_enabled"] = bool(norm.get("enabled"))
+    meta["legal_normalized_unit_groups"] = sum(
+        len(v) for v in (norm.get("units_by_chunk_id") or {}).values()
+    )
     packet["packet_meta"] = meta
 
     if target != "legal_handbook":
@@ -179,6 +242,47 @@ def enrich_truth_packet_with_legal(
     forbid = list(packet.get("forbidden_claims") or [])
     forbid.extend(legal_handbook_forbidden_claims())
     packet["forbidden_claims"] = forbid
+    return packet
+
+
+def enrich_truth_packet_with_policy(
+    packet: dict[str, Any],
+    *,
+    intent: dict[str, Any],
+    policy_evidence_bundle: dict[str, Any] | None,
+) -> dict[str, Any]:
+    """Attach policy segment evidence + normalized meta to the truth packet."""
+    target = intent.get("target")
+    packet["policy_evidence"] = policy_evidence_bundle
+    meta = packet.get("packet_meta") or {}
+    bundle = policy_evidence_bundle or {}
+    items = bundle.get("items") or []
+    meta["policy_evidence_item_count"] = len(items)
+    meta["policy_evidence_warnings"] = list(bundle.get("warnings") or [])
+    norm = bundle.get("normalized") or {}
+    meta["policy_normalized_enabled"] = bool(norm.get("enabled"))
+    meta["policy_normalized_unit_groups"] = sum(
+        len(v) for v in (norm.get("units_by_segment_id") or {}).values()
+    )
+    packet["packet_meta"] = meta
+
+    if target != "policy_manual":
+        return packet
+
+    claims = packet.get("allowed_claims") or []
+    for idx, it in enumerate(items[:25]):
+        claims.append(
+            _base_claim(
+                f"policy_evidence_{idx}",
+                "policy manual excerpt",
+                {
+                    "ingestion_segment_id": it.get("ingestion_segment_id"),
+                    "heading": it.get("heading"),
+                    "ordinal": it.get("ordinal"),
+                },
+            )
+        )
+    packet["allowed_claims"] = claims[:50]
     return packet
 
 
